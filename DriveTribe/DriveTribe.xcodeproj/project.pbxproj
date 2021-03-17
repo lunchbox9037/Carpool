@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B978260120C800FBADCA /* FriendsList.storyboard */; };
 		F648B97E2601213E00FBADCA /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B97C2601213E00FBADCA /* MyProfile.storyboard */; };
 		F648B988260123D700FBADCA /* HelperPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B987260123D700FBADCA /* HelperPlaceholder.swift */; };
+		F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F648B978260120C800FBADCA /* FriendsList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FriendsList.storyboard; sourceTree = "<group>"; };
 		F648B97D2601213E00FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DriveTribe/Views/Storyboards/Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
 		F648B987260123D700FBADCA /* HelperPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperPlaceholder.swift; sourceTree = "<group>"; };
+		F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,6 @@
 				0F0F9D7D31D5DAA43EB44ECF /* Pods-DriveTribe.debug.xcconfig */,
 				6F49E98EAE0C67D0DAB14FB9 /* Pods-DriveTribe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -149,6 +150,7 @@
 			children = (
 				F648B96D26011B2500FBADCA /* CarpoolDestinationViewController.swift */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
+				F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -333,6 +335,7 @@
 				F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */,
 				F648B96226011A8D00FBADCA /* Carpool.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
+				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
