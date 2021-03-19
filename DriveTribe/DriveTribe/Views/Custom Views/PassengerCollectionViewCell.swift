@@ -80,8 +80,8 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
     }
     
-    func configure(passenger: User) {
-        self.profileImageView.image = UIImage(systemName: "person")
-        self.passengerNameLabel.text = passenger.name
-    }
+//    func configure(passenger: User) {
+//       // self.profileImageView.image = UIImage(systemName: "person")
+//       // self.passengerNameLabel.text = passenger.name
+//    }
 }//end class

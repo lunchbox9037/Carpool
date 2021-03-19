@@ -9,20 +9,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
-struct User {
-    let name: String
-    let location: CLLocationCoordinate2D
-}
+
 
 class AddPassengerViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var passengerCollectionView: UICollectionView!
-    
+   /*
     // MARK: - Properties
     var passengerMockData: [User] = [
-        User(name: "Lee", location: CLLocationCoordinate2D(latitude: 37.745700, longitude: -122.435251)),
-        User(name: "Dennis", location: CLLocationCoordinate2D(latitude: 37.751836, longitude: -122.431316)),
-        User(name: "Max", location: CLLocationCoordinate2D(latitude: 37.747651, longitude: -122.436914))
+//        User(name: "Lee", location: CLLocationCoordinate2D(latitude: 37.745700, longitude: -122.435251)),
+//        User(name: "Dennis", location: CLLocationCoordinate2D(latitude: 37.751836, longitude: -122.431316)),
+//        User(name: "Max", location: CLLocationCoordinate2D(latitude: 37.747651, longitude: -122.436914))
     ]
     
     // MARK: - Lifecycle
@@ -76,4 +73,5 @@ extension AddPassengerViewController: UICollectionViewDelegate, UICollectionView
         CarpoolController.shared.stops.append(passengerMockData[indexPath.row].location)
         collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
     }
+ */
 }//end extension
