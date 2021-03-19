@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5D831A85C524AAF352471699 /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6560C12F95D5D00B286CB6 /* Pods_DriveTribe.framework */; };
+		F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A0EDC26047E630087BCBE /* ProfileViewController.swift */; };
 		F648B9462601192500FBADCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9452601192500FBADCA /* AppDelegate.swift */; };
 		F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9472601192500FBADCA /* SceneDelegate.swift */; };
 		F648B94D2601192500FBADCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B94B2601192500FBADCA /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		0F0F9D7D31D5DAA43EB44ECF /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
 		5C6560C12F95D5D00B286CB6 /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F49E98EAE0C67D0DAB14FB9 /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		F25A0EDC26047E630087BCBE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F648B9422601192500FBADCA /* DriveTribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveTribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F648B9452601192500FBADCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F648B9472601192500FBADCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 				0F0F9D7D31D5DAA43EB44ECF /* Pods-DriveTribe.debug.xcconfig */,
 				6F49E98EAE0C67D0DAB14FB9 /* Pods-DriveTribe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -149,6 +150,7 @@
 			children = (
 				F648B96D26011B2500FBADCA /* CarpoolDestinationViewController.swift */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
+				F25A0EDC26047E630087BCBE /* ProfileViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -332,6 +334,7 @@
 				F648B96E26011B2500FBADCA /* CarpoolDestinationViewController.swift in Sources */,
 				F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */,
 				F648B96226011A8D00FBADCA /* Carpool.swift in Sources */,
+				F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,11 +501,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K5A3RPJ76H;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = DriveTribe/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanphillips.DriveTribe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -518,11 +523,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K5A3RPJ76H;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = DriveTribe/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanphillips.DriveTribe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
