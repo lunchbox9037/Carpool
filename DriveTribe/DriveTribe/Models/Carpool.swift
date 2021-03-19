@@ -7,19 +7,24 @@
 
 import Foundation
 import MapKit
+import CoreLocation
 
 class Carpool {
-    let title: String
-    let destination: MKPlacemark
-    let stops: [MKPlacemark]
-    let driver: String
-    let passengers: [String]
+    var title: String
+    var type: String
+    var destination: MKMapItem
+    var stops: [CLLocationCoordinate2D]
+    var driver: String
+    var passengers: [String]
+    var uuid: String
     
-    init(title: String, destination: MKPlacemark, stops: [MKPlacemark], driver: String, passengers: [String]) {
+    init(title: String, type: String, destination: MKMapItem, stops: [CLLocationCoordinate2D], driver: String, passengers: [String], uuid: String = UUID().uuidString) {
         self.title = title
+        self.type = type
         self.destination = destination
         self.stops = stops
         self.driver = driver
         self.passengers = passengers
+        self.uuid = uuid
     }
 }

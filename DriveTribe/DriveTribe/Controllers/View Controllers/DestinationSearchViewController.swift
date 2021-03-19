@@ -19,7 +19,6 @@ class DestinationSearchViewController: UIViewController {
     // MARK: - Properties
     fileprivate let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
-    var destination: MKMapItem?
     var searchResults: [MKMapItem] = []
 
     
@@ -129,7 +128,7 @@ extension DestinationSearchViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedLocation = searchResults[indexPath.row]
-        destination = selectedLocation
+        CarpoolController.shared.destination = selectedLocation
 
         delegate?.searchViewController(self, didSelectLocationWith: selectedLocation)
         tableView.deselectRow(at: indexPath, animated: true)

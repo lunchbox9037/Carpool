@@ -13,12 +13,20 @@ class CarpoolController {
     static let shared = CarpoolController()
     var carpools: [Carpool] = []
     
+    var destination: MKMapItem?
+    var stops: [CLLocationCoordinate2D] = []
+    var passengers: [String] = []
+    var driver: String = "Current user name"
+    var title: String = "Test"
+    var type: String = "work"
+    
     // MARK: - CRUD
-    func createCarpool(title: String, destination: MKPlacemark, stops: [MKPlacemark], driver: String, passengers: [String]) {
-        let newCarpool = Carpool(title: title, destination: destination, stops: stops, driver: driver, passengers: passengers)
+    func createCarpool() {
+        guard let destination = self.destination else {return}
+        
+        let newCarpool = Carpool(title: title, type: type, destination: destination, stops: stops, driver: driver, passengers: passengers)
+        
         carpools.append(newCarpool)
+        stops = []
     }
-    
-    
-    
 }

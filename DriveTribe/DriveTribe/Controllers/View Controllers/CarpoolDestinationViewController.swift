@@ -20,11 +20,12 @@ class CarpoolDestinationViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         let destinationSearchVC = DestinationSearchViewController()
         destinationSearchVC.delegate = self
         panel.set(contentViewController: destinationSearchVC)
         panel.addPanel(toParent: self)
-        panel.move(to: .half, animated: false)
+        panel.move(to: .tip, animated: false)
     }
 }
 
