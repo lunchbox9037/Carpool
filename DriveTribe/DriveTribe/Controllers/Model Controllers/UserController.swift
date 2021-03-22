@@ -18,7 +18,8 @@ class UserController {
     var currentUser: User?
     let db = Firestore.firestore()
     let userCollection = "users"
-    
+    var lastCurrentLocation: [Double] = []
+
     // MARK: - CRUD Methods
     // MARK: - CREATE
     func signupNewUserAndCreateNewContactWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
@@ -26,7 +27,7 @@ class UserController {
             if let error = error {
                 print("\n==== ERROR SING UP NEW USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")            }
             guard let authResult = result else {return completion(.failure(.noData))}
-            let newUser = User(firstName: firstName, lastName: lastName, userName: userName)
+            let newUser = User(firstName: firstName, lastName: lastName, userName: userName,lastCurrentLocation: self.lastCurrentLocation)
             let userRef = self.db.collection(self.userCollection)
             userRef.document(newUser.uuid).setData([
                                                     UserConstants.firstNameKey : newUser.firstName,
@@ -465,6 +466,36 @@ class UserController {
             }
         }
     }
+    
+    
+    //Delete Account
+    func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        
+        let docRef = db.collection(userCollection).document(currentUser.uuid)
+        
+        docRef.delete { (error) in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            } else {
+                self.logout { (results) in
+                                    switch results {
+                                    
+                                    case .success(let response):
+                                        print(response)
+                                    case .failure(let error):
+                                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                                    }
+                                }
+                                
+                return completion(.success(currentUser))
+            }
+        }
+    
+        //Save Delete User Some where
+        
+    }
+    
+    
 }
 
 
