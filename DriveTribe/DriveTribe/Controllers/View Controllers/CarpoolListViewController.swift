@@ -77,7 +77,14 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
         print(destinationCoordinates)
         
         var stopsCoordinates: String = ""
+       // var index = 0
         for location in carpuul.stops {
+            /*
+            stopsCoordinates.append(String(location[index]) + ",")
+            index += 1
+            stopsCoordinates.append(String(location[index]) + "|")
+            index += 1
+            */
             stopsCoordinates.append(String(location.latitude) + ",")
             stopsCoordinates.append(String(location.longitude) + "|")
         }

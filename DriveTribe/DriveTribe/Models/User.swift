@@ -97,7 +97,6 @@ class User: SearchableRecordDelegate {
         }
         
         
-        
         self.init(firstName: firstName, lastName: lastName, userName: userName, profilePhoto: profilePhoto, groups: groups, carInfo: carInfo, addressBook: addressBook, lastCurrentLocation: lastCurrentLocation, blockedUsers: blockedUsers, blockedUsersByCurrentUser: blockedUsersByCurrentUser, friends: friends, friendsRequestSent: friendsRequestSent, friendRequestReceived: friendRequestReceived, authID: authID, uuid: uuid)
     }
 }//End of class
