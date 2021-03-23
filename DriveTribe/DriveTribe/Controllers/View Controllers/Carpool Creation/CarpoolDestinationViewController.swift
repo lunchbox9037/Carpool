@@ -23,6 +23,7 @@ class CarpoolDestinationViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         let destinationSearchVC = DestinationSearchViewController()
         destinationSearchVC.delegate = self
+        destinationSearchVC.mapView = self.mapView
         panel.set(contentViewController: destinationSearchVC)
         panel.addPanel(toParent: self)
         panel.move(to: .tip, animated: false)
@@ -34,7 +35,6 @@ extension CarpoolDestinationViewController: DestinationSearchViewControllerDeleg
         let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
-//        locManager.stopUpdatingLocation()
         print(location)
     }
     
@@ -44,7 +44,6 @@ extension CarpoolDestinationViewController: DestinationSearchViewControllerDeleg
     }
     
     func searchViewController(_ vc: DestinationSearchViewController, didSelectLocationWith mapItem: MKMapItem) {
-        //update mapview here
         panel.move(to: .tip, animated: true)
         let coordinates = mapItem.placemark.coordinate
         let pin = MKPointAnnotation()

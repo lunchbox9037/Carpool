@@ -9,30 +9,27 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
-
 class AddPassengerViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var passengerCollectionView: UICollectionView!
-   /*
+    
     // MARK: - Properties
-    var passengerMockData: [User] = [
-//        User(name: "Lee", location: CLLocationCoordinate2D(latitude: 37.745700, longitude: -122.435251)),
-//        User(name: "Dennis", location: CLLocationCoordinate2D(latitude: 37.751836, longitude: -122.431316)),
-//        User(name: "Max", location: CLLocationCoordinate2D(latitude: 37.747651, longitude: -122.436914))
-    ]
+    var friends: [User] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getCurrentUserFriends()
+    }
 
     // MARK: - Actions
     @IBAction func saveCarpoolButtonTapped(_ sender: Any) {
         CarpoolController.shared.createCarpool()
-//        guard let vc = UIStoryboard(name: "Carpool", bundle: nil).instantiateViewController(withIdentifier: "carpoolList") as? CarpoolListViewController else {return}
-//        present(vc, animated: true, completion: nil)
         navigationController?.popToRootViewController(animated: true)
     }//end func
     
@@ -54,24 +51,38 @@ class AddPassengerViewController: UIViewController {
             return LayoutBuilder.buildMediaVerticalScrollLayout()
         }
     }//end func
+    
+    func getCurrentUserFriends() {
+        guard let currentUser = UserController.shared.currentUser else {return print("nouser logged in")}
+        UserController.shared.fetchFriendsFor(currentUser: currentUser) { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let friends):
+                    self?.friends = friends
+                    self?.passengerCollectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }//end func
 }//end class
 
 // MARK: - Collectionview DataSource and Delegate extension
 extension AddPassengerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return passengerMockData.count
+        return friends.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = passengerCollectionView.dequeueReusableCell(withReuseIdentifier: "passengerCell", for: indexPath) as? PassengerCollectionViewCell else {return UICollectionViewCell()}
-        cell.configure(passenger: passengerMockData[indexPath.row])
+        cell.configure(passenger: friends[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        CarpoolController.shared.stops.append(passengerMockData[indexPath.row].location)
+        CarpoolController.shared.passengers.append(friends[indexPath.row].uuid)
         collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
     }
- */
 }//end extension

@@ -164,18 +164,18 @@ extension FriendListTableViewController {
     }
     
     func fetchAllUsersAndCurrentUser() {
-        UserController.shared.fetchAllUsers { (results) in
+        UserController.shared.fetchAllUsers { [weak self] (results) in
             switch results {
             case .success(let users):
-                self.users = users
+                self?.users = users
             case .failure(let error):
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
             
-            UserController.shared.fetchCurrentUser { (results) in
+            UserController.shared.fetchCurrentUser { [weak self] (results) in
                 switch results {
                 case .success(let currentUser):
-                    self.currentUser = currentUser
+                    self?.currentUser = currentUser
                 case .failure(let error):
                     print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -184,16 +184,16 @@ extension FriendListTableViewController {
     }
     
     func setupViewForFriends() {
-        UserController.shared.fetchCurrentUser { (results) in
+        UserController.shared.fetchCurrentUser { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let currenUser):
-                    self.currentUser = currenUser
-                    UserController.shared.fetchFriendsFor(currentUser: currenUser) { (results) in
+                    self?.currentUser = currenUser
+                    UserController.shared.fetchFriendsFor(currentUser: currenUser) { [weak self] (results) in
                         switch results {
                         case .success(let fetchFriends):
-                            self.friends = fetchFriends
-                            self.tableView.reloadData()
+                            self?.friends = fetchFriends
+                            self?.tableView.reloadData()
                         case .failure(let error):
                             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                         }
@@ -206,16 +206,16 @@ extension FriendListTableViewController {
     }
     
     func setupViewForFriendRequestsSent() {
-        UserController.shared.fetchCurrentUser { (results) in
+        UserController.shared.fetchCurrentUser { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let currenUser):
-                    self.currentUser = currenUser
-                    UserController.shared.fetchPendingFriendRequestsSentBy(currentUser: currenUser) { (results) in
+                    self?.currentUser = currenUser
+                    UserController.shared.fetchPendingFriendRequestsSentBy(currentUser: currenUser) { [weak self] (results) in
                         switch results {
                         case .success(let pendingFriendRequests):
-                            self.friendRequestsSent = pendingFriendRequests
-                            self.tableView.reloadData()
+                            self?.friendRequestsSent = pendingFriendRequests
+                            self?.tableView.reloadData()
                         case .failure(let error):
                             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                         }
@@ -228,16 +228,16 @@ extension FriendListTableViewController {
     }
     
     func setupViewForFriendRequestsReceived() {
-        UserController.shared.fetchCurrentUser { (results) in
+        UserController.shared.fetchCurrentUser { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let currenUser):
-                    self.currentUser = currenUser
-                    UserController.shared.fetchFriendRequestsReceived(currentUser: currenUser) { (results) in
+                    self?.currentUser = currenUser
+                    UserController.shared.fetchFriendRequestsReceived(currentUser: currenUser) { [weak self] (results) in
                         switch results {
                         case .success(let friendsReceived):
-                            self.friendRequestsReceived = friendsReceived
-                            self.tableView.reloadData()
+                            self?.friendRequestsReceived = friendsReceived
+                            self?.tableView.reloadData()
                         case .failure(let error):
                             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                         }
@@ -256,16 +256,16 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
     func unfriendButtonTapped(sender: FriendTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
         let friendToUnfriend = self.friends[indexPath.row]
-        UserController.shared.unfriendUser(friendToUnfriend) { (results) in
+        UserController.shared.unfriendUser(friendToUnfriend) { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let user):
-                    print("====\(user.firstName)==== GOT UNFRIENDED FROM \(self.currentUser?.firstName ?? "").")
-                    guard let indexToUnfriend = self.friends.firstIndex(of: user) else {return}
-                    self.friends.remove(at: indexToUnfriend)
-                    self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.tableView.reloadData()
-                    self.setupViewForFriends()
+                    print("====\(user.firstName)==== GOT UNFRIENDED FROM \(self?.currentUser?.firstName ?? "").")
+                    guard let indexToUnfriend = self?.friends.firstIndex(of: user) else {return}
+                    self?.friends.remove(at: indexToUnfriend)
+                    self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                    self?.tableView.reloadData()
+                    self?.setupViewForFriends()
                 case .failure(let error):
                     print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -279,14 +279,14 @@ extension FriendListTableViewController: RequestTableViewCellDelagate {
     func cancelFriendRequestButtonTapped(sender: RequestTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
         let friendToCancelRequest = friendRequestsSent[indexPath.row]
-        UserController.shared.cancelFriendRequest(to: friendToCancelRequest) { (results) in
+        UserController.shared.cancelFriendRequest(to: friendToCancelRequest) { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let friendToCancelRequest):
-                    print("SUCCESSFULLY CANCEL \(friendToCancelRequest.firstName) FROM \(self.currentUser?.firstName ?? "")'S LIST.")
-                    guard let indexOfRequestCancel = self.friendRequestsSent.firstIndex(of: friendToCancelRequest) else {return}
-                    self.friendRequestsSent.remove(at: indexOfRequestCancel)
-                    self.tableView.reloadData()
+                    print("SUCCESSFULLY CANCEL \(friendToCancelRequest.firstName) FROM \(self?.currentUser?.firstName ?? "")'S LIST.")
+                    guard let indexOfRequestCancel = self?.friendRequestsSent.firstIndex(of: friendToCancelRequest) else {return}
+                    self?.friendRequestsSent.remove(at: indexOfRequestCancel)
+                    self?.tableView.reloadData()
                 case .failure(let error):
                     print("ERROR CANCEL FRIEND REQUEST in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -300,13 +300,13 @@ extension FriendListTableViewController: ReceivedTableViewCellDelagate {
     func acceptFriendButtonTapped(sender: ReceivedTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
         let friendsToAccept = friendRequestsReceived[indexPath.row]
-        UserController.shared.acceptFriendRequest(user: friendsToAccept) { (results) in
+        UserController.shared.acceptFriendRequest(user: friendsToAccept) { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let friend):
-                    guard let indexOFfriendToRemove = self.friendRequestsReceived.firstIndex(of: friend) else {return}
-                    self.friendRequestsReceived.remove(at: indexOFfriendToRemove)
-                    self.tableView.reloadData()
+                    guard let indexOFfriendToRemove = self?.friendRequestsReceived.firstIndex(of: friend) else {return}
+                    self?.friendRequestsReceived.remove(at: indexOFfriendToRemove)
+                    self?.tableView.reloadData()
                 case .failure(let error):
                     print("ERROR ACCEPTING FRIEND IN \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
