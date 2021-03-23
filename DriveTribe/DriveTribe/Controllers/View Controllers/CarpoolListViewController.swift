@@ -16,6 +16,7 @@ class CarpoolListViewController: UIViewController {
     @IBOutlet weak var workPlaySegment: UISegmentedControl!
     
     // MARK: - Properties
+    var dataSource: [Carpool] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -32,11 +33,6 @@ class CarpoolListViewController: UIViewController {
     }
 
     // MARK: - Actions
-    //dont need this?
-    @IBAction func addCarpoolButtonTapped(_ sender: Any) {
-        //present carpoolDestinationViewController
-    }
-    
     @IBAction func workPlaySegmentChanged(_ sender: Any) {
         if workPlaySegment.selectedSegmentIndex == 0 {
             carpoolGroupLabel.text = "Work Tribes"
@@ -45,6 +41,7 @@ class CarpoolListViewController: UIViewController {
             carpoolGroupLabel.text = "Play Tribes"
             overrideUserInterfaceStyle = .dark
         }
+        fetchCarpoolsByCurrentUser()
     }
     
     // MARK: - Methods
@@ -53,6 +50,11 @@ class CarpoolListViewController: UIViewController {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
+                    if self?.workPlaySegment.selectedSegmentIndex == 0 {
+                        self?.dataSource = CarpoolController.shared.work
+                    } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
+                        self?.dataSource = CarpoolController.shared.play
+                    }
                     self?.carpoolTableView.reloadData()
                 }
             case .failure(let error):
@@ -64,12 +66,12 @@ class CarpoolListViewController: UIViewController {
 
 extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CarpoolController.shared.carpools.count
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = carpoolTableView.dequeueReusableCell(withIdentifier: "carpoolCell", for: indexPath)
-        let carpool = CarpoolController.shared.carpools[indexPath.row]
+        let carpool = dataSource[indexPath.row]
         cell.textLabel?.text = carpool.title
         cell.detailTextLabel?.text = "Destination: \(carpool.destinationName)"
         
@@ -84,7 +86,7 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? TribeDetailViewController else {return}
-        detailVC.tribe = CarpoolController.shared.carpools[indexPath.row]
+        detailVC.tribe = dataSource[indexPath.row]
         
         detailVC.modalPresentationStyle = .automatic
         present(detailVC, animated: true, completion: nil)

@@ -15,6 +15,8 @@ class CarpoolController {
     // MARK: - Properties
     static let shared = CarpoolController()
     var carpools: [Carpool] = []
+    var work: [Carpool] = []
+    var play: [Carpool] = []
     
     var title: String = "Test"
     var mode: String = "work"
@@ -109,5 +111,16 @@ class CarpoolController {
                 }
             }
         }
+        self.sortCarpoolsByWorkPlay()
     }//end func
+    
+    func sortCarpoolsByWorkPlay() {
+        self.work = carpools.filter({ (carpool) -> Bool in
+            return carpool.mode == "work"
+        })
+        
+        self.play = carpools.filter({ (carpool) -> Bool in
+            return carpool.mode == "play"
+        })
+    }
 }//end class

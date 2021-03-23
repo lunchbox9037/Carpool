@@ -9,8 +9,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
-
 class AddPassengerViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var passengerCollectionView: UICollectionView!
@@ -67,7 +65,7 @@ class AddPassengerViewController: UIViewController {
                 }
             }
         }
-    }
+    }//end func
 }//end class
 
 // MARK: - Collectionview DataSource and Delegate extension

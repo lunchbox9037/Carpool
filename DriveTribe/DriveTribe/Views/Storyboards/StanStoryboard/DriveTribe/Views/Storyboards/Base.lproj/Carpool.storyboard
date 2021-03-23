@@ -85,7 +85,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xTu-2u-LEO">
                             <connections>
-                                <action selector="addCarpoolButtonTapped:" destination="mf8-bM-1eV" id="XsC-iX-zLM"/>
                                 <segue destination="STY-xK-cZZ" kind="show" id="J7l-gK-thj"/>
                             </connections>
                         </barButtonItem>
