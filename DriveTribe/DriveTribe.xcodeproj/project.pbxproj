@@ -23,6 +23,9 @@
 		36FA0E6A26091A43005F9A11 /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */; };
 		5D831A85C524AAF352471699 /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6560C12F95D5D00B286CB6 /* Pods_DriveTribe.framework */; };
 		F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A0EDC26047E630087BCBE /* ProfileViewController.swift */; };
+		F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210B826094D80009E6BE9 /* AlertExtension.swift */; };
+		F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BB26096612009E6BE9 /* RouteCreator.swift */; };
+		F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */; };
 		F648B9462601192500FBADCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9452601192500FBADCA /* AppDelegate.swift */; };
 		F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9472601192500FBADCA /* SceneDelegate.swift */; };
 		F648B94D2601192500FBADCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B94B2601192500FBADCA /* Main.storyboard */; };
@@ -35,7 +38,6 @@
 		F648B9752601203500FBADCA /* Carpool.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B9732601203500FBADCA /* Carpool.storyboard */; };
 		F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B978260120C800FBADCA /* FriendsList.storyboard */; };
 		F648B97E2601213E00FBADCA /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B97C2601213E00FBADCA /* MyProfile.storyboard */; };
-		F648B988260123D700FBADCA /* HelperPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B987260123D700FBADCA /* HelperPlaceholder.swift */; };
 		F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */; };
 		F648BB102602FFA200FBADCA /* AddPassengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB0F2602FFA200FBADCA /* AddPassengerViewController.swift */; };
 		F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */; };
@@ -62,6 +64,9 @@
 		5C6560C12F95D5D00B286CB6 /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F49E98EAE0C67D0DAB14FB9 /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
 		F25A0EDC26047E630087BCBE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F61210B826094D80009E6BE9 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
+		F61210BB26096612009E6BE9 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
+		F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeDetailViewController.swift; sourceTree = "<group>"; };
 		F648B9422601192500FBADCA /* DriveTribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveTribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F648B9452601192500FBADCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F648B9472601192500FBADCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +81,6 @@
 		F648B9742601203500FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DriveTribe/Views/Storyboards/Base.lproj/Carpool.storyboard; sourceTree = "<group>"; };
 		F648B978260120C800FBADCA /* FriendsList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FriendsList.storyboard; sourceTree = "<group>"; };
 		F648B97D2601213E00FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DriveTribe/Views/Storyboards/Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
-		F648B987260123D700FBADCA /* HelperPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperPlaceholder.swift; sourceTree = "<group>"; };
 		F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchViewController.swift; sourceTree = "<group>"; };
 		F648BB0F2602FFA200FBADCA /* AddPassengerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPassengerViewController.swift; sourceTree = "<group>"; };
 		F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -108,10 +112,10 @@
 		36FA0E6026090CC5005F9A11 /* SignupLogin */ = {
 			isa = PBXGroup;
 			children = (
+				36FA0E622609175A005F9A11 /* UserLocationViewController.swift */,
 				36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */,
 				36FA0E5A26090B44005F9A11 /* LogInViewController.swift */,
 				36B82D3D2603E89C008EC52A /* SignupViewController.swift */,
-				36FA0E622609175A005F9A11 /* UserLocationViewController.swift */,
 			);
 			path = SignupLogin;
 			sourceTree = "<group>";
@@ -200,13 +204,14 @@
 			isa = PBXGroup;
 			children = (
 				36FA0E6026090CC5005F9A11 /* SignupLogin */,
-				F648B96D26011B2500FBADCA /* CarpoolDestinationViewController.swift */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
+				F648B96D26011B2500FBADCA /* CarpoolDestinationViewController.swift */,
 				F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */,
 				F648BB0F2602FFA200FBADCA /* AddPassengerViewController.swift */,
 				F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */,
 				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
 				F25A0EDC26047E630087BCBE /* ProfileViewController.swift */,
+				F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -268,9 +273,10 @@
 		F648B986260123C100FBADCA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				F648B987260123D700FBADCA /* HelperPlaceholder.swift */,
 				36B82D362603C604008EC52A /* NetworkError.swift */,
 				36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */,
+				F61210B826094D80009E6BE9 /* AlertExtension.swift */,
+				F61210BB26096612009E6BE9 /* RouteCreator.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -405,8 +411,8 @@
 				F648BB102602FFA200FBADCA /* AddPassengerViewController.swift in Sources */,
 				36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */,
 				3682F1392603394100415468 /* UserController.swift in Sources */,
-				F648B988260123D700FBADCA /* HelperPlaceholder.swift in Sources */,
 				36B82D3E2603E89C008EC52A /* SignupViewController.swift in Sources */,
+				F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */,
 				F648B9462601192500FBADCA /* AppDelegate.swift in Sources */,
 				F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */,
 				F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */,
@@ -418,10 +424,12 @@
 				36B82D442603E916008EC52A /* FriendTableViewCell.swift in Sources */,
 				36FA0E6A26091A43005F9A11 /* UserLocationSearchViewController.swift in Sources */,
 				F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */,
+				F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */,
 				F648B96226011A8D00FBADCA /* Carpool.swift in Sources */,
 				36B82D412603E8E6008EC52A /* FriendListTableViewController.swift in Sources */,
 				36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */,
 				36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */,
+				F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */,
 				F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 				36FA0E5B26090B44005F9A11 /* LogInViewController.swift in Sources */,

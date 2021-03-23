@@ -23,6 +23,7 @@ class CarpoolDestinationViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         let destinationSearchVC = DestinationSearchViewController()
         destinationSearchVC.delegate = self
+        destinationSearchVC.mapView = self.mapView
         panel.set(contentViewController: destinationSearchVC)
         panel.addPanel(toParent: self)
         panel.move(to: .tip, animated: false)

@@ -21,7 +21,7 @@ class DestinationSearchViewController: UIViewController {
     var currentLocation: CLLocation?
     var searchResults: [MKMapItem] = []
 
-    
+    weak var mapView: MKMapView?
     weak var delegate: DestinationSearchViewControllerDelegate?
     
     // MARK: - Views
@@ -116,10 +116,6 @@ extension DestinationSearchViewController: UITableViewDelegate, UITableViewDataS
         if let zip = placeMark.postalCode {
             address += ", \(zip)"
         }
-        
-//        if let country = placeMark.administrativeArea {
-//            address += ", \(country)"
-//        }
 
         cell.textLabel?.text = address
         cell.imageView?.image = UIImage(systemName: "building.2.crop.circle")
@@ -144,9 +140,10 @@ extension DestinationSearchViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         field.resignFirstResponder()
-        if let text = field.text, !text.isEmpty {
+        if let text = field.text, !text.isEmpty,
+           let mapview = self.mapView {
             let searchRequest = MKLocalSearch.Request()
-//            searchRequest.region = CLLocationDistance.
+            searchRequest.region = mapview.region
             searchRequest.naturalLanguageQuery = text
             
             let search = MKLocalSearch(request: searchRequest)

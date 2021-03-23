@@ -61,7 +61,6 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
             self.profileImageView.trailingAnchor.constraint(equalTo: self.container.trailingAnchor, constant: 0),
             self.profileImageView.heightAnchor.constraint(equalToConstant: 80)
 //            self.profileImageView.bottomAnchor.constraint(equalTo: self.container.bottomAnchor, constant: 0),
-
         ])
         
         NSLayoutConstraint.activate([
@@ -80,8 +79,8 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
     }
     
-//    func configure(passenger: User) {
-//       // self.profileImageView.image = UIImage(systemName: "person")
-//       // self.passengerNameLabel.text = passenger.name
-//    }
+    func configure(passenger: User) {
+        self.profileImageView.image = UIImage(systemName: "person")
+        self.passengerNameLabel.text = passenger.firstName
+    }
 }//end class

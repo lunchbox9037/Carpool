@@ -478,19 +478,19 @@ class UserController {
                 return completion(.failure(.thrownError(error)))
             } else {
                 self.logout { (results) in
-                                    switch results {
-                                    
-                                    case .success(let response):
-                                        print(response)
-                                    case .failure(let error):
-                                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                                    }
-                                }
-                                
+                    switch results {
+                    
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+                
                 return completion(.success(currentUser))
             }
         }
-    
+        
         //Save Delete User Some where
         
     }
