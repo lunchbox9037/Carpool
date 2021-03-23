@@ -5,7 +5,6 @@
 //  Created by Lee McCormick on 3/18/21.
 //
 
-import FirebaseFirestore
 import Foundation
 import Firebase
 import FirebaseAuth

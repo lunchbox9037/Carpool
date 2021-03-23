@@ -7,23 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15E890164E80C84C34EDFE23 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3682F11B2602B3F200415468 /* GoogleService-Info.plist */; };
 		3682F11F2603310900415468 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F11E2603310900415468 /* User.swift */; };
 		3682F1392603394100415468 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F1382603394100415468 /* UserController.swift */; };
 		36B82D372603C604008EC52A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D362603C604008EC52A /* NetworkError.swift */; };
-		36B82D3E2603E89C008EC52A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D3D2603E89C008EC52A /* SignupViewController.swift */; };
 		36B82D412603E8E6008EC52A /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */; };
 		36B82D442603E916008EC52A /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D432603E916008EC52A /* FriendTableViewCell.swift */; };
 		36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */; };
 		36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D602604354D008EC52A /* RequestTableViewCell.swift */; };
 		36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */; };
 		36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D66260436D0008EC52A /* UserTableViewCell.swift */; };
-		36FA0E5B26090B44005F9A11 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E5A26090B44005F9A11 /* LogInViewController.swift */; };
-		36FA0E632609175A005F9A11 /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E622609175A005F9A11 /* UserLocationViewController.swift */; };
-		36FA0E6A26091A43005F9A11 /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */; };
-		F246A782EDCEA18DBDCBE841 /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A156F85B99DB7DEC9DD5043 /* Pods_DriveTribe.framework */; };
+		5584F0E36BEEAA475A2231CC /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCA6B9181AF8BD3FC3E3619 /* Pods_DriveTribe.framework */; };
 		F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A0EDC26047E630087BCBE /* ProfileViewController.swift */; };
+		F2D75BE326095A3800EDF43C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75BDF26095A3800EDF43C /* SignupViewController.swift */; };
+		F2D75BE426095A3800EDF43C /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75BE026095A3800EDF43C /* UserLocationSearchViewController.swift */; };
+		F2D75BE526095A3800EDF43C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75BE126095A3800EDF43C /* LogInViewController.swift */; };
+		F2D75BE626095A3800EDF43C /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75BE226095A3800EDF43C /* UserLocationViewController.swift */; };
 		F648B9462601192500FBADCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9452601192500FBADCA /* AppDelegate.swift */; };
 		F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9472601192500FBADCA /* SceneDelegate.swift */; };
 		F648B94D2601192500FBADCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B94B2601192500FBADCA /* Main.storyboard */; };
@@ -49,19 +48,19 @@
 		3682F11E2603310900415468 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3682F1382603394100415468 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		36B82D362603C604008EC52A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		36B82D3D2603E89C008EC52A /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
 		36B82D432603E916008EC52A /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableRecordDelegate.swift; sourceTree = "<group>"; };
 		36B82D602604354D008EC52A /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
 		36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTableViewCell.swift; sourceTree = "<group>"; };
 		36B82D66260436D0008EC52A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		36FA0E5A26090B44005F9A11 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		36FA0E622609175A005F9A11 /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
-		36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationSearchViewController.swift; sourceTree = "<group>"; };
-		8A156F85B99DB7DEC9DD5043 /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A98215CD0E54E7E634ED1C22 /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		8DCA6B9181AF8BD3FC3E3619 /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FAD43533041AEC011A33401 /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
 		F25A0EDC26047E630087BCBE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F2D75BDF26095A3800EDF43C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		F2D75BE026095A3800EDF43C /* UserLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationSearchViewController.swift; sourceTree = "<group>"; };
+		F2D75BE126095A3800EDF43C /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		F2D75BE226095A3800EDF43C /* UserLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		F648B9422601192500FBADCA /* DriveTribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveTribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F648B9452601192500FBADCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F648B9472601192500FBADCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +81,7 @@
 		F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerCollectionViewCell.swift; sourceTree = "<group>"; };
 		F648BB17260302C500FBADCA /* LayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilder.swift; sourceTree = "<group>"; };
 		F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolSettingsViewController.swift; sourceTree = "<group>"; };
-		F7ED853A6531C7E75EF757AC /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
+		FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,38 +89,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15E890164E80C84C34EDFE23 /* BuildFile in Frameworks */,
-				F246A782EDCEA18DBDCBE841 /* Pods_DriveTribe.framework in Frameworks */,
+				5584F0E36BEEAA475A2231CC /* Pods_DriveTribe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06AF15662112C9510E5013A8 /* Pods */ = {
+		16F83C47456142620D64EEB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7ED853A6531C7E75EF757AC /* Pods-DriveTribe.debug.xcconfig */,
-				A98215CD0E54E7E634ED1C22 /* Pods-DriveTribe.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		2565B82697E77A2ACBA5E020 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8A156F85B99DB7DEC9DD5043 /* Pods_DriveTribe.framework */,
+				8DCA6B9181AF8BD3FC3E3619 /* Pods_DriveTribe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		36FA0E6026090CC5005F9A11 /* SignupLogin */ = {
+		4C7F951AB0B997BECCFBB2F8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */,
-				36FA0E5A26090B44005F9A11 /* LogInViewController.swift */,
-				36B82D3D2603E89C008EC52A /* SignupViewController.swift */,
-				36FA0E622609175A005F9A11 /* UserLocationViewController.swift */,
+				FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */,
+				8FAD43533041AEC011A33401 /* Pods-DriveTribe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F2D75BDC260959E200EDF43C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F2D75BDE26095A3800EDF43C /* SignupLogin */ = {
+			isa = PBXGroup;
+			children = (
+				F2D75BDF26095A3800EDF43C /* SignupViewController.swift */,
+				F2D75BE026095A3800EDF43C /* UserLocationSearchViewController.swift */,
+				F2D75BE126095A3800EDF43C /* LogInViewController.swift */,
+				F2D75BE226095A3800EDF43C /* UserLocationViewController.swift */,
 			);
 			path = SignupLogin;
 			sourceTree = "<group>";
@@ -132,8 +137,9 @@
 				3682F11B2602B3F200415468 /* GoogleService-Info.plist */,
 				F648B9442601192500FBADCA /* DriveTribe */,
 				F648B9432601192500FBADCA /* Products */,
-				06AF15662112C9510E5013A8 /* Pods */,
-				2565B82697E77A2ACBA5E020 /* Frameworks */,
+				4C7F951AB0B997BECCFBB2F8 /* Pods */,
+				16F83C47456142620D64EEB4 /* Frameworks */,
+				F2D75BDC260959E200EDF43C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,7 +207,7 @@
 		F648B96626011AA400FBADCA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				36FA0E6026090CC5005F9A11 /* SignupLogin */,
+				F2D75BDE26095A3800EDF43C /* SignupLogin */,
 				F648B96D26011B2500FBADCA /* CarpoolDestinationViewController.swift */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
 				F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */,
@@ -293,11 +299,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F648B9562601192800FBADCA /* Build configuration list for PBXNativeTarget "DriveTribe" */;
 			buildPhases = (
-				C8F8981DFB7AE65BDB9F9FBD /* [CP] Check Pods Manifest.lock */,
+				F3B83967AE414F53661D837A /* [CP] Check Pods Manifest.lock */,
 				F648B93E2601192500FBADCA /* Sources */,
 				F648B93F2601192500FBADCA /* Frameworks */,
 				F648B9402601192500FBADCA /* Resources */,
-				5798199C817E64A3D74EF1DA /* [CP] Embed Pods Frameworks */,
+				E9BE707476CE865AB9542A28 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,7 +364,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5798199C817E64A3D74EF1DA /* [CP] Embed Pods Frameworks */ = {
+		E9BE707476CE865AB9542A28 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,7 +381,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DriveTribe/Pods-DriveTribe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C8F8981DFB7AE65BDB9F9FBD /* [CP] Check Pods Manifest.lock */ = {
+		F3B83967AE414F53661D837A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -408,28 +414,28 @@
 				36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */,
 				3682F1392603394100415468 /* UserController.swift in Sources */,
 				F648B988260123D700FBADCA /* HelperPlaceholder.swift in Sources */,
-				36B82D3E2603E89C008EC52A /* SignupViewController.swift in Sources */,
 				F648B9462601192500FBADCA /* AppDelegate.swift in Sources */,
+				F2D75BE526095A3800EDF43C /* LogInViewController.swift in Sources */,
 				F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */,
 				F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */,
 				F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */,
-				36FA0E632609175A005F9A11 /* UserLocationViewController.swift in Sources */,
 				F648BB1B2604063200FBADCA /* CarpoolSettingsViewController.swift in Sources */,
 				F648B96E26011B2500FBADCA /* CarpoolDestinationViewController.swift in Sources */,
 				3682F11F2603310900415468 /* User.swift in Sources */,
 				36B82D442603E916008EC52A /* FriendTableViewCell.swift in Sources */,
-				36FA0E6A26091A43005F9A11 /* UserLocationSearchViewController.swift in Sources */,
 				F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */,
 				F648B96226011A8D00FBADCA /* Carpool.swift in Sources */,
 				36B82D412603E8E6008EC52A /* FriendListTableViewController.swift in Sources */,
 				36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */,
 				36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */,
+				F2D75BE326095A3800EDF43C /* SignupViewController.swift in Sources */,
+				F2D75BE626095A3800EDF43C /* UserLocationViewController.swift in Sources */,
 				F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
-				36FA0E5B26090B44005F9A11 /* LogInViewController.swift in Sources */,
 				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
 				36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */,
 				36B82D372603C604008EC52A /* NetworkError.swift in Sources */,
+				F2D75BE426095A3800EDF43C /* UserLocationSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,7 +597,7 @@
 		};
 		F648B9572601192800FBADCA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7ED853A6531C7E75EF757AC /* Pods-DriveTribe.debug.xcconfig */;
+			baseConfigurationReference = FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -615,7 +621,7 @@
 		};
 		F648B9582601192800FBADCA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A98215CD0E54E7E634ED1C22 /* Pods-DriveTribe.release.xcconfig */;
+			baseConfigurationReference = 8FAD43533041AEC011A33401 /* Pods-DriveTribe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

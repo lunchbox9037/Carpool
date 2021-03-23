@@ -23,25 +23,25 @@
                                     <constraint firstAttribute="height" constant="128" id="olE-uA-4OA"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="szy-MI-Tes">
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="szy-MI-Tes">
                                 <rect key="frame" x="50" y="324" width="314" height="211"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Dj-74-vRn">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Dj-74-vRn">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mDe-pa-pHZ">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mDe-pa-pHZ">
                                         <rect key="frame" x="0.0" y="59" width="314" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-1o-z4B">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-1o-z4B">
                                         <rect key="frame" x="0.0" y="118" width="314" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Car Info" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-VQ-hVs">
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Car Info" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-VQ-hVs">
                                         <rect key="frame" x="0.0" y="177" width="314" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -60,6 +60,19 @@
                                     <segue destination="Q7c-Ic-ci7" kind="show" id="VLt-6j-cRO"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="58k-Af-deu">
+                                <rect key="frame" x="-8" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="VaX-yc-qLh">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MXw-As-qK7">
+                                            <connections>
+                                                <action selector="editButtonTapped:" destination="uNx-bW-A1b" id="aHh-6i-aoR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qe4-7I-0Tu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,11 +85,14 @@
                             <constraint firstItem="szy-MI-Tes" firstAttribute="top" secondItem="Ife-Ap-dSF" secondAttribute="bottom" constant="75" id="w5U-V1-ttR"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="j9O-Mt-Hr9"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="carInfoTextField" destination="0rS-VQ-hVs" id="BPf-24-GoZ"/>
-                        <outlet property="emailTextField" destination="K2z-1o-z4B" id="jb6-Nw-Nja"/>
+                        <outlet property="editButton" destination="VaX-yc-qLh" id="DYu-Mk-XWl"/>
+                        <outlet property="lastNameTextField" destination="K2z-1o-z4B" id="jb6-Nw-Nja"/>
                         <outlet property="nameTextField" destination="mDe-pa-pHZ" id="EaZ-OY-2O1"/>
                         <outlet property="profileImageView" destination="Ife-Ap-dSF" id="RUb-rj-kZt"/>
                         <outlet property="usernameTextField" destination="3Dj-74-vRn" id="2fG-bm-Pia"/>
@@ -84,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shW-mt-bce" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-817.39130434782612" y="828.34821428571422"/>
+            <point key="canvasLocation" x="92.753623188405811" y="828.34821428571422"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="m1c-kI-HsC">
@@ -132,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ON3-df-bgD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9" y="828"/>
+            <point key="canvasLocation" x="900.00000000000011" y="827.67857142857144"/>
         </scene>
     </scenes>
     <resources>

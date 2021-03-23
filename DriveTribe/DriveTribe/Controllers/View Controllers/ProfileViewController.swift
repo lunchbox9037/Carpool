@@ -9,34 +9,47 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    
+    // MARK: - outlets
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-    
-    @IBOutlet weak var emailTextField: UITextField!
-    
-    
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var carInfoTextField: UITextField!
     
+    @IBOutlet weak var editButton: UINavigationItem!
+    
+    // MARK: - properties
     
     
+    // MARK: - lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        print("I am here")
+        
+        populateViews()
     }
     
+    func populateViews() {
 
-    /*
-    // MARK: - Navigation
+        
+        
+        guard let user = UserController.shared.currentUser else { return }
+    
+    self.usernameTextField.text = user.userName
+    self.nameTextField.text = user.firstName
+        self.lastNameTextField.text = user.lastName
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    
+    
+    
+    
+    @IBAction func editButtonTapped(_ sender: Any) {
+        usernameTextField.isEditing
+    }
+    
+   
+    
 
 }
