@@ -11,7 +11,7 @@ import FirebaseStorage
 class StorageController {
     
     //MARK: - Properties
-    static let sharedInstance = StorageController()
+    static let shared = StorageController()
     let storage = Storage.storage()
     
     //MARK: - Methods
@@ -29,6 +29,13 @@ class StorageController {
                 
                 //SAVE THE File path to User
                 // TO DO
+                do {
+                let urlString = try String(contentsOf: downloadURL)
+                    // TO DO : SAVE IN USER PATH
+                    print("----------------- urlString:: \(urlString)-----------------\(#function)")
+                } catch {
+                    
+                }
             
                 return completion(.success(downloadURL))
             }

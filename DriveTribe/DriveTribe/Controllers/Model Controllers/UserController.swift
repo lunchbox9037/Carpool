@@ -4,7 +4,7 @@
 //
 //  Created by Lee McCormick on 3/18/21.
 //
-
+import FirebaseFirestore
 import Foundation
 import Firebase
 import FirebaseAuth
@@ -132,6 +132,8 @@ class UserController {
             return completion(.success(userArray))
         }
     }
+    
+
     
     func fetchPendingFriendRequestsSentBy(currentUser: User, completion: @escaping (Result<[User], NetworkError>) -> Void) {
         db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
@@ -523,6 +525,31 @@ class UserController {
         }
     }
 }
+
+// MARK: - New Fucntion for CarpoolController
+extension UserController {
+    func fetchSpecificUserByID(userId: String, completion: @escaping(Result<User, NetworkError>) -> Void) {
+        db.collectionGroup(userCollection).getDocuments { (users, error) in
+            if let error = error {
+                print("\n====ERROR  FETCH ALL USER! IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            }
+            var specificUserByID: User?
+            guard let users = users else {return completion(.failure(.noData))}
+            for document in users.documents {
+                guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
+                if user.uuid == userId {
+                    specificUserByID = user
+                print("====SUCCESSFULLY! FETCH SPECIFIC USER! \(#function)====")
+                }
+            }
+            guard let specificUser = specificUserByID else {return}
+            return completion(.success(specificUser))
+        }
+    }
+}
+
+
 
 /* // NOTE :
  Create, read, update, delete:

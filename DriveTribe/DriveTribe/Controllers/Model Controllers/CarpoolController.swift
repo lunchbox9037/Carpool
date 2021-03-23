@@ -31,6 +31,8 @@ class CarpoolController {
         carpools.append(newCarpool)
         stops = []
     }
+    
+    
 }
 
 
@@ -97,6 +99,37 @@ class CarpoolController {
 //
 //    }
     
-    
+ //+++++///
+ // MARK: - Looking for
+ func fetchDriverId(carpool: Carpool, completion: @escaping(Result<String, NetworkError>) -> Void) {
+ db.collection(carpoolCollection).document(carpool.uuid).getDocument { (querySnapshot, error) in
+     if let error = error {
+         print("\n==== ERROR FETCH BLOCKED USERS FOR FETCH ALL USERS IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+         return completion(.failure(.thrownError(error)))
+     } else {
+         guard let querySnapshot = querySnapshot,
+               let carpoolData = Carpool(document: querySnapshot) else {return completion(.failure(.noData))}
+guard let driverID = carpoolData.driver {
+             self.db.collection(self.userCollection).document(id).getDocument { (snapshot, error) in
+                 if let error = error {
+                     print("\n==== ERROR FETCH DRIVER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                     return completion(.failure(.thrownError(error)))
+                 } else {
+                     guard let snapshot = snapshot,
+                           let driverID = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+                    driver = driverID
+                     print("\n===== SUCCESSFULLY! FETCH BLOCKED USERS FOR FETCH ALL USERS =====\n")
+                     return completion(.success(blockUserArray))
+                 }
+             }
+         }
+     }
+ }
 }
 */
+
+
+// appended carpool Id to the group
+
+//DriverId
+// passengers Id 
