@@ -133,7 +133,7 @@ class UserController {
         }
     }
     
-
+    
     
     func fetchPendingFriendRequestsSentBy(currentUser: User, completion: @escaping (Result<[User], NetworkError>) -> Void) {
         db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
@@ -468,11 +468,6 @@ class UserController {
             }
         }
     }
-    
-    
-    
-    
-    
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
@@ -490,7 +485,6 @@ class UserController {
                         print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                     }
                 }
-                
                 //Save Deleted User Some where
                 let deletedUser = currentUser
                 let userRef = self.db.collection(self.deletedUserCollection)
@@ -516,15 +510,6 @@ class UserController {
                         return completion(.success(deletedUser))
                     }
                 }
-                    
-                    case .success(let response):
-                        print(response)
-                    case .failure(let error):
-                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    }
-                }
-                
-                return completion(.success(currentUser))
             }
             
             //Also delete Current User from Auth
@@ -536,7 +521,7 @@ class UserController {
             return completion(.success(currentUser))
         }
     }
-}
+}//end class
 
 // MARK: - New Fucntion for CarpoolController And StorageController
 extension UserController {
@@ -552,7 +537,7 @@ extension UserController {
                 guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
                 if user.uuid == userId {
                     specificUserByID = user
-                print("====SUCCESSFULLY! FETCH SPECIFIC USER! \(#function)====")
+                    print("====SUCCESSFULLY! FETCH SPECIFIC USER! \(#function)====")
                 }
             }
             guard let specificUser = specificUserByID else {return}
@@ -563,64 +548,20 @@ extension UserController {
         
     }
     
-    
-    
-    
-//    func saveProfileURL(user: User, profileURL: URL, completion: @escaping (Result<User, NetworkError>) -> Void) {
-//        guard let currentUser = currentUser else {return}
-//
-//        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.profileURLKey : profileURL]) { (error) in
-//            if let error = error {
-//                print("\n==== ERROR SAVING PROFILE URL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-//                return completion(.failure(.thrownError(error)))
-//            } else {
-//                print("FINALLY! GOT PROFILE URL FROM THE USER!")
-//            }
-//        }
-//    }
+    //    func saveProfileURL(user: User, profileURL: URL, completion: @escaping (Result<User, NetworkError>) -> Void) {
+    //        guard let currentUser = currentUser else {return}
+    //
+    //        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.profileURLKey : profileURL]) { (error) in
+    //            if let error = error {
+    //                print("\n==== ERROR SAVING PROFILE URL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+    //                return completion(.failure(.thrownError(error)))
+    //            } else {
+    //                print("FINALLY! GOT PROFILE URL FROM THE USER!")
+    //            }
+    //        }
+    //    }
 }
 
 
 
-/* // NOTE :
- Create, read, update, delete:
- Get current location (Stan): :: DONE DONE WORKED //UPDATE CURRENT LOCATION USER.. 
- Delete Account: ?? ===> What does it mean delete account?? ===>> DONE DONE DONE NEED TO TEST ON SETTING
- _________________________________________________________________
- NEED TO FETCH THE ALL THE USERS THAT ARE NOT CURRENT USER, NOT IN THE `blockedUsers`, NOT IN THE `friends`, NOT IN THE `friendsRequestSent`
- 
- func fetchAllUsersWithOutBlockedAndCurrentUser(currentUser: User, completion: @escaping(Result<[User], NetworkError>) -> Void) {
- db.collectionGroup(userCollection).whereField(UserConstants.authIDKey, isNotEqualTo: currentUser.authID).getDocuments { (users, error) in
- if let error = error {
- print("Error in FETCH ALL USER!\(#function) : \(error.localizedDescription) \n---\n \(error)")
- return completion(.failure(.thrownError(error)))
- }
- 
- guard let users = users else {return completion(.failure(.noData))}
- var userArray: [User] = []
- for document in users.documents {
- guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
- 
- 
- var blockedUsers: [User] = []
- self.fetchBlockedUsersByCurrentUser(currentUser) { (results) in
- switch results {
- case .success(let users):
- blockedUsers = users
- case .failure(let error):
- completion(.failure(.thrownError(error)))
- }
- }
- for blockedUser in blockedUsers {
- if user.uuid != blockedUser.uuid {
- print("--------------------user.uuid  : \(user.uuid) in blockedUser.uuid  \(blockedUser.uuid ) \(#function) : ----------------------------\n)")
- userArray.append(user)
- }
- }
- }
- return completion(.success(userArray))
- }
- }
- 
- */
 
