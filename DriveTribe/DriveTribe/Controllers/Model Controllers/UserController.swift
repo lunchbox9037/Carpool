@@ -516,6 +516,15 @@ class UserController {
                         return completion(.success(deletedUser))
                     }
                 }
+                    
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+                
+                return completion(.success(currentUser))
             }
             
             //Also delete Current User from Auth
@@ -549,6 +558,9 @@ extension UserController {
             guard let specificUser = specificUserByID else {return}
             return completion(.success(specificUser))
         }
+        
+        //Save Delete User Some where
+        
     }
     
     
