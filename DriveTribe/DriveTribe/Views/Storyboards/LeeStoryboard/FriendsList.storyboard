@@ -372,7 +372,7 @@
                                     <constraint firstAttribute="width" secondItem="UgO-us-he0" secondAttribute="height" multiplier="1:1" id="5s7-Ez-gJt"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="PFZ-6c-rVW" kind="embed" id="W4V-9s-kN3"/>
+                                    <segue destination="PFZ-6c-rVW" kind="embed" identifier="toPhotoPickerVC" id="W4V-9s-kN3"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -485,6 +485,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="WKi-j9-hW8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="glU-RH-sbp" secondAttribute="bottom" id="1dd-xK-96V"/>

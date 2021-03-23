@@ -8,14 +8,15 @@
 import UIKit
 
 class SignupViewController: UIViewController {
-
+    
     @IBOutlet weak var signupFirstNameTextField: UITextField!
     @IBOutlet weak var signupLastNameTextField: UITextField!
     @IBOutlet weak var signupUserNameTextField: UITextField!
     @IBOutlet weak var signupEmailTextField: UITextField!
     @IBOutlet weak var signupPasswordTextField: UITextField!
-    @IBOutlet weak var loginEmailTextField: UITextField!
-    @IBOutlet weak var loginPassWordTextField: UITextField!
+    
+    
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,8 @@ class SignupViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-
+    
     @IBAction func realSignupButtonTapped(_ sender: Any) {
-        print("----------------- :: print REAL SING UP TAPPED -----------------")
         guard let firstName = signupFirstNameTextField.text, !firstName.isEmpty,
               let lastName = signupLastNameTextField.text, !lastName.isEmpty,
               let userName = signupUserNameTextField.text, !userName.isEmpty,
@@ -35,7 +35,10 @@ class SignupViewController: UIViewController {
         UserController.shared.signupNewUserAndCreateNewContactWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
             switch results {
             case .success(let user):
-                print("=================SUCESSFULLY SIGNING USER :\(user.firstName)===================")
+                if let image = self.selectedImage {
+                    print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
+                    self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+                }
                 self.gotoFriendListVC()
             case .failure(let error):
                 print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
@@ -43,11 +46,20 @@ class SignupViewController: UIViewController {
         }
     }
     
- 
+    func storageProfilePhotAndgetProfileURL(user: User, image: UIImage) {
+        StorageController.shared.storeImage(user: user, image: image) { (results) in
+            switch results {
+            case .success(let url):
+                print("-----------------URL :: \(url)-----------------")
+            case .failure(let error):
+                print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            }
+        }
+    }
     
     @IBAction func addAddressButtonTapped(_ sender: Any) {
-       
-}
+        
+    }
     
     // MARK: - Helper Fuctions
     func gotoFriendListVC() {
@@ -56,33 +68,19 @@ class SignupViewController: UIViewController {
         vc.modalPresentationStyle = .pageSheet
         self.present( vc, animated: true, completion: nil)
     }
-
-}
-
-/*
-@IBAction func loginButtonTapped(_ sender: Any) {
     
-    guard let email = loginEmailTextField.text, !email.isEmpty,
-          let password = loginPassWordTextField.text, !password.isEmpty else {return}
-    
-    UserController.shared.loginWith(email: email, password: password) { (results) in
-        switch results {
-        case .success(let results):
-            print("This is email of loggin user : \(results)")
-            self.gotoFriendListVC()
-        case .failure(let error):
-            print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPhotoPickerVC" {
+            guard let destinationVC = segue.destination as? PhotoPickerViewController else {return}
+            destinationVC.delegate = self
         }
     }
-    
+}
+
+extension SignupViewController: PhotoSelectorViewControllerDelegate {
+    func photoSelectorViewControllerSelected(image: UIImage) {
+        self.selectedImage = image
+    }
 }
 
 
-// MARK: - Helper Fuctions
-func gotoFriendListVC() {
-    let storyboard = UIStoryboard(name: "FriendsList", bundle: nil)
-    let  vc = storyboard.instantiateViewController(identifier: "friendListVCStoryboardID")
-    vc.modalPresentationStyle = .pageSheet
-    self.present( vc, animated: true, completion: nil)
-}
-*/

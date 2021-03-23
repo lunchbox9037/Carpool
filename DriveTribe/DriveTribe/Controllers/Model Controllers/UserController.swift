@@ -470,6 +470,9 @@ class UserController {
     }
     
     
+    
+    
+    
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
@@ -526,7 +529,7 @@ class UserController {
     }
 }
 
-// MARK: - New Fucntion for CarpoolController
+// MARK: - New Fucntion for CarpoolController And StorageController
 extension UserController {
     func fetchSpecificUserByID(userId: String, completion: @escaping(Result<User, NetworkError>) -> Void) {
         db.collectionGroup(userCollection).getDocuments { (users, error) in
@@ -547,6 +550,22 @@ extension UserController {
             return completion(.success(specificUser))
         }
     }
+    
+    
+    
+    
+//    func saveProfileURL(user: User, profileURL: URL, completion: @escaping (Result<User, NetworkError>) -> Void) {
+//        guard let currentUser = currentUser else {return}
+//
+//        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.profileURLKey : profileURL]) { (error) in
+//            if let error = error {
+//                print("\n==== ERROR SAVING PROFILE URL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//                return completion(.failure(.thrownError(error)))
+//            } else {
+//                print("FINALLY! GOT PROFILE URL FROM THE USER!")
+//            }
+//        }
+//    }
 }
 
 
