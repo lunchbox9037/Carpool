@@ -9,7 +9,6 @@ import Foundation
 import MapKit
 import Firebase
 import SafariServices
-//import FirebaseAuth
 
 class CarpoolController {
     // MARK: - Properties

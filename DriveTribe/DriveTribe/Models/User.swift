@@ -54,6 +54,7 @@ class User: SearchableRecordDelegate {
     var authID: String
     var uuid: String
    
+   
     
     internal init(firstName: String, lastName: String, userName: String, profilePhoto: UIImage? = nil, groups: [String] = [], carInfo: String = "", addressBook: [Double] = [], lastCurrentLocation: [Double] = [], blockedUsers: [String] = [], blockedUsersByCurrentUser: [String] = [], friends: [String] = [], friendsRequestSent: [String] = [], friendRequestReceived: [String] = [], authID: String = "", uuid: String = UUID().uuidString) {
         self.firstName = firstName
@@ -71,6 +72,7 @@ class User: SearchableRecordDelegate {
         self.authID = authID
         self.uuid = uuid
         self.profilePhoto = profilePhoto
+    
     }
     
     convenience init?(document: DocumentSnapshot) {
@@ -96,6 +98,7 @@ class User: SearchableRecordDelegate {
             profilePhoto = UIImage(data: profilePhotoData)
         }
         
+
         self.init(firstName: firstName, lastName: lastName, userName: userName, profilePhoto: profilePhoto, groups: groups, carInfo: carInfo, addressBook: addressBook, lastCurrentLocation: lastCurrentLocation, blockedUsers: blockedUsers, blockedUsersByCurrentUser: blockedUsersByCurrentUser, friends: friends, friendsRequestSent: friendsRequestSent, friendRequestReceived: friendRequestReceived, authID: authID, uuid: uuid)
     }
 }//End of class

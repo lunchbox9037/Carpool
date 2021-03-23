@@ -4,7 +4,6 @@
 //
 //  Created by Lee McCormick on 3/18/21.
 //
-
 import FirebaseFirestore
 import Foundation
 import Firebase
@@ -19,7 +18,8 @@ class UserController {
     let db = Firestore.firestore()
     let userCollection = "users"
     var lastCurrentLocation: [Double] = []
-
+    let deletedUserCollection = "deletedUsers"
+    
     // MARK: - CRUD Methods
     // MARK: - CREATE
     func signupNewUserAndCreateNewContactWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
@@ -132,6 +132,8 @@ class UserController {
             return completion(.success(userArray))
         }
     }
+    
+
     
     func fetchPendingFriendRequestsSentBy(currentUser: User, completion: @escaping (Result<[User], NetworkError>) -> Void) {
         db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
@@ -267,80 +269,80 @@ class UserController {
             }
         }
     }
-
+    
     // MARK: - UPDATE
     func sendFriendRequest(to user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        
+        guard let upwrapCurrentUser = self.currentUser else {return}
+        if !upwrapCurrentUser.friends.contains(user.uuid) && !upwrapCurrentUser.friendsRequestSent.contains(user.uuid) &&  !upwrapCurrentUser.blockedUsers.contains(user.uuid) {
             
-            guard let upwrapCurrentUser = self.currentUser else {return}
-            if !upwrapCurrentUser.friends.contains(user.uuid) && !upwrapCurrentUser.friendsRequestSent.contains(user.uuid) &&  !upwrapCurrentUser.blockedUsers.contains(user.uuid) {
-                
-                db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsRequestReceivedKey : FieldValue.arrayUnion([upwrapCurrentUser.uuid])]) { (error) in
-                    if let error = error {
-                        print("\n==== ERROR IN SEND FRIEND REQUEST \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                        return completion(.failure(.thrownError(error)))
-                    } else {
-                        print("\n===== SUCCESSFULLY! ADD FRIEND REQUEST RECEIVED FOR \(user.userName)=====\n")
-                        return completion(.success(user))
-                    }
+            db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsRequestReceivedKey : FieldValue.arrayUnion([upwrapCurrentUser.uuid])]) { (error) in
+                if let error = error {
+                    print("\n==== ERROR IN SEND FRIEND REQUEST \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    return completion(.failure(.thrownError(error)))
+                } else {
+                    print("\n===== SUCCESSFULLY! ADD FRIEND REQUEST RECEIVED FOR \(user.userName)=====\n")
+                    return completion(.success(user))
                 }
-                
-                db.collection(userCollection).document(upwrapCurrentUser.uuid).updateData([UserConstants.friendsRequestSentKey : FieldValue.arrayUnion([user.uuid])]) { (error) in
-                    if let error = error {
-                        print("\n==== ERROR IN SEND FRIEND REQUEST \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                        return completion(.failure(.thrownError(error)))
-                    } else {
-                        print("\n===== SUCCESSFULLY! ADD FRIEND REQUEST SENT KEY FOR \(upwrapCurrentUser.userName)=====\n")
-                        return completion(.success(user))
-                    }
-                }
-            } else {
-                print("\n==== ERROR IN SEND FRIEND REQUEST \(#function) BECAUSE IT IS A REPEAT REQUEST!  ====\n")
-                return completion(.failure(.repeatRequest))
             }
+            
+            db.collection(userCollection).document(upwrapCurrentUser.uuid).updateData([UserConstants.friendsRequestSentKey : FieldValue.arrayUnion([user.uuid])]) { (error) in
+                if let error = error {
+                    print("\n==== ERROR IN SEND FRIEND REQUEST \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    return completion(.failure(.thrownError(error)))
+                } else {
+                    print("\n===== SUCCESSFULLY! ADD FRIEND REQUEST SENT KEY FOR \(upwrapCurrentUser.userName)=====\n")
+                    return completion(.success(user))
+                }
+            }
+        } else {
+            print("\n==== ERROR IN SEND FRIEND REQUEST \(#function) BECAUSE IT IS A REPEAT REQUEST!  ====\n")
+            return completion(.failure(.repeatRequest))
         }
+    }
     
     func acceptFriendRequest(user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
-            guard let currentUser = currentUser else {return}
-            
-            db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.friendsKey : FieldValue.arrayUnion([user.uuid])]) { (error) in
-                if let error = error {
-                    print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    return completion(.failure(.thrownError(error)))
-                } else {
-                    print("FINALLY! \(currentUser.firstName)  ACCEPT \(user.firstName) FRIEND'S REQUEST.")
-                }
+        guard let currentUser = currentUser else {return}
+        
+        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.friendsKey : FieldValue.arrayUnion([user.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("FINALLY! \(currentUser.firstName)  ACCEPT \(user.firstName) FRIEND'S REQUEST.")
             }
-            
-            db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.friendsRequestReceivedKey : FieldValue.arrayRemove([user.uuid])]) { (error) in
-                if let error = error {
-                    print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    return completion(.failure(.thrownError(error)))
-                } else {
-                    print("SO! \(user.firstName) IS REMOVE FROM \(currentUser.firstName) FRIEND'S REQUEST RECEIVED' LIST.")
-                }
-            }
-            
-            db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsKey : FieldValue.arrayUnion([currentUser.uuid])]) { (error) in
-                if let error = error {
-                    print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    return completion(.failure(.thrownError(error)))
-                } else {
-                    print("FINALLY! \(user.firstName) GOT ACCEPTED FROM \(currentUser.firstName) TO BE FRIEND.")
-                }
-            }
-            
-            db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsRequestSentKey : FieldValue.arrayRemove([currentUser.uuid])]) { (error) in
-                if let error = error {
-                    print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    return completion(.failure(.thrownError(error)))
-                } else {
-                    print("SO!\(currentUser.firstName) IS REMOVE FROM \(user.firstName)  FRIEND'S REQUEST LIST.")
-                }
-            }
-             print("\n===== SUCCESSFULLY! ACCEPTED FRIEND REQUEST =====\n")
-            completion(.success(user))
         }
-
+        
+        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.friendsRequestReceivedKey : FieldValue.arrayRemove([user.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("SO! \(user.firstName) IS REMOVE FROM \(currentUser.firstName) FRIEND'S REQUEST RECEIVED' LIST.")
+            }
+        }
+        
+        db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsKey : FieldValue.arrayUnion([currentUser.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("FINALLY! \(user.firstName) GOT ACCEPTED FROM \(currentUser.firstName) TO BE FRIEND.")
+            }
+        }
+        
+        db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsRequestSentKey : FieldValue.arrayRemove([currentUser.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR ACCEPT FRIEND REQUEST IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("SO!\(currentUser.firstName) IS REMOVE FROM \(user.firstName)  FRIEND'S REQUEST LIST.")
+            }
+        }
+        print("\n===== SUCCESSFULLY! ACCEPTED FRIEND REQUEST =====\n")
+        completion(.success(user))
+    }
+    
     // MARK: - DELETE
     func cancelFriendRequest(to user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         guard let upwrapCurrentUser = self.currentUser else {return}
@@ -468,17 +470,52 @@ class UserController {
     }
     
     
+    
+    
+    
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
+        //delete form User Document
         let docRef = db.collection(userCollection).document(currentUser.uuid)
-        
         docRef.delete { (error) in
             if let error = error {
                 return completion(.failure(.thrownError(error)))
             } else {
                 self.logout { (results) in
                     switch results {
+                    case .success(let response):
+                        print(response)
+                    case .failure(let error):
+                        print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+                
+                //Save Deleted User Some where
+                let deletedUser = currentUser
+                let userRef = self.db.collection(self.deletedUserCollection)
+                userRef.document(deletedUser.uuid).setData([
+                                                            UserConstants.firstNameKey : deletedUser.firstName,
+                                                            UserConstants.lastNameKey : deletedUser.lastName,
+                                                            UserConstants.userNameKey : deletedUser.userName,
+                                                            UserConstants.groupsKey : deletedUser.groups,
+                                                            UserConstants.carInfoKey : deletedUser.carInfo,
+                                                            UserConstants.addressBookKey : deletedUser.addressBook,
+                                                            UserConstants.lastCurrentLocationKey : deletedUser.lastCurrentLocation,
+                                                            UserConstants.blockedUsersKey : deletedUser.blockedUsers,
+                                                            UserConstants.blockedUsersByCurrentUserKey : deletedUser.blockedUsersByCurrentUser,
+                                                            UserConstants.friendsKey : deletedUser.friends,
+                                                            UserConstants.friendsRequestSentKey : deletedUser.friendsRequestSent,
+                                                            UserConstants.friendsRequestReceivedKey : deletedUser.friendsRequestReceived,
+                                                            UserConstants.authIDKey : deletedUser.authID,
+                                                            UserConstants.uuidKey : deletedUser.uuid]) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return completion(.failure(.thrownError(error)))
+                    } else {
+                        return completion(.success(deletedUser))
+                    }
+                }
                     
                     case .success(let response):
                         print(response)
@@ -489,6 +526,37 @@ class UserController {
                 
                 return completion(.success(currentUser))
             }
+            
+            //Also delete Current User from Auth
+            Auth.auth().currentUser?.delete(completion: { (error) in
+                if let error = error {
+                    print("\n==== ERROR DELETING AUTH USER ACCOUNT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                }
+            })
+            return completion(.success(currentUser))
+        }
+    }
+}
+
+// MARK: - New Fucntion for CarpoolController And StorageController
+extension UserController {
+    func fetchSpecificUserByID(userId: String, completion: @escaping(Result<User, NetworkError>) -> Void) {
+        db.collectionGroup(userCollection).getDocuments { (users, error) in
+            if let error = error {
+                print("\n====ERROR  FETCH ALL USER! IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            }
+            var specificUserByID: User?
+            guard let users = users else {return completion(.failure(.noData))}
+            for document in users.documents {
+                guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
+                if user.uuid == userId {
+                    specificUserByID = user
+                print("====SUCCESSFULLY! FETCH SPECIFIC USER! \(#function)====")
+                }
+            }
+            guard let specificUser = specificUserByID else {return}
+            return completion(.success(specificUser))
         }
         
         //Save Delete User Some where
@@ -496,16 +564,31 @@ class UserController {
     }
     
     
+    
+    
+//    func saveProfileURL(user: User, profileURL: URL, completion: @escaping (Result<User, NetworkError>) -> Void) {
+//        guard let currentUser = currentUser else {return}
+//
+//        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.profileURLKey : profileURL]) { (error) in
+//            if let error = error {
+//                print("\n==== ERROR SAVING PROFILE URL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//                return completion(.failure(.thrownError(error)))
+//            } else {
+//                print("FINALLY! GOT PROFILE URL FROM THE USER!")
+//            }
+//        }
+//    }
 }
+
 
 
 /* // NOTE :
  Create, read, update, delete:
- Get current location (Stan):
- Delete Account: ?? ===> What does it mean delete account??
+ Get current location (Stan): :: DONE DONE WORKED //UPDATE CURRENT LOCATION USER.. 
+ Delete Account: ?? ===> What does it mean delete account?? ===>> DONE DONE DONE NEED TO TEST ON SETTING
  _________________________________________________________________
  NEED TO FETCH THE ALL THE USERS THAT ARE NOT CURRENT USER, NOT IN THE `blockedUsers`, NOT IN THE `friends`, NOT IN THE `friendsRequestSent`
-
+ 
  func fetchAllUsersWithOutBlockedAndCurrentUser(currentUser: User, completion: @escaping(Result<[User], NetworkError>) -> Void) {
  db.collectionGroup(userCollection).whereField(UserConstants.authIDKey, isNotEqualTo: currentUser.authID).getDocuments { (users, error) in
  if let error = error {

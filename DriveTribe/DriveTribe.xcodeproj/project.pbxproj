@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361E091A2609722E002A5323 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E09192609722E002A5323 /* PhotoPickerViewController.swift */; };
 		3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3682F11B2602B3F200415468 /* GoogleService-Info.plist */; };
 		3682F11F2603310900415468 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F11E2603310900415468 /* User.swift */; };
 		3682F1392603394100415468 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F1382603394100415468 /* UserController.swift */; };
@@ -21,6 +22,7 @@
 		36FA0E5B26090B44005F9A11 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E5A26090B44005F9A11 /* LogInViewController.swift */; };
 		36FA0E632609175A005F9A11 /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E622609175A005F9A11 /* UserLocationViewController.swift */; };
 		36FA0E6A26091A43005F9A11 /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */; };
+		36FA0E6F26095557005F9A11 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E6E26095557005F9A11 /* StorageController.swift */; };
 		5D831A85C524AAF352471699 /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6560C12F95D5D00B286CB6 /* Pods_DriveTribe.framework */; };
 		F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A0EDC26047E630087BCBE /* ProfileViewController.swift */; };
 		F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210B826094D80009E6BE9 /* AlertExtension.swift */; };
@@ -47,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		0F0F9D7D31D5DAA43EB44ECF /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
+		361E09192609722E002A5323 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		3682F11B2602B3F200415468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3682F11E2603310900415468 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3682F1382603394100415468 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		36FA0E5A26090B44005F9A11 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		36FA0E622609175A005F9A11 /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationSearchViewController.swift; sourceTree = "<group>"; };
+		36FA0E6E26095557005F9A11 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		5C6560C12F95D5D00B286CB6 /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F49E98EAE0C67D0DAB14FB9 /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
 		F25A0EDC26047E630087BCBE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				36FA0E6926091A42005F9A11 /* UserLocationSearchViewController.swift */,
 				36FA0E5A26090B44005F9A11 /* LogInViewController.swift */,
 				36B82D3D2603E89C008EC52A /* SignupViewController.swift */,
+				36FA0E622609175A005F9A11 /* UserLocationViewController.swift */,
+				361E09192609722E002A5323 /* PhotoPickerViewController.swift */,
 			);
 			path = SignupLogin;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			children = (
 				F648B96926011AFB00FBADCA /* CarpoolController.swift */,
 				3682F1382603394100415468 /* UserController.swift */,
+				36FA0E6E26095557005F9A11 /* StorageController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -439,11 +446,13 @@
 				36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */,
 				F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */,
 				F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */,
+				361E091A2609722E002A5323 /* PhotoPickerViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 				36FA0E5B26090B44005F9A11 /* LogInViewController.swift in Sources */,
 				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
 				36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */,
 				36B82D372603C604008EC52A /* NetworkError.swift in Sources */,
+				36FA0E6F26095557005F9A11 /* StorageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
