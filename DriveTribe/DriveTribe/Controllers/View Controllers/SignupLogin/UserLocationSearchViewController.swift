@@ -21,13 +21,13 @@ class UserLocationSearchViewController: UIViewController {
     var currentLocation: CLLocation?
     var searchResults: [MKMapItem] = []
 
-    
+    weak var mapView: MKMapView?
     weak var delegate: UserLocationSearchViewControllerDelegate?
     
     // MARK: - Views
     private let label: UILabel = {
         let label = UILabel()
-        label.text = "Where to?"
+        label.text = "Whats your current location?"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         
         return label
@@ -39,6 +39,8 @@ class UserLocationSearchViewController: UIViewController {
         field.layer.cornerRadius = 9
         field.backgroundColor = .tertiarySystemBackground
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
+        field.autocorrectionType = .no
+        field.returnKeyType = .go
         
         return field
     }()
@@ -141,15 +143,16 @@ extension UserLocationSearchViewController: UITableViewDelegate, UITableViewData
 // MARK: - UITextField extension
 extension UserLocationSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+//        textField.text = ""
         delegate?.didBeginEditing()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         field.resignFirstResponder()
-        if let text = field.text, !text.isEmpty {
+        if let text = field.text, !text.isEmpty,
+           let mapview = self.mapView {
             let searchRequest = MKLocalSearch.Request()
-//            searchRequest.region = CLLocationDistance.
+            searchRequest.region.span = mapview.region.span
             searchRequest.naturalLanguageQuery = text
             
             let search = MKLocalSearch(request: searchRequest)

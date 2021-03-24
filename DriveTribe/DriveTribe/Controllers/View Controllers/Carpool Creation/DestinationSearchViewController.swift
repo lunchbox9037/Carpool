@@ -148,14 +148,14 @@ extension DestinationSearchViewController: UITextFieldDelegate {
             searchRequest.naturalLanguageQuery = text
             
             let search = MKLocalSearch(request: searchRequest)
-            search.start { (response, error) in
+            search.start { [weak self] (response, error) in
                 guard let response =  response else {
                     print(error?.localizedDescription ?? "unknown error")
                     return
                 }
                 DispatchQueue.main.async {
-                    self.searchResults = response.mapItems
-                    self.tableView.reloadData()
+                    self?.searchResults = response.mapItems
+                    self?.tableView.reloadData()
                 }
             }
         }

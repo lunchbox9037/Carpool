@@ -40,6 +40,11 @@ class ProfileViewController: UIViewController {
         populateViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setAppearance()
+    }
+    
     func populateViews() {
         guard let user = UserController.shared.currentUser else { return }
         
