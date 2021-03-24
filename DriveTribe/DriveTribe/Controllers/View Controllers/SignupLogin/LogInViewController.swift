@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
@@ -14,9 +15,14 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
-       
+        setupToHideKeyboardOnTapOnView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if Auth.auth().currentUser != nil {
+          gotoTabbarVC()
+        }
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
@@ -28,7 +34,7 @@ class LogInViewController: UIViewController {
             switch results {
             case .success(let results):
                 print("This is email of loggin user : \(results)")
-                self.gotoFriendListVC()
+                self.gotoTabbarVC()
             case .failure(let error):
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
@@ -37,14 +43,25 @@ class LogInViewController: UIViewController {
     }
     
     
-    // MARK: - Helper Fuctions
-    func gotoFriendListVC() {
-        let storyboard = UIStoryboard(name: "FriendsList", bundle: nil)
-        let  vc = storyboard.instantiateViewController(identifier: "friendListVCStoryboardID")
-        vc.modalPresentationStyle = .pageSheet
-        self.present( vc, animated: true, completion: nil)
+    
+    @IBAction func signupbuttonTapped(_ sender: Any) {
+        gotoSignInVC()
     }
     
     
-
+    
+    // MARK: - Helper Fuctions
+    func gotoTabbarVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let  vc = storyboard.instantiateViewController(identifier: "tabBarStoryBoardID")
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func gotoSignInVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let  vc = storyboard.instantiateViewController(identifier: "signInStoryboardID")
+        vc.modalPresentationStyle = .fullScreen
+        self.present( vc, animated: true, completion: nil)
+    }
 }

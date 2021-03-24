@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35F44A99853268B16387D23D /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */; };
+		363BF347260ADCF800683A5A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */; };
+		363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */; };
 		3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3682F11B2602B3F200415468 /* GoogleService-Info.plist */; };
 		3682F11F2603310900415468 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F11E2603310900415468 /* User.swift */; };
 		3682F1392603394100415468 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F1382603394100415468 /* UserController.swift */; };
@@ -50,6 +53,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
 		3682F11B2602B3F200415468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3682F11E2603310900415468 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3682F1382603394100415468 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
@@ -61,6 +67,7 @@
 		36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTableViewCell.swift; sourceTree = "<group>"; };
 		36B82D66260436D0008EC52A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		36FA0E6E26095557005F9A11 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25A0EDC26047E630087BCBE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolDestinationViewController.swift; sourceTree = "<group>"; };
 		F2D75CA9260A97F500EDF43C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F44A99853268B16387D23D /* Pods_DriveTribe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +117,7 @@
 		16F83C47456142620D64EEB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */,
+				0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -280,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				F648B94B2601192500FBADCA /* Main.storyboard */,
+				363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */,
 			);
 			path = Noone;
 			sourceTree = "<group>";
@@ -291,6 +302,7 @@
 				36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */,
 				F61210B826094D80009E6BE9 /* AlertExtension.swift */,
 				F61210BB26096612009E6BE9 /* RouteCreator.swift */,
+				363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -379,6 +391,7 @@
 				F648B97E2601213E00FBADCA /* MyProfile.storyboard in Resources */,
 				F648B94F2601192800FBADCA /* Assets.xcassets in Resources */,
 				F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */,
+				363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */,
 				F648B94D2601192500FBADCA /* Main.storyboard in Resources */,
 				3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */,
 			);
@@ -437,6 +450,7 @@
 				F648BB102602FFA200FBADCA /* AddPassengerViewController.swift in Sources */,
 				36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */,
 				3682F1392603394100415468 /* UserController.swift in Sources */,
+				363BF347260ADCF800683A5A /* UIViewController+Extensions.swift in Sources */,
 				F2D75CB1260A97F500EDF43C /* LogInViewController.swift in Sources */,
 				F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */,
 				F648B9462601192500FBADCA /* AppDelegate.swift in Sources */,
@@ -651,6 +665,7 @@
 		};
 		F648B9582601192800FBADCA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

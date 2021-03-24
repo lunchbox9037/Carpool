@@ -37,11 +37,13 @@ class CarpoolListViewController: UIViewController {
         if workPlaySegment.selectedSegmentIndex == 0 {
             carpoolGroupLabel.text = "Work Tribes"
             overrideUserInterfaceStyle = .light
+            dataSource = CarpoolController.shared.work
         } else {
             carpoolGroupLabel.text = "Play Tribes"
             overrideUserInterfaceStyle = .dark
+            dataSource = CarpoolController.shared.play
         }
-        fetchCarpoolsByCurrentUser()
+        carpoolTableView.reloadData()
     }
     
     // MARK: - Methods
@@ -50,6 +52,7 @@ class CarpoolListViewController: UIViewController {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
+                    CarpoolController.shared.sortCarpoolsByWorkPlay()
                     if self?.workPlaySegment.selectedSegmentIndex == 0 {
                         self?.dataSource = CarpoolController.shared.work
                     } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
@@ -85,6 +88,7 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? TribeDetailViewController else {return}
         detailVC.tribe = dataSource[indexPath.row]
         
