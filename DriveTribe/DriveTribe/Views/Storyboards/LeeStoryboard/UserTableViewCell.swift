@@ -35,5 +35,6 @@ class UserTableViewCell: UITableViewCell {
     func updateView(user: User) {
         userNameLabel.text = user.userName
         requestButton.setTitle("REQUEST", for: .normal)
+        profileImage.setupRoundCircleViews()
     }
 }
