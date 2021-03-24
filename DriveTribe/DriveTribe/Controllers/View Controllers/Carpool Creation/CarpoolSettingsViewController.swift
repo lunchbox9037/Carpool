@@ -17,6 +17,11 @@ class CarpoolSettingsViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setAppearance()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if workPlaySegment.selectedSegmentIndex == 0 {

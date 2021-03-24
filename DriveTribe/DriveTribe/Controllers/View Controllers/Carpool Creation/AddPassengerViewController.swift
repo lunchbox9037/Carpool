@@ -24,6 +24,7 @@ class AddPassengerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setAppearance()
         getCurrentUserFriends()
     }
 

@@ -31,9 +31,10 @@ class SignupViewController: UIViewController {
               let email = signupEmailTextField.text, !email.isEmpty,
               let password = signupPasswordTextField.text, !password.isEmpty else {return}
         
-        UserController.shared.signupNewUserAndCreateNewContactWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
+        UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
             switch results {
             case .success(let user):
+                UserController.shared.currentUser = user
                 if let image = self.selectedImage {
                     print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
                     self.storageProfilePhotAndgetProfileURL(user: user, image: image)

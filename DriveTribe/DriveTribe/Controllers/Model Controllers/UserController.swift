@@ -22,7 +22,7 @@ class UserController {
     
     // MARK: - CRUD Methods
     // MARK: - CREATE
-    func signupNewUserAndCreateNewContactWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
+    func signupNewUserAndCreateNewUserWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("\n==== ERROR SING UP NEW USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")            }
@@ -30,20 +30,23 @@ class UserController {
             let newUser = User(firstName: firstName, lastName: lastName, userName: userName,lastCurrentLocation: self.lastCurrentLocation)
             let userRef = self.db.collection(self.userCollection)
             userRef.document(newUser.uuid).setData([
-                                                    UserConstants.firstNameKey : newUser.firstName,
-                                                    UserConstants.lastNameKey : newUser.lastName,
-                                                    UserConstants.userNameKey : newUser.userName,
-                                                    UserConstants.groupsKey : newUser.groups,
-                                                    UserConstants.carInfoKey : newUser.carInfo,
-                                                    UserConstants.addressBookKey : newUser.addressBook,
-                                                    UserConstants.lastCurrentLocationKey : newUser.lastCurrentLocation,
-                                                    UserConstants.blockedUsersKey : newUser.blockedUsers,
-                                                    UserConstants.blockedUsersByCurrentUserKey : newUser.blockedUsersByCurrentUser,
-                                                    UserConstants.friendsKey : newUser.friends,
-                                                    UserConstants.friendsRequestSentKey : newUser.friendsRequestSent,
-                                                    UserConstants.friendsRequestReceivedKey : newUser.friendsRequestReceived,
-                                                    UserConstants.authIDKey : authResult.user.uid,
-                                                    UserConstants.uuidKey : newUser.uuid]) { (error) in
+                
+                UserConstants.firstNameKey : newUser.firstName,
+                UserConstants.lastNameKey : newUser.lastName,
+                UserConstants.userNameKey : newUser.userName,
+                UserConstants.groupsKey : newUser.groups,
+                UserConstants.carInfoKey : newUser.carInfo,
+                UserConstants.addressBookKey : newUser.addressBook,
+                UserConstants.lastCurrentLocationKey : newUser.lastCurrentLocation,
+                UserConstants.blockedUsersKey : newUser.blockedUsers,
+                UserConstants.blockedUsersByCurrentUserKey : newUser.blockedUsersByCurrentUser,
+                UserConstants.friendsKey : newUser.friends,
+                UserConstants.friendsRequestSentKey : newUser.friendsRequestSent,
+                UserConstants.friendsRequestReceivedKey : newUser.friendsRequestReceived,
+                UserConstants.authIDKey : authResult.user.uid,
+                UserConstants.uuidKey : newUser.uuid
+                
+            ]) { (error) in
                 if let error = error {
                     print(error.localizedDescription)
                     return completion(.failure(.thrownError(error)))
@@ -546,28 +549,30 @@ extension UserController {
             guard let specificUser = specificUserByID else {return}
             return completion(.success(specificUser))
         }
-        
+    
         //Save Delete User Some where
         
     }
     
-    func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
-        guard let currentUser = currentUser else {return}
-                db.collection(userCollection).document(currentUser.uuid).updateData([
-                    UserConstants.firstNameKey : firstName,
-                    UserConstants.lastNameKey : lastName,
-                    UserConstants.userNameKey : userName,
-                    UserConstants.carInfoKey : carInfo
-                        ]) { (error) in
-                    if let error = error {
-                        print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                        return completion(.failure(.thrownError(error)))
-                    } else {
-                        print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
-                    }
-                }
-    }
-
+    func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
+           guard let currentUser = currentUser else {return}
+                   db.collection(userCollection).document(currentUser.uuid).updateData([
+                       UserConstants.firstNameKey : firstName,
+                       UserConstants.lastNameKey : lastName,
+                       UserConstants.userNameKey : userName,
+                       UserConstants.carInfoKey : carInfo
+                           ]) { (error) in
+                       if let error = error {
+                           print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                           return completion(.failure(.thrownError(error)))
+                       } else {
+                           print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
+                        return completion(.success("Success"))
+                       }
+                   }
+       }
+    
+  
 }
 
 

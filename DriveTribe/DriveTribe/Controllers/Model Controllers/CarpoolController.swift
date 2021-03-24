@@ -85,7 +85,7 @@ class CarpoolController {
     }//end func
     
     func fetchGroupsForCurrentUser(completion: @escaping (Result<String, NetworkError>) -> Void) {
-        guard let currentUser = UserController.shared.currentUser else {return}
+        guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
         db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
             if let error = error {
                 print("\n==== ERROR FETCH Groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
