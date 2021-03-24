@@ -36,5 +36,6 @@ class ReceivedTableViewCell: UITableViewCell {
     func updateView(friendRequestReceived: User) {
         userNameLabel.text = friendRequestReceived.userName
         acceptButton.setTitle("ACCEPT", for: .normal)
+        profileImage.setupRoundCircleViews()
     }
 }

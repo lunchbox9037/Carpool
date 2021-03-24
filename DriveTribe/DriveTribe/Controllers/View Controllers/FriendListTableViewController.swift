@@ -20,7 +20,8 @@ class FriendListTableViewController: UITableViewController {
     var friendRequestsReceived: [User] = []
     var resultsFriendsFromSearching: [SearchableRecordDelegate] = []
     var currentUser: User?
-    
+    var imageProfile: UIImage?
+
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +33,7 @@ class FriendListTableViewController: UITableViewController {
         friendSearchBar.selectedScopeButtonIndex = 0
         setupTableView()
     }
-    
-    
+        
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -63,24 +63,66 @@ class FriendListTableViewController: UITableViewController {
             guard let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserTableViewCell else {return UITableViewCell()}
             guard let user = resultsFriendsFromSearching[indexPath.row] as? User else {return UITableViewCell()}
             userCell.updateView(user: user)
+            StorageController.shared.getImage(user: user) { (results) in
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let image):
+                        userCell.profileImage.image = image
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+            }
             userCell.delegate = self
             returnCell = userCell
         } else if friendSearchBar.selectedScopeButtonIndex == 0 {
             guard let friendCell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendTableViewCell else {return UITableViewCell()}
             let friend = friends[indexPath.row]
             friendCell.updateView(friend: friend)
+            StorageController.shared.getImage(user: friend) { (results) in
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let image):
+                        friendCell.profileImage.image = image
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+            }
+            
+            
             friendCell.delegate = self
             returnCell = friendCell
         } else if friendSearchBar.selectedScopeButtonIndex == 1 {
             guard let requestCell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as? RequestTableViewCell else {return UITableViewCell()}
             let friendRequestSent = friendRequestsSent[indexPath.row]
             requestCell.updateView(friendRequestSent: friendRequestSent)
+            StorageController.shared.getImage(user: friendRequestSent) { (results) in
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let image):
+                        requestCell.profileImage.image = image
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+            }
             requestCell.delegate = self
             returnCell = requestCell
         } else if friendSearchBar.selectedScopeButtonIndex == 2 {
             guard let receivedCell = tableView.dequeueReusableCell(withIdentifier: "receievedCell", for: indexPath) as? ReceivedTableViewCell else {return UITableViewCell()}
             let friendReceived = friendRequestsReceived[indexPath.row]
             receivedCell.updateView(friendRequestReceived: friendReceived)
+            StorageController.shared.getImage(user: friendReceived) { (results) in
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let image):
+                        receivedCell.profileImage.image = image
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
+                }
+            }
             receivedCell.delegate = self
             returnCell = receivedCell
         }
@@ -330,6 +372,8 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
         }
     }
 }
+
+
 
 /* NOTE
  
