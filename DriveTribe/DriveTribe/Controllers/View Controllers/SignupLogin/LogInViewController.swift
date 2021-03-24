@@ -45,7 +45,6 @@ class LogInViewController: UIViewController {
     
     
     @IBAction func signupbuttonTapped(_ sender: Any) {
-        
         gotoSignInVC()
     }
     
@@ -55,12 +54,14 @@ class LogInViewController: UIViewController {
     func gotoTabbarVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let  vc = storyboard.instantiateViewController(identifier: "tabBarStoryBoardID")
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
     
     func gotoSignInVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let  vc = storyboard.instantiateViewController(identifier: "signInStoryboardID")
+        vc.modalPresentationStyle = .fullScreen
         self.present( vc, animated: true, completion: nil)
     }
 }

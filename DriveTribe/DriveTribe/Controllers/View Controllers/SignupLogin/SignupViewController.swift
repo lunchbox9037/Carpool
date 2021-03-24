@@ -63,6 +63,7 @@ class SignupViewController: UIViewController {
     func gotoTabbarVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let  vc = storyboard.instantiateViewController(identifier: "tabBarStoryBoardID")
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
     

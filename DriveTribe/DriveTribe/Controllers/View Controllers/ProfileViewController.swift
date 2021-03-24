@@ -38,19 +38,6 @@ class ProfileViewController: UIViewController {
             }
         }
         populateViews()
-        guard let currentUser = UserController.shared.currentUser else {return}
-                
-                StorageController.shared.getImage(user: currentUser) { (results) in
-                    
-                    switch results {
-                    case .success(let image):
-                        DispatchQueue.main.async {
-                            self.profileImageView.image = image
-                        }
-                    case .failure(let error):
-                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    }
-                }
     }
     
     func populateViews() {
