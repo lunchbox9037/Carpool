@@ -473,21 +473,7 @@ class UserController {
     }
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
-        
-        //delete form User Document
-        let docRef = db.collection(userCollection).document(currentUser.uuid)
-        docRef.delete { (error) in
-            if let error = error {
-                return completion(.failure(.thrownError(error)))
-            } else {
-                self.logout { (results) in
-                    switch results {
-                    case .success(let response):
-                        print(response)
-                    case .failure(let error):
-                        print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    }
-                }
+    
                 //Save Deleted User Some where
                 let deletedUser = currentUser
                 let userRef = self.db.collection(self.deletedUserCollection)
@@ -510,6 +496,20 @@ class UserController {
                         print(error.localizedDescription)
                         return completion(.failure(.thrownError(error)))
                     } else {
+                        //delete form User Document
+                        let docRef = self.db.collection(self.userCollection).document(deletedUser.uuid)
+                               docRef.delete { (error) in
+                                   if let error = error {
+                                       return completion(.failure(.thrownError(error)))
+                                   } else {
+                                       self.logout { (results) in
+                                           switch results {
+                                           case .success(let response):
+                                               print(response)
+                                           case .failure(let error):
+                                               print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                                           }
+                                       }
                         return completion(.success(deletedUser))
                     }
                 }
@@ -524,6 +524,9 @@ class UserController {
             return completion(.success(currentUser))
         }
     }
+    
+    
+    
 }//end class
 
 // MARK: - New Fucntion for CarpoolController And StorageController

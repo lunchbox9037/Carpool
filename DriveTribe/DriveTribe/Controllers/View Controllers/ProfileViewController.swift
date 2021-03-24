@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     // MARK: - properties
     var isEditingProfile = false
     
+    
     // MARK: - lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,4 +121,19 @@ class ProfileViewController: UIViewController {
             }
         }
     }
+    
+    
+/*
+    func deleteUser() {
+        guard let currentUser = UserController.shared.currentUser else {return}
+        UserController.shared.deleteUser(currentUser: currentUser) { (results) in
+            switch results {
+            case .success(let user):
+                 print("\n===== SUCCESSFULLY! DELETED \(user) ACCOUNT FROM THE APP.===== \(#function)\n")
+            case .failure(let error):
+                print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            }
+        }
+    }
+ */
 }

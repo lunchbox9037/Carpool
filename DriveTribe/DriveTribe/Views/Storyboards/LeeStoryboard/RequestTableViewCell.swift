@@ -37,5 +37,6 @@ class RequestTableViewCell: UITableViewCell {
         userNameLabel.text = friendRequestSent.userName
         cancelButton.setTitle("CANCEL", for: .normal)
         profileImage.setupRoundCircleViews()
+        profileImage.image = UIImage(systemName: "person")
     }
 }
