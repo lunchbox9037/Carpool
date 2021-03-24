@@ -294,6 +294,26 @@ extension FriendListTableViewController {
 
 // MARK: - Protocol
 extension FriendListTableViewController: FriendTableViewCellCellDelagate {
+    func blockFriendButtonTapped(sender: FriendTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: sender) else {return}
+        let friendToBlock = friends[indexPath.row]
+        //TO BLOCK FRIEND HERE...
+        UserController.shared.blockUser(friendToBlock) { (results) in
+            DispatchQueue.main.async {
+                switch results {
+                case .success(let user):
+                    print("====\(user.firstName)==== GOT BLOCK FROM \(self.currentUser?.firstName ?? "").")
+                    guard let indexToBlock = self.friends.firstIndex(of: user) else {return}
+                    self.friends.remove(at: indexToBlock)
+                    self.tableView.reloadData()
+                    self.setupViewForFriends()
+                case .failure(let error):
+                    print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                }
+            }
+        }
+    }
+    
     
     func unfriendButtonTapped(sender: FriendTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}

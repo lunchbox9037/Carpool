@@ -36,5 +36,6 @@ class UserTableViewCell: UITableViewCell {
         userNameLabel.text = user.userName
         requestButton.setTitle("REQUEST", for: .normal)
         profileImage.setupRoundCircleViews()
+        profileImage.image = UIImage(systemName: "person")
     }
 }

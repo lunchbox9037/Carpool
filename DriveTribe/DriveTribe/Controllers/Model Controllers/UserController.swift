@@ -470,21 +470,7 @@ class UserController {
     }
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
-        
-        //delete form User Document
-        let docRef = db.collection(userCollection).document(currentUser.uuid)
-        docRef.delete { (error) in
-            if let error = error {
-                return completion(.failure(.thrownError(error)))
-            } else {
-                self.logout { (results) in
-                    switch results {
-                    case .success(let response):
-                        print(response)
-                    case .failure(let error):
-                        print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                    }
-                }
+    
                 //Save Deleted User Some where
                 let deletedUser = currentUser
                 let userRef = self.db.collection(self.deletedUserCollection)
@@ -507,6 +493,20 @@ class UserController {
                         print(error.localizedDescription)
                         return completion(.failure(.thrownError(error)))
                     } else {
+                        //delete form User Document
+                        let docRef = self.db.collection(self.userCollection).document(deletedUser.uuid)
+                               docRef.delete { (error) in
+                                   if let error = error {
+                                       return completion(.failure(.thrownError(error)))
+                                   } else {
+                                       self.logout { (results) in
+                                           switch results {
+                                           case .success(let response):
+                                               print(response)
+                                           case .failure(let error):
+                                               print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                                           }
+                                       }
                         return completion(.success(deletedUser))
                     }
                 }
@@ -521,6 +521,9 @@ class UserController {
             return completion(.success(currentUser))
         }
     }
+    
+    
+    
 }//end class
 
 // MARK: - New Fucntion for CarpoolController And StorageController
@@ -548,18 +551,23 @@ extension UserController {
         
     }
     
-    //    func saveProfileURL(user: User, profileURL: URL, completion: @escaping (Result<User, NetworkError>) -> Void) {
-    //        guard let currentUser = currentUser else {return}
-    //
-    //        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.profileURLKey : profileURL]) { (error) in
-    //            if let error = error {
-    //                print("\n==== ERROR SAVING PROFILE URL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-    //                return completion(.failure(.thrownError(error)))
-    //            } else {
-    //                print("FINALLY! GOT PROFILE URL FROM THE USER!")
-    //            }
-    //        }
-    //    }
+    func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        guard let currentUser = currentUser else {return}
+                db.collection(userCollection).document(currentUser.uuid).updateData([
+                    UserConstants.firstNameKey : firstName,
+                    UserConstants.lastNameKey : lastName,
+                    UserConstants.userNameKey : userName,
+                    UserConstants.carInfoKey : carInfo
+                        ]) { (error) in
+                    if let error = error {
+                        print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        return completion(.failure(.thrownError(error)))
+                    } else {
+                        print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
+                    }
+                }
+    }
+
 }
 
 

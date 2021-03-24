@@ -37,5 +37,7 @@ class ReceivedTableViewCell: UITableViewCell {
         userNameLabel.text = friendRequestReceived.userName
         acceptButton.setTitle("ACCEPT", for: .normal)
         profileImage.setupRoundCircleViews()
+        profileImage.image = UIImage(systemName: "person")
+
     }
 }

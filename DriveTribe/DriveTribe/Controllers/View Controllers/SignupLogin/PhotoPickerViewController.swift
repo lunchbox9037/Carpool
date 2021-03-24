@@ -24,6 +24,11 @@ class PhotoPickerViewController: UIViewController {
         updateImageView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedImage.image = UIImage(systemName: "person")
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         selectedImage.image = nil
@@ -65,6 +70,8 @@ extension PhotoPickerViewController: UIImagePickerControllerDelegate, UINavigati
             selectedImage.image = photo
             delegate?.photoSelectorViewControllerSelected(image: photo)
             selectedButton.setTitle("", for: .normal)
+        } else {
+            selectedImage.image = UIImage(systemName: "person")
         }
     }
     

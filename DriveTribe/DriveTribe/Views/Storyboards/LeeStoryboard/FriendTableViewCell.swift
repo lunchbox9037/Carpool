@@ -10,6 +10,7 @@ import UIKit
 // MARK: - Protocol
 protocol FriendTableViewCellCellDelagate: AnyObject {
     func unfriendButtonTapped(sender: FriendTableViewCell)
+    func blockFriendButtonTapped(sender: FriendTableViewCell)
 }
 
 class FriendTableViewCell: UITableViewCell {
@@ -32,11 +33,17 @@ class FriendTableViewCell: UITableViewCell {
         delegate?.unfriendButtonTapped(sender: self)
     }
     
+    
+    @IBAction func blockedButtonTapped(_ sender: Any) {
+        delegate?.blockFriendButtonTapped(sender: self)
+    }
+    
     // MARK: - Helper Fuctions
     func updateView(friend: User) {
         userNameLabel.text = friend.userName
         unfriendButton.setTitle("UNFRIEND", for: .normal)
         profileImage.setupRoundCircleViews()
+        profileImage.image = UIImage(systemName: "person")
     }
 }
 

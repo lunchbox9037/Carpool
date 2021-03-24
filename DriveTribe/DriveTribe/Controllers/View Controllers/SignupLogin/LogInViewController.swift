@@ -20,9 +20,9 @@ class LogInViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if Auth.auth().currentUser != nil {
-          gotoTabbarVC()
-        }
+//        if Auth.auth().currentUser != nil {
+//          gotoTabbarVC()
+//        }
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {

@@ -24,8 +24,6 @@ class SignupViewController: UIViewController {
         containerView.setupRoundCircleViews()
     }
     
-
-    
     @IBAction func signupButtonTapped(_ sender: Any) {
         guard let firstName = signupFirstNameTextField.text, !firstName.isEmpty,
               let lastName = signupLastNameTextField.text, !lastName.isEmpty,
