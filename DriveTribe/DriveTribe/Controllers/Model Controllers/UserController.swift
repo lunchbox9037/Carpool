@@ -543,23 +543,30 @@ extension UserController {
             guard let specificUser = specificUserByID else {return}
             return completion(.success(specificUser))
         }
-        
+    
         //Save Delete User Some where
         
     }
     
-    //    func saveProfileURL(user: User, profileURL: URL, completion: @escaping (Result<User, NetworkError>) -> Void) {
-    //        guard let currentUser = currentUser else {return}
-    //
-    //        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.profileURLKey : profileURL]) { (error) in
-    //            if let error = error {
-    //                print("\n==== ERROR SAVING PROFILE URL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-    //                return completion(.failure(.thrownError(error)))
-    //            } else {
-    //                print("FINALLY! GOT PROFILE URL FROM THE USER!")
-    //            }
-    //        }
-    //    }
+    func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
+           guard let currentUser = currentUser else {return}
+                   db.collection(userCollection).document(currentUser.uuid).updateData([
+                       UserConstants.firstNameKey : firstName,
+                       UserConstants.lastNameKey : lastName,
+                       UserConstants.userNameKey : userName,
+                       UserConstants.carInfoKey : carInfo
+                           ]) { (error) in
+                       if let error = error {
+                           print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                           return completion(.failure(.thrownError(error)))
+                       } else {
+                           print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
+                        return completion(.success("Success"))
+                       }
+                   }
+       }
+    
+  
 }
 
 
