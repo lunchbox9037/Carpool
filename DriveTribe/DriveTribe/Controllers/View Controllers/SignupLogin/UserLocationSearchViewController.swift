@@ -118,10 +118,6 @@ extension UserLocationSearchViewController: UITableViewDelegate, UITableViewData
         if let zip = placeMark.postalCode {
             address += ", \(zip)"
         }
-        
-//        if let country = placeMark.administrativeArea {
-//            address += ", \(country)"
-//        }
 
         cell.textLabel?.text = address
         cell.imageView?.image = UIImage(systemName: "building.2.crop.circle")

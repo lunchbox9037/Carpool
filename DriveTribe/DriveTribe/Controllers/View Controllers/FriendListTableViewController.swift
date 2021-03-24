@@ -19,7 +19,6 @@ class FriendListTableViewController: UITableViewController {
     var friendRequestsSent: [User] = []
     var friendRequestsReceived: [User] = []
     var resultsFriendsFromSearching: [SearchableRecordDelegate] = []
-//    var currentUser: User?
     var imageProfile: UIImage?
 
     // MARK: - Life Cycle Methods
@@ -213,30 +212,10 @@ extension FriendListTableViewController {
             case .failure(let error):
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
-            
-//            UserController.shared.fetchCurrentUser { [weak self] (results) in
-//                switch results {
-//                case .success(let currentUser):
-//                    self?.currentUser = currentUser
-//                case .failure(let error):
-//                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-//                }
-//            }
         }
     }
     
     func setupViewForFriends() {
-//        UserController.shared.fetchCurrentUser { [weak self] (results) in
-//            DispatchQueue.main.async {
-//                switch results {
-//                case .success(let currenUser):
-//                    self?.currentUser = currenUser
-//
-//                case .failure(let error):
-//                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-//                }
-//            }
-//        }
         guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
         UserController.shared.fetchFriendsFor(currentUser: currentUser) { [weak self] (results) in
             switch results {
@@ -250,18 +229,6 @@ extension FriendListTableViewController {
     }
     
     func setupViewForFriendRequestsSent() {
-//        UserController.shared.fetchCurrentUser { [weak self] (results) in
-//            DispatchQueue.main.async {
-//                switch results {
-//                case .success(let currenUser):
-//                    self?.currentUser = currenUser
-//
-//                case .failure(let error):
-//                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-//                }
-//            }
-//        }
-        
         guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
         UserController.shared.fetchPendingFriendRequestsSentBy(currentUser: currentUser) { [weak self] (results) in
             switch results {
@@ -275,18 +242,6 @@ extension FriendListTableViewController {
     }
     
     func setupViewForFriendRequestsReceived() {
-//        UserController.shared.fetchCurrentUser { [weak self] (results) in
-//            DispatchQueue.main.async {
-//                switch results {
-//                case .success(let currenUser):
-//                    self?.currentUser = currenUser
-//
-//                case .failure(let error):
-//                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-//                }
-//            }
-//        }
-        
         guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
         UserController.shared.fetchFriendRequestsReceived(currentUser: currentUser) { [weak self] (results) in
             switch results {
@@ -310,7 +265,6 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
             DispatchQueue.main.async {
                 switch results {
                 case .success(let user):
-//                    print("====\(user.firstName)==== GOT UNFRIENDED FROM \(self?.currentUser?.firstName ?? "").")
                     guard let indexToUnfriend = self?.friends.firstIndex(of: user) else {return}
                     self?.friends.remove(at: indexToUnfriend)
                     self?.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -333,7 +287,6 @@ extension FriendListTableViewController: RequestTableViewCellDelagate {
             DispatchQueue.main.async {
                 switch results {
                 case .success(let friendToCancelRequest):
-//                    print("SUCCESSFULLY CANCEL \(friendToCancelRequest.firstName) FROM \(self?.currentUser?.firstName ?? "")'S LIST.")
                     guard let indexOfRequestCancel = self?.friendRequestsSent.firstIndex(of: friendToCancelRequest) else {return}
                     self?.friendRequestsSent.remove(at: indexOfRequestCancel)
                     self?.tableView.reloadData()
