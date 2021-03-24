@@ -29,24 +29,31 @@ class CarpoolListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        setAppearance()
         fetchCarpoolsByCurrentUser()
     }
 
     // MARK: - Actions
     @IBAction func workPlaySegmentChanged(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        
         if workPlaySegment.selectedSegmentIndex == 0 {
             carpoolGroupLabel.text = "Work Tribes"
             overrideUserInterfaceStyle = .light
+            defaults.setValue(0, forKey: "modeAppearance")
             dataSource = CarpoolController.shared.work
         } else {
             carpoolGroupLabel.text = "Play Tribes"
             overrideUserInterfaceStyle = .dark
+            defaults.setValue(1, forKey: "modeAppearance")
             dataSource = CarpoolController.shared.play
         }
         carpoolTableView.reloadData()
     }
     
     // MARK: - Methods
+    
+    
     func fetchCarpoolsByCurrentUser() {
         CarpoolController.shared.fetchGroupsForCurrentUser { [weak self] (result) in
             switch result {

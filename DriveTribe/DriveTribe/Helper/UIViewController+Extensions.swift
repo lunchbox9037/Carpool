@@ -30,6 +30,17 @@ extension UIViewController {
     {
         view.endEditing(true)
     }
+    
+    func setAppearance() {
+        let defaults = UserDefaults.standard
+        let appearanceSelection = defaults.integer(forKey: "modeAppearance")
+        
+        if appearanceSelection == 0 {
+            overrideUserInterfaceStyle = .light
+        } else if appearanceSelection == 1 {
+            overrideUserInterfaceStyle = .dark
+        }
+    }
 }
 
 

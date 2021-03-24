@@ -24,6 +24,7 @@ class UserLocationViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         let destinationSearchVC = UserLocationSearchViewController()
+        destinationSearchVC.mapView = self.mapView
         destinationSearchVC.delegate = self
         panel.set(contentViewController: destinationSearchVC)
         panel.addPanel(toParent: self)
@@ -36,7 +37,6 @@ extension UserLocationViewController: UserLocationSearchViewControllerDelegate {
         let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
-        //        locManager.stopUpdatingLocation()
         print(location)
     }
     

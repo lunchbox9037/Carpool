@@ -22,6 +22,7 @@ class TribeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchDriverAndPassengers()
+        setAppearance()
     }
     
     // MARK: - Actions

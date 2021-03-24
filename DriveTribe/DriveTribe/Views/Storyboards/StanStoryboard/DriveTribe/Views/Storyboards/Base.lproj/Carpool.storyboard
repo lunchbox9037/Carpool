@@ -188,7 +188,7 @@
             </objects>
             <point key="canvasLocation" x="-84.057971014492765" y="41.517857142857139"/>
         </scene>
-        <!--Carpool Settings View Controller-->
+        <!--Options-->
         <scene sceneID="sm3-O7-cwF">
             <objects>
                 <viewController id="STY-xK-cZZ" customClass="CarpoolSettingsViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
@@ -196,32 +196,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tribe Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuJ-Zn-PWb">
-                                <rect key="frame" x="24" y="112" width="366" height="20.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-5L-0Gi">
-                                <rect key="frame" x="60.5" y="156.5" width="293" height="144"/>
+                                <rect key="frame" x="20.5" y="112" width="373" height="144"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLc-2a-qqR">
-                                        <rect key="frame" x="0.0" y="0.0" width="293" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-FA-Jh0">
-                                        <rect key="frame" x="0.0" y="58" width="293" height="32"/>
+                                        <rect key="frame" x="0.0" y="58" width="373" height="32"/>
                                         <segments>
                                             <segment title="Carpool"/>
                                             <segment title="Meet-Up"/>
                                         </segments>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ODz-8x-Th4">
-                                        <rect key="frame" x="0.0" y="113" width="293" height="31"/>
+                                        <rect key="frame" x="0.0" y="113" width="373" height="31"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bTu-xL-Aai">
-                                                <rect key="frame" x="0.0" y="0.0" width="293" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="373" height="32"/>
                                                 <segments>
                                                     <segment title="Work"/>
                                                     <segment title="Play"/>
@@ -235,15 +229,12 @@
                         <viewLayoutGuide key="safeArea" id="C6Q-jc-T35"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="VuJ-Zn-PWb" firstAttribute="leading" secondItem="C6Q-jc-T35" secondAttribute="leading" constant="24" id="Guz-TU-8mj"/>
-                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="top" secondItem="VuJ-Zn-PWb" secondAttribute="bottom" constant="24" id="MHW-uU-DU4"/>
-                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="width" secondItem="VuJ-Zn-PWb" secondAttribute="width" multiplier="0.8" id="YbL-W5-9eY"/>
+                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="top" secondItem="C6Q-jc-T35" secondAttribute="top" constant="24" id="O1h-0N-FGw"/>
+                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="width" secondItem="C6Q-jc-T35" secondAttribute="width" multiplier="0.9" id="cO1-L3-68S"/>
                             <constraint firstItem="sdh-5L-0Gi" firstAttribute="centerX" secondItem="C6Q-jc-T35" secondAttribute="centerX" id="hm0-5D-0B7"/>
-                            <constraint firstItem="VuJ-Zn-PWb" firstAttribute="top" secondItem="C6Q-jc-T35" secondAttribute="top" constant="24" id="wjU-0h-1NC"/>
-                            <constraint firstItem="C6Q-jc-T35" firstAttribute="trailing" secondItem="VuJ-Zn-PWb" secondAttribute="trailing" constant="24" id="z2R-xz-zWM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rh3-Wc-ONd">
+                    <navigationItem key="navigationItem" title="Options" id="rh3-Wc-ONd">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="g3R-AU-7gu">
                             <connections>
                                 <segue destination="n3x-8Z-V0X" kind="show" id="nIC-y7-hKu"/>
@@ -260,7 +251,7 @@
             </objects>
             <point key="canvasLocation" x="593" y="-613"/>
         </scene>
-        <!--Carpool Destination View Controller-->
+        <!--Destination-->
         <scene sceneID="Uad-gh-bRi">
             <objects>
                 <viewController id="n3x-8Z-V0X" customClass="CarpoolDestinationViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
@@ -281,7 +272,7 @@
                             <constraint firstItem="x9J-Zc-3I5" firstAttribute="leading" secondItem="8Yu-o2-GT2" secondAttribute="leading" id="axW-he-lb5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h1f-L0-la3">
+                    <navigationItem key="navigationItem" title="Destination" id="h1f-L0-la3">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dsZ-7E-WEa"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="fwH-aD-KqK">
                             <connections>
@@ -297,7 +288,7 @@
             </objects>
             <point key="canvasLocation" x="1275" y="-613"/>
         </scene>
-        <!--Add Passenger View Controller-->
+        <!--Add Friends-->
         <scene sceneID="ARO-0s-hBM">
             <objects>
                 <viewController id="jbg-XX-Xy7" customClass="AddPassengerViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
@@ -326,7 +317,7 @@
                             <constraint firstItem="53W-Pe-5cf" firstAttribute="trailing" secondItem="ebZ-qk-bgw" secondAttribute="trailing" id="yMw-K7-NfT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="di6-YR-Cdh">
+                    <navigationItem key="navigationItem" title="Add Friends" id="di6-YR-Cdh">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="HXl-jU-A6A">
                             <connections>
                                 <action selector="saveCarpoolButtonTapped:" destination="jbg-XX-Xy7" id="ypL-6p-5MR"/>

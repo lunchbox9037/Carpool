@@ -21,6 +21,7 @@ class CarpoolDestinationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        setAppearance()
         let destinationSearchVC = DestinationSearchViewController()
         destinationSearchVC.delegate = self
         destinationSearchVC.mapView = self.mapView
