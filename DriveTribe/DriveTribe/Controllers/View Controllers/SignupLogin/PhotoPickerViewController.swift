@@ -15,8 +15,8 @@ protocol PhotoSelectorViewControllerDelegate: class {
 class PhotoPickerViewController: UIViewController {
     
     //MARK: - Outlets
-    @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var selectedButton: UIButton!
+    @IBOutlet weak var selectedImage: UIImageView!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -42,10 +42,11 @@ class PhotoPickerViewController: UIViewController {
     }
     
     //MARK: - Actions
-    
     @IBAction func selectedButtonTapped(_ sender: Any) {
         presentImagePickerActionSheet()
     }
+    
+    
     
     //MARK: - Methods
     func updateImageView() {

@@ -14,16 +14,19 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var signupUserNameTextField: UITextField!
     @IBOutlet weak var signupEmailTextField: UITextField!
     @IBOutlet weak var signupPasswordTextField: UITextField!
+    @IBOutlet weak var containerView: UIView!
     
     var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
+        setupToHideKeyboardOnTapOnView()
+        containerView.setupRoundCircleViews()
     }
     
-    @IBAction func realSignupButtonTapped(_ sender: Any) {
+
+    
+    @IBAction func signupButtonTapped(_ sender: Any) {
         guard let firstName = signupFirstNameTextField.text, !firstName.isEmpty,
               let lastName = signupLastNameTextField.text, !lastName.isEmpty,
               let userName = signupUserNameTextField.text, !userName.isEmpty,
@@ -37,7 +40,7 @@ class SignupViewController: UIViewController {
                     print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
                     self.storageProfilePhotAndgetProfileURL(user: user, image: image)
                 }
-                self.gotoFriendListVC()
+                self.gotoTabbarVC()
             case .failure(let error):
                 print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
@@ -55,16 +58,12 @@ class SignupViewController: UIViewController {
         }
     }
     
-    @IBAction func addAddressButtonTapped(_ sender: Any) {
-        
-    }
     
     // MARK: - Helper Fuctions
-    func gotoFriendListVC() {
-        let storyboard = UIStoryboard(name: "FriendsList", bundle: nil)
-        let  vc = storyboard.instantiateViewController(identifier: "friendListVCStoryboardID")
-        vc.modalPresentationStyle = .pageSheet
-        self.present( vc, animated: true, completion: nil)
+    func gotoTabbarVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let  vc = storyboard.instantiateViewController(identifier: "tabBarStoryBoardID")
+        self.present(vc, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,6 +76,7 @@ class SignupViewController: UIViewController {
 
 extension SignupViewController: PhotoSelectorViewControllerDelegate {
     func photoSelectorViewControllerSelected(image: UIImage) {
+        print("----------------- photoSelectorViewControllerSelected ----------------")
         self.selectedImage = image
     }
 }

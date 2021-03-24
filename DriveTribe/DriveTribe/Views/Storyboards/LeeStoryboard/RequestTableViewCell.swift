@@ -36,5 +36,6 @@ class RequestTableViewCell: UITableViewCell {
     func updateView(friendRequestSent: User) {
         userNameLabel.text = friendRequestSent.userName
         cancelButton.setTitle("CANCEL", for: .normal)
+        profileImage.setupRoundCircleViews()
     }
 }

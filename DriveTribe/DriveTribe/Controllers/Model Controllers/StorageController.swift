@@ -39,6 +39,20 @@ class StorageController {
         }
     }
     
+    func getImageToReturn(user: User) -> UIImage? {
+        var imageToReturn: UIImage?
+        let imageRef = storage.reference(withPath: "\(user.uuid).jpeg")
+        imageRef.getData(maxSize: 2 * 3840 * 2160) { data, error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            } else {
+                guard let image = UIImage(data: data!) else {return}
+                imageToReturn = image
+            }
+        }
+        return imageToReturn
+    }
+    
     func deleteImage(user: User, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
         let imageRef = storage.reference(withPath: "\(user.uuid).jpeg")
         imageRef.delete { error in
