@@ -9,16 +9,16 @@ import UIKit
 import SafariServices
 
 extension UIViewController: SFSafariViewControllerDelegate {
-//    let carpool = carpools[indexPath.row]
-//    if carpool.type == "carpool" {
-//        createCarpoolRouteWithGoogleMaps(from: carpools[indexPath.row])
-//    } else {
-//        print("create meetup route function")
-//    }
+
     //create function for meetup route >>>>>
+    func createMeetupRouteWithGoogleMaps() {
+        //create route without passengers
+    }
     
-    func createCarpoolRouteWithGoogleMaps(from carpool: Carpool) {
-        let originCoordinates: String = "37.8225233451249, -122.47777076253998"
+    func createCarpoolRoute(from carpool: Carpool, with driver: User, and passengers: [User]) {
+        var originCoordinates: String = ""
+        originCoordinates.append(String(driver.lastCurrentLocation[0]) + ",")
+        originCoordinates.append(String(driver.lastCurrentLocation[1]))
 
         let destination = carpool.destination
         var destinationCoordinates: String = ""
@@ -26,16 +26,16 @@ extension UIViewController: SFSafariViewControllerDelegate {
         destinationCoordinates.append(String(destination[1]))
         print(destinationCoordinates)
         
-        let stopsCoordinates: String = ""
-//        for passenger in carpool.passengers {
-////            stopsCoordinates.append(String(passenger.lastCurrentLocation[0]) + ",")
-////            stopsCoordinates.append(String(passenger.lastCurrentLocation[1]) + "|")
-//        }
-//        //drop the comma in muliple stops
-//        if stopsCoordinates.last == "|" {
-//            stopsCoordinates = String(stopsCoordinates.dropLast(1))
-//        }
-//        print(stopsCoordinates)
+        var stopsCoordinates: String = ""
+        for passenger in passengers {
+            stopsCoordinates.append(String(passenger.lastCurrentLocation[0]) + ",")
+            stopsCoordinates.append(String(passenger.lastCurrentLocation[1]) + "|")
+        }
+        //drop the comma in multiple stops
+        if stopsCoordinates.last == "|" {
+            stopsCoordinates = String(stopsCoordinates.dropLast(1))
+        }
+        print(stopsCoordinates)
         openGoogleMapsWith(originCoordinates: originCoordinates, stopsCoordinates: stopsCoordinates, destinationCoordinates: destinationCoordinates)
     }
     

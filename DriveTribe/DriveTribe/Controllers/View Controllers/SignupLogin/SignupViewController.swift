@@ -15,7 +15,6 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var signupEmailTextField: UITextField!
     @IBOutlet weak var signupPasswordTextField: UITextField!
     
-    
     var selectedImage: UIImage?
     
     override func viewDidLoad() {
@@ -23,7 +22,6 @@ class SignupViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
-    
     
     @IBAction func realSignupButtonTapped(_ sender: Any) {
         guard let firstName = signupFirstNameTextField.text, !firstName.isEmpty,
