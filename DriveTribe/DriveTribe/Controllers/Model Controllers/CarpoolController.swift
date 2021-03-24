@@ -88,7 +88,7 @@ class CarpoolController {
         guard let currentUser = UserController.shared.currentUser else {return}
         db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
             if let error = error {
-                print("\n==== ERROR FETCH FRIENDS IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                print("\n==== ERROR FETCH Groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
             } else {
                 guard let querySnapshot = querySnapshot,
@@ -97,7 +97,7 @@ class CarpoolController {
                 for id in userData.groups {
                     self.db.collection(self.carpoolCollection).document(id).getDocument { (snapshot, error) in
                         if let error = error {
-                            print("\n==== ERROR FETCH FRIENDS IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                            print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                             return completion(.failure(.thrownError(error)))
                         } else {
                             guard let snapshot = snapshot,
@@ -110,8 +110,53 @@ class CarpoolController {
                 }
             }
         }
-        self.sortCarpoolsByWorkPlay()
     }//end func
+    
+    func fetchPassengersIn(carpool: Carpool, completion: @escaping (Result<[User], NetworkError>) -> Void) {
+        db.collection(carpoolCollection).document(carpool.uuid).getDocument { (querySnapshot, error) in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            guard let querySnapshot = querySnapshot,
+                  let carpoolData = Carpool(document: querySnapshot) else {return completion(.failure(.noData))}
+            
+            var passengers: [User] = []
+            for passenger in carpoolData.passengers {
+                self.db.collection(self.userCollection).document(passenger).getDocument { (snapshot, error) in
+                    if let error = error {
+                        return completion(.failure(.thrownError(error)))
+                    }
+                    
+                    guard let snapshot = snapshot,
+                          let passenger = User(document: snapshot) else {return completion(.failure(.noData))}
+                    passengers.append(passenger)
+                    return completion(.success(passengers))
+                }
+            }
+        }
+    }
+    
+    func fetchDriverIn(carpool: Carpool, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        db.collection(carpoolCollection).document(carpool.uuid).getDocument { (querySnapshot, error) in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            guard let querySnapshot = querySnapshot,
+                  let carpoolData = Carpool(document: querySnapshot) else {return completion(.failure(.noData))}
+            
+            self.db.collection(self.userCollection).document(carpoolData.driver).getDocument { (snapshot, error) in
+                if let error = error {
+                    return completion(.failure(.thrownError(error)))
+                }
+                
+                guard let snapshot = snapshot,
+                      let driver = User(document: snapshot) else {return completion(.failure(.noData))}
+                return completion(.success(driver))
+            }
+        }
+    }
     
     func sortCarpoolsByWorkPlay() {
         self.work = carpools.filter({ (carpool) -> Bool in

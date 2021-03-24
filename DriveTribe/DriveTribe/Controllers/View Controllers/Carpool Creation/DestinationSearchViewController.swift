@@ -39,7 +39,8 @@ class DestinationSearchViewController: UIViewController {
         field.layer.cornerRadius = 9
         field.backgroundColor = .tertiarySystemBackground
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
-        
+        field.autocorrectionType = .no
+        field.returnKeyType = .go
         return field
     }()
     
@@ -134,7 +135,7 @@ extension DestinationSearchViewController: UITableViewDelegate, UITableViewDataS
 // MARK: - UITextField extension
 extension DestinationSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+//        textField.text = ""
         delegate?.didBeginEditing()
     }
     
@@ -143,7 +144,7 @@ extension DestinationSearchViewController: UITextFieldDelegate {
         if let text = field.text, !text.isEmpty,
            let mapview = self.mapView {
             let searchRequest = MKLocalSearch.Request()
-            searchRequest.region = mapview.region
+            searchRequest.region.span = mapview.region.span
             searchRequest.naturalLanguageQuery = text
             
             let search = MKLocalSearch(request: searchRequest)
