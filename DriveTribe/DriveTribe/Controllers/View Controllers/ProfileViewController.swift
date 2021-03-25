@@ -104,8 +104,9 @@ class ProfileViewController: UIViewController {
     func gotoLogginVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let  vc = storyboard.instantiateViewController(identifier: "logginStoryBoardID")
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @IBAction func logOutButtonTapped(_ sender: Any) {

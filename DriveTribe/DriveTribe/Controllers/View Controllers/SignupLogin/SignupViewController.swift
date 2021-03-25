@@ -75,6 +75,7 @@ class SignupViewController: UIViewController {
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
+        field.keyboardType = .emailAddress
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
@@ -90,6 +91,7 @@ class SignupViewController: UIViewController {
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .done
+        field.keyboardType = .default
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor

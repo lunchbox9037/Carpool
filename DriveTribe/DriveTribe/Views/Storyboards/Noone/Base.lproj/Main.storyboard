@@ -86,10 +86,10 @@
         <!--Friends-->
         <scene sceneID="K9L-SG-biG">
             <objects>
-                <navigationController id="6kQ-fH-WfE" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="6kQ-fH-WfE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="person.badge.plus" catalog="system" id="Iha-vG-eG5"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cxg-ur-x60">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -103,10 +103,10 @@
         <!--My Profile-->
         <scene sceneID="nd1-ZU-M8d">
             <objects>
-                <navigationController id="TVF-Gu-8Gy" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="TVF-Gu-8Gy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Profile" image="person.fill" catalog="system" id="lGP-iz-ruw"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IdA-NX-Sct">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

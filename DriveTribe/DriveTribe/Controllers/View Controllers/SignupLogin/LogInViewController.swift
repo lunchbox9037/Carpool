@@ -30,6 +30,7 @@ class LogInViewController: UIViewController {
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
+        field.keyboardType = .emailAddress
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
@@ -45,6 +46,7 @@ class LogInViewController: UIViewController {
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .done
+        field.keyboardType = .default
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
@@ -80,10 +82,8 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupToHideKeyboardOnTapOnView()
-        
+        setupToHideKeyboardOnTapOnView()
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-//        signUpButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         emailField.delegate = self
         passwordField.delegate = self
         
@@ -92,9 +92,6 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
-//        scrollView.addSubview(signUpButton)
-        
-        scrollView.isUserInteractionEnabled = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -154,10 +151,6 @@ class LogInViewController: UIViewController {
         }
     }
     
-//    @objc func signupButtonTapped() {
-//        gotoSignInVC()
-//    }
-    
     // MARK: - Helper Fuctions
     func gotoTabbarVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -183,5 +176,9 @@ extension LogInViewController: UITextFieldDelegate {
             loginButtonTapped()
         }
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.scrollView.contentSize = CGSize(width: view.width, height: view.height + (view.height * 0.25))
     }
 }

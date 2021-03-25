@@ -80,6 +80,16 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
     
     func configure(passenger: User) {
         self.profileImageView.image = UIImage(systemName: "person.circle")
+        StorageController.shared.getImage(user: passenger) { [weak self] (results) in
+            DispatchQueue.main.async {
+                switch results {
+                case .success(let image):
+                    self?.profileImageView.image = image
+                case .failure(let error):
+                    print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                }
+            }
+        }
         self.passengerNameLabel.text = passenger.firstName
     }
 }//end class
