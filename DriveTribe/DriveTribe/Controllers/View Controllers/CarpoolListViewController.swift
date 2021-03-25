@@ -52,8 +52,6 @@ class CarpoolListViewController: UIViewController {
     }
     
     // MARK: - Methods
-    
-    
     func fetchCarpoolsByCurrentUser() {
         CarpoolController.shared.fetchGroupsForCurrentUser { [weak self] (result) in
             switch result {

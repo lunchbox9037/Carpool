@@ -42,7 +42,6 @@ struct CarpoolConstants  {
     static let typeKey = "type"
     static let destinationNameKey = "destinationName"
     static let destinationKey = "destination"
-//    static let stopsKey = "stops"
     static let driverKey = "driver"
     static let passengersKey = "passengers"
     static let uuidKey = "uuid"
@@ -54,9 +53,9 @@ class Carpool {
     var type: String
     var destinationName: String
     var destination: [Double]
-//    var stops: [[Double]]
     var driver: String
     var passengers: [String]
+//    var messages: [Message]
     var uuid: String
     
     internal init(title: String, mode: String, type: String, destinationName: String, destination: [Double] = [], driver: String, passengers: [String] = [], uuid: String = UUID().uuidString) {

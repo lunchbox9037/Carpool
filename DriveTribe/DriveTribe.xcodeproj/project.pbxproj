@@ -51,6 +51,7 @@
 		F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */; };
 		F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB17260302C500FBADCA /* LayoutBuilder.swift */; };
 		F648BB1B2604063200FBADCA /* CarpoolSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */; };
+		F6FB7033260D57AF00D015A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7032260D57AF00D015A5 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerCollectionViewCell.swift; sourceTree = "<group>"; };
 		F648BB17260302C500FBADCA /* LayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilder.swift; sourceTree = "<group>"; };
 		F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolSettingsViewController.swift; sourceTree = "<group>"; };
+		F6FB7032260D57AF00D015A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 			children = (
 				F648B96126011A8D00FBADCA /* Carpool.swift */,
 				3682F11E2603310900415468 /* User.swift */,
+				F6FB7032260D57AF00D015A5 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */,
 				36653CE6260C3D31008AA210 /* ProfileTableListViewController.swift in Sources */,
 				F2D75CF2260BAE6000EDF43C /* SettingsTableViewController.swift in Sources */,
+				F6FB7033260D57AF00D015A5 /* Message.swift in Sources */,
 				F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */,
 				F2D75CF9260BC4D400EDF43C /* BlockedUserTableViewCell.swift in Sources */,
 				F648B96226011A8D00FBADCA /* Carpool.swift in Sources */,
