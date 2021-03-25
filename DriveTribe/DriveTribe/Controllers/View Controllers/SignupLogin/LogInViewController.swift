@@ -103,18 +103,19 @@ class LogInViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom + 10, width: scrollView.width-60, height: 44)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width-60, height: 44)
         loginButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width-60, height: 44)
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if Auth.auth().currentUser != nil {
             print("logged in")
+            self.gotoTabbarVC()
+
             UserController.shared.fetchCurrentUser { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
-                        self.gotoTabbarVC()
+                        print("got user")
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
@@ -156,7 +157,7 @@ class LogInViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let  vc = storyboard.instantiateViewController(identifier: "tabBarStoryBoardID")
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.present(vc, animated: false, completion: nil)
     }
     
     func gotoSignInVC() {

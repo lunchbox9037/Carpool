@@ -22,24 +22,36 @@ class CarpoolSettingsViewController: UIViewController {
         setAppearance()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //Fix this tomorrow!!!!
-        
+//    override func viewWillDisappear(_ animated: Bool) {
+//        //Fix this tomorrow!!!
 //        super.viewWillDisappear(animated)
-//        if workPlayModeSegment.selectedSegmentIndex == 0 {
-//            CarpoolController.shared.mode = "work"
-//        } else {
-//            CarpoolController.shared.mode = "play"
-//        }
-//
-//        if carpoolMeetUpSegement.selectedSegmentIndex == 0 {
-//            CarpoolController.shared.type = "carpool"
-//        } else {
-//            CarpoolController.shared.type = "meetup"
-//        }
-//
-//        guard let text = titleTextField.text, !text.isEmpty else {return}
-//        CarpoolController.shared.title = text
+//        getSettings()
+//    }
+    
+    func getSettings() {
+        if workPlayModeSegment.selectedSegmentIndex == 0 {
+            CarpoolController.shared.mode = "work"
+        } else {
+            CarpoolController.shared.mode = "play"
+        }
+
+        if carpoolMeetUpSegement.selectedSegmentIndex == 0 {
+            CarpoolController.shared.type = "carpool"
+        } else {
+            CarpoolController.shared.type = "meetup"
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard let text = titleTextField.text, !text.isEmpty else {
+            presentAlertToUser(titleAlert: "Whoops", messageAlert: "Please enter a title!")
+            return false
+        }
+        
+        CarpoolController.shared.title = text
+        getSettings()
+        
+        return true
     }
     
 }//end class

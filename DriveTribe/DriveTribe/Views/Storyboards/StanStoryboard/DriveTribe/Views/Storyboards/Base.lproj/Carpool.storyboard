@@ -237,7 +237,7 @@
                     <navigationItem key="navigationItem" title="Options" id="rh3-Wc-ONd">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="g3R-AU-7gu">
                             <connections>
-                                <segue destination="n3x-8Z-V0X" kind="show" id="nIC-y7-hKu"/>
+                                <segue destination="n3x-8Z-V0X" kind="show" identifier="toDestinationSearch" id="nIC-y7-hKu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
