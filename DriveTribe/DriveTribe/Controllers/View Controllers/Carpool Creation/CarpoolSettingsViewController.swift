@@ -10,7 +10,7 @@ import UIKit
 class CarpoolSettingsViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var workPlaySegment: UISegmentedControl!
+    @IBOutlet weak var workPlayModeSegment: UISegmentedControl!
     @IBOutlet weak var carpoolMeetUpSegement: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -22,22 +22,36 @@ class CarpoolSettingsViewController: UIViewController {
         setAppearance()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if workPlaySegment.selectedSegmentIndex == 0 {
+//    override func viewWillDisappear(_ animated: Bool) {
+//        //Fix this tomorrow!!!
+//        super.viewWillDisappear(animated)
+//        getSettings()
+//    }
+    
+    func getSettings() {
+        if workPlayModeSegment.selectedSegmentIndex == 0 {
             CarpoolController.shared.mode = "work"
         } else {
             CarpoolController.shared.mode = "play"
         }
-        
+
         if carpoolMeetUpSegement.selectedSegmentIndex == 0 {
             CarpoolController.shared.type = "carpool"
         } else {
             CarpoolController.shared.type = "meetup"
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard let text = titleTextField.text, !text.isEmpty else {
+            presentAlertToUser(titleAlert: "Whoops", messageAlert: "Please enter a title!")
+            return false
+        }
         
-        guard let text = titleTextField.text, !text.isEmpty else {return}
         CarpoolController.shared.title = text
+        getSettings()
+        
+        return true
     }
     
 }//end class

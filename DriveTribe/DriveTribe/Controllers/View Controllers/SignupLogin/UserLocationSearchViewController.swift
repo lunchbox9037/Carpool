@@ -28,17 +28,18 @@ class UserLocationSearchViewController: UIViewController {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "Whats your current location?"
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
         
         return label
     }()
     
     private let field: UITextField = {
         let field  = UITextField()
-        field.placeholder = " Enter destination..."
-        field.layer.cornerRadius = 9
+        field.placeholder = " Enter location..."
+        field.layer.cornerRadius = 8
         field.backgroundColor = .tertiarySystemBackground
-        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
         field.autocorrectionType = .no
         field.returnKeyType = .go
         
@@ -62,8 +63,8 @@ class UserLocationSearchViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         label.sizeToFit()
-        label.frame = CGRect(x: 10, y: 10, width: label.frame.size.width, height: label.frame.size.height)
-        field.frame = CGRect(x: 10, y: 20+label.frame.size.height, width: view.frame.size.width-20, height: 50)
+        label.frame = CGRect(x: 10, y: 20, width: label.frame.size.width, height: label.frame.size.height)
+        field.frame = CGRect(x: 10, y: 30+label.frame.size.height, width: view.frame.size.width-20, height: 44)
         let tableY: CGFloat = field.frame.origin.y+field.frame.size.height+5
         tableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
     }
@@ -100,6 +101,7 @@ extension UserLocationSearchViewController: UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "destinationCell", for: indexPath)
         cell.backgroundColor = .secondarySystemBackground
         cell.contentView.backgroundColor = .secondarySystemBackground
+        cell.textLabel?.numberOfLines = 0
         
         let placeMark = searchResults[indexPath.row].placemark
         var address: String = ""
@@ -139,7 +141,6 @@ extension UserLocationSearchViewController: UITableViewDelegate, UITableViewData
 // MARK: - UITextField extension
 extension UserLocationSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.text = ""
         delegate?.didBeginEditing()
     }
     
@@ -148,7 +149,7 @@ extension UserLocationSearchViewController: UITextFieldDelegate {
         if let text = field.text, !text.isEmpty,
            let mapview = self.mapView {
             let searchRequest = MKLocalSearch.Request()
-            searchRequest.region.span = mapview.region.span
+            searchRequest.region = mapview.region
             searchRequest.naturalLanguageQuery = text
             
             let search = MKLocalSearch(request: searchRequest)
@@ -171,8 +172,11 @@ extension UserLocationSearchViewController: UITextFieldDelegate {
 extension UserLocationSearchViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {return}
-        print(location)
-        self.currentLocation = location
+        let userLocation = location.coordinate
+        UserController.shared.lastCurrentLocation = []
+        UserController.shared.lastCurrentLocation.append(userLocation.latitude)
+        UserController.shared.lastCurrentLocation.append(userLocation.longitude)
+        
         locationManager.stopUpdatingLocation()
         delegate?.setCurrentLocation(location: location)
     }

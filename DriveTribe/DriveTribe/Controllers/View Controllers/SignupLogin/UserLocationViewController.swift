@@ -30,6 +30,11 @@ class UserLocationViewController: UIViewController {
         panel.addPanel(toParent: self)
         panel.move(to: .tip, animated: false)
     }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }//end class
 
 extension UserLocationViewController: UserLocationSearchViewControllerDelegate {

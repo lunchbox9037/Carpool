@@ -237,14 +237,14 @@
                     <navigationItem key="navigationItem" title="Options" id="rh3-Wc-ONd">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="g3R-AU-7gu">
                             <connections>
-                                <segue destination="n3x-8Z-V0X" kind="show" id="nIC-y7-hKu"/>
+                                <segue destination="n3x-8Z-V0X" kind="show" identifier="toDestinationSearch" id="nIC-y7-hKu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="carpoolMeetUpSegement" destination="fDe-FA-Jh0" id="RhC-Zm-z8L"/>
                         <outlet property="titleTextField" destination="xLc-2a-qqR" id="K9M-Om-fEj"/>
-                        <outlet property="workPlaySegment" destination="bTu-xL-Aai" id="FSO-iQ-Eye"/>
+                        <outlet property="workPlayModeSegment" destination="bTu-xL-Aai" id="FSO-iQ-Eye"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrY-1x-AGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
