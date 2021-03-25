@@ -10,24 +10,31 @@ import UIKit
 class BlockedUsersTableViewController: UITableViewController {
 
     var blockedUsers: [User] = []
-    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupViews()
+    }
+    
     // MARK: - Table view data source
-
     func setupViews() {
         guard let currentUser = UserController.shared.currentUser else {return}
         UserController.shared.fetchBlockedUsersByCurrentUser(currentUser) { (results) in
+            DispatchQueue.main.async {
             switch results {
             case .success(let fetchBlockedUserForCurrentUser):
                 self.blockedUsers = fetchBlockedUserForCurrentUser
                 self.tableView.reloadData()
             case .failure(let error):
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            }
+                
             }
         }
     }
@@ -36,12 +43,23 @@ class BlockedUsersTableViewController: UITableViewController {
 extension BlockedUsersTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("-----------------blockedUsers.count :: \(blockedUsers.count)-----------------")
         return blockedUsers.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "blockedFriendCell") as? BlockedUserTableViewCell else {return UITableViewCell()}
         let blockedUser = blockedUsers[indexPath.row]
         cell.updateView(blockedUser: blockedUser)
+        StorageController.shared.getImage(user: blockedUser) { (results) in
+            DispatchQueue.main.async {
+                switch results {
+                case .success(let image):
+                    cell.profileImageView.image = image
+                case .failure(let error):
+                    print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                }
+            }
+        }
         cell.delegate = self
         return cell
     }
@@ -52,16 +70,16 @@ extension BlockedUsersTableViewController: BlockedFriendTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
         let userToUnBlock = blockedUsers[indexPath.row]
         //TO UNBLOCK FRIEND HERE...
-        UserController.shared.unblockedUser(userToUnBlock) { (results) in
+        UserController.shared.unblockedUser(userToUnBlock) { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let user):
-                    print("====\(user.firstName)==== GOT UNBLOCK FROM \(self.currentUser?.firstName ?? "").")
-                    guard let indexToUnblock = self.blockedUsers.firstIndex(of: user) else {return}
-                    self.blockedUsers.remove(at: indexToUnblock)
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                    self.tableView.reloadData()
-                    self.setupViews()
+                    print("====\(user.firstName)==== GOT UNBLOCK")
+                    guard let indexToUnblock = self?.blockedUsers.firstIndex(of: user) else {return}
+                    self?.blockedUsers.remove(at: indexToUnblock)
+                    self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                    self?.tableView.reloadData()
+                    self?.setupViews()
                 case .failure(let error):
                     print("ERROR IN UNBLOCKING USER in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }

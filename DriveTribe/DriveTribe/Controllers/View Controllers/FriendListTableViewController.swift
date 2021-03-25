@@ -261,14 +261,14 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
         let friendToBlock = friends[indexPath.row]
         //TO BLOCK FRIEND HERE...
-        UserController.shared.blockUser(friendToBlock) { (results) in
+        UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
             DispatchQueue.main.async {
                 switch results {
                 case .success(let user):
-                    guard let indexToBlock = self.friends.firstIndex(of: user) else {return}
-                    self.friends.remove(at: indexToBlock)
-                    self.tableView.reloadData()
-                    self.setupViewForFriends()
+                    guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
+                    self?.friends.remove(at: indexToBlock)
+                    self?.tableView.reloadData()
+                    //self?.setupViewForFriends()
                 case .failure(let error):
                     print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -286,9 +286,9 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
                 case .success(let user):
                     guard let indexToUnfriend = self?.friends.firstIndex(of: user) else {return}
                     self?.friends.remove(at: indexToUnfriend)
-                    self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                   // self?.tableView.deleteRows(at: [indexPath], with: .fade)
                     self?.tableView.reloadData()
-                    self?.setupViewForFriends()
+                  //  self?.setupViewForFriends()
                 case .failure(let error):
                     print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -342,11 +342,15 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
     func requestButtonTapped(sender: UserTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
         guard let userToRequest = resultsFriendsFromSearching[indexPath.row] as? User else {return}
-        UserController.shared.sendFriendRequest(to: userToRequest) { (results) in
+        UserController.shared.sendFriendRequest(to: userToRequest) { [weak self] (results) in
             switch results {
             case .success(let userToRequest):
+                DispatchQueue.main.async {
+                    self?.presentAlertToUser(titleAlert: "Friend Request Sent!", messageAlert: "You just request \(userToRequest.userName) to be your friend!")
                 print("===== SUCCESSFULLY SENT FRIEND REQUEST!! Current User is requesting \(userToRequest.firstName) to be a friend. \(#function)======")
+                }
             case .failure(let error):
+                self?.presentAlertToUser(titleAlert: "Error! Friend Request Sent!", messageAlert: "You have already sent friend request to \(userToRequest.userName)! Please, just wait for \(userToRequest.userName) to accept you as a friend.")
                 print("ERROR REQUESTING FRIEND in  \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
         }
@@ -359,6 +363,7 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
  
  UI BUG
  1) Friend Tap ==> When tapped unfriend, the friendToUnfriend did not get delete from tableView
+ 2) Search For Friend ! When send requests to the new friend, the search still show the user who got requested and also show the block user in thier system.
  
  //______________________________________________________________________________________
  */

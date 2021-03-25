@@ -33,6 +33,12 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        deleteUser()
+        gotoLogginVC()
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
         case [1,0]:
@@ -57,5 +63,12 @@ class SettingsTableViewController: UITableViewController {
                 print("\n ==== Error in \(#function) : \(error.localizedDescription) : \(error) ====\n")
             }
         }
+    }
+    
+    func gotoLogginVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let  vc = storyboard.instantiateViewController(identifier: "logginStoryBoardID")
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 }

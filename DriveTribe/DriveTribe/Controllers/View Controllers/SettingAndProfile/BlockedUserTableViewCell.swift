@@ -22,14 +22,7 @@ class BlockedUserTableViewCell: UITableViewCell {
             updateView(blockedUser: blockedUser!)
         }
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+
     weak var delegate: BlockedFriendTableViewCellDelegate?
     
     @IBAction func unblockUserButton(_ sender: Any) {
@@ -37,5 +30,9 @@ class BlockedUserTableViewCell: UITableViewCell {
     
     func updateView(blockedUser: User) {
         userNameLabel.text = blockedUser.firstName
+        unblockUserbutton.setTitle("UNBLOCK", for: .normal)
+        profileImageView.setupRoundCircleViews()
+        profileImageView.image = UIImage(systemName: "person")
+        
     }
 }
