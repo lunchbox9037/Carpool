@@ -22,9 +22,11 @@ class CarpoolDestinationViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         setAppearance()
+        
         let destinationSearchVC = DestinationSearchViewController()
         destinationSearchVC.delegate = self
         destinationSearchVC.mapView = self.mapView
+        
         panel.set(contentViewController: destinationSearchVC)
         panel.addPanel(toParent: self)
         panel.move(to: .tip, animated: false)
@@ -40,7 +42,6 @@ extension CarpoolDestinationViewController: DestinationSearchViewControllerDeleg
     }
     
     func didBeginEditing() {
-        print("ran this")
         panel.move(to: .full, animated: true)
     }
     

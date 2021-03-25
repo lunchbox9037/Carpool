@@ -36,7 +36,7 @@ class DestinationSearchViewController: UIViewController {
     private let field: UITextField = {
         let field  = UITextField()
         field.placeholder = " Enter destination..."
-        field.layer.cornerRadius = 9
+        field.layer.cornerRadius = 8
         field.backgroundColor = .tertiarySystemBackground
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         field.autocorrectionType = .no
@@ -62,7 +62,7 @@ class DestinationSearchViewController: UIViewController {
         super.viewDidLayoutSubviews()
         label.sizeToFit()
         label.frame = CGRect(x: 10, y: 10, width: label.frame.size.width, height: label.frame.size.height)
-        field.frame = CGRect(x: 10, y: 20+label.frame.size.height, width: view.frame.size.width-20, height: 50)
+        field.frame = CGRect(x: 10, y: 20+label.frame.size.height, width: view.frame.size.width-20, height: 44)
         let tableY: CGFloat = field.frame.origin.y+field.frame.size.height+5
         tableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
     }
@@ -99,6 +99,7 @@ extension DestinationSearchViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "destinationCell", for: indexPath)
         cell.backgroundColor = .secondarySystemBackground
         cell.contentView.backgroundColor = .secondarySystemBackground
+        cell.textLabel?.numberOfLines = 0
         
         let placeMark = searchResults[indexPath.row].placemark
         var address: String = ""
@@ -135,7 +136,6 @@ extension DestinationSearchViewController: UITableViewDelegate, UITableViewDataS
 // MARK: - UITextField extension
 extension DestinationSearchViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.text = ""
         delegate?.didBeginEditing()
     }
     
@@ -144,7 +144,7 @@ extension DestinationSearchViewController: UITextFieldDelegate {
         if let text = field.text, !text.isEmpty,
            let mapview = self.mapView {
             let searchRequest = MKLocalSearch.Request()
-            searchRequest.region.span = mapview.region.span
+            searchRequest.region = mapview.region
             searchRequest.naturalLanguageQuery = text
             
             let search = MKLocalSearch(request: searchRequest)
@@ -167,10 +167,13 @@ extension DestinationSearchViewController: UITextFieldDelegate {
 extension DestinationSearchViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {return}
-        print(location)
-        self.currentLocation = location
-        locationManager.stopUpdatingLocation()
+        let userLocation = location.coordinate
+        UserController.shared.lastCurrentLocation = []
+        UserController.shared.lastCurrentLocation.append(userLocation.latitude)
+        UserController.shared.lastCurrentLocation.append(userLocation.longitude)
+        
         delegate?.setCurrentLocation(location: location)
+        locationManager.stopUpdatingLocation()
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

@@ -10,7 +10,7 @@ import UIKit
 class CarpoolSettingsViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var workPlaySegment: UISegmentedControl!
+    @IBOutlet weak var workPlayModeSegment: UISegmentedControl!
     @IBOutlet weak var carpoolMeetUpSegement: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -23,21 +23,23 @@ class CarpoolSettingsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if workPlaySegment.selectedSegmentIndex == 0 {
-            CarpoolController.shared.mode = "work"
-        } else {
-            CarpoolController.shared.mode = "play"
-        }
+        //Fix this tomorrow!!!!
         
-        if carpoolMeetUpSegement.selectedSegmentIndex == 0 {
-            CarpoolController.shared.type = "carpool"
-        } else {
-            CarpoolController.shared.type = "meetup"
-        }
-        
-        guard let text = titleTextField.text, !text.isEmpty else {return}
-        CarpoolController.shared.title = text
+//        super.viewWillDisappear(animated)
+//        if workPlayModeSegment.selectedSegmentIndex == 0 {
+//            CarpoolController.shared.mode = "work"
+//        } else {
+//            CarpoolController.shared.mode = "play"
+//        }
+//
+//        if carpoolMeetUpSegement.selectedSegmentIndex == 0 {
+//            CarpoolController.shared.type = "carpool"
+//        } else {
+//            CarpoolController.shared.type = "meetup"
+//        }
+//
+//        guard let text = titleTextField.text, !text.isEmpty else {return}
+//        CarpoolController.shared.title = text
     }
     
 }//end class

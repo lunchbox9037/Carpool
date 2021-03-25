@@ -265,7 +265,6 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
             DispatchQueue.main.async {
                 switch results {
                 case .success(let user):
-                    print("====\(user.firstName)==== GOT BLOCK FROM \(self.currentUser?.firstName ?? "").")
                     guard let indexToBlock = self.friends.firstIndex(of: user) else {return}
                     self.friends.remove(at: indexToBlock)
                     self.tableView.reloadData()

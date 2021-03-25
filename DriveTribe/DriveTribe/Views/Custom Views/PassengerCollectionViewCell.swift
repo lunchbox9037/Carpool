@@ -11,31 +11,31 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
     // MARK: - Views
     var container: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.systemFill
+//        view.backgroundColor = UIColor.systemFill
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.cornerRadius = 8
         view.layer.shadowOpacity = 0.6
         view.layer.shadowRadius = 32
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.clipsToBounds = false
         return view
     }()
     
     var profileImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageView.layer.cornerRadius = imageView.frame.height / 2
-        imageView.backgroundColor = .systemRed
-        imageView.layer.masksToBounds = false
-//        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 120/2
         return imageView
     }()
     
     var passengerNameLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = "Some subtitle"
-        label.font = UIFont.preferredFont(forTextStyle: .footnote).withSize(12)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -59,8 +59,7 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
             self.profileImageView.topAnchor.constraint(equalTo: self.container.topAnchor, constant: 0),
             self.profileImageView.leadingAnchor.constraint(equalTo: self.container.leadingAnchor, constant: 0),
             self.profileImageView.trailingAnchor.constraint(equalTo: self.container.trailingAnchor, constant: 0),
-            self.profileImageView.heightAnchor.constraint(equalToConstant: 80)
-//            self.profileImageView.bottomAnchor.constraint(equalTo: self.container.bottomAnchor, constant: 0),
+            self.profileImageView.heightAnchor.constraint(equalToConstant: 120),
         ])
         
         NSLayoutConstraint.activate([
@@ -80,7 +79,7 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(passenger: User) {
-        self.profileImageView.image = UIImage(systemName: "person")
+        self.profileImageView.image = UIImage(systemName: "person.circle")
         self.passengerNameLabel.text = passenger.firstName
     }
 }//end class

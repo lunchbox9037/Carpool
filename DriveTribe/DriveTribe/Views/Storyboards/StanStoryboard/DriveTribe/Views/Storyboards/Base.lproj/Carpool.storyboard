@@ -244,7 +244,7 @@
                     <connections>
                         <outlet property="carpoolMeetUpSegement" destination="fDe-FA-Jh0" id="RhC-Zm-z8L"/>
                         <outlet property="titleTextField" destination="xLc-2a-qqR" id="K9M-Om-fEj"/>
-                        <outlet property="workPlaySegment" destination="bTu-xL-Aai" id="FSO-iQ-Eye"/>
+                        <outlet property="workPlayModeSegment" destination="bTu-xL-Aai" id="FSO-iQ-Eye"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrY-1x-AGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

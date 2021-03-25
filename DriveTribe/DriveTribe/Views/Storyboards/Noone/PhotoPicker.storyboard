@@ -11,7 +11,7 @@
         <!--Photo Picker View Controller-->
         <scene sceneID="vWm-Xk-aQ7">
             <objects>
-                <viewController id="4d4-lv-072" customClass="PhotoPickerViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoPicker" id="4d4-lv-072" customClass="PhotoPickerViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MNT-Zl-wqe">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

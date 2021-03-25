@@ -31,6 +31,7 @@
 		F2D75CF2260BAE6000EDF43C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */; };
 		F2D75CF6260BBC8900EDF43C /* BlockedUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */; };
 		F2D75CF9260BC4D400EDF43C /* BlockedUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */; };
+		F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */; };
 		F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210B826094D80009E6BE9 /* AlertExtension.swift */; };
 		F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BB26096612009E6BE9 /* RouteCreator.swift */; };
 		F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */; };
@@ -78,6 +79,7 @@
 		F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersTableViewController.swift; sourceTree = "<group>"; };
 		F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserTableViewCell.swift; sourceTree = "<group>"; };
+		F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSizeExtension.swift; sourceTree = "<group>"; };
 		F61210B826094D80009E6BE9 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		F61210BB26096612009E6BE9 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
 		F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeDetailViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				F61210B826094D80009E6BE9 /* AlertExtension.swift */,
 				F61210BB26096612009E6BE9 /* RouteCreator.swift */,
 				363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */,
+				F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				F25A0EDD26047E630087BCBE /* ProfileViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
+				F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */,
 				36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */,
 				36B82D372603C604008EC52A /* NetworkError.swift in Sources */,
 				36FA0E6F26095557005F9A11 /* StorageController.swift in Sources */,

@@ -9,7 +9,7 @@ import UIKit
 
 public class LayoutBuilder {
     public static func buildMediaVerticalScrollLayout() -> NSCollectionLayoutSection {
-        let heightDimension = NSCollectionLayoutDimension.estimated(300)
+        let heightDimension = NSCollectionLayoutDimension.estimated(120)
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: heightDimension)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 //        item.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
