@@ -52,6 +52,8 @@
 		F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB17260302C500FBADCA /* LayoutBuilder.swift */; };
 		F648BB1B2604063200FBADCA /* CarpoolSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */; };
 		F6FB7033260D57AF00D015A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7032260D57AF00D015A5 /* Message.swift */; };
+		F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7094260D890D00D015A5 /* ChatViewController.swift */; };
+		F6FB7099260D9D5F00D015A5 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7098260D9D5F00D015A5 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		F648BB17260302C500FBADCA /* LayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilder.swift; sourceTree = "<group>"; };
 		F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolSettingsViewController.swift; sourceTree = "<group>"; };
 		F6FB7032260D57AF00D015A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F6FB7094260D890D00D015A5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F6FB7098260D9D5F00D015A5 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,6 +248,7 @@
 			children = (
 				F2D75CA8260A97F500EDF43C /* SignupLogin */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
+				F6FB7094260D890D00D015A5 /* ChatViewController.swift */,
 				F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */,
 				F6B42816260A4BA800148569 /* Carpool Creation */,
 				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
@@ -317,6 +322,7 @@
 				F61210BB26096612009E6BE9 /* RouteCreator.swift */,
 				363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */,
 				F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */,
+				F6FB7098260D9D5F00D015A5 /* DateFormatter.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -489,6 +495,8 @@
 				36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */,
 				36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */,
 				F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */,
+				F6FB7099260D9D5F00D015A5 /* DateFormatter.swift in Sources */,
+				F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
 				F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */,

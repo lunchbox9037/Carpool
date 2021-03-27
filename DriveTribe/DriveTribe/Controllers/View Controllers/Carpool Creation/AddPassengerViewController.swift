@@ -16,6 +16,7 @@ class AddPassengerViewController: UIViewController {
     // MARK: - Properties
     var friends: [User] = []
     
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,9 @@ class AddPassengerViewController: UIViewController {
         super.viewWillAppear(animated)
         setAppearance()
         getCurrentUserFriends()
+        //        createMockMessage()
     }
-
+    
     // MARK: - Actions
     @IBAction func saveCarpoolButtonTapped(_ sender: Any) {
         CarpoolController.shared.createCarpool()
@@ -35,10 +37,11 @@ class AddPassengerViewController: UIViewController {
     }//end func
     
     // MARK: - Methods
+    
     func setupCollectionView() {
         passengerCollectionView.collectionViewLayout = makeLayout()
         passengerCollectionView.backgroundColor = UIColor.systemFill
-
+        
         passengerCollectionView.delegate = self
         passengerCollectionView.dataSource = self
         passengerCollectionView.isPrefetchingEnabled = true
@@ -87,3 +90,4 @@ extension AddPassengerViewController: UICollectionViewDelegate, UICollectionView
         collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
     }
 }//end extension
+

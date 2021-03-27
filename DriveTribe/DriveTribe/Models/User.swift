@@ -31,19 +31,8 @@ class User: SearchableRecordDelegate {
     var firstName: String
     var lastName: String
     var userName: String
-    var profilePhoto: UIImage? {
-        get {
-            guard let data = profilePhotoData else {return nil}
-            return UIImage(data: data)
-        } set {
-            profilePhotoData = newValue?.jpegData(compressionQuality: 0.5)
-        }
-    }
-    var profilePhotoData: Data?
     var groups: [String]
     var carInfo: String
-    //var lastCurrentLocation: String
-    //var addressBook: String
     var addressBook: [Double]
     var lastCurrentLocation: [Double]
     var blockedUsers: [String]
@@ -53,10 +42,9 @@ class User: SearchableRecordDelegate {
     var friendsRequestReceived: [String]
     var authID: String
     var uuid: String
-   
-   
     
-    internal init(firstName: String, lastName: String, userName: String, profilePhoto: UIImage? = nil, groups: [String] = [], carInfo: String = "", addressBook: [Double] = [], lastCurrentLocation: [Double] = [], blockedUsers: [String] = [], blockedUsersByCurrentUser: [String] = [], friends: [String] = [], friendsRequestSent: [String] = [], friendRequestReceived: [String] = [], authID: String = "", uuid: String = UUID().uuidString) {
+    internal init(firstName: String, lastName: String, userName: String, groups: [String] = [], carInfo: String = "", addressBook: [Double] = [], lastCurrentLocation: [Double] = [], blockedUsers: [String] = [], blockedUsersByCurrentUser: [String] = [], friends: [String] = [], friendsRequestSent: [String] = [], friendRequestReceived: [String] = [], authID: String = "", uuid: String = UUID().uuidString) {
+        
         self.firstName = firstName
         self.lastName = lastName
         self.userName = userName
@@ -71,8 +59,6 @@ class User: SearchableRecordDelegate {
         self.friendsRequestReceived = friendRequestReceived
         self.authID = authID
         self.uuid = uuid
-        self.profilePhoto = profilePhoto
-    
     }
     
     convenience init?(document: DocumentSnapshot) {
@@ -91,15 +77,8 @@ class User: SearchableRecordDelegate {
               let friendRequestReceived = document[UserConstants.friendsRequestReceivedKey] as? [String],
               let authID = document[UserConstants.authIDKey] as? String,
               let uuid = document[UserConstants.uuidKey] as? String else {return nil}
-        
-        var profilePhoto: UIImage?
-        
-        if let profilePhotoData = document["profilePhoto"] as? Data {
-            profilePhoto = UIImage(data: profilePhotoData)
-        }
-        
 
-        self.init(firstName: firstName, lastName: lastName, userName: userName, profilePhoto: profilePhoto, groups: groups, carInfo: carInfo, addressBook: addressBook, lastCurrentLocation: lastCurrentLocation, blockedUsers: blockedUsers, blockedUsersByCurrentUser: blockedUsersByCurrentUser, friends: friends, friendsRequestSent: friendsRequestSent, friendRequestReceived: friendRequestReceived, authID: authID, uuid: uuid)
+        self.init(firstName: firstName, lastName: lastName, userName: userName, groups: groups, carInfo: carInfo, addressBook: addressBook, lastCurrentLocation: lastCurrentLocation, blockedUsers: blockedUsers, blockedUsersByCurrentUser: blockedUsersByCurrentUser, friends: friends, friendsRequestSent: friendsRequestSent, friendRequestReceived: friendRequestReceived, authID: authID, uuid: uuid)
     }
 }//End of class
 
@@ -110,10 +89,4 @@ extension User: Equatable {
     }
 }//End of extension
 
-/* NOTE
- //    static addressBookKey = "addressBook" Array or what ??
- var lastCurrentLocation: String
-
- //______________________________________________________________________________________
- */
 
