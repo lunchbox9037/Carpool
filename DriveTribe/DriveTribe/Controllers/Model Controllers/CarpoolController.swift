@@ -66,29 +66,48 @@ class CarpoolController {
                 print("\n===== SUCCESSFULLY! CREATED CARPOOL IN CLOUD FIRESTORE DATABASE=====\n")
             }
         }
+        
+//        let sender = Sender(photoURL: "", senderId: "", displayName: "ChatBot")
+//        let firstMessage = Message(sender: sender, messageId: UUID().uuidString, sentDate: Date(), kind: .text("Start Chatting with your Tribe!"))
+//
+//        let dateString = firstMessage.sentDate.dateToString()
+//
+//        var botMessage = ""
+//
+//        switch firstMessage.kind {
+//        case .text(let messageText):
+//            botMessage = messageText
+//        case .attributedText(_):
+//            break
+//        case .photo(_):
+//            break
+//        case .video(_):
+//            break
+//        case .location(_):
+//            break
+//        case .emoji(_):
+//            break
+//        case .audio(_):
+//            break
+//        case .contact(_):
+//            break
+//        case .linkPreview(_):
+//            break
+//        case .custom(_):
+//            break
+//        }
+//
+//        let newMessageEntry: [String:Any] = [
+//            "id" : firstMessage.messageId,
+//            "type" : firstMessage.kind.messageKindString,
+//            "content" : botMessage,
+//            "date" : dateString,
+//            "senderID" : sender.senderId,
+//            "senderUserName" : sender.displayName
+//        ]
+//
+//        carpoolRef.document(newCarpool.uuid).collection(messageCollection).addDocument(data: newMessageEntry)
     }
-    
-//    func sentMessage(text: String, carpool: Carpool, completion: @escaping (Result<Message, NetworkError>) -> Void) {
-//          
-//          guard let currentUser = UserController.shared.currentUser else {return}
-//          //save new message in the database
-//          
-//          let newMessage = Message(sender: currentUser.uuid, text: text, timestamp: MessageController.dateFormatter.string(from: Date()))
-//          
-//          let messageRef = db.collection(carpoolCollection).document(carpool.uuid)
-//              .collection(messageCollection).document(newMessage.uuid)
-//          messageRef.setData([
-//              MessageConstants.senderKey: newMessage.sender,
-//              MessageConstants.textKey: newMessage.text,
-//              MessageConstants.timestampKey: newMessage.timestamp,
-//              MessageConstants.uuidKey: carpool.uuid
-//          ]) {(error) in
-//              if let error = error {
-//                  print("\n==== ERROR IN ADD newMessage to A Collection\(#function) : \(error.localizedDescription) : \(error) ====\n")
-//                  completion(.failure(.thrownError(error)))
-//              }
-//          }
-//      }
     
     func addCarpoolToCurrentUsersGroup(carpool: Carpool) {
         guard let currentUser = UserController.shared.currentUser else {return}
@@ -196,96 +215,104 @@ class CarpoolController {
     }
     
     
-    func sendMessage(message: Message, carpoolID: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+    func sendMessage(message: Message, carpoolID: String) {
         guard let currentUser = UserController.shared.currentUser else {return}
         
-        self.db.collection(carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
-            if let error = error {
-                return completion(.failure(.thrownError(error)))
-            }
-            
-            guard let snapshot = snapshot,
-                  let carpoolData = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-            
-            var currentMessages = carpoolData.messages
-            
-            let messageDate = message.sentDate
-            let dateString = messageDate.dateToString()
-            
-            var newMessage = ""
-            
-            switch message.kind {
-            case .text(let messageText):
-                newMessage = messageText
-            case .attributedText(_):
-                break
-            case .photo(_):
-                break
-            case .video(_):
-                break
-            case .location(_):
-                break
-            case .emoji(_):
-                break
-            case .audio(_):
-                break
-            case .contact(_):
-                break
-            case .linkPreview(_):
-                break
-            case .custom(_):
-                break
-            }
-            
-            let newMessageEntry: [String:Any] = [
-                "id" : message.messageId,
-                "type" : message.kind.messageKindString,
-                "content" : newMessage,
-                "date" : dateString,
-                "senderID" : currentUser.uuid,
-                "senderUserName" : currentUser.userName
-            ]
-            
-            currentMessages.append(newMessageEntry)
+//        self.db.collection(carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
+//            if let error = error {
+//                return completion(.failure(.thrownError(error)))
+//            }
+//
+//            guard let snapshot = snapshot,
+//                  let carpoolData = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+//
+//
+//        }
+//        var currentMessages = carpoolData.messages
+        
+        let messageDate = message.sentDate
+        let dateString = ChatViewController.dateFormatter.string(from: messageDate)
+        
+        var newMessage = ""
+        
+        switch message.kind {
+        case .text(let messageText):
+            newMessage = messageText
+        case .attributedText(_):
+            break
+        case .photo(_):
+            break
+        case .video(_):
+            break
+        case .location(_):
+            break
+        case .emoji(_):
+            break
+        case .audio(_):
+            break
+        case .contact(_):
+            break
+        case .linkPreview(_):
+            break
+        case .custom(_):
+            break
+        }
+        
+        let newMessageEntry: [String:Any] = [
+            "id" : message.messageId,
+            "type" : message.kind.messageKindString,
+            "content" : newMessage,
+            "date" : dateString,
+            "senderID" : currentUser.uuid,
+            "senderUserName" : currentUser.userName
+        ]
+        
+//        currentMessages.append(newMessageEntry)
 
-            
-            self.db.collection(self.carpoolCollection).document(carpoolData.uuid).updateData([CarpoolConstants.messagesKey : currentMessages]){ (error) in
-                
-                if let error = error {
-                    print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                }
+        
+        self.db.collection(self.carpoolCollection).document(carpoolID).collection(messageCollection).addDocument(data: newMessageEntry) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
             }
         }
+//        updateData([CarpoolConstants.messagesKey : currentMessages]){ (error) in
+//
+//            if let error = error {
+//                print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//            }
+//        }
     }
     
     func getAllMessagesForConversation(with carpoolID: String, completion: @escaping (Result<[Message], NetworkError>) -> Void) {
-        db.collection(carpoolCollection).document(carpoolID).addSnapshotListener { (querySnapshot, error) in
+        db.collection(carpoolCollection).document(carpoolID).collection(messageCollection).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 return completion(.failure(.thrownError(error)))
             }
             
             guard let snapshot = querySnapshot else {return completion(.failure(.noData))}
-            print(snapshot)
+            print(snapshot.documents)
             
-            
-            
-//            let chatMessages = carpoolData.messages
-//
-//            let messages: [Message] = chatMessages.compactMap({ dictionary in
-//                guard let userName = dictionary["senderUserName"] as? String,
-//                      let messageID = dictionary["id"] as? String,
-//                      let content = dictionary["content"] as? String,
-//                      let senderID = dictionary["senderID"] as? String,
-//                      let type = dictionary["type"] as? String,
-//                      let dateString = dictionary["date"] as? String,
-//                      let date = ChatViewController.dateFormatter.date(from: dateString) else {return nil}
-//
-//                let sender = Sender(photoURL: "", senderId: senderID, displayName: userName)
-//
-//                return Message(sender: sender, messageId: messageID, sentDate: date, kind: .text(content))
-//            })
-//
-//            completion(.success(messages))
+//            for document in snapshot.documents {
+//                let data = document.data()
+//                print(data)
+//                
+//            }
+
+            let messages: [Message] = snapshot.documents.compactMap({ dictionary in
+                guard let userName = dictionary["senderUserName"] as? String,
+                      let messageID = dictionary["id"] as? String,
+                      let content = dictionary["content"] as? String,
+                      let senderID = dictionary["senderID"] as? String,
+                      let type = dictionary["type"] as? String,
+                      let dateString = dictionary["date"] as? String,
+                      let date = ChatViewController.dateFormatter.date(from: dateString) else {return nil}
+
+                let sender = Sender(photoURL: "", senderId: senderID, displayName: userName)
+
+                return Message(sender: sender, messageId: messageID, sentDate: date, kind: .text(content))
+            })
+
+            completion(.success(messages))
         }
     }
 }//end class

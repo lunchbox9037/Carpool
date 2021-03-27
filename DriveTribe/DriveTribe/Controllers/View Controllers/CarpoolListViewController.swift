@@ -95,9 +95,10 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? ChatViewController else {return}
+        let nav = UINavigationController(rootViewController: detailVC)
         detailVC.tribe = dataSource[indexPath.row]
         
-        detailVC.modalPresentationStyle = .automatic
-        present(detailVC, animated: true, completion: nil)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }//end extension

@@ -53,8 +53,13 @@ class ChatViewController: MessagesViewController {
             switch result {
             case .success(let messages):
                 guard !messages.isEmpty else {return}
-                self.messages = messages
+                let sortedMessages = messages.sorted { (message, message2) -> Bool in
+                    return message.sentDate < message2.sentDate
+                }
                 
+                self.messages = sortedMessages
+                
+                print("made it")
                 DispatchQueue.main.async {
                     self.messagesCollectionView.reloadDataAndKeepOffset()
                     
@@ -85,7 +90,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         
         let message = Message(sender: selfSender, messageId: messageID, sentDate: Date(), kind: .text(text))
         
-        CarpoolController.shared.sendMessage(message: message, carpoolID: carpoolID) { (_) in}
+        CarpoolController.shared.sendMessage(message: message, carpoolID: carpoolID)
     }
 }
 
