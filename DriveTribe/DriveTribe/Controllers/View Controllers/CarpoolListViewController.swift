@@ -24,6 +24,7 @@ class CarpoolListViewController: UIViewController {
         carpoolTableView.dataSource = self
         carpoolTableView.delegate = self
         overrideUserInterfaceStyle = .light
+        UserDefaults.standard.setValue(0, forKey: "modeAppearance")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,8 +53,6 @@ class CarpoolListViewController: UIViewController {
     }
     
     // MARK: - Methods
-    
-    
     func fetchCarpoolsByCurrentUser() {
         CarpoolController.shared.fetchGroupsForCurrentUser { [weak self] (result) in
             switch result {
@@ -96,10 +95,13 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? TribeDetailViewController else {return}
+        guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? ChatViewController else {return}
+        
+        let nav = UINavigationController(rootViewController: detailVC)
+        nav.navigationItem.backBarButtonItem?.isEnabled = true
         detailVC.tribe = dataSource[indexPath.row]
         
-        detailVC.modalPresentationStyle = .automatic
-        present(detailVC, animated: true, completion: nil)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }//end extension

@@ -19,6 +19,7 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var unfriendButton: UIButton!
+    @IBOutlet weak var blockButton: UIButton!
     
     var friend: User? {
         didSet {
@@ -41,7 +42,13 @@ class FriendTableViewCell: UITableViewCell {
     // MARK: - Helper Fuctions
     func updateView(friend: User) {
         userNameLabel.text = friend.userName
-        unfriendButton.setTitle("UNFRIEND", for: .normal)
+        unfriendButton.setTitle("Unfriend", for: .normal)
+        unfriendButton.backgroundColor = .systemBlue
+        unfriendButton.tintColor = .white
+        unfriendButton.layer.cornerRadius = 8
+        blockButton.backgroundColor = .systemRed
+        blockButton.tintColor = .white
+        blockButton.addCornerRadius()
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
     }

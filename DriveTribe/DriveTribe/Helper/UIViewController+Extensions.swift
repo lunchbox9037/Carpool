@@ -46,7 +46,7 @@ extension UIViewController {
 
 
 extension UIView {
-    func addCornerRadius(radius: CGFloat = 6) {
+    func addCornerRadius(radius: CGFloat = 8) {
         self.layer.cornerRadius = radius
     }
     

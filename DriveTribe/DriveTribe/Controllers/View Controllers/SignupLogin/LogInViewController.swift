@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class LogInViewController: UIViewController {
     
@@ -80,6 +81,8 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private let spinner = JGProgressHUD(style: .dark)
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupToHideKeyboardOnTapOnView()
@@ -105,20 +108,17 @@ class LogInViewController: UIViewController {
         loginButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width-60, height: 44)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if Auth.auth().currentUser != nil {
-            print("logged in")
-            self.gotoTabbarVC()
-
+            spinner.show(in: view)
             UserController.shared.fetchCurrentUser { (result) in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(_):
-                        print("got user")
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
+                switch result {
+                case .success(_):
+                    self.gotoTabbarVC()
+                case .failure(let error):
+                    self.spinner.dismiss()
+                    print(error.localizedDescription)
                 }
             }
         }
@@ -147,6 +147,7 @@ class LogInViewController: UIViewController {
                     }
                 }
             case .failure(let error):
+                
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
         }

@@ -28,6 +28,7 @@ class CarpoolController {
     let db = Firestore.firestore()
     let carpoolCollection = "carpools"
     let userCollection = "users"
+    let messageCollection = "messages"
     
     // MARK: - CRUD
     func createCarpool() {
@@ -37,6 +38,9 @@ class CarpoolController {
         var destinationCoords: [Double] = []
         destinationCoords.append(destination.placemark.coordinate.latitude)
         destinationCoords.append(destination.placemark.coordinate.longitude)
+        
+//        let message = Message(id: UUID().uuidString, content: "Test", created: Timestamp(date: Date()), senderID: "Test", senderName: "Me")
+        
         
         let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: self.passengers)
         
@@ -53,6 +57,7 @@ class CarpoolController {
             CarpoolConstants.destinationKey : newCarpool.destination,
             CarpoolConstants.driverKey : newCarpool.driver,
             CarpoolConstants.passengersKey : newCarpool.passengers,
+            CarpoolConstants.messagesKey : newCarpool.messages,
             CarpoolConstants.uuidKey : newCarpool.uuid
         ]) { (error) in
             if let error = error {
@@ -61,6 +66,47 @@ class CarpoolController {
                 print("\n===== SUCCESSFULLY! CREATED CARPOOL IN CLOUD FIRESTORE DATABASE=====\n")
             }
         }
+        
+//        let sender = Sender(photoURL: "", senderId: "", displayName: "ChatBot")
+//        let firstMessage = Message(sender: sender, messageId: UUID().uuidString, sentDate: Date(), kind: .text("Start Chatting with your Tribe!"))
+//
+//        let dateString = firstMessage.sentDate.dateToString()
+//
+//        var botMessage = ""
+//
+//        switch firstMessage.kind {
+//        case .text(let messageText):
+//            botMessage = messageText
+//        case .attributedText(_):
+//            break
+//        case .photo(_):
+//            break
+//        case .video(_):
+//            break
+//        case .location(_):
+//            break
+//        case .emoji(_):
+//            break
+//        case .audio(_):
+//            break
+//        case .contact(_):
+//            break
+//        case .linkPreview(_):
+//            break
+//        case .custom(_):
+//            break
+//        }
+//
+//        let newMessageEntry: [String:Any] = [
+//            "id" : firstMessage.messageId,
+//            "type" : firstMessage.kind.messageKindString,
+//            "content" : botMessage,
+//            "date" : dateString,
+//            "senderID" : sender.senderId,
+//            "senderUserName" : sender.displayName
+//        ]
+//
+//        carpoolRef.document(newCarpool.uuid).collection(messageCollection).addDocument(data: newMessageEntry)
     }
     
     func addCarpoolToCurrentUsersGroup(carpool: Carpool) {
@@ -166,5 +212,101 @@ class CarpoolController {
         self.play = carpools.filter({ (carpool) -> Bool in
             return carpool.mode == "play"
         })
+    }
+    
+    
+    func sendMessage(message: Message, carpoolID: String) {
+        guard let currentUser = UserController.shared.currentUser else {return}
+        
+//        self.db.collection(carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
+//            if let error = error {
+//                return completion(.failure(.thrownError(error)))
+//            }
+//
+//            guard let snapshot = snapshot,
+//                  let carpoolData = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+//
+//
+//        }
+//        var currentMessages = carpoolData.messages
+        
+        let messageDate = message.sentDate
+        let dateString = ChatViewController.dateFormatter.string(from: messageDate)
+        
+        var newMessage = ""
+        
+        switch message.kind {
+        case .text(let messageText):
+            newMessage = messageText
+        case .attributedText(_):
+            break
+        case .photo(_):
+            break
+        case .video(_):
+            break
+        case .location(_):
+            break
+        case .emoji(_):
+            break
+        case .audio(_):
+            break
+        case .contact(_):
+            break
+        case .linkPreview(_):
+            break
+        case .custom(_):
+            break
+        }
+        
+        let newMessageEntry: [String:Any] = [
+            "id" : message.messageId,
+            "type" : message.kind.messageKindString,
+            "content" : newMessage,
+            "date" : dateString,
+            "senderID" : currentUser.uuid,
+            "senderUserName" : currentUser.userName
+        ]
+        
+//        currentMessages.append(newMessageEntry)
+
+        
+        self.db.collection(self.carpoolCollection).document(carpoolID).collection(messageCollection).addDocument(data: newMessageEntry) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+//        updateData([CarpoolConstants.messagesKey : currentMessages]){ (error) in
+//
+//            if let error = error {
+//                print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//            }
+//        }
+    }
+    
+    func getAllMessagesForConversation(with carpoolID: String, completion: @escaping (Result<[Message], NetworkError>) -> Void) {
+        db.collection(carpoolCollection).document(carpoolID).collection(messageCollection).addSnapshotListener { (querySnapshot, error) in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            guard let snapshot = querySnapshot else {return completion(.failure(.noData))}
+            print(snapshot.documents)
+
+            let messages: [Message] = snapshot.documents.compactMap({ dictionary in
+                guard let userName = dictionary["senderUserName"] as? String,
+                      let messageID = dictionary["id"] as? String,
+                      let content = dictionary["content"] as? String,
+                      let senderID = dictionary["senderID"] as? String,
+                      let type = dictionary["type"] as? String,
+                      let dateString = dictionary["date"] as? String,
+                      let date = ChatViewController.dateFormatter.date(from: dateString) else {return nil}
+
+                let sender = Sender(photoURL: "", senderId: senderID, displayName: userName)
+
+                return Message(sender: sender, messageId: messageID, sentDate: date, kind: .text(content))
+            })
+
+            completion(.success(messages))
+        }
     }
 }//end class

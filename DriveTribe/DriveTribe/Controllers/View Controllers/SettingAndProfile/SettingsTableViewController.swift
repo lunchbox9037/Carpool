@@ -8,9 +8,13 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
+    @IBOutlet weak var blockedUsersButton: UIButton!
+    @IBOutlet weak var deleteAccountButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        deleteAccountButton.addCornerRadius()
+        blockedUsersButton.addCornerRadius()
     }
     
     func promptRating() {
