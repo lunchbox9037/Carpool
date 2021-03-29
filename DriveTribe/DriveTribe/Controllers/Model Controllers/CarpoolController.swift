@@ -291,12 +291,6 @@ class CarpoolController {
             
             guard let snapshot = querySnapshot else {return completion(.failure(.noData))}
             print(snapshot.documents)
-            
-//            for document in snapshot.documents {
-//                let data = document.data()
-//                print(data)
-//                
-//            }
 
             let messages: [Message] = snapshot.documents.compactMap({ dictionary in
                 guard let userName = dictionary["senderUserName"] as? String,

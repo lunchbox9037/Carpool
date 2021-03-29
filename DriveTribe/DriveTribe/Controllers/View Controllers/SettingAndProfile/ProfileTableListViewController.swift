@@ -17,7 +17,7 @@ class ProfileTableListViewController: UITableViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var carInfoTextField: UITextField!
     @IBOutlet weak var logOutButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     // MARK: - properties
     var isEditingProfile = false
@@ -65,12 +65,11 @@ class ProfileTableListViewController: UITableViewController {
     }
     
     
-    
     @IBAction func editedButtonTapped(_ sender: Any) {
         
         self.isEditingProfile.toggle()
         if isEditingProfile {
-            editButton.setTitle("Save Profile Info", for: .normal)
+            editButton.title = "Edit"
             usernameTextField.isUserInteractionEnabled = true
             nameTextField.isUserInteractionEnabled = true
             lastNameTextField.isUserInteractionEnabled = true
@@ -81,7 +80,6 @@ class ProfileTableListViewController: UITableViewController {
                   let lastName = lastNameTextField.text, !lastName.isEmpty else {
                 presentAlertToUser(titleAlert: "Info updated needed!", messageAlert: "Please, fill out your usename, first name and last name for updating for infomation!")
                 return
-                
             }
             let carInfo = carInfoTextField.text
             UserController.shared.updateUserProfile(firstName: firstName, lastName: lastName, userName: username, carInfo: carInfo ?? "") { [weak self] (results) in
@@ -89,7 +87,7 @@ class ProfileTableListViewController: UITableViewController {
                 case .success(let success):
                     DispatchQueue.main.async {
                         print(success)
-                        self?.editButton.setTitle("Edit Profile Info", for: .normal)
+                        self?.editButton.title = "Edit"
                         self?.usernameTextField.isUserInteractionEnabled = false
                         self?.nameTextField.isUserInteractionEnabled = false
                         self?.lastNameTextField.isUserInteractionEnabled = false
@@ -114,7 +112,6 @@ class ProfileTableListViewController: UITableViewController {
     @IBAction func logOutButtonTapped(_ sender: Any) {
         UserController.shared.logout { (results) in
             switch results {
-            
             case .success(let response):
                 self.gotoLogginVC()
                 print(response)

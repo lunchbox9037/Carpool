@@ -28,7 +28,7 @@ class ChatViewController: MessagesViewController {
         
         let senderID = currentUser.uuid
         
-        return Sender(photoURL: "\(senderID).jpeg", senderId: senderID, displayName: "Me")
+        return Sender(photoURL: "\(senderID).jpeg", senderId: senderID, displayName: currentUser.userName)
     }
     
     override func viewDidLoad() {
@@ -86,8 +86,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         let messageID = UUID().uuidString
         let carpoolID = tribe.uuid
         
-        
-        
         let message = Message(sender: selfSender, messageId: messageID, sentDate: Date(), kind: .text(text))
         
         CarpoolController.shared.sendMessage(message: message, carpoolID: carpoolID)
@@ -120,8 +118,65 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     }
     
 //    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+//        guard let currentUser = UserController.shared.currentUser else {return}
+//        let currentUserImageUrl = "\(currentUser.uuid).jpeg"
+//
 //        let sender = message.sender
 //
+//        if sender.senderId == selfSender?.senderId {
+//            // show our image
+//            if let currentUserImageURL = self.senderPhotoURL {
+//                avatarView.sd_setImage(with: currentUserImageURL, completed: nil)
+//            }
+//            else {
+//                // images/safeemail_profile_picture.png
 //
+//                guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+//                    return
+//                }
+//
+//                let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+//                let path = "images\(safeEmail)_profile_picture.png"
+//
+//                // fetch url
+//                StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
+//                    switch result {
+//                    case .success(let url):
+//                        self?.senderPhotoURL = url
+//                        DispatchQueue.main.async {
+//                            avatarView.sd_setImage(with: url, completed: nil)
+//                        }
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    }
+//                })
+//            }
+//        }
+//        else {
+//            // other user image
+//            if let otherUsrePHotoURL = self.otherUserPhotoURL {
+//                avatarView.sd_setImage(with: otherUsrePHotoURL, completed: nil)
+//            }
+//            else {
+//                // fetch url
+//                let email = self.otherUserEmail
+//
+//                let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+//                let path = "images\(safeEmail)_profile_picture.png"
+//
+//                // fetch url
+//                StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
+//                    switch result {
+//                    case .success(let url):
+//                        self?.otherUserPhotoURL = url
+//                        DispatchQueue.main.async {
+//                            avatarView.sd_setImage(with: url, completed: nil)
+//                        }
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    }
+//                })
+//            }
+//        }
 //    }
-}
+}//end class
