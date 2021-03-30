@@ -31,6 +31,7 @@
 		36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */; };
 		36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D66260436D0008EC52A /* UserTableViewCell.swift */; };
 		36FA0E6F26095557005F9A11 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E6E26095557005F9A11 /* StorageController.swift */; };
+		F270C9DD26137A1B00D1B9C2 /* ColorPalette.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F270C9DC26137A1B00D1B9C2 /* ColorPalette.xcassets */; };
 		F2D75CA6260A97A700EDF43C /* CarpoolDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */; };
 		F2D75CAE260A97F500EDF43C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CA9260A97F500EDF43C /* SignupViewController.swift */; };
 		F2D75CAF260A97F500EDF43C /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */; };
@@ -91,6 +92,7 @@
 		36B82D66260436D0008EC52A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		36FA0E6E26095557005F9A11 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F270C9DC26137A1B00D1B9C2 /* ColorPalette.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorPalette.xcassets; sourceTree = "<group>"; };
 		F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolDestinationViewController.swift; sourceTree = "<group>"; };
 		F2D75CA9260A97F500EDF43C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationSearchViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				F648B94E2601192800FBADCA /* Assets.xcassets */,
 				F648B9502601192800FBADCA /* LaunchScreen.storyboard */,
 				F648B9532601192800FBADCA /* Info.plist */,
+				F270C9DC26137A1B00D1B9C2 /* ColorPalette.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				F648B9752601203500FBADCA /* Carpool.storyboard in Resources */,
 				F648B97E2601213E00FBADCA /* MyProfile.storyboard in Resources */,
 				F648B94F2601192800FBADCA /* Assets.xcassets in Resources */,
+				F270C9DD26137A1B00D1B9C2 /* ColorPalette.xcassets in Resources */,
 				F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */,
 				363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */,
 				F648B94D2601192500FBADCA /* Main.storyboard in Resources */,
