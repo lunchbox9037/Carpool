@@ -130,41 +130,13 @@ class UserController {
             for document in users.documents {
                 guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
                 userArray.append(user)
+                print("\n===================user \(user.userName) IN\(#function) ======================\n")
                 print("====SUCCESSFULLY! FETCH FETCH  USERS BY SEARCH TERM! \(#function)====")
             }
-    
             let returnUsers = userArray.filter{$0.matches(searchTerm: searchTerm, username: $0.userName)}
-          
-            var usersWithNoBlockedUser: [User] = []
-            guard let currentUser = UserController.shared.currentUser else {return}
-            for user in returnUsers {
-                for id in currentUser.blockedUsers {
-                    if user.uuid == id {
-                        print("=================== This is a blocked user : \(user.userName)======================")
-                    } else {
-                        usersWithNoBlockedUser.append(user)
-                    }
-                }
-            }
-//
-//            let usersWithNotYetSentFriendRequest = usersWithNoBlockedUser
-//            var finalUsers: [User] = []
-//
-//            for user in usersWithNotYetSentFriendRequest {
-//                for id in currentUser.friendsRequestSent {
-//                if user.uuid == id {
-//                    print("=================== This is a friend who you already sent friend request. \(user.userName)======================")
-//                } else {
-//                    finalUsers.append(user)
-//                }
-//                }
-//            }
-        
-            return completion(.success(usersWithNoBlockedUser))
+            return completion(.success(returnUsers))
         }
     }
-    
-    
     
     func fetchPendingFriendRequestsSentBy(currentUser: User, completion: @escaping (Result<[User], NetworkError>) -> Void) {
         db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
