@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4d4-lv-072">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Picker View Controller-->
+        <scene sceneID="vWm-Xk-aQ7">
+            <objects>
+                <viewController storyboardIdentifier="photoPicker" id="4d4-lv-072" customClass="PhotoPickerViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MNT-Zl-wqe">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="irw-bK-t1z">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mb8-bR-PxN">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                <state key="normal" title="Profile Photo"/>
+                                <connections>
+                                    <action selector="selectedButtonTapped:" destination="4d4-lv-072" eventType="touchUpInside" id="WNo-EY-1CW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hSn-ms-00i"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="irw-bK-t1z" secondAttribute="bottom" id="2iW-ID-DMo"/>
+                            <constraint firstItem="Mb8-bR-PxN" firstAttribute="leading" secondItem="MNT-Zl-wqe" secondAttribute="leading" id="4SG-Fd-9ge"/>
+                            <constraint firstAttribute="trailing" secondItem="Mb8-bR-PxN" secondAttribute="trailing" id="6RV-fj-6Gp"/>
+                            <constraint firstItem="irw-bK-t1z" firstAttribute="top" secondItem="MNT-Zl-wqe" secondAttribute="top" id="IvN-dg-KAQ"/>
+                            <constraint firstItem="irw-bK-t1z" firstAttribute="leading" secondItem="MNT-Zl-wqe" secondAttribute="leading" id="lGL-zL-lcz"/>
+                            <constraint firstAttribute="bottom" secondItem="Mb8-bR-PxN" secondAttribute="bottom" id="n1d-7X-FmY"/>
+                            <constraint firstItem="Mb8-bR-PxN" firstAttribute="top" secondItem="MNT-Zl-wqe" secondAttribute="top" id="ugi-Zk-rFq"/>
+                            <constraint firstAttribute="trailing" secondItem="irw-bK-t1z" secondAttribute="trailing" id="urc-Ov-La5"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="150" height="150"/>
+                    <connections>
+                        <outlet property="selectedButton" destination="Mb8-bR-PxN" id="Mzh-dU-deZ"/>
+                        <outlet property="selectedImage" destination="irw-bK-t1z" id="QDW-ew-hfB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jE5-jM-kUd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2289.2523364485978" y="-352.48380129589634"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

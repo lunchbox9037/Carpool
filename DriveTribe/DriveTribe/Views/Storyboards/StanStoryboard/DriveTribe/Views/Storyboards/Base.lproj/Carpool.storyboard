@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mf8-bM-1eV">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Carpool List View Controller-->
+        <scene sceneID="8Ee-ny-Cxc">
+            <objects>
+                <viewController storyboardIdentifier="carpoolList" id="mf8-bM-1eV" customClass="CarpoolListViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q4G-U4-HsW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tribes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmh-nf-jfL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5zK-Ug-5ng">
+                                <rect key="frame" x="0.0" y="41" width="414" height="733"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carpoolCell" textLabel="xne-ZO-r8f" detailTextLabel="2yg-Ce-7Y5" imageView="ViL-YC-V79" style="IBUITableViewCellStyleSubtitle" id="qBL-92-IBj">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qBL-92-IBj" id="T0E-eX-XP8">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xne-ZO-r8f">
+                                                    <rect key="frame" x="62.5" y="9" width="33" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2yg-Ce-7Y5">
+                                                    <rect key="frame" x="62.5" y="31.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="car.2" catalog="system" id="ViL-YC-V79">
+                                                    <rect key="frame" x="16.5" y="19.5" width="31" height="17.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="FkS-pi-BtO" kind="show" identifier="toCarpoolChat" id="8yB-gF-bid"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tKB-lH-FgT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5zK-Ug-5ng" firstAttribute="leading" secondItem="tKB-lH-FgT" secondAttribute="leading" id="8Ui-o2-QcF"/>
+                            <constraint firstItem="tKB-lH-FgT" firstAttribute="trailing" secondItem="5zK-Ug-5ng" secondAttribute="trailing" id="XGB-PU-23C"/>
+                            <constraint firstItem="Fmh-nf-jfL" firstAttribute="leading" secondItem="tKB-lH-FgT" secondAttribute="leading" id="fac-QE-tiz"/>
+                            <constraint firstItem="Fmh-nf-jfL" firstAttribute="top" secondItem="tKB-lH-FgT" secondAttribute="top" id="mLr-Qy-vGI"/>
+                            <constraint firstItem="5zK-Ug-5ng" firstAttribute="top" secondItem="Fmh-nf-jfL" secondAttribute="bottom" id="o4p-Lg-Sqx"/>
+                            <constraint firstItem="tKB-lH-FgT" firstAttribute="trailing" secondItem="Fmh-nf-jfL" secondAttribute="trailing" id="oAG-Ww-JRu"/>
+                            <constraint firstItem="tKB-lH-FgT" firstAttribute="bottom" secondItem="5zK-Ug-5ng" secondAttribute="bottom" id="qs6-Sk-zkh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ufa-dg-rMY">
+                        <barButtonItem key="leftBarButtonItem" id="lTd-fg-vZe">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="kkf-zJ-mkH">
+                                <rect key="frame" x="20" y="5.5" width="103" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Work"/>
+                                    <segment title="Play"/>
+                                </segments>
+                                <connections>
+                                    <action selector="workPlaySegmentChanged:" destination="mf8-bM-1eV" eventType="valueChanged" id="Ysc-AJ-9cG"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xTu-2u-LEO">
+                            <connections>
+                                <segue destination="STY-xK-cZZ" kind="show" id="J7l-gK-thj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="carpoolGroupLabel" destination="Fmh-nf-jfL" id="2bq-UU-G8s"/>
+                        <outlet property="carpoolTableView" destination="5zK-Ug-5ng" id="Sgp-0q-0iZ"/>
+                        <outlet property="workPlaySegment" destination="kkf-zJ-mkH" id="3Vv-6l-I6M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UzH-Ts-6h2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-84" y="-613"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="s1B-vK-ZHV">
+            <objects>
+                <viewController storyboardIdentifier="tribeDetail" id="FkS-pi-BtO" customClass="ChatViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IOY-jm-tmH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gHR-L7-mdE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="VZd-8b-PiF">
+                        <barButtonItem key="leftBarButtonItem" id="FAo-CL-Ys8"/>
+                        <barButtonItem key="rightBarButtonItem" title="Start Nav" image="map" catalog="system" id="UJG-Rf-Erl">
+                            <connections>
+                                <action selector="startRouteButtonTapped:" destination="FkS-pi-BtO" id="ukH-0h-cvf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="startRouteButton" destination="UJG-Rf-Erl" id="cjb-TW-Tq4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0uG-S2-Y5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-84" y="38"/>
+        </scene>
+        <!--Options-->
+        <scene sceneID="sm3-O7-cwF">
+            <objects>
+                <viewController id="STY-xK-cZZ" customClass="CarpoolSettingsViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ij4-R6-BYj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-5L-0Gi">
+                                <rect key="frame" x="20.5" y="24" width="373" height="144"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLc-2a-qqR">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-FA-Jh0">
+                                        <rect key="frame" x="0.0" y="58" width="373" height="32"/>
+                                        <segments>
+                                            <segment title="Carpool"/>
+                                            <segment title="Meet-Up"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ODz-8x-Th4">
+                                        <rect key="frame" x="0.0" y="113" width="373" height="31"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bTu-xL-Aai">
+                                                <rect key="frame" x="0.0" y="0.0" width="373" height="32"/>
+                                                <segments>
+                                                    <segment title="Work"/>
+                                                    <segment title="Play"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="C6Q-jc-T35"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="top" secondItem="C6Q-jc-T35" secondAttribute="top" constant="24" id="O1h-0N-FGw"/>
+                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="width" secondItem="C6Q-jc-T35" secondAttribute="width" multiplier="0.9" id="cO1-L3-68S"/>
+                            <constraint firstItem="sdh-5L-0Gi" firstAttribute="centerX" secondItem="C6Q-jc-T35" secondAttribute="centerX" id="hm0-5D-0B7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Options" id="rh3-Wc-ONd">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="g3R-AU-7gu">
+                            <connections>
+                                <segue destination="n3x-8Z-V0X" kind="show" identifier="toDestinationSearch" id="nIC-y7-hKu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="carpoolMeetUpSegement" destination="fDe-FA-Jh0" id="RhC-Zm-z8L"/>
+                        <outlet property="titleTextField" destination="xLc-2a-qqR" id="K9M-Om-fEj"/>
+                        <outlet property="workPlayModeSegment" destination="bTu-xL-Aai" id="FSO-iQ-Eye"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mrY-1x-AGL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="593" y="-613"/>
+        </scene>
+        <!--Destination-->
+        <scene sceneID="Uad-gh-bRi">
+            <objects>
+                <viewController id="n3x-8Z-V0X" customClass="CarpoolDestinationViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BiG-VE-gkH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x9J-Zc-3I5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Yu-o2-GT2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x9J-Zc-3I5" firstAttribute="top" secondItem="8Yu-o2-GT2" secondAttribute="top" id="EwW-st-4aQ"/>
+                            <constraint firstItem="8Yu-o2-GT2" firstAttribute="trailing" secondItem="x9J-Zc-3I5" secondAttribute="trailing" id="JRR-wZ-pSu"/>
+                            <constraint firstItem="8Yu-o2-GT2" firstAttribute="bottom" secondItem="x9J-Zc-3I5" secondAttribute="bottom" id="VMS-yE-c84"/>
+                            <constraint firstItem="x9J-Zc-3I5" firstAttribute="leading" secondItem="8Yu-o2-GT2" secondAttribute="leading" id="axW-he-lb5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Destination" id="h1f-L0-la3">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dsZ-7E-WEa"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="fwH-aD-KqK">
+                            <connections>
+                                <segue destination="jbg-XX-Xy7" kind="show" id="ViV-lk-g0G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="x9J-Zc-3I5" id="7jT-4r-gx4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XS6-4Z-0Xf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1275" y="-613"/>
+        </scene>
+        <!--Add Friends-->
+        <scene sceneID="ARO-0s-hBM">
+            <objects>
+                <viewController id="jbg-XX-Xy7" customClass="AddPassengerViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gH9-54-gUt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ebZ-qk-bgw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a0z-eR-nmk">
+                                    <size key="itemSize" width="185" height="194"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="53W-Pe-5cf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ebZ-qk-bgw" firstAttribute="leading" secondItem="53W-Pe-5cf" secondAttribute="leading" id="91S-TK-Jsg"/>
+                            <constraint firstItem="53W-Pe-5cf" firstAttribute="bottom" secondItem="ebZ-qk-bgw" secondAttribute="bottom" id="at9-Ey-1fw"/>
+                            <constraint firstItem="ebZ-qk-bgw" firstAttribute="top" secondItem="53W-Pe-5cf" secondAttribute="top" id="q2j-P7-8rX"/>
+                            <constraint firstItem="53W-Pe-5cf" firstAttribute="trailing" secondItem="ebZ-qk-bgw" secondAttribute="trailing" id="yMw-K7-NfT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Friends" id="di6-YR-Cdh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HXl-jU-A6A">
+                            <connections>
+                                <action selector="saveCarpoolButtonTapped:" destination="jbg-XX-Xy7" id="ypL-6p-5MR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="passengerCollectionView" destination="ebZ-qk-bgw" id="Ins-9j-8jx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rVz-px-JOI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1946" y="-613"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="car.2" catalog="system" width="128" height="72"/>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

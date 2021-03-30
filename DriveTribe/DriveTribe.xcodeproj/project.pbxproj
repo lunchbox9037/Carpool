@@ -1,0 +1,780 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */; };
+		1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */; };
+		16E6C8222612CFB50011EA88 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8212612CFB50011EA88 /* StyleGuide.swift */; };
+		16E6C8262612D0D80011EA88 /* DriveTribeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */; };
+		16E6C8292612D1680011EA88 /* DriveTribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8282612D1680011EA88 /* DriveTribeButton.swift */; };
+		16E6C82C2612D1BD0011EA88 /* DriveTribeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C82B2612D1BD0011EA88 /* DriveTribeTextField.swift */; };
+		16E6C82F2612D2550011EA88 /* DriveTribeNavAndTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */; };
+		16E6C8322612D3110011EA88 /* DriveTribeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8312612D3110011EA88 /* DriveTribeSearchBar.swift */; };
+		16E6C8362612D3590011EA88 /* DriveTribeSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */; };
+		35F44A99853268B16387D23D /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */; };
+		363BF347260ADCF800683A5A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */; };
+		363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */; };
+		36653CE6260C3D31008AA210 /* ProfileTableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36653CE5260C3D31008AA210 /* ProfileTableListViewController.swift */; };
+		3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3682F11B2602B3F200415468 /* GoogleService-Info.plist */; };
+		3682F11F2603310900415468 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F11E2603310900415468 /* User.swift */; };
+		3682F1392603394100415468 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F1382603394100415468 /* UserController.swift */; };
+		36B82D372603C604008EC52A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D362603C604008EC52A /* NetworkError.swift */; };
+		36B82D412603E8E6008EC52A /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */; };
+		36B82D442603E916008EC52A /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D432603E916008EC52A /* FriendTableViewCell.swift */; };
+		36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */; };
+		36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D602604354D008EC52A /* RequestTableViewCell.swift */; };
+		36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */; };
+		36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B82D66260436D0008EC52A /* UserTableViewCell.swift */; };
+		36FA0E6F26095557005F9A11 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA0E6E26095557005F9A11 /* StorageController.swift */; };
+		F270C9DD26137A1B00D1B9C2 /* ColorPalette.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F270C9DC26137A1B00D1B9C2 /* ColorPalette.xcassets */; };
+		F2D75CA6260A97A700EDF43C /* CarpoolDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */; };
+		F2D75CAE260A97F500EDF43C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CA9260A97F500EDF43C /* SignupViewController.swift */; };
+		F2D75CAF260A97F500EDF43C /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */; };
+		F2D75CB0260A97F500EDF43C /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAB260A97F500EDF43C /* PhotoPickerViewController.swift */; };
+		F2D75CB1260A97F500EDF43C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAC260A97F500EDF43C /* LogInViewController.swift */; };
+		F2D75CB2260A97F500EDF43C /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAD260A97F500EDF43C /* UserLocationViewController.swift */; };
+		F2D75CF2260BAE6000EDF43C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */; };
+		F2D75CF6260BBC8900EDF43C /* BlockedUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */; };
+		F2D75CF9260BC4D400EDF43C /* BlockedUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */; };
+		F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */; };
+		F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210B826094D80009E6BE9 /* AlertExtension.swift */; };
+		F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BB26096612009E6BE9 /* RouteCreator.swift */; };
+		F648B9462601192500FBADCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9452601192500FBADCA /* AppDelegate.swift */; };
+		F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9472601192500FBADCA /* SceneDelegate.swift */; };
+		F648B94D2601192500FBADCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B94B2601192500FBADCA /* Main.storyboard */; };
+		F648B94F2601192800FBADCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F648B94E2601192800FBADCA /* Assets.xcassets */; };
+		F648B9522601192800FBADCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B9502601192800FBADCA /* LaunchScreen.storyboard */; };
+		F648B96226011A8D00FBADCA /* Carpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B96126011A8D00FBADCA /* Carpool.swift */; };
+		F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B96926011AFB00FBADCA /* CarpoolController.swift */; };
+		F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B97026011FE000FBADCA /* CarpoolListViewController.swift */; };
+		F648B9752601203500FBADCA /* Carpool.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B9732601203500FBADCA /* Carpool.storyboard */; };
+		F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B978260120C800FBADCA /* FriendsList.storyboard */; };
+		F648B97E2601213E00FBADCA /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B97C2601213E00FBADCA /* MyProfile.storyboard */; };
+		F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */; };
+		F648BB102602FFA200FBADCA /* AddPassengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB0F2602FFA200FBADCA /* AddPassengerViewController.swift */; };
+		F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */; };
+		F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB17260302C500FBADCA /* LayoutBuilder.swift */; };
+		F648BB1B2604063200FBADCA /* CarpoolSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */; };
+		F6FB7033260D57AF00D015A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7032260D57AF00D015A5 /* Message.swift */; };
+		F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7094260D890D00D015A5 /* ChatViewController.swift */; };
+		F6FB7099260D9D5F00D015A5 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FB7098260D9D5F00D015A5 /* DateFormatter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationViewController.swift; sourceTree = "<group>"; };
+		1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationSearchViewController.swift; sourceTree = "<group>"; };
+		16E6C8212612CFB50011EA88 /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
+		16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeLabel.swift; sourceTree = "<group>"; };
+		16E6C8282612D1680011EA88 /* DriveTribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeButton.swift; sourceTree = "<group>"; };
+		16E6C82B2612D1BD0011EA88 /* DriveTribeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeTextField.swift; sourceTree = "<group>"; };
+		16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeNavAndTabController.swift; sourceTree = "<group>"; };
+		16E6C8312612D3110011EA88 /* DriveTribeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeSearchBar.swift; sourceTree = "<group>"; };
+		16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeSegmentedControl.swift; sourceTree = "<group>"; };
+		363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
+		36653CE5260C3D31008AA210 /* ProfileTableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableListViewController.swift; sourceTree = "<group>"; };
+		3682F11B2602B3F200415468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3682F11E2603310900415468 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3682F1382603394100415468 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		36B82D362603C604008EC52A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
+		36B82D432603E916008EC52A /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableRecordDelegate.swift; sourceTree = "<group>"; };
+		36B82D602604354D008EC52A /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
+		36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTableViewCell.swift; sourceTree = "<group>"; };
+		36B82D66260436D0008EC52A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		36FA0E6E26095557005F9A11 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveTribe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F270C9DC26137A1B00D1B9C2 /* ColorPalette.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorPalette.xcassets; sourceTree = "<group>"; };
+		F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolDestinationViewController.swift; sourceTree = "<group>"; };
+		F2D75CA9260A97F500EDF43C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationSearchViewController.swift; sourceTree = "<group>"; };
+		F2D75CAB260A97F500EDF43C /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		F2D75CAC260A97F500EDF43C /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		F2D75CAD260A97F500EDF43C /* UserLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
+		F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersTableViewController.swift; sourceTree = "<group>"; };
+		F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserTableViewCell.swift; sourceTree = "<group>"; };
+		F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSizeExtension.swift; sourceTree = "<group>"; };
+		F61210B826094D80009E6BE9 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
+		F61210BB26096612009E6BE9 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
+		F648B9422601192500FBADCA /* DriveTribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveTribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F648B9452601192500FBADCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F648B9472601192500FBADCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F648B94C2601192500FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F648B94E2601192800FBADCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F648B9512601192800FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F648B9532601192800FBADCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F648B96126011A8D00FBADCA /* Carpool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carpool.swift; sourceTree = "<group>"; };
+		F648B96926011AFB00FBADCA /* CarpoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolController.swift; sourceTree = "<group>"; };
+		F648B97026011FE000FBADCA /* CarpoolListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolListViewController.swift; sourceTree = "<group>"; };
+		F648B9742601203500FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DriveTribe/Views/Storyboards/Base.lproj/Carpool.storyboard; sourceTree = "<group>"; };
+		F648B978260120C800FBADCA /* FriendsList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FriendsList.storyboard; sourceTree = "<group>"; };
+		F648B97D2601213E00FBADCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DriveTribe/Views/Storyboards/Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
+		F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchViewController.swift; sourceTree = "<group>"; };
+		F648BB0F2602FFA200FBADCA /* AddPassengerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPassengerViewController.swift; sourceTree = "<group>"; };
+		F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerCollectionViewCell.swift; sourceTree = "<group>"; };
+		F648BB17260302C500FBADCA /* LayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilder.swift; sourceTree = "<group>"; };
+		F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolSettingsViewController.swift; sourceTree = "<group>"; };
+		F6FB7032260D57AF00D015A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F6FB7094260D890D00D015A5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F6FB7098260D9D5F00D015A5 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.debug.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F648B93F2601192500FBADCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35F44A99853268B16387D23D /* Pods_DriveTribe.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		16E6C8202612CF9C0011EA88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				16E6C8212612CFB50011EA88 /* StyleGuide.swift */,
+				16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */,
+				16E6C8282612D1680011EA88 /* DriveTribeButton.swift */,
+				16E6C82B2612D1BD0011EA88 /* DriveTribeTextField.swift */,
+				16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */,
+				16E6C8312612D3110011EA88 /* DriveTribeSearchBar.swift */,
+				16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		16F83C47456142620D64EEB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		36653CE3260C1F5A008AA210 /* SettingAndProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */,
+				F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */,
+				F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */,
+				36653CE5260C3D31008AA210 /* ProfileTableListViewController.swift */,
+				1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */,
+				1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */,
+			);
+			path = SettingAndProfile;
+			sourceTree = "<group>";
+		};
+		4C7F951AB0B997BECCFBB2F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */,
+				0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F2D75CA3260A968E00EDF43C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F2D75CA8260A97F500EDF43C /* SignupLogin */ = {
+			isa = PBXGroup;
+			children = (
+				F2D75CA9260A97F500EDF43C /* SignupViewController.swift */,
+				F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */,
+				F2D75CAB260A97F500EDF43C /* PhotoPickerViewController.swift */,
+				F2D75CAC260A97F500EDF43C /* LogInViewController.swift */,
+				F2D75CAD260A97F500EDF43C /* UserLocationViewController.swift */,
+			);
+			path = SignupLogin;
+			sourceTree = "<group>";
+		};
+		F648B9392601192500FBADCA = {
+			isa = PBXGroup;
+			children = (
+				3682F11B2602B3F200415468 /* GoogleService-Info.plist */,
+				F648B9442601192500FBADCA /* DriveTribe */,
+				F648B9432601192500FBADCA /* Products */,
+				4C7F951AB0B997BECCFBB2F8 /* Pods */,
+				16F83C47456142620D64EEB4 /* Frameworks */,
+				F2D75CA3260A968E00EDF43C /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		F648B9432601192500FBADCA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F648B9422601192500FBADCA /* DriveTribe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F648B9442601192500FBADCA /* DriveTribe */ = {
+			isa = PBXGroup;
+			children = (
+				F648B96026011A7C00FBADCA /* Models */,
+				F648B96826011AC700FBADCA /* Views */,
+				F648B96526011A9600FBADCA /* Controllers */,
+				F648B986260123C100FBADCA /* Helper */,
+				F648B95A2601194000FBADCA /* Resources */,
+			);
+			path = DriveTribe;
+			sourceTree = "<group>";
+		};
+		F648B95A2601194000FBADCA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F648B9452601192500FBADCA /* AppDelegate.swift */,
+				F648B9472601192500FBADCA /* SceneDelegate.swift */,
+				F648B94E2601192800FBADCA /* Assets.xcassets */,
+				F648B9502601192800FBADCA /* LaunchScreen.storyboard */,
+				F648B9532601192800FBADCA /* Info.plist */,
+				F270C9DC26137A1B00D1B9C2 /* ColorPalette.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F648B95D2601196800FBADCA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				16E6C8202612CF9C0011EA88 /* Views */,
+				F648B984260122DE00FBADCA /* Noone */,
+				F648B983260122B300FBADCA /* StanStoryboard */,
+				F648B981260121FB00FBADCA /* LeeStoryboard */,
+				F648B9822601220A00FBADCA /* DennisStoryboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F648B96026011A7C00FBADCA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F648B96126011A8D00FBADCA /* Carpool.swift */,
+				3682F11E2603310900415468 /* User.swift */,
+				F6FB7032260D57AF00D015A5 /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F648B96526011A9600FBADCA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F648B96726011AAA00FBADCA /* Model Controllers */,
+				F648B96626011AA400FBADCA /* View Controllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F648B96626011AA400FBADCA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F2D75CA8260A97F500EDF43C /* SignupLogin */,
+				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
+				F6FB7094260D890D00D015A5 /* ChatViewController.swift */,
+				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
+				F6B42816260A4BA800148569 /* Carpool Creation */,
+				36653CE3260C1F5A008AA210 /* SettingAndProfile */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F648B96726011AAA00FBADCA /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F648B96926011AFB00FBADCA /* CarpoolController.swift */,
+				3682F1382603394100415468 /* UserController.swift */,
+				36FA0E6E26095557005F9A11 /* StorageController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		F648B96826011AC700FBADCA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F648BB122603001300FBADCA /* Custom Views */,
+				F648B95D2601196800FBADCA /* Storyboards */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F648B981260121FB00FBADCA /* LeeStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				F648B978260120C800FBADCA /* FriendsList.storyboard */,
+				36B82D432603E916008EC52A /* FriendTableViewCell.swift */,
+				36B82D602604354D008EC52A /* RequestTableViewCell.swift */,
+				36B82D6326043565008EC52A /* ReceivedTableViewCell.swift */,
+				36B82D66260436D0008EC52A /* UserTableViewCell.swift */,
+			);
+			path = LeeStoryboard;
+			sourceTree = "<group>";
+		};
+		F648B9822601220A00FBADCA /* DennisStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				F648B97C2601213E00FBADCA /* MyProfile.storyboard */,
+			);
+			path = DennisStoryboard;
+			sourceTree = "<group>";
+		};
+		F648B983260122B300FBADCA /* StanStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				F648B9732601203500FBADCA /* Carpool.storyboard */,
+			);
+			path = StanStoryboard;
+			sourceTree = "<group>";
+		};
+		F648B984260122DE00FBADCA /* Noone */ = {
+			isa = PBXGroup;
+			children = (
+				F648B94B2601192500FBADCA /* Main.storyboard */,
+				363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */,
+			);
+			path = Noone;
+			sourceTree = "<group>";
+		};
+		F648B986260123C100FBADCA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				36B82D362603C604008EC52A /* NetworkError.swift */,
+				36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */,
+				F61210B826094D80009E6BE9 /* AlertExtension.swift */,
+				F61210BB26096612009E6BE9 /* RouteCreator.swift */,
+				363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */,
+				F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */,
+				F6FB7098260D9D5F00D015A5 /* DateFormatter.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F648BB122603001300FBADCA /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				F648BB132603003900FBADCA /* PassengerCollectionViewCell.swift */,
+				F648BB17260302C500FBADCA /* LayoutBuilder.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		F6B42816260A4BA800148569 /* Carpool Creation */ = {
+			isa = PBXGroup;
+			children = (
+				F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */,
+				F648BB1A2604063200FBADCA /* CarpoolSettingsViewController.swift */,
+				F648BAC42601A64D00FBADCA /* DestinationSearchViewController.swift */,
+				F648BB0F2602FFA200FBADCA /* AddPassengerViewController.swift */,
+			);
+			path = "Carpool Creation";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F648B9412601192500FBADCA /* DriveTribe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F648B9562601192800FBADCA /* Build configuration list for PBXNativeTarget "DriveTribe" */;
+			buildPhases = (
+				F3B83967AE414F53661D837A /* [CP] Check Pods Manifest.lock */,
+				F648B93E2601192500FBADCA /* Sources */,
+				F648B93F2601192500FBADCA /* Frameworks */,
+				F648B9402601192500FBADCA /* Resources */,
+				E9BE707476CE865AB9542A28 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DriveTribe;
+			productName = DriveTribe;
+			productReference = F648B9422601192500FBADCA /* DriveTribe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F648B93A2601192500FBADCA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					F648B9412601192500FBADCA = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = F648B93D2601192500FBADCA /* Build configuration list for PBXProject "DriveTribe" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F648B9392601192500FBADCA;
+			productRefGroup = F648B9432601192500FBADCA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F648B9412601192500FBADCA /* DriveTribe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F648B9402601192500FBADCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F648B9522601192800FBADCA /* LaunchScreen.storyboard in Resources */,
+				F648B9752601203500FBADCA /* Carpool.storyboard in Resources */,
+				F648B97E2601213E00FBADCA /* MyProfile.storyboard in Resources */,
+				F648B94F2601192800FBADCA /* Assets.xcassets in Resources */,
+				F270C9DD26137A1B00D1B9C2 /* ColorPalette.xcassets in Resources */,
+				F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */,
+				363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */,
+				F648B94D2601192500FBADCA /* Main.storyboard in Resources */,
+				3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E9BE707476CE865AB9542A28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DriveTribe/Pods-DriveTribe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DriveTribe/Pods-DriveTribe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DriveTribe/Pods-DriveTribe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3B83967AE414F53661D837A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DriveTribe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F648B93E2601192500FBADCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2D75CA6260A97A700EDF43C /* CarpoolDestinationViewController.swift in Sources */,
+				F648BB102602FFA200FBADCA /* AddPassengerViewController.swift in Sources */,
+				36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */,
+				16E6C8262612D0D80011EA88 /* DriveTribeLabel.swift in Sources */,
+				3682F1392603394100415468 /* UserController.swift in Sources */,
+				363BF347260ADCF800683A5A /* UIViewController+Extensions.swift in Sources */,
+				1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */,
+				F2D75CB1260A97F500EDF43C /* LogInViewController.swift in Sources */,
+				F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */,
+				F648B9462601192500FBADCA /* AppDelegate.swift in Sources */,
+				1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */,
+				F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */,
+				16E6C8362612D3590011EA88 /* DriveTribeSegmentedControl.swift in Sources */,
+				F2D75CB0260A97F500EDF43C /* PhotoPickerViewController.swift in Sources */,
+				F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */,
+				F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */,
+				F648BB1B2604063200FBADCA /* CarpoolSettingsViewController.swift in Sources */,
+				F2D75CAE260A97F500EDF43C /* SignupViewController.swift in Sources */,
+				F2D75CF6260BBC8900EDF43C /* BlockedUsersTableViewController.swift in Sources */,
+				3682F11F2603310900415468 /* User.swift in Sources */,
+				36B82D442603E916008EC52A /* FriendTableViewCell.swift in Sources */,
+				F2D75CAF260A97F500EDF43C /* UserLocationSearchViewController.swift in Sources */,
+				16E6C8292612D1680011EA88 /* DriveTribeButton.swift in Sources */,
+				F648B96A26011AFB00FBADCA /* CarpoolController.swift in Sources */,
+				36653CE6260C3D31008AA210 /* ProfileTableListViewController.swift in Sources */,
+				F2D75CF2260BAE6000EDF43C /* SettingsTableViewController.swift in Sources */,
+				F6FB7033260D57AF00D015A5 /* Message.swift in Sources */,
+				F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */,
+				16E6C82F2612D2550011EA88 /* DriveTribeNavAndTabController.swift in Sources */,
+				F2D75CF9260BC4D400EDF43C /* BlockedUserTableViewCell.swift in Sources */,
+				16E6C8322612D3110011EA88 /* DriveTribeSearchBar.swift in Sources */,
+				F648B96226011A8D00FBADCA /* Carpool.swift in Sources */,
+				36B82D412603E8E6008EC52A /* FriendListTableViewController.swift in Sources */,
+				36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */,
+				36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */,
+				F6FB7099260D9D5F00D015A5 /* DateFormatter.swift in Sources */,
+				F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */,
+				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
+				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
+				F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */,
+				36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */,
+				16E6C82C2612D1BD0011EA88 /* DriveTribeTextField.swift in Sources */,
+				36B82D372603C604008EC52A /* NetworkError.swift in Sources */,
+				36FA0E6F26095557005F9A11 /* StorageController.swift in Sources */,
+				F2D75CB2260A97F500EDF43C /* UserLocationViewController.swift in Sources */,
+				16E6C8222612CFB50011EA88 /* StyleGuide.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F648B94B2601192500FBADCA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F648B94C2601192500FBADCA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F648B9502601192800FBADCA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F648B9512601192800FBADCA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F648B9732601203500FBADCA /* Carpool.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F648B9742601203500FBADCA /* Base */,
+			);
+			name = Carpool.storyboard;
+			sourceTree = "<group>";
+		};
+		F648B97C2601213E00FBADCA /* MyProfile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F648B97D2601213E00FBADCA /* Base */,
+			);
+			name = MyProfile.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F648B9542601192800FBADCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "Simulator - iOS 14.0 SDK arm64";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F648B9552601192800FBADCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "Simulator - iOS 14.0 SDK arm64";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F648B9572601192800FBADCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB0CEAE5CB2B855158470E29 /* Pods-DriveTribe.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L73M8R7276;
+				EXCLUDED_ARCHS = "";
+				INFOPLIST_FILE = DriveTribe/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stanphillips.DriveTribe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F648B9582601192800FBADCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L73M8R7276;
+				EXCLUDED_ARCHS = "";
+				INFOPLIST_FILE = DriveTribe/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stanphillips.DriveTribe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F648B93D2601192500FBADCA /* Build configuration list for PBXProject "DriveTribe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F648B9542601192800FBADCA /* Debug */,
+				F648B9552601192800FBADCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F648B9562601192800FBADCA /* Build configuration list for PBXNativeTarget "DriveTribe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F648B9572601192800FBADCA /* Debug */,
+				F648B9582601192800FBADCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F648B93A2601192500FBADCA /* Project object */;
+}
