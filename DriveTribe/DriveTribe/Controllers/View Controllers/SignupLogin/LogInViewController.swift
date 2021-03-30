@@ -19,7 +19,7 @@ class LogInViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "logo")
+        imageView.image = UIImage(named: "driveTribeIcon")
         imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
         
