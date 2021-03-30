@@ -136,8 +136,27 @@ extension FriendListTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             isSearching = true
-            fetchAllUsers()
-            resultsFriendsFromSearching = users.filter{$0.matches(searchTerm: searchText, username: $0.userName)}
+            
+            
+//            UserController.shared.fetchSpecificUsersBySearchTerm(searchTerm: searchText) { [weak self] (results) in
+//                switch results {
+//                case .success(let users):
+            fetchUsersBySearchTerm(searchTerm: searchText)
+                  resultsFriendsFromSearching = users
+                   // self?.users = users
+//                case .failure(let error):
+//                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+//                }
+//            }
+            
+            
+            //fetchAllUsers()
+            //fetchUsersBySearchTerm(searchTerm: searchText)
+           
+            //resultsFriendsFromSearching = users.filter{$0.matches(searchTerm: searchText, username: $0.userName)}
+            tableView.reloadData()
+        } else {
+            resultsFriendsFromSearching = []
             tableView.reloadData()
         }
     }
@@ -191,7 +210,7 @@ extension FriendListTableViewController: UISearchBarDelegate {
 // MARK: - Helper Fuctions
 extension FriendListTableViewController {
     func setupTableView() {
-        fetchAllUsers()
+       // fetchAllUsers()
         switch friendSearchBar.selectedScopeButtonIndex {
         case 0:
             setupViewForFriends()
@@ -214,6 +233,19 @@ extension FriendListTableViewController {
             }
         }
     }
+    
+    
+    func fetchUsersBySearchTerm(searchTerm: String) {
+        UserController.shared.fetchSpecificUsersBySearchTerm(searchTerm: searchTerm) { [weak self] (results) in
+            switch results {
+            case .success(let users):
+                self?.users = users
+            case .failure(let error):
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            }
+        }
+    }
+    
     
     func setupViewForFriends() {
         guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
@@ -347,6 +379,7 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
             case .success(let userToRequest):
                 DispatchQueue.main.async {
                     self?.presentAlertToUser(titleAlert: "Friend Request Sent!", messageAlert: "You just request \(userToRequest.userName) to be your friend!")
+                    self?.friendSearchBar.searchTextField.text = ""
                 print("===== SUCCESSFULLY SENT FRIEND REQUEST!! Current User is requesting \(userToRequest.firstName) to be a friend. \(#function)======")
                 }
             case .failure(let error):
@@ -362,8 +395,8 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
 /* NOTE
  
  UI BUG
- 1) Friend Tap ==> When tapped unfriend, the friendToUnfriend did not get delete from tableView
- 2) Search For Friend ! When send requests to the new friend, the search still show the user who got requested and also show the block user in thier system.
- 
+ 1) Friend Tap ==> When tapped unfriend / Blocked, the friendToUnfriend did not get delete from tableView
+ 2) Block Users ==> When unblock happen the same thing.
+
  //______________________________________________________________________________________
  */
