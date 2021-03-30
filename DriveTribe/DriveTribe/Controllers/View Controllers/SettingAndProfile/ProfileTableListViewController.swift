@@ -8,8 +8,8 @@
 import UIKit
 
 class ProfileTableListViewController: UITableViewController {
-
-   
+    
+    
     // MARK: - outlets
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -19,10 +19,13 @@ class ProfileTableListViewController: UITableViewController {
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
+    
+    @IBOutlet weak var updatePhotoButton: UIButton!
+    
     // MARK: - properties
     var isEditingProfile = false
-    
-    
+    var selectedImage: UIImage?
+ 
     // MARK: - lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +38,7 @@ class ProfileTableListViewController: UITableViewController {
             switch results {
             case .success(let image):
                 DispatchQueue.main.async {
-                  //  self?.profileImageView.setupRoundCircleViews()
                     self?.profileImageView.image = image
-                    
                 }
             case .failure(let error):
                 print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
@@ -48,6 +49,7 @@ class ProfileTableListViewController: UITableViewController {
         lastNameTextField.isUserInteractionEnabled = false
         carInfoTextField.isUserInteractionEnabled = false
         populateViews()
+        updatePhotoButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,25 +58,33 @@ class ProfileTableListViewController: UITableViewController {
         
     }
     
+    
+    @IBAction func updatePhotoButtonTapped(_ sender: Any) {
+        if  updatePhotoButton.isEnabled {
+            presentImagePickerActionSheet()
+        } else {
+            print("GO TAPPED EDITTED BUTTON")
+        }
+    }
+    
     func populateViews() {
         guard let user = UserController.shared.currentUser else { return }
         self.usernameTextField.text = user.userName
         self.nameTextField.text = user.firstName
         self.lastNameTextField.text = user.lastName
-        
     }
     
-    
     @IBAction func editedButtonTapped(_ sender: Any) {
-        
         self.isEditingProfile.toggle()
         if isEditingProfile {
-            editButton.title = "Edit"
+            updatePhotoButton.isEnabled = true
+            editButton.title = "Save"
             usernameTextField.isUserInteractionEnabled = true
             nameTextField.isUserInteractionEnabled = true
             lastNameTextField.isUserInteractionEnabled = true
             carInfoTextField.isUserInteractionEnabled = true
         } else {
+            updatePhotoButton.isEnabled = false
             guard let username = usernameTextField.text, !username.isEmpty,
                   let firstName = nameTextField.text, !firstName.isEmpty,
                   let lastName = lastNameTextField.text, !lastName.isEmpty else {
@@ -120,5 +130,61 @@ class ProfileTableListViewController: UITableViewController {
                 
             }
         }
+    }
+}
+
+extension ProfileTableListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let photo = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.selectedImage = photo
+            self.profileImageView.image = photo
+            guard let currentUser = UserController.shared.currentUser else {return}
+            guard let selectedImage = selectedImage else {
+                print("NO SELECETED IMAGE")
+                return
+            }
+            StorageController.shared.storeImage(user: currentUser, image: selectedImage) { (results) in
+                switch results {
+                case .success(let url):
+                    print("url : \(url)")
+                    print("SUCCESSFULLY! TRY TO UPDATE IMAGE!")
+                case .failure(_):
+                    print("ERROR TRYING TO UPDETE IMAGE!")
+                }
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func presentImagePickerActionSheet() {
+        let imagePickerController = UIImagePickerController()
+        
+        let actionSheet = UIAlertController(title: "Update Profile Picture", message: "Select or take a photo for your profile.", preferredStyle: .alert)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            actionSheet.addAction(UIAlertAction(title: "Photos", style: .default, handler: { [weak self] (_) in
+                imagePickerController.sourceType = .photoLibrary
+                imagePickerController.delegate = self
+                imagePickerController.allowsEditing = true
+                self?.present(imagePickerController, animated: true, completion: nil)
+            }))
+        }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] (_) in
+                imagePickerController.sourceType = .camera
+                imagePickerController.delegate = self
+                imagePickerController.allowsEditing = true
+                self?.present(imagePickerController, animated: true, completion: nil)
+            }))
+        }
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(actionSheet, animated: true)
     }
 }

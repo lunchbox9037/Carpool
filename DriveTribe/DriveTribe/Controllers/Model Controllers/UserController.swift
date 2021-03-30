@@ -117,12 +117,12 @@ class UserController {
         }
     }
     
-    func fetchSpecficUsersBySearchTerm(searchTerm: String, completion: @escaping(Result<[User], NetworkError>) -> Void) {
+    func fetchSpecificUsersBySearchTerm(searchTerm: String, completion: @escaping(Result<[User], NetworkError>) -> Void) {
         let currentUserID = Auth.auth().currentUser?.uid
         guard let upwrapCurrentUserID = currentUserID else { return completion(.failure(.unableToDecode)) }
         db.collectionGroup(userCollection).whereField(UserConstants.authIDKey, isNotEqualTo: upwrapCurrentUserID).getDocuments { (users, error) in
             if let error = error {
-                print("\n====ERROR  FETCH ALL USER! IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                print("\n====ERROR  FETCH  USERS BY SEARCH TERM! IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
             }
             guard let users = users else {return completion(.failure(.noData))}
@@ -130,9 +130,37 @@ class UserController {
             for document in users.documents {
                 guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
                 userArray.append(user)
-                print("====SUCCESSFULLY! FETCH ALL USERS! \(#function)====")
+                print("====SUCCESSFULLY! FETCH FETCH  USERS BY SEARCH TERM! \(#function)====")
             }
-            return completion(.success(userArray))
+    
+            let returnUsers = userArray.filter{$0.matches(searchTerm: searchTerm, username: $0.userName)}
+          
+            var usersWithNoBlockedUser: [User] = []
+            guard let currentUser = UserController.shared.currentUser else {return}
+            for user in returnUsers {
+                for id in currentUser.blockedUsers {
+                    if user.uuid == id {
+                        print("=================== This is a blocked user : \(user.userName)======================")
+                    } else {
+                        usersWithNoBlockedUser.append(user)
+                    }
+                }
+            }
+//
+//            let usersWithNotYetSentFriendRequest = usersWithNoBlockedUser
+//            var finalUsers: [User] = []
+//
+//            for user in usersWithNotYetSentFriendRequest {
+//                for id in currentUser.friendsRequestSent {
+//                if user.uuid == id {
+//                    print("=================== This is a friend who you already sent friend request. \(user.userName)======================")
+//                } else {
+//                    finalUsers.append(user)
+//                }
+//                }
+//            }
+        
+            return completion(.success(usersWithNoBlockedUser))
         }
     }
     
@@ -571,10 +599,12 @@ extension UserController {
                        }
                    }
        }
-    
-  
 }
 
 
-
-
+/*
+ Bugs needed to be fix!
+ 1) on Friend List ==> unfriend and  blocked user, the user still show on the tableView.
+ 2) on BlockUser Profile Sectioin ==> when unblock user, the user still show on the tableView.
+ 
+ */
