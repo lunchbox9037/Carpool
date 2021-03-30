@@ -118,6 +118,7 @@ class LogInViewController: UIViewController {
                     self.gotoTabbarVC()
                 case .failure(let error):
                     self.spinner.dismiss()
+                    self.presentAlertToUser(titleAlert: "Error", messageAlert: "\(error.localizedDescription)")
                     print(error.localizedDescription)
                 }
             }
