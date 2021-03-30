@@ -34,7 +34,6 @@
 		F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */; };
 		F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210B826094D80009E6BE9 /* AlertExtension.swift */; };
 		F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BB26096612009E6BE9 /* RouteCreator.swift */; };
-		F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */; };
 		F648B9462601192500FBADCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9452601192500FBADCA /* AppDelegate.swift */; };
 		F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9472601192500FBADCA /* SceneDelegate.swift */; };
 		F648B94D2601192500FBADCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F648B94B2601192500FBADCA /* Main.storyboard */; };
@@ -85,7 +84,6 @@
 		F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSizeExtension.swift; sourceTree = "<group>"; };
 		F61210B826094D80009E6BE9 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		F61210BB26096612009E6BE9 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
-		F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeDetailViewController.swift; sourceTree = "<group>"; };
 		F648B9422601192500FBADCA /* DriveTribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveTribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F648B9452601192500FBADCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F648B9472601192500FBADCA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -249,9 +247,8 @@
 				F2D75CA8260A97F500EDF43C /* SignupLogin */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
 				F6FB7094260D890D00D015A5 /* ChatViewController.swift */,
-				F61210BF260970F7009E6BE9 /* TribeDetailViewController.swift */,
-				F6B42816260A4BA800148569 /* Carpool Creation */,
 				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
+				F6B42816260A4BA800148569 /* Carpool Creation */,
 				36653CE3260C1F5A008AA210 /* SettingAndProfile */,
 			);
 			path = "View Controllers";
@@ -494,7 +491,6 @@
 				36B82D412603E8E6008EC52A /* FriendListTableViewController.swift in Sources */,
 				36B82D612604354D008EC52A /* RequestTableViewCell.swift in Sources */,
 				36B82D4726040352008EC52A /* SearchableRecordDelegate.swift in Sources */,
-				F61210C0260970F7009E6BE9 /* TribeDetailViewController.swift in Sources */,
 				F6FB7099260D9D5F00D015A5 /* DateFormatter.swift in Sources */,
 				F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,

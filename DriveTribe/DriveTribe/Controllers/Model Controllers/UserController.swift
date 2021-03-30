@@ -473,43 +473,46 @@ class UserController {
     }
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
-    
-                //Save Deleted User Some where
-                let deletedUser = currentUser
-                let userRef = self.db.collection(self.deletedUserCollection)
-                userRef.document(deletedUser.uuid).setData([
-                                                            UserConstants.firstNameKey : deletedUser.firstName,
-                                                            UserConstants.lastNameKey : deletedUser.lastName,
-                                                            UserConstants.userNameKey : deletedUser.userName,
-                                                            UserConstants.groupsKey : deletedUser.groups,
-                                                            UserConstants.carInfoKey : deletedUser.carInfo,
-                                                            UserConstants.addressBookKey : deletedUser.addressBook,
-                                                            UserConstants.lastCurrentLocationKey : deletedUser.lastCurrentLocation,
-                                                            UserConstants.blockedUsersKey : deletedUser.blockedUsers,
-                                                            UserConstants.blockedUsersByCurrentUserKey : deletedUser.blockedUsersByCurrentUser,
-                                                            UserConstants.friendsKey : deletedUser.friends,
-                                                            UserConstants.friendsRequestSentKey : deletedUser.friendsRequestSent,
-                                                            UserConstants.friendsRequestReceivedKey : deletedUser.friendsRequestReceived,
-                                                            UserConstants.authIDKey : deletedUser.authID,
-                                                            UserConstants.uuidKey : deletedUser.uuid]) { (error) in
+        
+        //Save Deleted User Some where
+        let deletedUser = currentUser
+        let userRef = self.db.collection(self.deletedUserCollection)
+        
+        userRef.document(deletedUser.uuid).setData([
+            UserConstants.firstNameKey : deletedUser.firstName,
+            UserConstants.lastNameKey : deletedUser.lastName,
+            UserConstants.userNameKey : deletedUser.userName,
+            UserConstants.groupsKey : deletedUser.groups,
+            UserConstants.carInfoKey : deletedUser.carInfo,
+            UserConstants.addressBookKey : deletedUser.addressBook,
+            UserConstants.lastCurrentLocationKey : deletedUser.lastCurrentLocation,
+            UserConstants.blockedUsersKey : deletedUser.blockedUsers,
+            UserConstants.blockedUsersByCurrentUserKey : deletedUser.blockedUsersByCurrentUser,
+            UserConstants.friendsKey : deletedUser.friends,
+            UserConstants.friendsRequestSentKey : deletedUser.friendsRequestSent,
+            UserConstants.friendsRequestReceivedKey : deletedUser.friendsRequestReceived,
+            UserConstants.authIDKey : deletedUser.authID,
+            UserConstants.uuidKey : deletedUser.uuid
+            
+        ]) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return completion(.failure(.thrownError(error)))
+            } else {
+                //delete form User Document
+                let docRef = self.db.collection(self.userCollection).document(deletedUser.uuid)
+                docRef.delete { (error) in
                     if let error = error {
-                        print(error.localizedDescription)
                         return completion(.failure(.thrownError(error)))
                     } else {
-                        //delete form User Document
-                        let docRef = self.db.collection(self.userCollection).document(deletedUser.uuid)
-                               docRef.delete { (error) in
-                                   if let error = error {
-                                       return completion(.failure(.thrownError(error)))
-                                   } else {
-                                       self.logout { (results) in
-                                           switch results {
-                                           case .success(let response):
-                                               print(response)
-                                           case .failure(let error):
-                                               print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                                           }
-                                       }
+                        self.logout { (results) in
+                            switch results {
+                            case .success(let response):
+                                print(response)
+                            case .failure(let error):
+                                print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                            }
+                        }
                         return completion(.success(deletedUser))
                     }
                 }
@@ -555,24 +558,22 @@ extension UserController {
     }
     
     func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
-           guard let currentUser = currentUser else {return}
-                   db.collection(userCollection).document(currentUser.uuid).updateData([
-                       UserConstants.firstNameKey : firstName,
-                       UserConstants.lastNameKey : lastName,
-                       UserConstants.userNameKey : userName,
-                       UserConstants.carInfoKey : carInfo
-                           ]) { (error) in
-                       if let error = error {
-                           print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                           return completion(.failure(.thrownError(error)))
-                       } else {
-                           print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
-                        return completion(.success("Success"))
-                       }
-                   }
-       }
-    
-  
+        guard let currentUser = currentUser else {return}
+        db.collection(userCollection).document(currentUser.uuid).updateData([
+            UserConstants.firstNameKey : firstName,
+            UserConstants.lastNameKey : lastName,
+            UserConstants.userNameKey : userName,
+            UserConstants.carInfoKey : carInfo
+        ]) { (error) in
+            if let error = error {
+                print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
+                return completion(.success("Success"))
+            }
+        }
+    }
 }
 
 

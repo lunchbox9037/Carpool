@@ -22,7 +22,6 @@ class ProfileTableListViewController: UITableViewController {
     // MARK: - properties
     var isEditingProfile = false
     
-    
     // MARK: - lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +52,6 @@ class ProfileTableListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setAppearance()
-        
     }
     
     func populateViews() {
@@ -61,7 +59,6 @@ class ProfileTableListViewController: UITableViewController {
         self.usernameTextField.text = user.userName
         self.nameTextField.text = user.firstName
         self.lastNameTextField.text = user.lastName
-        
     }
     
     
@@ -69,7 +66,7 @@ class ProfileTableListViewController: UITableViewController {
         
         self.isEditingProfile.toggle()
         if isEditingProfile {
-            editButton.title = "Edit"
+            editButton.title = "Save"
             usernameTextField.isUserInteractionEnabled = true
             nameTextField.isUserInteractionEnabled = true
             lastNameTextField.isUserInteractionEnabled = true
@@ -121,4 +118,4 @@ class ProfileTableListViewController: UITableViewController {
             }
         }
     }
-}
+}//end

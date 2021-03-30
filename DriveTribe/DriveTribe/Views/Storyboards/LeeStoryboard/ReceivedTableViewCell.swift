@@ -33,6 +33,11 @@ class ReceivedTableViewCell: UITableViewCell {
         delegate?.acceptFriendButtonTapped(sender: self)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImage.image = nil
+    }
+    
     func updateView(friendRequestReceived: User) {
         userNameLabel.text = friendRequestReceived.userName
         acceptButton.setTitle("Accept", for: .normal)

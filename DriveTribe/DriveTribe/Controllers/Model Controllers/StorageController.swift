@@ -21,7 +21,7 @@ class StorageController {
         _ = imageRef.putData(data, metadata: nil) { (metadata, error) in
             imageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {return}
-                
+                print(downloadURL)
                 return completion(.success(downloadURL))
             }
         }
@@ -36,6 +36,32 @@ class StorageController {
                 guard let image = UIImage(data: data!) else {return}
                 return completion(.success(image))
             }
+        }
+    }
+    
+    func getImageWith(userID: String, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
+        let imageRef = storage.reference(withPath: "\(userID).jpeg")
+        imageRef.getData(maxSize: 2 * 3840 * 2160) { data, error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            } else {
+                guard let data = data else {return completion(.failure(.noData))}
+                guard let image = UIImage(data: data) else {return completion(.failure(.unableToDecode))}
+                return completion(.success(image))
+            }
+        }
+    }
+    
+    func getDownloadURL(photoURL: String, completion: @escaping (Result<URL, NetworkError>) -> Void) {
+        let imageRef = storage.reference(withPath: photoURL)
+        imageRef.downloadURL { (url, error) in
+            guard let url = url, error == nil else {
+                return completion(.failure(.invalidURL))
+            }
+            
+            let urlString = url.absoluteString
+            print("download url: \(urlString)")
+            completion(.success(url))
         }
     }
     
@@ -64,6 +90,4 @@ class StorageController {
         }
     }
 }
-
-
 //End of class
