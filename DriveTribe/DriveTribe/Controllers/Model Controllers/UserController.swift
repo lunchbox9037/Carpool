@@ -599,9 +599,38 @@ extension UserController {
                        }
                    }
        }
+    
+    func updateUserLocation(lastCurrentLocation: [Double], completion: @escaping (Result<[Double], NetworkError>) -> Void) {
+        guard let currentUser = currentUser else {return}
+        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.lastCurrentLocationKey : FieldValue.delete()]) { (error) in
+            if let error = error {
+                print("\n==== ERROR DELETED LAST CURRENT LOCATION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                self.db.collection(self.userCollection).document(currentUser.uuid).updateData([UserConstants.lastCurrentLocationKey : FieldValue.arrayUnion([self.lastCurrentLocation[0]])]) { (error) in
+                    if let error = error {
+                        print("\n==== ERROR UPDATED LAST CURRENT LOCATION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        completion(.failure(.thrownError(error)))
+                    } else {
+                        self.db.collection(self.userCollection).document(currentUser.uuid).updateData([UserConstants.lastCurrentLocationKey : FieldValue.arrayUnion([self.lastCurrentLocation[1]])]) { (error) in
+                            if let error = error {
+                                print("\n==== ERROR UPDATED LAST CURRENT LOCATION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                                completion(.failure(.thrownError(error)))
+                            } else {
+                                
+                                print("\n===================SUCCESFULLY! UPDATED USER LOCATION IN\(#function) ======================\n")
+                                completion(.success(self.lastCurrentLocation))
+
+                            }
+                            
+                        }
+
+                    }
+                }
+            }
+        }
+    }
 }
-
-
 /*
  Bugs needed to be fix!
  1) on Friend List ==> unfriend and  blocked user, the user still show on the tableView.

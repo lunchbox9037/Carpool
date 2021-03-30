@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */; };
+		1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */; };
 		16E6C8222612CFB50011EA88 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8212612CFB50011EA88 /* StyleGuide.swift */; };
-		16E6C8262612D0D80011EA88 /* DriveTribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8252612D0D80011EA88 /* DriveTribe.swift */; };
+		16E6C8262612D0D80011EA88 /* DriveTribeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */; };
 		16E6C8292612D1680011EA88 /* DriveTribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8282612D1680011EA88 /* DriveTribeButton.swift */; };
 		16E6C82C2612D1BD0011EA88 /* DriveTribeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C82B2612D1BD0011EA88 /* DriveTribeTextField.swift */; };
 		16E6C82F2612D2550011EA88 /* DriveTribeNavAndTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */; };
@@ -65,8 +67,10 @@
 
 /* Begin PBXFileReference section */
 		0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationViewController.swift; sourceTree = "<group>"; };
+		1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationSearchViewController.swift; sourceTree = "<group>"; };
 		16E6C8212612CFB50011EA88 /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
-		16E6C8252612D0D80011EA88 /* DriveTribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribe.swift; sourceTree = "<group>"; };
+		16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeLabel.swift; sourceTree = "<group>"; };
 		16E6C8282612D1680011EA88 /* DriveTribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeButton.swift; sourceTree = "<group>"; };
 		16E6C82B2612D1BD0011EA88 /* DriveTribeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeTextField.swift; sourceTree = "<group>"; };
 		16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeNavAndTabController.swift; sourceTree = "<group>"; };
@@ -140,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				16E6C8212612CFB50011EA88 /* StyleGuide.swift */,
-				16E6C8252612D0D80011EA88 /* DriveTribe.swift */,
+				16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */,
 				16E6C8282612D1680011EA88 /* DriveTribeButton.swift */,
 				16E6C82B2612D1BD0011EA88 /* DriveTribeTextField.swift */,
 				16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */,
@@ -165,6 +169,8 @@
 				F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */,
 				F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */,
 				36653CE5260C3D31008AA210 /* ProfileTableListViewController.swift */,
+				1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */,
+				1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */,
 			);
 			path = SettingAndProfile;
 			sourceTree = "<group>";
@@ -498,12 +504,14 @@
 				F2D75CA6260A97A700EDF43C /* CarpoolDestinationViewController.swift in Sources */,
 				F648BB102602FFA200FBADCA /* AddPassengerViewController.swift in Sources */,
 				36B82D6426043565008EC52A /* ReceivedTableViewCell.swift in Sources */,
-				16E6C8262612D0D80011EA88 /* DriveTribe.swift in Sources */,
+				16E6C8262612D0D80011EA88 /* DriveTribeLabel.swift in Sources */,
 				3682F1392603394100415468 /* UserController.swift in Sources */,
 				363BF347260ADCF800683A5A /* UIViewController+Extensions.swift in Sources */,
+				1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */,
 				F2D75CB1260A97F500EDF43C /* LogInViewController.swift in Sources */,
 				F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */,
 				F648B9462601192500FBADCA /* AppDelegate.swift in Sources */,
+				1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */,
 				F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */,
 				16E6C8362612D3590011EA88 /* DriveTribeSegmentedControl.swift in Sources */,
 				F2D75CB0260A97F500EDF43C /* PhotoPickerViewController.swift in Sources */,

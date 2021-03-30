@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -145,9 +146,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy1-kA-bT6">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
-                                                    <state key="normal" title="Log Out"/>
+                                                    <state key="normal" title="Update Location"/>
                                                     <connections>
-                                                        <action selector="logOutButtonTapped:" destination="dma-yZ-h5s" eventType="touchUpInside" id="QYI-JZ-WXW"/>
+                                                        <segue destination="ovS-T3-iVk" kind="show" id="g6m-s9-bQB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -159,8 +160,31 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="OhG-Of-ppG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="pNh-6O-BI0">
                                         <rect key="frame" x="0.0" y="558" width="414" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pNh-6O-BI0" id="ZE5-Mw-Gmb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTr-UU-mcP">
+                                                    <rect key="frame" x="20" y="10" width="374" height="50"/>
+                                                    <state key="normal" title="Log Out"/>
+                                                    <connections>
+                                                        <action selector="logOutButtonTapped:" destination="dma-yZ-h5s" eventType="touchUpInside" id="pkX-Cx-iW9"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="gTr-UU-mcP" secondAttribute="bottom" constant="10" id="5Iv-s9-cXQ"/>
+                                                <constraint firstItem="gTr-UU-mcP" firstAttribute="top" secondItem="ZE5-Mw-Gmb" secondAttribute="top" constant="10" id="BXb-2R-I6n"/>
+                                                <constraint firstAttribute="trailing" secondItem="gTr-UU-mcP" secondAttribute="trailing" constant="20" id="RxP-ux-LwQ"/>
+                                                <constraint firstItem="gTr-UU-mcP" firstAttribute="leading" secondItem="ZE5-Mw-Gmb" secondAttribute="leading" constant="20" id="sgZ-dX-c28"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="OhG-Of-ppG">
+                                        <rect key="frame" x="0.0" y="628" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OhG-Of-ppG" id="N8j-fg-Che">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -207,7 +231,6 @@
                         <outlet property="carInfoTextField" destination="0rS-VQ-hVs" id="lpj-UR-a4g"/>
                         <outlet property="editButton" destination="awI-8A-iFt" id="mDU-2g-DVO"/>
                         <outlet property="lastNameTextField" destination="K2z-1o-z4B" id="TCz-OL-k1C"/>
-                        <outlet property="logOutButton" destination="Iy1-kA-bT6" id="ZrV-td-yaB"/>
                         <outlet property="nameTextField" destination="mDe-pa-pHZ" id="6uh-tG-ZY5"/>
                         <outlet property="profileImageView" destination="Ife-Ap-dSF" id="vWG-Xq-Kwa"/>
                         <outlet property="updatePhotoButton" destination="fMf-2T-oCX" id="VTb-pb-u8J"/>
@@ -390,7 +413,43 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZX-ox-ZvQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232" y="858"/>
+            <point key="canvasLocation" x="2142.0289855072465" y="857.8125"/>
+        </scene>
+        <!--Update User Location View Controller-->
+        <scene sceneID="cn7-PO-s9o">
+            <objects>
+                <viewController id="3tC-SH-z1T" customClass="UpdateUserLocationViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4EJ-j0-zWV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oK0-jw-BuV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eG3-kP-Kjc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oK0-jw-BuV" firstAttribute="top" secondItem="eG3-kP-Kjc" secondAttribute="top" id="5VQ-zc-Ux3"/>
+                            <constraint firstItem="eG3-kP-Kjc" firstAttribute="trailing" secondItem="oK0-jw-BuV" secondAttribute="trailing" id="GQx-lw-2oi"/>
+                            <constraint firstItem="eG3-kP-Kjc" firstAttribute="bottom" secondItem="oK0-jw-BuV" secondAttribute="bottom" id="X8k-yV-o2X"/>
+                            <constraint firstItem="oK0-jw-BuV" firstAttribute="leading" secondItem="eG3-kP-Kjc" secondAttribute="leading" id="oIz-hP-dXc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GUq-Rg-YzM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="8tA-qg-t1J">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="3tC-SH-z1T" id="X3K-Gn-MGW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="oK0-jw-BuV" id="Ht1-Ft-PwU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mez-L2-J7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="1566"/>
         </scene>
         <!--Blocked Users Table View Controller-->
         <scene sceneID="txW-IA-s7r">
@@ -465,7 +524,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwW-HV-HdD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="858"/>
+            <point key="canvasLocation" x="3050.7246376811595" y="857.8125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nVd-uM-BJN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ovS-T3-iVk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="z6O-cb-FSI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="U6O-Iw-JVk">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3tC-SH-z1T" kind="relationship" relationship="rootViewController" id="W3D-Nv-w0L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QIN-p8-tNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="1546"/>
         </scene>
     </scenes>
     <resources>
