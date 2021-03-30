@@ -20,7 +20,7 @@ class FriendListTableViewController: UITableViewController {
     var friendRequestsReceived: [User] = []
     var resultsFriendsFromSearching: [SearchableRecordDelegate] = []
     var imageProfile: UIImage?
-
+    
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class FriendListTableViewController: UITableViewController {
         friendSearchBar.selectedScopeButtonIndex = 0
         setAppearance()
     }
-        
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -46,13 +46,13 @@ class FriendListTableViewController: UITableViewController {
         } else {
             switch friendSearchBar.selectedScopeButtonIndex {
             case 0:
-            return friends.count
+                return friends.count
             case 1:
-            return friendRequestsSent.count
+                return friendRequestsSent.count
             case 2:
-            return friendRequestsReceived.count
+                return friendRequestsReceived.count
             default:
-            return 0
+                return 0
             }
         }
     }
@@ -136,24 +136,8 @@ extension FriendListTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             isSearching = true
-            
-            
-//            UserController.shared.fetchSpecificUsersBySearchTerm(searchTerm: searchText) { [weak self] (results) in
-//                switch results {
-//                case .success(let users):
             fetchUsersBySearchTerm(searchTerm: searchText)
-                  resultsFriendsFromSearching = users
-                   // self?.users = users
-//                case .failure(let error):
-//                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-//                }
-//            }
-            
-            
-            //fetchAllUsers()
-            //fetchUsersBySearchTerm(searchTerm: searchText)
-           
-            //resultsFriendsFromSearching = users.filter{$0.matches(searchTerm: searchText, username: $0.userName)}
+           resultsFriendsFromSearching = users
             tableView.reloadData()
         } else {
             resultsFriendsFromSearching = []
@@ -210,7 +194,7 @@ extension FriendListTableViewController: UISearchBarDelegate {
 // MARK: - Helper Fuctions
 extension FriendListTableViewController {
     func setupTableView() {
-       // fetchAllUsers()
+        // fetchAllUsers()
         switch friendSearchBar.selectedScopeButtonIndex {
         case 0:
             setupViewForFriends()
@@ -300,7 +284,7 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
                     guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
                     self?.friends.remove(at: indexToBlock)
                     self?.tableView.reloadData()
-                    //self?.setupViewForFriends()
+                //self?.setupViewForFriends()
                 case .failure(let error):
                     print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -318,9 +302,9 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
                 case .success(let user):
                     guard let indexToUnfriend = self?.friends.firstIndex(of: user) else {return}
                     self?.friends.remove(at: indexToUnfriend)
-                   // self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                    // self?.tableView.deleteRows(at: [indexPath], with: .fade)
                     self?.tableView.reloadData()
-                  //  self?.setupViewForFriends()
+                //  self?.setupViewForFriends()
                 case .failure(let error):
                     print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
@@ -380,7 +364,7 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
                 DispatchQueue.main.async {
                     self?.presentAlertToUser(titleAlert: "Friend Request Sent!", messageAlert: "You just request \(userToRequest.userName) to be your friend!")
                     self?.friendSearchBar.searchTextField.text = ""
-                print("===== SUCCESSFULLY SENT FRIEND REQUEST!! Current User is requesting \(userToRequest.firstName) to be a friend. \(#function)======")
+                    print("===== SUCCESSFULLY SENT FRIEND REQUEST!! Current User is requesting \(userToRequest.firstName) to be a friend. \(#function)======")
                 }
             case .failure(let error):
                 self?.presentAlertToUser(titleAlert: "Error! Friend Request Sent!", messageAlert: "You have already sent friend request to \(userToRequest.userName)! Please, just wait for \(userToRequest.userName) to accept you as a friend.")
@@ -397,6 +381,6 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
  UI BUG
  1) Friend Tap ==> When tapped unfriend / Blocked, the friendToUnfriend did not get delete from tableView
  2) Block Users ==> When unblock happen the same thing.
-
+ 
  //______________________________________________________________________________________
  */
