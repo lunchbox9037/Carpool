@@ -32,6 +32,11 @@ class UserTableViewCell: UITableViewCell {
         delegate?.requestButtonTapped(sender: self)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImage.image = nil
+    }
+    
     func updateView(user: User) {
         userNameLabel.text = user.userName
         requestButton.setTitle("Request", for: .normal)

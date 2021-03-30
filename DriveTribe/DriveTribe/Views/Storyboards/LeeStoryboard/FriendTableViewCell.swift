@@ -39,6 +39,11 @@ class FriendTableViewCell: UITableViewCell {
         delegate?.blockFriendButtonTapped(sender: self)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImage.image = nil
+    }
+    
     // MARK: - Helper Fuctions
     func updateView(friend: User) {
         userNameLabel.text = friend.userName

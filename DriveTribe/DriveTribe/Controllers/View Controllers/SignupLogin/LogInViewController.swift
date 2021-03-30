@@ -132,8 +132,8 @@ class LogInViewController: UIViewController {
             presentAlertToUser(titleAlert: "Login information invalid.", messageAlert: "Please enter a valid username and password!")
             return
         }
-
-        UserController.shared.loginWith(email: email, password: password) { (results) in
+        spinner.show(in: view)
+        UserController.shared.loginWith(email: email, password: password) { [weak self] (results) in
             switch results {
             case .success(let results):
                 print("This is email of loggin user : \(results)")
@@ -141,7 +141,8 @@ class LogInViewController: UIViewController {
                     DispatchQueue.main.async {
                         switch result {
                         case .success(_):
-                            self.gotoTabbarVC()
+                            self?.spinner.dismiss()
+                            self?.gotoTabbarVC()
                         case .failure(let error):
                             print(error.localizedDescription)
                         }

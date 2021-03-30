@@ -11,8 +11,19 @@ import SafariServices
 extension UIViewController: SFSafariViewControllerDelegate {
 
     //create function for meetup route >>>>>
-    func createMeetupRouteWithGoogleMaps() {
+    func createMeetupRoute(from carpool: Carpool, with driver: User) {
         //create route without passengers
+        var originCoordinates: String = ""
+        originCoordinates.append(String(driver.lastCurrentLocation[0]) + ",")
+        originCoordinates.append(String(driver.lastCurrentLocation[1]))
+        
+        let destination = carpool.destination
+        var destinationCoordinates: String = ""
+        destinationCoordinates.append(String(destination[0]) + ",")
+        destinationCoordinates.append(String(destination[1]))
+        print(destinationCoordinates)
+        
+        openGoogleMapsWith(originCoordinates: originCoordinates, stopsCoordinates: nil, destinationCoordinates: destinationCoordinates)
     }
     
     func createCarpoolRoute(from carpool: Carpool, with driver: User, and passengers: [User]) {
@@ -39,7 +50,7 @@ extension UIViewController: SFSafariViewControllerDelegate {
         openGoogleMapsWith(originCoordinates: originCoordinates, stopsCoordinates: stopsCoordinates, destinationCoordinates: destinationCoordinates)
     }
     
-    func openGoogleMapsWith(originCoordinates: String, stopsCoordinates: String, destinationCoordinates: String) {
+    func openGoogleMapsWith(originCoordinates: String, stopsCoordinates: String?, destinationCoordinates: String) {
         //"https://www.google.com/maps/dir/?api=1
 //        &waypoints=Golden+Gate+Bridge%7CAlcatraz
 //        &destination=Oracle+Park
@@ -55,7 +66,11 @@ extension UIViewController: SFSafariViewControllerDelegate {
         let travelModeQuery = URLQueryItem(name: "travelmode", value: "driving")
         let navigateQuery = URLQueryItem(name: "dir_action", value: "navigate")
         
-        components?.queryItems = [apiQuery, originQuery, stopsQuery, destinationQuery, travelModeQuery, navigateQuery]
+        components?.queryItems = [apiQuery, originQuery, destinationQuery, travelModeQuery, navigateQuery]
+        
+        if stopsCoordinates != nil {
+            components?.queryItems?.append(stopsQuery)
+        }
         guard let finalURL = components?.url?.absoluteString else {return}
         print(finalURL)
         

@@ -33,6 +33,11 @@ class RequestTableViewCell: UITableViewCell {
         delegate?.cancelFriendRequestButtonTapped(sender: self)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImage.image = nil
+    }
+    
     func updateView(friendRequestSent: User) {
         userNameLabel.text = friendRequestSent.userName
         cancelButton.setTitle("Cancel", for: .normal)

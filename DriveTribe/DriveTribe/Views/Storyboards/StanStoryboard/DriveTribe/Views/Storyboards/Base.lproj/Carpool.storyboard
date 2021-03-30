@@ -26,7 +26,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5zK-Ug-5ng">
                                 <rect key="frame" x="0.0" y="41" width="414" height="733"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carpoolCell" textLabel="xne-ZO-r8f" detailTextLabel="2yg-Ce-7Y5" imageView="ViL-YC-V79" style="IBUITableViewCellStyleSubtitle" id="qBL-92-IBj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carpoolCell" textLabel="xne-ZO-r8f" detailTextLabel="2yg-Ce-7Y5" imageView="ViL-YC-V79" style="IBUITableViewCellStyleSubtitle" id="qBL-92-IBj">
                                         <rect key="frame" x="20" y="55.5" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qBL-92-IBj" id="T0E-eX-XP8">
@@ -53,6 +53,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="FkS-pi-BtO" kind="show" identifier="toCarpoolChat" id="8yB-gF-bid"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -105,15 +108,27 @@
             <objects>
                 <viewController storyboardIdentifier="tribeDetail" id="FkS-pi-BtO" customClass="ChatViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IOY-jm-tmH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="gHR-L7-mdE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="VZd-8b-PiF">
+                        <barButtonItem key="leftBarButtonItem" id="FAo-CL-Ys8"/>
+                        <barButtonItem key="rightBarButtonItem" title="Start Nav" image="map" catalog="system" id="UJG-Rf-Erl">
+                            <connections>
+                                <action selector="startRouteButtonTapped:" destination="FkS-pi-BtO" id="ukH-0h-cvf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="startRouteButton" destination="UJG-Rf-Erl" id="cjb-TW-Tq4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0uG-S2-Y5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-84.057971014492765" y="41.517857142857139"/>
+            <point key="canvasLocation" x="-84" y="38"/>
         </scene>
         <!--Options-->
         <scene sceneID="sm3-O7-cwF">
@@ -262,6 +277,7 @@
     </scenes>
     <resources>
         <image name="car.2" catalog="system" width="128" height="72"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

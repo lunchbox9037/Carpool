@@ -93,15 +93,37 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? ChatViewController else {return}
-        
-        let nav = UINavigationController(rootViewController: detailVC)
-        nav.navigationItem.backBarButtonItem?.isEnabled = true
-        detailVC.tribe = dataSource[indexPath.row]
-        
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let carpoolToDelete = dataSource[indexPath.row]
+            //call delete functions
+            guard let indexToDelete = dataSource.firstIndex(of: carpoolToDelete) else {return}
+            dataSource.remove(at: indexToDelete)
+            CarpoolController.shared.delete(carpool: carpoolToDelete) { (_) in}
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCarpoolChat" {
+            guard let indexPath =  carpoolTableView.indexPathForSelectedRow,
+                  let destination = segue.destination as? ChatViewController else {return}
+            let carpoolToSend = dataSource[indexPath.row]
+            destination.tribe = carpoolToSend
+        }
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? ChatViewController else {return}
+//
+//        let nav = UINavigationController(rootViewController: detailVC)
+//        
+//        detailVC.tribe = dataSource[indexPath.row]
+//        
+//        
+//        nav.modalPresentationStyle = .fullScreen
+//        present(nav, animated: true, completion: nil)
+//    }
 }//end extension

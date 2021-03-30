@@ -71,7 +71,8 @@
             <objects>
                 <navigationController id="cxe-h3-y34" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Carpool Groups" image="car" catalog="system" id="XUR-ll-63A"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pg5-75-bea">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pg5-75-bea">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -105,7 +106,8 @@
             <objects>
                 <navigationController id="TVF-Gu-8Gy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Profile" image="person.fill" catalog="system" id="lGP-iz-ruw"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IdA-NX-Sct">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="IdA-NX-Sct">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
