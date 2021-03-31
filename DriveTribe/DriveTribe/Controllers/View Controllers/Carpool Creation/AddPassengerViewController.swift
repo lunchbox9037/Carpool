@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import JGProgressHUD
 
 class AddPassengerViewController: UIViewController {
     // MARK: - Outlets
@@ -15,6 +16,7 @@ class AddPassengerViewController: UIViewController {
     
     // MARK: - Properties
     var friends: [User] = []
+    private var spinner = JGProgressHUD(style: .dark)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -53,11 +55,14 @@ class AddPassengerViewController: UIViewController {
     }//end func
     
     func getCurrentUserFriends() {
+        spinner.textLabel.text = "Fetching Friends"
+        spinner.show(in: view)
         guard let currentUser = UserController.shared.currentUser else {return print("nouser logged in")}
         UserController.shared.fetchFriendsFor(currentUser: currentUser) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let friends):
+                    self?.spinner.dismiss()
                     self?.friends = friends
                     self?.passengerCollectionView.reloadData()
                 case .failure(let error):
