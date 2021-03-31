@@ -20,23 +20,20 @@ class DriveTribeNavigationController: UINavigationController {
         UINavigationBar.appearance().tintColor = .dtTextTribe
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.dtBlueTribe]
       UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textTitleCurlyDriveTribe, size: 25)  ?? UIFont(name: "optima", size: 25)!]
+       
+        
     }
 }
 
-////
 class DriveTribeTabBarController: UITabBarController {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupTapBar()
     }
-//extension UITabBarController {
     func setupTapBar(){
-        UINavigationBar.appearance().barTintColor = .dtBlueTribe
-        UINavigationBar.appearance().tintColor = .dtTextTribe
-       UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textTitleCurlyDriveTribe, size: 25) ?? UIFont(name: "optima", size: 25)!]
      UITabBar.appearance().barTintColor = .dtBlueTribe
    UITabBar.appearance().tintColor = .dtTextTribe
-
+        UITabBar.appearance().unselectedItemTintColor = .dtLightTribe
     }
 }
 
