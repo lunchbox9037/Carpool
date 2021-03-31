@@ -13,7 +13,6 @@ class DriveTribeTableViewController: UITableView {
         setupTableView()
     }
     
-  
     func setupTableView(){
         self.backgroundColor = UIColor.dtBackground
         self.tintColor = UIColor.dtTextTribe

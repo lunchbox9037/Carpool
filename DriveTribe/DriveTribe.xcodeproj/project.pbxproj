@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160AF2D726152EC1005CE3AE /* Champagne & Limousines Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 160AF2D626152EC1005CE3AE /* Champagne & Limousines Bold.ttf */; };
 		1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */; };
 		1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */; };
 		164191AA2613E7CA007B2D76 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191A92613E7CA007B2D76 /* sweet purple.ttf */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		160AF2D626152EC1005CE3AE /* Champagne & Limousines Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines Bold.ttf"; sourceTree = "<group>"; };
 		1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationViewController.swift; sourceTree = "<group>"; };
 		1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationSearchViewController.swift; sourceTree = "<group>"; };
 		164191A92613E7CA007B2D76 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
@@ -142,9 +144,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160AF2C126152AC6005CE3AE /* FriendsVC */ = {
+			isa = PBXGroup;
+			children = (
+				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
+			);
+			path = FriendsVC;
+			sourceTree = "<group>";
+		};
 		164191A82613E797007B2D76 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				160AF2D626152EC1005CE3AE /* Champagne & Limousines Bold.ttf */,
 				164191AF2613E802007B2D76 /* Christmas-Wish.ttf */,
 				164191AC2613E7E6007B2D76 /* Please write me a song.ttf */,
 				164191A92613E7CA007B2D76 /* sweet purple.ttf */,
@@ -298,7 +309,7 @@
 				F2D75CA8260A97F500EDF43C /* SignupLogin */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
 				F6FB7094260D890D00D015A5 /* ChatViewController.swift */,
-				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
+				160AF2C126152AC6005CE3AE /* FriendsVC */,
 				F6B42816260A4BA800148569 /* Carpool Creation */,
 				36653CE3260C1F5A008AA210 /* SettingAndProfile */,
 			);
@@ -462,6 +473,7 @@
 				164191AA2613E7CA007B2D76 /* sweet purple.ttf in Resources */,
 				164191B02613E802007B2D76 /* Christmas-Wish.ttf in Resources */,
 				F648B94D2601192500FBADCA /* Main.storyboard in Resources */,
+				160AF2D726152EC1005CE3AE /* Champagne & Limousines Bold.ttf in Resources */,
 				3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
