@@ -34,7 +34,6 @@ class UserLocationViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
 }//end class
 
 extension UserLocationViewController: UserLocationSearchViewControllerDelegate {

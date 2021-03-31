@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class SignupViewController: UIViewController {
     // MARK: - Views
@@ -117,7 +118,7 @@ class SignupViewController: UIViewController {
     private let signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up!", for: .normal)
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = UIColor(named: "loginButtonColor")
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -127,6 +128,7 @@ class SignupViewController: UIViewController {
     
     // MARK: - Properties
     var selectedImage: UIImage?
+    private let spinner = JGProgressHUD(style: .dark)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -172,8 +174,8 @@ class SignupViewController: UIViewController {
         lastNameField.frame = CGRect(x: 30, y: firstNameField.bottom + 10, width: scrollView.width-60, height: 44)
         emailField.frame = CGRect(x: 30, y: lastNameField.bottom + 10, width: scrollView.width-60, height: 44)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width-60, height: 44)
-        getLocationButton.frame = CGRect(x: 60, y: passwordField.bottom + 10, width: scrollView.width-110, height: 44)
-        signUpButton.frame = CGRect(x: 30, y: getLocationButton.bottom + 20, width: scrollView.width-60, height: 44)
+        getLocationButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width-60, height: 44)
+        signUpButton.frame = CGRect(x: 30, y: getLocationButton.bottom + 30, width: scrollView.width-60, height: 44)
 
     }
     
@@ -185,7 +187,7 @@ class SignupViewController: UIViewController {
     @objc func locationButtonTapped() {
         guard let locationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "locationSelection") as? UserLocationViewController else {return}
         let nav = UINavigationController(rootViewController: locationVC)
-        nav.modalPresentationStyle = .fullScreen
+        nav.modalPresentationStyle = .popover
         present(nav, animated: true, completion: nil)
     }
     
@@ -199,22 +201,26 @@ class SignupViewController: UIViewController {
               let password = passwordField.text, !password.isEmpty, password.count >= 6 else {
             
             //alert controller here
-            presentAlertToUser(titleAlert: "More Info Needed!", messageAlert: "Please fill out all fields and select a current location to begin creating tribes.\n(password must be at least 6 characters)")
+            presentAlertToUser(titleAlert: "More Info Needed!", messageAlert: "Please fill out all fields and select a current location to begin.\n(password must be at least 6 characters)")
             return
         }
-              
-        UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
-            switch results {
-            case .success(let user):
-                UserController.shared.currentUser = user
-                if let image = self.selectedImage {
-                    print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
-                    self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+        
+        if UserController.shared.lastCurrentLocation.count == 0 {
+            UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
+                switch results {
+                case .success(let user):
+                    UserController.shared.currentUser = user
+                    if let image = self.selectedImage {
+                        print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
+                        self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+                    }
+                    self.gotoTabbarVC()
+                case .failure(let error):
+                    print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
-                self.gotoTabbarVC()
-            case .failure(let error):
-                print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
+        } else {
+            presentAlertToUser(titleAlert: "More Info Needed!", messageAlert: "Please select a current location to begin using DriveTribe.")
         }
     }
     

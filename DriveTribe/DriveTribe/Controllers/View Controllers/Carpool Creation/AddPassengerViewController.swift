@@ -16,7 +16,6 @@ class AddPassengerViewController: UIViewController {
     // MARK: - Properties
     var friends: [User] = []
     
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,6 @@ class AddPassengerViewController: UIViewController {
         super.viewWillAppear(animated)
         setAppearance()
         getCurrentUserFriends()
-        //        createMockMessage()
     }
     
     // MARK: - Actions
@@ -44,10 +42,8 @@ class AddPassengerViewController: UIViewController {
         
         passengerCollectionView.delegate = self
         passengerCollectionView.dataSource = self
-        passengerCollectionView.isPrefetchingEnabled = true
         passengerCollectionView.register(PassengerCollectionViewCell.self, forCellWithReuseIdentifier: "passengerCell")
         passengerCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        passengerCollectionView.reloadData()
     }//end func
     
     func makeLayout() -> UICollectionViewCompositionalLayout {
@@ -86,8 +82,13 @@ extension AddPassengerViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        CarpoolController.shared.passengers.append(friends[indexPath.row].uuid)
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
+    
+        if collectionView.cellForItem(at: indexPath)?.backgroundColor?.accessibilityName != "green" {
+            CarpoolController.shared.passengers.append(friends[indexPath.row].uuid)
+            collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
+        } else {
+            collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
+        }
     }
 }//end extension
 
