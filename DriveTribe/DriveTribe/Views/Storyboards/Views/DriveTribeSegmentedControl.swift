@@ -15,8 +15,7 @@ class DriveTribeSegmentedControl: UISegmentedControl {
     }
 
     func setupView() {
-        
-        let titleFont : UIFont = UIFont(name: FontNames.textDriveTribe, size: 18) ?? UIFont(name: "optima", size: 15)!
+        let titleFont : UIFont = UIFont(name: FontNames.textBoldDriveTribe, size: 20) ?? UIFont(name: "optima", size: 15)!
                let attributes = [
                 NSAttributedString.Key.foregroundColor : UIColor.dtTextTribe,
                    NSAttributedString.Key.font : titleFont

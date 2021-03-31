@@ -46,13 +46,15 @@ class FriendTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Helper Fuctions
     func updateView(friend: User) {
-        userNameLabel.text = friend.userName
+        userNameLabel.text = friend.userName.capitalized
         unfriendButton.setTitle("Unfriend", for: .normal)
         blockButton.tintColor = .dtWhiteBlackTribe
         blockButton.setTitle("🚫", for: .normal)
         blockButton.addCornerRadius()
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
+        userNameLabel.font = UIFont(name: FontNames.textDriveTribe, size: 20)
+        userNameLabel.textColor = .dtTextDarkLightTribe
     }
 }
 

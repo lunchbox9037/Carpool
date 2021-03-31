@@ -23,7 +23,6 @@ class DriveTribeTextField: UITextField {
                 self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.dtLightTribe.cgColor
                 self.layer.masksToBounds = true
-        
     }
     
     func setupPlaceholderText() {
@@ -35,6 +34,6 @@ class DriveTribeTextField: UITextField {
     }
     
     func updateFont(){
-      self.font = UIFont(name: FontNames.textDriveTribe, size: 18) ?? UIFont(name: "optima", size: 18)!
+      self.font = UIFont(name: FontNames.textDriveTribe, size: 20) ?? UIFont(name: "optima", size: 18)!
     }
 }

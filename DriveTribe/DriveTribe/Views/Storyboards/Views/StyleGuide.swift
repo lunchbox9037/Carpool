@@ -10,9 +10,10 @@ import UIKit
 //NEED TO CHANGE FONT AND COLOR
 
 struct FontNames {
-    static let textTitleBoldDriveTribe = "sweet purple.ttf"
-    static let textDriveTribe = "Please write me a song.ttf"
-    static let textTitleCurlyDriveTribe = "Christmas-Wish.ttf"
+    static let textTitleBoldDriveTribe = "sweetpurple"
+    static let textDriveTribe = "Champagne & Limousines Bold"
+    static let textTitleCurlyDriveTribe = "ChristmasWishRegular"
+    static let textBoldDriveTribe = "Champagne & Limousines Bold"
 }
 
 extension UIColor {
@@ -24,4 +25,5 @@ extension UIColor {
     static let dtTextDarkLightTribe = UIColor(named:  "textDarkLightTribe")!
     static let dtAllBlueTribeTribe = UIColor(named:  "allBlueTribe")!
     static let dtCarpoolCellBlue = UIColor(named:  "carpoolCellBlue")!
+    static let dtBlueTribeLight  = UIColor(named: "blueTribeLight")!
 }
