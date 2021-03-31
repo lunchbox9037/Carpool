@@ -41,6 +41,9 @@ class DriveTribeCarpoolCell: UITableViewCell {
     func setupTableView(){
         self.backgroundColor = UIColor.dtCarpoolCellBlue
         self.tintColor = UIColor.dtTextTribe
+        self.imageView?.tintColor = .dtTextDarkLightTribe
+        self.textLabel?.textColor = .dtTextDarkLightTribe
+        self.detailTextLabel?.textColor = .dtTextDarkLightTribe
     }
 }
 

@@ -22,7 +22,6 @@ class DriveTribeNavigationController: UINavigationController {
     }
 }
 
-////
 class DriveTribeTabBarController: UITabBarController {
     override func awakeFromNib() {
         super.awakeFromNib()
