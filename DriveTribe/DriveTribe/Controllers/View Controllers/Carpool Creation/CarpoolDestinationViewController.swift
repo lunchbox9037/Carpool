@@ -31,6 +31,14 @@ class CarpoolDestinationViewController: UIViewController {
         panel.addPanel(toParent: self)
         panel.move(to: .tip, animated: false)
     }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard CarpoolController.shared.destination != nil else {
+            presentAlertToUser(titleAlert: "Whoops", messageAlert: "Please select a destination!")
+            return false
+        }
+        return true
+    }
 }
 
 extension CarpoolDestinationViewController: DestinationSearchViewControllerDelegate{

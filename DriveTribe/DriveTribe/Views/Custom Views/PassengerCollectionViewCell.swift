@@ -8,6 +8,9 @@
 import UIKit
 
 public class PassengerCollectionViewCell: UICollectionViewCell {
+    // MARK: - Properties
+    private var imageCache = NSCache<NSString, UIImage>()
+
     // MARK: - Views
     var container: UIView = {
         let view = UIView()
@@ -86,18 +89,21 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(passenger: User) {
-        
         profileImageView.image = UIImage(systemName: "person.circle")
-
-        StorageController.shared.getImage(user: passenger) { [weak self] (results) in
-            guard let self = self else {return}
-            DispatchQueue.main.async {
-                switch results {
-                case .success(let image):
-                    self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.height / 2
-                    self.profileImageView.image = image
-                case .failure(let error):
-                    print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+        if let image = imageCache.object(forKey: passenger.uuid as NSString) {
+            profileImageView.image = image
+        } else {
+            StorageController.shared.getImage(user: passenger) { [weak self] (results) in
+                guard let self = self else {return}
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let image):
+                        self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.height / 2
+                        self.profileImageView.image = image
+                        self.imageCache.setObject(image, forKey: passenger.uuid as NSString)
+                    case .failure(let error):
+                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                    }
                 }
             }
         }

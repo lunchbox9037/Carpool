@@ -48,10 +48,6 @@ class FriendTableViewCell: DriveTribeTableViewCell {
     func updateView(friend: User) {
         userNameLabel.text = friend.userName
         unfriendButton.setTitle("Unfriend", for: .normal)
-//        unfriendButton.backgroundColor = .systemBlue
-//        unfriendButton.tintColor = .white
-//        unfriendButton.layer.cornerRadius = 8
-//        blockButton.backgroundColor = .systemRed
         blockButton.tintColor = .dtWhiteBlackTribe
         blockButton.setTitle("🚫", for: .normal)
         blockButton.addCornerRadius()
@@ -59,4 +55,5 @@ class FriendTableViewCell: DriveTribeTableViewCell {
         profileImage.image = UIImage(systemName: "person")
     }
 }
+
 
