@@ -22,12 +22,6 @@ class CarpoolSettingsViewController: UIViewController {
         setAppearance()
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        //Fix this tomorrow!!!
-//        super.viewWillDisappear(animated)
-//        getSettings()
-//    }
-    
     func getSettings() {
         if workPlayModeSegment.selectedSegmentIndex == 0 {
             CarpoolController.shared.mode = "work"

@@ -23,7 +23,6 @@ class DriveTribeSegmentedControl: UISegmentedControl {
                ]
         self.backgroundColor = .dtBlueTribe
         self.selectedSegmentTintColor = .dtLightTribe
-        self.selectedSegmentIndex = 1
         self.setTitleTextAttributes(attributes, for: .normal)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.dtLightTribe.cgColor

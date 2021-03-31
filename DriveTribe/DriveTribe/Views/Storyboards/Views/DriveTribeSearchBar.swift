@@ -31,7 +31,7 @@ class DriveTribeSearchBar: UISearchBar {
         self.tintColor = .red
         self.barTintColor = .dtBlueTribe
         self.searchTextField.font = UIFont(name: FontNames.textDriveTribe, size: 20) ?? UIFont(name: "optima", size: 18)!
-        self.scopeBarButtonTitleTextAttributes(for: .highlighted)
+        self.scopeBarButtonTitleTextAttributes(for: .normal)
         self.setScopeBarButtonTitleTextAttributes(attributes, for: .normal)
        
         //self.scopeBarBackgroun
