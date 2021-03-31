@@ -28,6 +28,7 @@ class CarpoolController {
     let carpoolCollection = "carpools"
     let userCollection = "users"
     let messageCollection = "messages"
+    let rideTribeIconKey = "RideTribeIcon"
     
     // MARK: - CRUD
     func createCarpool() {
@@ -63,7 +64,52 @@ class CarpoolController {
                 print("\n===== SUCCESSFULLY! CREATED CARPOOL IN CLOUD FIRESTORE DATABASE=====\n")
             }
         }
-    }
+        
+        let sender = Sender(photoURL: "", senderId: rideTribeIconKey, displayName: "Chat Bot")
+        let message = Message(sender: sender, messageId: UUID().uuidString, sentDate: Date(), kind: .text("Start chatting with your RideTribe!"))
+        
+        let messageDate = Date()
+        let dateString = ChatViewController.dateFormatter.string(from: messageDate)
+        
+        var content = ""
+        switch message.kind {
+        case .text(let messageText):
+            content = messageText
+        case .attributedText(_):
+            break
+        case .photo(_):
+            break
+        case .video(_):
+            break
+        case .location(_):
+            break
+        case .emoji(_):
+            break
+        case .audio(_):
+            break
+        case .contact(_):
+            break
+        case .linkPreview(_):
+            break
+        case .custom(_):
+            break
+        }
+        
+        let newMessageEntry: [String:Any] = [
+            "id" : message.messageId,
+            "type" : message.kind.messageKindString,
+            "content" : content,
+            "date" : dateString,
+            "senderID" : sender.senderId,
+            "senderUserName" : sender.displayName
+        ]
+
+        self.db.collection(self.carpoolCollection).document(newCarpool.uuid).collection(messageCollection).addDocument(data: newMessageEntry) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }//end func
     
     func addCarpoolToCurrentUsersGroup(carpool: Carpool) {
         guard let currentUser = UserController.shared.currentUser else {return}
@@ -72,7 +118,7 @@ class CarpoolController {
                 print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
             }
         }
-    }
+    }//end func
     
     func addCarpoolToPassengersGroup(carpool: Carpool) {
         if passengers.count != 0 {
@@ -137,7 +183,7 @@ class CarpoolController {
                 }
             }
         }
-    }
+    }//end func
     
     func fetchDriverIn(carpool: Carpool, completion: @escaping (Result<User, NetworkError>) -> Void) {
         db.collection(carpoolCollection).document(carpool.uuid).getDocument { (querySnapshot, error) in
@@ -158,7 +204,7 @@ class CarpoolController {
                 return completion(.success(driver))
             }
         }
-    }
+    }//end func
     
     func sortCarpoolsByWorkPlay() {
         self.work = carpools.filter({ (carpool) -> Bool in
@@ -168,7 +214,7 @@ class CarpoolController {
         self.play = carpools.filter({ (carpool) -> Bool in
             return carpool.mode == "play"
         })
-    }
+    }//end func
     
     
     func sendMessage(message: Message, carpoolID: String) {
@@ -177,11 +223,10 @@ class CarpoolController {
         let messageDate = message.sentDate
         let dateString = ChatViewController.dateFormatter.string(from: messageDate)
         
-        var newMessage = ""
-        
+        var content = ""
         switch message.kind {
         case .text(let messageText):
-            newMessage = messageText
+            content = messageText
         case .attributedText(_):
             break
         case .photo(_):
@@ -205,7 +250,7 @@ class CarpoolController {
         let newMessageEntry: [String:Any] = [
             "id" : message.messageId,
             "type" : message.kind.messageKindString,
-            "content" : newMessage,
+            "content" : content,
             "date" : dateString,
             "senderID" : currentUser.uuid,
             "senderUserName" : currentUser.userName
@@ -216,7 +261,7 @@ class CarpoolController {
                 print(error.localizedDescription)
             }
         }
-    }
+    }//end func
     
     func getAllMessagesForConversation(with carpoolID: String, completion: @escaping (Result<[Message], NetworkError>) -> Void) {
         db.collection(carpoolCollection).document(carpoolID).collection(messageCollection).addSnapshotListener { (querySnapshot, error) in
@@ -232,7 +277,7 @@ class CarpoolController {
                       let messageID = dictionary["id"] as? String,
                       let content = dictionary["content"] as? String,
                       let senderID = dictionary["senderID"] as? String,
-                      let type = dictionary["type"] as? String,
+                      let _ = dictionary["type"] as? String,
                       let dateString = dictionary["date"] as? String,
                       let date = ChatViewController.dateFormatter.date(from: dateString) else {return nil}
 
@@ -243,7 +288,7 @@ class CarpoolController {
 
             completion(.success(messages))
         }
-    }
+    }//end func
     
     func delete(carpool: Carpool, completion: @escaping (Result<String, NetworkError>) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
@@ -271,5 +316,5 @@ class CarpoolController {
                 completion(.success("success"))
             }
         }
-    }
+    }//end func
 }//end class

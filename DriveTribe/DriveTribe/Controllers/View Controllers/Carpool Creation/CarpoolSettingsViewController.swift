@@ -15,6 +15,7 @@ class CarpoolSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,3 +50,9 @@ class CarpoolSettingsViewController: UIViewController {
     }
     
 }//end class
+
+extension CarpoolSettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
+}

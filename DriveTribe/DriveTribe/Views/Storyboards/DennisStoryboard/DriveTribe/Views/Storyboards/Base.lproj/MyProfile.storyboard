@@ -63,7 +63,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username here..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mDe-pa-pHZ" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -84,7 +84,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter first name..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Dj-74-vRn" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -105,7 +105,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter last name..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-1o-z4B" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" smartDashesType="no"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -126,7 +126,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter car info..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-VQ-hVs" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -146,7 +146,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy1-kA-bT6" customClass="DriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="50" y="10" width="314" height="50"/>
-                                                    <state key="normal" title="📍Update Location"/>
+                                                    <state key="normal" title="📍 Update Location"/>
                                                     <connections>
                                                         <segue destination="ovS-T3-iVk" kind="show" id="g6m-s9-bQB"/>
                                                     </connections>
@@ -247,7 +247,7 @@
         <scene sceneID="tfa-Yo-z76">
             <objects>
                 <tableViewController id="1AU-IN-uR0" customClass="SettingsTableViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qcs-NW-qWt" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qcs-NW-qWt" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -397,7 +397,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZX-ox-ZvQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="858"/>
+            <point key="canvasLocation" x="1107" y="858"/>
         </scene>
         <!--Update User Location View Controller-->
         <scene sceneID="cn7-PO-s9o">
