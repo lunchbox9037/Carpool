@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,13 +13,15 @@
         <scene sceneID="9ji-vO-ycd">
             <objects>
                 <tableViewController storyboardIdentifier="friendListVCStoryboardID" id="1IX-sQ-MZ6" customClass="FriendListTableViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KwD-9e-myr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KwD-9e-myr" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" showsScopeBar="YES" id="tzb-bh-pAV">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Add a friend by username..." showsCancelButton="YES" showsScopeBar="YES" id="tzb-bh-pAV" customClass="DriveTribeSearchBar" customModule="DriveTribe" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" name="blueTribe"/>
+                            <color key="barTintColor" name="blueTribe"/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
                                 <string>Friends</string>
@@ -45,16 +48,16 @@
                                                         <constraint firstAttribute="width" secondItem="dk3-oO-Snf" secondAttribute="height" multiplier="1:1" id="x2c-KL-ihH"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(user name)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELG-5D-yHP">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(user name)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELG-5D-yHP" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="88" y="0.0" width="202" height="80.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="58X-Ci-e6e">
                                                     <rect key="frame" x="298" y="0.0" width="100" height="80.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyI-IK-ThD">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyI-IK-ThD" customClass="tableViewDriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="36.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="Je2-Tc-W6V"/>
@@ -110,7 +113,7 @@
                                                         <constraint firstAttribute="width" secondItem="0np-fI-k22" secondAttribute="height" multiplier="1:1" id="g1U-fZ-E0J"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-LF-hRP">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-LF-hRP" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="88" y="0.0" width="202" height="80.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -119,7 +122,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U5e-3B-fge">
                                                     <rect key="frame" x="298" y="0.0" width="100" height="80.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bD-K5-bW9">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bD-K5-bW9" customClass="tableViewDriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="22.5" width="100" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="ZfT-da-cX8"/>
@@ -165,7 +168,7 @@
                                                         <constraint firstAttribute="width" secondItem="ldJ-zd-bw1" secondAttribute="height" multiplier="1:1" id="lWr-JJ-dNN"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mq-hH-hx0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mq-hH-hx0" customClass="TitleDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="88.5" y="0.0" width="201.5" height="80.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -174,7 +177,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-JZ-Ug0">
                                                     <rect key="frame" x="298" y="0.0" width="100" height="80.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCr-QX-y56">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCr-QX-y56" customClass="tableViewDriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="22.5" width="100" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="P2g-6I-96W"/>
@@ -220,7 +223,7 @@
                                                         <constraint firstAttribute="width" secondItem="S3E-lq-WYg" secondAttribute="height" multiplier="1:1" id="iLH-Sb-bk7"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lA-qZ-Ext">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lA-qZ-Ext" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="88.5" y="0.0" width="201.5" height="80.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -229,7 +232,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NGa-o4-3E1">
                                                     <rect key="frame" x="298" y="0.0" width="100" height="80.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbE-RS-gXB">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbE-RS-gXB" customClass="tableViewDriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="22.5" width="100" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="eYb-SD-8Ud"/>
@@ -274,6 +277,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="blueTribe">
+            <color red="0.2196078431372549" green="0.71372549019607845" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

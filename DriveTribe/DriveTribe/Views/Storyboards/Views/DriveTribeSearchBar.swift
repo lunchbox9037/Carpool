@@ -15,21 +15,21 @@ class DriveTribeSearchBar: UISearchBar {
     }
     
     func setupView() {
-        let titleFont : UIFont = UIFont(name: FontNames.textMoneytorGoodLetter, size: 18)!
+        let titleFont: UIFont = UIFont(name: FontNames.textDriveTribe, size: 18) ?? UIFont(name: "optima", size: 15)!
                let attributes = [
-                NSAttributedString.Key.foregroundColor : UIColor.mtTextLightBrown,
+                NSAttributedString.Key.foregroundColor : UIColor.dtTextTribe,
                    NSAttributedString.Key.font : titleFont
                ]
         self.addCornerRadius()
-        self.searchTextField.textColor = .mtTextLightBrown
-        self.backgroundColor = .mtLightYellow
-        self.layer.borderWidth = 2.5
-        self.layer.borderColor = UIColor.mtLightYellow.cgColor
+        self.searchTextField.textColor = .dtTextTribe
+        self.backgroundColor = .dtBlueTribe
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.dtBlueTribe.cgColor
         self.layer.masksToBounds = true
         self.showsCancelButton = true
         self.showsSearchResultsButton = true
-        self.tintColor = .mtTextDarkBrown
-        self.searchTextField.font = UIFont(name: FontNames.textMoneytorGoodLetter, size: 20)!
+        self.tintColor = .white
+        self.searchTextField.font = UIFont(name: FontNames.textDriveTribe, size: 20) ?? UIFont(name: "optima", size: 18)!
         self.scopeBarButtonTitleTextAttributes(for: .highlighted)
         self.setScopeBarButtonTitleTextAttributes(attributes, for: .normal)
     }

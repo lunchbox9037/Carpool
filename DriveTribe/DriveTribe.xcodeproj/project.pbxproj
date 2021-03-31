@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */; };
 		1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */; };
+		164191AA2613E7CA007B2D76 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191A92613E7CA007B2D76 /* sweet purple.ttf */; };
+		164191AD2613E7E6007B2D76 /* Please write me a song.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191AC2613E7E6007B2D76 /* Please write me a song.ttf */; };
+		164191B02613E802007B2D76 /* Christmas-Wish.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191AF2613E802007B2D76 /* Christmas-Wish.ttf */; };
+		164191B32613F7C6007B2D76 /* DriveTribeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164191B22613F7C6007B2D76 /* DriveTribeTableView.swift */; };
 		16E6C8222612CFB50011EA88 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8212612CFB50011EA88 /* StyleGuide.swift */; };
 		16E6C8262612D0D80011EA88 /* DriveTribeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */; };
 		16E6C8292612D1680011EA88 /* DriveTribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8282612D1680011EA88 /* DriveTribeButton.swift */; };
@@ -69,6 +73,10 @@
 		0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
 		1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationViewController.swift; sourceTree = "<group>"; };
 		1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationSearchViewController.swift; sourceTree = "<group>"; };
+		164191A92613E7CA007B2D76 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
+		164191AC2613E7E6007B2D76 /* Please write me a song.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Please write me a song.ttf"; sourceTree = "<group>"; };
+		164191AF2613E802007B2D76 /* Christmas-Wish.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Christmas-Wish.ttf"; sourceTree = "<group>"; };
+		164191B22613F7C6007B2D76 /* DriveTribeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeTableView.swift; sourceTree = "<group>"; };
 		16E6C8212612CFB50011EA88 /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeLabel.swift; sourceTree = "<group>"; };
 		16E6C8282612D1680011EA88 /* DriveTribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeButton.swift; sourceTree = "<group>"; };
@@ -140,6 +148,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		164191A82613E797007B2D76 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				164191AF2613E802007B2D76 /* Christmas-Wish.ttf */,
+				164191AC2613E7E6007B2D76 /* Please write me a song.ttf */,
+				164191A92613E7CA007B2D76 /* sweet purple.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		16E6C8202612CF9C0011EA88 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +168,7 @@
 				16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */,
 				16E6C8312612D3110011EA88 /* DriveTribeSearchBar.swift */,
 				16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */,
+				164191B22613F7C6007B2D76 /* DriveTribeTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +257,7 @@
 		F648B95A2601194000FBADCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				164191A82613E797007B2D76 /* Fonts */,
 				F648B9452601192500FBADCA /* AppDelegate.swift */,
 				F648B9472601192500FBADCA /* SceneDelegate.swift */,
 				F648B94E2601192800FBADCA /* Assets.xcassets */,
@@ -447,6 +467,9 @@
 				F648B94F2601192800FBADCA /* Assets.xcassets in Resources */,
 				F270C9DD26137A1B00D1B9C2 /* ColorPalette.xcassets in Resources */,
 				F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */,
+				164191AD2613E7E6007B2D76 /* Please write me a song.ttf in Resources */,
+				164191AA2613E7CA007B2D76 /* sweet purple.ttf in Resources */,
+				164191B02613E802007B2D76 /* Christmas-Wish.ttf in Resources */,
 				363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */,
 				F648B94D2601192500FBADCA /* Main.storyboard in Resources */,
 				3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */,
@@ -541,6 +564,7 @@
 				F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
+				164191B32613F7C6007B2D76 /* DriveTribeTableView.swift in Sources */,
 				F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */,
 				36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */,
 				16E6C82C2612D1BD0011EA88 /* DriveTribeTextField.swift in Sources */,

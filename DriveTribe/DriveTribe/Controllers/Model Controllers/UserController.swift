@@ -417,6 +417,7 @@ class UserController {
                 print("FINALLY! \(user.firstName) GOT \(currentUser.firstName) IN BLOCKED LIST.")
             }
         }
+       return completion(.success(user))
     }
     
     func unfriendUser(_ user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
@@ -438,6 +439,7 @@ class UserController {
                 print("FINALLY! \(user.firstName) GOT \(currentUser.firstName) OUT FRIEND LIST.")
             }
         }
+        return completion(.success(user))
     }
     
     func unblockedUser(_ user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
@@ -470,6 +472,7 @@ class UserController {
                 print("FINALLY! \(user.firstName) GOT OUT FROM \(currentUser.firstName)  BLOCKED LIST.")
             }
         }
+        return completion(.success(user))
     }
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
@@ -606,9 +609,24 @@ extension UserController {
         }
     }
 }
-/*
- Bugs needed to be fix!
- 1) on Friend List ==> unfriend and  blocked user, the user still show on the tableView.
- 2) on BlockUser Profile Sectioin ==> when unblock user, the user still show on the tableView.
- 
+
+/* For refacting the code
+ let batch = self.db.batch()
+         let ref = self.db.collection(userCollection).document(currentUser.uuid)
+         let ref2 = self.db.collection(userCollection).document(user.uuid)
+         
+         batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([user.uuid])], forDocument: ref)
+         batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
+         batch.updateData([UserConstants.blockedUsersByCurrentUserKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
+         batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([currentUser.uuid])], forDocument: ref2)
+         batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([currentUser.uuid])], forDocument: ref2)
+         
+         batch.commit { (error) in
+             if let error = error {
+                 return completion(.failure(.thrownError(error)))
+                 
+             } else {
+                 return completion(.success(currentUser))
+             }
+         }
  */

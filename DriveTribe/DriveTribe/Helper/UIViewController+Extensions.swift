@@ -35,7 +35,8 @@ extension UIViewController {
     func setAppearance() {
         let defaults = UserDefaults.standard
         let appearanceSelection = defaults.integer(forKey: "modeAppearance")
-        
+        self.view.backgroundColor = .dtBackground
+        //setupTapBar()
         if appearanceSelection == 0 {
             overrideUserInterfaceStyle = .light
         } else if appearanceSelection == 1 {

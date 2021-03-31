@@ -15,14 +15,15 @@ class DriveTribeButton: UIButton {
     }
     
     func setupView() {
-        self.backgroundColor = .mtBgBrownHeader
-        self.setTitleColor(.mtWhiteText, for: .normal)
+        self.backgroundColor = .dtBlueTribe
+        self.setTitleColor(.dtTextDarkLightTribe, for: .normal)
         self.addCornerRadius()
-        self.titleLabel?.font = UIFont(name: FontNames.textTitleBoldMoneytor, size: 22)
+        self.titleLabel?.font = UIFont(name: FontNames.textDriveTribe, size: 20) ?? UIFont(name: "optima", size: 18)!
     }
+    
 }
 
-class AnotherDriveTribeButton: UIButton {
+class tableViewDriveTribeButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,9 +31,25 @@ class AnotherDriveTribeButton: UIButton {
     }
     
     func setupView() {
-        self.setTitleColor(.mtTextDarkBrown, for: .normal)
+        self.backgroundColor = .dtAllBlueTribeTribe
+        self.setTitleColor(.dtTextDarkLightTribe, for: .normal)
         self.addCornerRadius()
-        self.titleLabel?.font = UIFont(name: FontNames.textMoneytorGoodLetter, size: 25)
+        self.titleLabel?.font = UIFont(name: FontNames.textDriveTribe, size: 15) ?? UIFont(name: "optima", size: 15)!
+    }
+}
+
+class logInDriveTribeButton: UIButton {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupView()
+    }
+    
+    func setupView() {
+        self.backgroundColor = .dtLightTribe
+        self.setTitleColor(.dtTextDarkLightTribe, for: .normal)
+        self.addCornerRadius()
+        self.titleLabel?.font = UIFont(name: FontNames.textDriveTribe, size: 15) ?? UIFont(name: "optima", size: 15)!
     }
 }
 

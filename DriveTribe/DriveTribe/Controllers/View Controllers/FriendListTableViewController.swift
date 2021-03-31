@@ -113,6 +113,7 @@ class FriendListTableViewController: UITableViewController {
             guard let receivedCell = tableView.dequeueReusableCell(withIdentifier: "receievedCell", for: indexPath) as? ReceivedTableViewCell else {return UITableViewCell()}
             let friendReceived = friendRequestsReceived[indexPath.row]
             receivedCell.updateView(friendRequestReceived: friendReceived)
+         //   receivedCell.profileImage.image = nil
             StorageController.shared.getImage(user: friendReceived) { (results) in
                 DispatchQueue.main.async {
                     switch results {
@@ -274,24 +275,32 @@ extension FriendListTableViewController {
 // MARK: - Protocol
 extension FriendListTableViewController: FriendTableViewCellCellDelagate {
     func blockFriendButtonTapped(sender: FriendTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: sender) else {return}
-        let friendToBlock = friends[indexPath.row]
-        //TO BLOCK FRIEND HERE...
-        UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
-            DispatchQueue.main.async {
-                switch results {
-                case .success(let user):
-                    guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
-                    self?.friends.remove(at: indexToBlock)
-                    self?.tableView.reloadData()
-                //self?.setupViewForFriends()
-                case .failure(let error):
-                    print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-                }
-            }
+        let alertController = UIAlertController(title: "Are you sure to block this user?", message: "If you blocked this user, you will be not able to associate with this user anymore.", preferredStyle: .alert)
+        
+        let blockedAction = UIAlertAction(title: "Block!", style: .destructive) { (_) in
+            guard let indexPath = self.tableView.indexPath(for: sender) else {return}
+            let friendToBlock = self.friends[indexPath.row]
+                   //TO BLOCK FRIEND HERE...
+                   UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
+                       DispatchQueue.main.async {
+                           switch results {
+                           case .success(let user):
+                               guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
+                               self?.friends.remove(at: indexToBlock)
+                               self?.tableView.reloadData()
+                           //self?.setupViewForFriends()
+                           case .failure(let error):
+                               print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                           }
+                       }
+                   }
+
         }
+        let dismissAction = UIAlertAction(title: "Cancel", style: .default)
+        alertController.addAction(dismissAction)
+        alertController.addAction(blockedAction)
+        present(alertController, animated: true)
     }
-    
     
     func unfriendButtonTapped(sender: FriendTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}

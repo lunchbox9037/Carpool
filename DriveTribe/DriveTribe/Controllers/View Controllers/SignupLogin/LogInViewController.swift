@@ -85,6 +85,8 @@ class LogInViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .dtBlueTribe
+        
         setupToHideKeyboardOnTapOnView()
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         emailField.delegate = self

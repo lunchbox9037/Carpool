@@ -13,26 +13,32 @@ class DriveTribeNavigationController: UINavigationController {
         setupNavigationBar()
     }
     
+  
     func setupNavigationBar(){
-        UINavigationBar.appearance().barTintColor = .mtBgBrownHeader
-        UINavigationBar.appearance().tintColor = .mtTextDarkBrown
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mtTextDarkBrown]
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textMoneytorMoneyFont, size: 25)!]
+
+        UINavigationBar.appearance().barTintColor = .dtBlueTribe
+        UINavigationBar.appearance().tintColor = .dtTextTribe
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.dtBlueTribe]
+      UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textTitleCurlyDriveTribe, size: 25)  ?? UIFont(name: "optima", size: 25)!]
     }
 }
 
+////
 class DriveTribeTabBarController: UITabBarController {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupTapBar()
     }
-    
+//extension UITabBarController {
     func setupTapBar(){
-        UINavigationBar.appearance().barTintColor = .mtBgBrownHeader
-        UINavigationBar.appearance().tintColor = .mtTextDarkBrown
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textMoneytorGoodLetter, size: 25)!]
-     UITabBar.appearance().barTintColor = .mtBgBrownHeader
-   UITabBar.appearance().tintColor = .mtTextDarkBrown
+        UINavigationBar.appearance().barTintColor = .dtBlueTribe
+        UINavigationBar.appearance().tintColor = .dtTextTribe
+       UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textTitleCurlyDriveTribe, size: 25) ?? UIFont(name: "optima", size: 25)!]
+     UITabBar.appearance().barTintColor = .dtBlueTribe
+   UITabBar.appearance().tintColor = .dtTextTribe
 
     }
 }
+
+
+

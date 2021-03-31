@@ -12,7 +12,7 @@ protocol ReceivedTableViewCellDelagate: AnyObject {
     func acceptFriendButtonTapped(sender: ReceivedTableViewCell)
 }
 
-class ReceivedTableViewCell: UITableViewCell {
+class ReceivedTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -41,9 +41,9 @@ class ReceivedTableViewCell: UITableViewCell {
     func updateView(friendRequestReceived: User) {
         userNameLabel.text = friendRequestReceived.userName
         acceptButton.setTitle("Accept", for: .normal)
-        acceptButton.backgroundColor = .systemBlue
-        acceptButton.tintColor = .white
-        acceptButton.layer.cornerRadius = 8
+//        acceptButton.backgroundColor = .systemBlue
+//        acceptButton.tintColor = .white
+//        acceptButton.layer.cornerRadius = 8
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
 
