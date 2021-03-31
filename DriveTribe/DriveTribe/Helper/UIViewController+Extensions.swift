@@ -17,8 +17,7 @@ extension UIViewController {
         present(alertController, animated: true)
     }
     
-    func setupToHideKeyboardOnTapOnView()
-    {
+    func setupToHideKeyboardOnTapOnView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(UIViewController.dismissKeyboard))
@@ -27,8 +26,7 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard()
-    {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -36,7 +34,7 @@ extension UIViewController {
         let defaults = UserDefaults.standard
         let appearanceSelection = defaults.integer(forKey: "modeAppearance")
         self.view.backgroundColor = .dtBackground
-        //setupTapBar()
+        
         if appearanceSelection == 0 {
             overrideUserInterfaceStyle = .light
         } else if appearanceSelection == 1 {
@@ -44,8 +42,6 @@ extension UIViewController {
         }
     }
 }
-
-
 
 extension UIView {
     func addCornerRadius(radius: CGFloat = 8) {

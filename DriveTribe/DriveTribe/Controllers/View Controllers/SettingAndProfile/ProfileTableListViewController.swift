@@ -182,7 +182,7 @@ extension ProfileTableListViewController: UIImagePickerControllerDelegate, UINav
     func presentImagePickerActionSheet() {
         let imagePickerController = UIImagePickerController()
         
-        let actionSheet = UIAlertController(title: "Update Profile Picture", message: "Select or take a photo for your profile.", preferredStyle: .alert)
+        let actionSheet = UIAlertController(title: "Update Profile Picture", message: "Select or take a photo for your profile.", preferredStyle: .actionSheet)
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             actionSheet.addAction(UIAlertAction(title: "Photos", style: .default, handler: { [weak self] (_) in

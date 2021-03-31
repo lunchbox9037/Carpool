@@ -20,12 +20,12 @@ class AddPassengerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        getCurrentUserFriends()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setAppearance()
-        getCurrentUserFriends()
     }
     
     // MARK: - Actions

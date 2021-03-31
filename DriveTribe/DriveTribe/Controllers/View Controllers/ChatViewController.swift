@@ -56,17 +56,6 @@ class ChatViewController: MessagesViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        messageInputBar.inputTextView.becomeFirstResponder()
-//
-//        if let tribeID = tribe?.uuid {
-//            listenForMessages(id: tribeID, shouldScrollToBottom: true)
-//        }
-    }
-    
-  
-    
     @IBAction func startRouteButtonTapped(_ sender: Any) {
         guard let tribe = tribe,
               let driver = driver else {return}
