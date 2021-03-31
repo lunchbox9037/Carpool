@@ -11,7 +11,6 @@ import Firebase
 
 class CarpoolListViewController: UIViewController {
     // MARK: - Outlets
-    @IBOutlet weak var carpoolGroupLabel: UILabel!
     @IBOutlet weak var carpoolTableView: UITableView!
     @IBOutlet weak var workPlaySegment: UISegmentedControl!
     
@@ -39,12 +38,10 @@ class CarpoolListViewController: UIViewController {
         let defaults = UserDefaults.standard
         
         if workPlaySegment.selectedSegmentIndex == 0 {
-            carpoolGroupLabel.text = "Work Tribes"
             overrideUserInterfaceStyle = .light
             defaults.setValue(0, forKey: "modeAppearance")
             dataSource = CarpoolController.shared.work
         } else {
-            carpoolGroupLabel.text = "Play Tribes"
             overrideUserInterfaceStyle = .dark
             defaults.setValue(1, forKey: "modeAppearance")
             dataSource = CarpoolController.shared.play
