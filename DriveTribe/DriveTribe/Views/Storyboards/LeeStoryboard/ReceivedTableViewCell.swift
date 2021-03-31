@@ -12,7 +12,7 @@ protocol ReceivedTableViewCellDelagate: AnyObject {
     func acceptFriendButtonTapped(sender: ReceivedTableViewCell)
 }
 
-class ReceivedTableViewCell: UITableViewCell {
+class ReceivedTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!

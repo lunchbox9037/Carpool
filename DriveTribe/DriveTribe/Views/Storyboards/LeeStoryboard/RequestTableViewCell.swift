@@ -12,7 +12,7 @@ import UIKit
     func cancelFriendRequestButtonTapped(sender: RequestTableViewCell)
     }
 
-class RequestTableViewCell: UITableViewCell {
+class RequestTableViewCell: DriveTribeTableViewCell {
 
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!

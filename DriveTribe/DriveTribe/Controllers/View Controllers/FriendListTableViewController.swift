@@ -113,6 +113,7 @@ class FriendListTableViewController: UITableViewController {
             guard let receivedCell = tableView.dequeueReusableCell(withIdentifier: "receievedCell", for: indexPath) as? ReceivedTableViewCell else {return UITableViewCell()}
             let friendReceived = friendRequestsReceived[indexPath.row]
             receivedCell.updateView(friendRequestReceived: friendReceived)
+         //   receivedCell.profileImage.image = nil
             StorageController.shared.getImage(user: friendReceived) { (results) in
                 DispatchQueue.main.async {
                     switch results {

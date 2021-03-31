@@ -9,11 +9,11 @@ import Foundation
 
 import UIKit
 
-class DriveTribeLabel: UILabel {
+class TextDriveTribeLabel: UILabel {
     override  func awakeFromNib() {
         super.awakeFromNib()
-        updateFont(fontName: FontNames.textMoneytor)
-        self.textColor = .mtTextDarkBrown
+        updateFont(fontName: FontNames.textDriveTribe)
+        self.textColor = .dtTextTribe
     }
     func updateFont(fontName: String) {
         let size = self.font.pointSize
@@ -22,19 +22,19 @@ class DriveTribeLabel: UILabel {
 }
 
 class TitleDriveTribeLabel: UILabel {
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.textColor = .mtTextDarkBrown
-        self.font = UIFont(name: FontNames.textMoneytorGoodLetter, size: 25)
+        self.textColor = .dtTextTribe
+        self.font = UIFont(name: FontNames.textTitleBoldDriveTribe, size: 25)
     }
 }
 
-class TextDriveTribeLabel: UILabel {
+class TitleDriveTribeCurlyLabel: UILabel {
     override  func awakeFromNib() {
         super.awakeFromNib()
-        updateFont(fontName: FontNames.textMoneytorMoneyFont)
-        self.textColor = .mtWhiteText
+        updateFont(fontName: FontNames.textTitleCurlyDriveTribe)
+        self.textColor = .dtWhiteBlackTribe
     }
     func updateFont(fontName: String) {
         let size = self.font.pointSize

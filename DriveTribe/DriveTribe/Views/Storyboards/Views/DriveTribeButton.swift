@@ -15,11 +15,12 @@ class DriveTribeButton: UIButton {
     }
     
     func setupView() {
-        self.backgroundColor = .mtBgBrownHeader
-        self.setTitleColor(.mtWhiteText, for: .normal)
+        self.backgroundColor = .dtBlueTribe
+        self.setTitleColor(.dtTextTribe, for: .normal)
         self.addCornerRadius()
-        self.titleLabel?.font = UIFont(name: FontNames.textTitleBoldMoneytor, size: 22)
+        self.titleLabel?.font = UIFont(name: FontNames.textDriveTribe, size: 20) ?? UIFont(name: "optima", size: 18)!
     }
+    
 }
 
 class AnotherDriveTribeButton: UIButton {
@@ -30,9 +31,9 @@ class AnotherDriveTribeButton: UIButton {
     }
     
     func setupView() {
-        self.setTitleColor(.mtTextDarkBrown, for: .normal)
-        self.addCornerRadius()
-        self.titleLabel?.font = UIFont(name: FontNames.textMoneytorGoodLetter, size: 25)
+//        self.setTitleColor(.mtTextDarkBrown, for: .normal)
+//        self.addCornerRadius()
+//        self.titleLabel?.font = UIFont(name: FontNames.textMoneytorGoodLetter, size: 25)
     }
 }
 

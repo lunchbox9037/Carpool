@@ -11,7 +11,7 @@ protocol BlockedFriendTableViewCellDelegate: AnyObject {
     func unblockFriendButtonTapped(sender: BlockedUserTableViewCell)
 }
 
-class BlockedUserTableViewCell: UITableViewCell {
+class BlockedUserTableViewCell: DriveTribeTableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!

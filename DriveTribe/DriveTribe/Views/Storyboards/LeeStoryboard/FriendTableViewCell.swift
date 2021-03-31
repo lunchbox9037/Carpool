@@ -13,7 +13,7 @@ protocol FriendTableViewCellCellDelagate: AnyObject {
     func blockFriendButtonTapped(sender: FriendTableViewCell)
 }
 
-class FriendTableViewCell: UITableViewCell {
+class FriendTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!

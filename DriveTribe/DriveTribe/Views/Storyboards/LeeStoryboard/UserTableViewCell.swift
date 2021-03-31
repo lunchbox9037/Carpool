@@ -11,7 +11,7 @@ protocol UserTableViewCellDelagate: AnyObject {
     func requestButtonTapped(sender: UserTableViewCell)
 }
 
-class UserTableViewCell: UITableViewCell {
+class UserTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!
