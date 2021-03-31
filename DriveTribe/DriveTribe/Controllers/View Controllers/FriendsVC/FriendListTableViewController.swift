@@ -28,30 +28,24 @@ class FriendListTableViewController: UITableViewController {
         super.viewDidLoad()
         friendSearchBar.delegate = self
         setupTableView()
-
-
-            if #available(iOS 13, *)
-             {
-                 let statusBar = UIView(frame: (UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame)!)
+        if #available(iOS 13, *)
+        {
+            let statusBar = UIView(frame: (UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame)!)
+            statusBar.backgroundColor = .dtBlueTribe
+            UIApplication.shared.keyWindow?.addSubview(statusBar)
+        } else {
+            let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+            if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
                 statusBar.backgroundColor = .dtBlueTribe
-                 UIApplication.shared.keyWindow?.addSubview(statusBar)
-             } else {
-                // ADD THE STATUS BAR AND SET A CUSTOM COLOR
-                let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-                if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
-                    statusBar.backgroundColor = .dtBlueTribe
-                }
-                UIApplication.shared.statusBarStyle = .lightContent
-             }
-
-      
-
+            }
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         friendSearchBar.selectedScopeButtonIndex = 0
-      setAppearance()
+        setAppearance()
     }
     
     // MARK: - Table view data source
@@ -84,11 +78,11 @@ class FriendListTableViewController: UITableViewController {
             guard let user = resultsFriendsFromSearching[indexPath.row] as? User else {return UITableViewCell()}
             userCell.delegate = self
             userCell.updateView(user: user)
-
+            
             if let image = imageCache.object(forKey: user.uuid as NSString) {
                 userCell.profileImage.image = image
                 print("used cache")
-
+                
             } else {
                 StorageController.shared.getImage(user: user) { (results) in
                     DispatchQueue.main.async {
@@ -113,7 +107,7 @@ class FriendListTableViewController: UITableViewController {
             if let image = imageCache.object(forKey: friend.uuid as NSString) {
                 friendCell.profileImage.image = image
                 print("used cache")
-
+                
             } else {
                 StorageController.shared.getImage(user: friend) { (results) in
                     DispatchQueue.main.async {
@@ -139,7 +133,7 @@ class FriendListTableViewController: UITableViewController {
             if let image = imageCache.object(forKey: friendRequestSent.uuid as NSString) {
                 requestCell.profileImage.image = image
                 print("used cache")
-
+                
             } else {
                 StorageController.shared.getImage(user: friendRequestSent) { (results) in
                     DispatchQueue.main.async {
@@ -191,7 +185,7 @@ extension FriendListTableViewController: UISearchBarDelegate {
         if !searchText.isEmpty {
             isSearching = true
             fetchUsersBySearchTerm(searchTerm: searchText)
-           resultsFriendsFromSearching = users
+            resultsFriendsFromSearching = users
             tableView.reloadData()
         } else {
             resultsFriendsFromSearching = []
@@ -333,21 +327,21 @@ extension FriendListTableViewController: FriendTableViewCellCellDelagate {
         let blockedAction = UIAlertAction(title: "Block!", style: .destructive) { (_) in
             guard let indexPath = self.tableView.indexPath(for: sender) else {return}
             let friendToBlock = self.friends[indexPath.row]
-                   //TO BLOCK FRIEND HERE...
-                   UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
-                       DispatchQueue.main.async {
-                           switch results {
-                           case .success(let user):
-                               guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
-                               self?.friends.remove(at: indexToBlock)
-                               self?.tableView.reloadData()
-                           //self?.setupViewForFriends()
-                           case .failure(let error):
-                               print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-                           }
-                       }
-                   }
-
+            //TO BLOCK FRIEND HERE...
+            UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let user):
+                        guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
+                        self?.friends.remove(at: indexToBlock)
+                        self?.tableView.reloadData()
+                    //self?.setupViewForFriends()
+                    case .failure(let error):
+                        print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                    }
+                }
+            }
+            
         }
         let dismissAction = UIAlertAction(title: "Cancel", style: .default)
         alertController.addAction(dismissAction)

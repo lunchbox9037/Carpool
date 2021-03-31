@@ -18,7 +18,7 @@ class DriveTribeButton: UIButton {
         self.backgroundColor = .dtBlueTribe
         self.setTitleColor(.dtTextDarkLightTribe, for: .normal)
         self.addCornerRadius()
-        self.titleLabel?.font = UIFont(name: FontNames.textDriveTribe, size: 20) ?? UIFont(name: "optima", size: 18)!
+        self.titleLabel?.font = UIFont(name: FontNames.textBoldDriveTribe, size: 18) ?? UIFont(name: "optima", size: 18)!
     }
     
 }
@@ -34,7 +34,7 @@ class tableViewDriveTribeButton: UIButton {
         self.backgroundColor = .dtAllBlueTribeTribe
         self.setTitleColor(.dtTextDarkLightTribe, for: .normal)
         self.addCornerRadius()
-        self.titleLabel?.font = UIFont(name: FontNames.textDriveTribe, size: 15) ?? UIFont(name: "optima", size: 15)!
+        self.titleLabel?.font = UIFont(name: FontNames.textBoldDriveTribe, size: 16) ?? UIFont(name: "optima", size: 15)!
     }
 }
 
