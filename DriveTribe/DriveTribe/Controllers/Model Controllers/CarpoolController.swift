@@ -34,11 +34,12 @@ class CarpoolController {
         guard let destination = self.destination else {return}
         guard let driver = UserController.shared.currentUser?.uuid else {return print("currentUser not logged in")}
         let destinationName = destination.name ?? "Destination Unknown"
+        let uniquePassengers = Array(Set(passengers))
         var destinationCoords: [Double] = []
         destinationCoords.append(destination.placemark.coordinate.latitude)
         destinationCoords.append(destination.placemark.coordinate.longitude)
         
-        let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: self.passengers)
+        let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: uniquePassengers)
         
         carpools.append(newCarpool)
         addCarpoolToCurrentUsersGroup(carpool: newCarpool)

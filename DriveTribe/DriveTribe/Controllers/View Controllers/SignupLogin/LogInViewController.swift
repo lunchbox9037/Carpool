@@ -62,7 +62,7 @@ class LogInViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor(named: "loginButtonColor")
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -113,13 +113,14 @@ class LogInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Auth.auth().currentUser != nil {
+            spinner.textLabel.text = "Signing In"
             spinner.show(in: view)
             UserController.shared.fetchCurrentUser { (result) in
                 switch result {
                 case .success(_):
                     self.gotoTabbarVC()
                 case .failure(let error):
-                    self.spinner.dismiss()
+                    self.spinner.dismiss(animated: true)
                     self.presentAlertToUser(titleAlert: "Error", messageAlert: "\(error.localizedDescription)")
                     print(error.localizedDescription)
                 }
@@ -131,9 +132,10 @@ class LogInViewController: UIViewController {
         view.endEditing(true)
         guard let email = emailField.text, !email.isEmpty,
               let password = passwordField.text, !password.isEmpty, password.count >= 6 else {
-            presentAlertToUser(titleAlert: "Login information invalid.", messageAlert: "Please enter a valid username and password!")
+            presentAlertToUser(titleAlert: "Login information invalid!", messageAlert: "Password must be at least six characters!")
             return
         }
+        spinner.textLabel.text = "Signing In"
         spinner.show(in: view)
         UserController.shared.loginWith(email: email, password: password) { [weak self] (results) in
             switch results {
@@ -143,7 +145,7 @@ class LogInViewController: UIViewController {
                     DispatchQueue.main.async {
                         switch result {
                         case .success(_):
-                            self?.spinner.dismiss()
+                            self?.spinner.dismiss(animated: true)
                             self?.gotoTabbarVC()
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -151,7 +153,8 @@ class LogInViewController: UIViewController {
                     }
                 }
             case .failure(let error):
-                
+                self?.spinner.dismiss(animated: true)
+                self?.presentAlertToUser(titleAlert: "Login information invalid!", messageAlert: "Invalid Username or Password")
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
         }

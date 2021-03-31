@@ -22,18 +22,18 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
     }()
     
     var profileImageView: UIImageView = {
-        let imageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = imageView.bounds.height/2
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     var passengerNameLabel: UILabel = {
         let label: UILabel = UILabel()
         label.text = "Some subtitle"
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,20 +53,26 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
             self.container.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
         ])
         
+        let aspectRatio = NSLayoutConstraint(
+            item: profileImageView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: profileImageView,
+            attribute: .width,
+            multiplier: 1,
+            constant: 0)
+        
         NSLayoutConstraint.activate([
-            self.profileImageView.topAnchor.constraint(equalTo: self.container.topAnchor, constant: 0),
-            self.profileImageView.leadingAnchor.constraint(equalTo: self.container.leadingAnchor, constant: 0),
-            self.profileImageView.trailingAnchor.constraint(equalTo: self.container.trailingAnchor, constant: 0),
-            self.profileImageView.heightAnchor.constraint(equalToConstant: 80),
-            self.profileImageView.widthAnchor.constraint(equalToConstant: 80)
-
+            self.profileImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 0),
+            self.profileImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
+            self.profileImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
+            aspectRatio
         ])
         
         NSLayoutConstraint.activate([
-            self.passengerNameLabel.topAnchor.constraint(equalTo: self.profileImageView.bottomAnchor, constant: 0),
-            self.passengerNameLabel.leadingAnchor.constraint(equalTo: self.container.leadingAnchor, constant: 0),
-            self.passengerNameLabel.trailingAnchor.constraint(equalTo: self.container.trailingAnchor, constant: 0),
-//            self.passengerNameLabel.bottomAnchor.constraint(equalTo: self.container.bottomAnchor, constant: 0),
+            self.passengerNameLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 0),
+            self.passengerNameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 0),
+            self.passengerNameLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0),
         ])
     }
 
@@ -76,16 +82,20 @@ public class PassengerCollectionViewCell: UICollectionViewCell {
     
     public override func prepareForReuse() {
         super.prepareForReuse()
+        profileImageView.image = nil
     }
     
     func configure(passenger: User) {
         
-        self.profileImageView.image = UIImage(systemName: "person.circle")
+        profileImageView.image = UIImage(systemName: "person.circle")
+
         StorageController.shared.getImage(user: passenger) { [weak self] (results) in
+            guard let self = self else {return}
             DispatchQueue.main.async {
                 switch results {
                 case .success(let image):
-                    self?.profileImageView.image = image
+                    self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.height / 2
+                    self.profileImageView.image = image
                 case .failure(let error):
                     print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 }
