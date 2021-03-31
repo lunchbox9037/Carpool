@@ -32,3 +32,28 @@ class DriveTribeTableViewCell: UITableViewCell {
     }
 }
 
+class DriveTribeCarpoolCell: UITableViewCell {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupTableView()
+    }
+    
+    func setupTableView(){
+        self.backgroundColor = UIColor.dtCarpoolCellBlue
+        self.tintColor = UIColor.dtTextTribe
+    }
+}
+
+class DriveTribeSettingsCell: UITableViewCell {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupTableView()
+    }
+    
+    func setupTableView(){
+        self.backgroundColor = UIColor.dtCarpoolCellBlue
+        self.tintColor = UIColor.dtTextTribe
+    }
+}
+
+

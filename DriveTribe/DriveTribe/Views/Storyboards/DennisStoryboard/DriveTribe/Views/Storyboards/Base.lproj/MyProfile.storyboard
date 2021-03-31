@@ -246,14 +246,14 @@
         <scene sceneID="tfa-Yo-z76">
             <objects>
                 <tableViewController id="1AU-IN-uR0" customClass="SettingsTableViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qcs-NW-qWt" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qcs-NW-qWt" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="RDI-wk-1xV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="KJM-CS-2TF" detailTextLabel="xqf-Ji-vfG" imageView="hQP-fp-va5" style="IBUITableViewCellStyleSubtitle" id="RE1-vC-wsK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="KJM-CS-2TF" detailTextLabel="xqf-Ji-vfG" imageView="hQP-fp-va5" style="IBUITableViewCellStyleSubtitle" id="RE1-vC-wsK" customClass="DriveTribeSettingsCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="20" y="18" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RE1-vC-wsK" id="Fu5-8p-lIS">
@@ -286,7 +286,7 @@
                             </tableViewSection>
                             <tableViewSection id="aED-uU-oaa">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Cfe-oH-ao8" detailTextLabel="FAv-fF-mDJ" imageView="lXa-s7-Wfm" style="IBUITableViewCellStyleSubtitle" id="IVJ-HT-rKR">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Cfe-oH-ao8" detailTextLabel="FAv-fF-mDJ" imageView="lXa-s7-Wfm" style="IBUITableViewCellStyleSubtitle" id="IVJ-HT-rKR" customClass="DriveTribeSettingsCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="20" y="110" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IVJ-HT-rKR" id="EFC-9E-bcL">
@@ -319,7 +319,7 @@
                             </tableViewSection>
                             <tableViewSection id="RCp-nk-xrn">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8aW-A2-6pg" detailTextLabel="3MI-8j-taN" imageView="jIh-Dg-w5P" style="IBUITableViewCellStyleSubtitle" id="qvo-uG-Qb4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8aW-A2-6pg" detailTextLabel="3MI-8j-taN" imageView="jIh-Dg-w5P" style="IBUITableViewCellStyleSubtitle" id="qvo-uG-Qb4" customClass="DriveTribeSettingsCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="20" y="202" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qvo-uG-Qb4" id="yy7-AT-ARQ">
@@ -355,7 +355,7 @@
                             </tableViewSection>
                             <tableViewSection id="a4r-x7-ZsY">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yj2-TZ-HzK" detailTextLabel="7bh-Uu-wcY" imageView="lmB-aZ-epA" style="IBUITableViewCellStyleSubtitle" id="o5q-Qj-QJ7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yj2-TZ-HzK" detailTextLabel="7bh-Uu-wcY" imageView="lmB-aZ-epA" style="IBUITableViewCellStyleSubtitle" id="o5q-Qj-QJ7" customClass="DriveTribeSettingsCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="20" y="294" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o5q-Qj-QJ7" id="Ogq-jE-yHe">
@@ -438,13 +438,13 @@
         <scene sceneID="txW-IA-s7r">
             <objects>
                 <tableViewController id="g7C-uQ-6bK" customClass="BlockedUsersTableViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ALM-ww-791" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ALM-ww-791" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blockedFriendCell" id="HtX-hX-NpS" customClass="BlockedUserTableViewCell" customModule="DriveTribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="96.5"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="96.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HtX-hX-NpS" id="Cfz-3w-uDF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="96.5"/>
