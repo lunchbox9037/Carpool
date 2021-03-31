@@ -88,8 +88,8 @@ class ProfileTableListViewController: UITableViewController {
             carInfoTextField.isUserInteractionEnabled = true
         } else {
             updatePhotoButton.isEnabled = false
-            guard let username = firstNameTextField.text, !username.isEmpty,
-                  let firstName = userNameTextField.text, !firstName.isEmpty,
+            guard let username = userNameTextField.text, !username.isEmpty,
+                  let firstName = firstNameTextField.text, !firstName.isEmpty,
                   let lastName = lastNameTextFiled.text, !lastName.isEmpty else {
                 presentAlertToUser(titleAlert: "Info updated needed!", messageAlert: "Please, fill out your usename, first name and last name for updating for infomation!")
                 return
@@ -148,6 +148,10 @@ extension ProfileTableListViewController: UITextFieldDelegate {
             textField.text = ""
         }
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
     }
 }
 

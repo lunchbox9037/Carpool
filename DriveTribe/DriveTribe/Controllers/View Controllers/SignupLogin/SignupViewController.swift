@@ -106,7 +106,7 @@ class SignupViewController: UIViewController {
     
     private let getLocationButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Get Current Location", for: .normal)
+        button.setTitle("📍 Get Current Location", for: .normal)
         button.backgroundColor = .systemGray
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
@@ -209,6 +209,7 @@ class SignupViewController: UIViewController {
         
         if UserController.shared.lastCurrentLocation.count == 0 {
             UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
+                self.spinner.show(in: self.view)
                 switch results {
                 case .success(let user):
                     UserController.shared.currentUser = user
@@ -216,8 +217,10 @@ class SignupViewController: UIViewController {
                         print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
                         self.storageProfilePhotAndgetProfileURL(user: user, image: image)
                     }
+                    self.spinner.dismiss()
                     self.gotoTabbarVC()
                 case .failure(let error):
+                    self.spinner.dismiss()
                     print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
             }

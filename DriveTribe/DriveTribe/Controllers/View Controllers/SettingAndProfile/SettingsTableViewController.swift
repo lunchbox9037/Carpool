@@ -88,6 +88,4 @@ class SettingsTableViewController: UITableViewController {
             return
         }
     }
-    
-    
 }
