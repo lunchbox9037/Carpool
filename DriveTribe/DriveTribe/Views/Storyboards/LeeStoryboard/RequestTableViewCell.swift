@@ -41,9 +41,9 @@ class RequestTableViewCell: DriveTribeTableViewCell {
     func updateView(friendRequestSent: User) {
         userNameLabel.text = friendRequestSent.userName
         cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.backgroundColor = .systemBlue
-        cancelButton.tintColor = .white
-        cancelButton.layer.cornerRadius = 8
+//        cancelButton.backgroundColor = .systemBlue
+//        cancelButton.tintColor = .white
+//        cancelButton.layer.cornerRadius = 8
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
     }

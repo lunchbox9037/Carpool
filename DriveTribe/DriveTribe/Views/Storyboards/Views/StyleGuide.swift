@@ -21,6 +21,6 @@ extension UIColor {
     static let dtLightTribe = UIColor(named: "lightTribe")!
     static let dtTextTribe = UIColor(named: "textTribe")!
     static let dtWhiteBlackTribe = UIColor(named: "whiteBlackTribe")!
+    static let dtTextDarkLightTribe = UIColor(named:  "textDarkLightTribe")!
+    static let dtAllBlueTribeTribe = UIColor(named:  "allBlueTribe")!
 }
-
-

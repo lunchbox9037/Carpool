@@ -41,9 +41,9 @@ class ReceivedTableViewCell: DriveTribeTableViewCell {
     func updateView(friendRequestReceived: User) {
         userNameLabel.text = friendRequestReceived.userName
         acceptButton.setTitle("Accept", for: .normal)
-        acceptButton.backgroundColor = .systemBlue
-        acceptButton.tintColor = .white
-        acceptButton.layer.cornerRadius = 8
+//        acceptButton.backgroundColor = .systemBlue
+//        acceptButton.tintColor = .white
+//        acceptButton.layer.cornerRadius = 8
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
 

@@ -13,7 +13,7 @@ class TextDriveTribeLabel: UILabel {
     override  func awakeFromNib() {
         super.awakeFromNib()
         updateFont(fontName: FontNames.textDriveTribe)
-        self.textColor = .dtTextTribe
+       // self.textColor = .dtWhiteBlackTribe
     }
     func updateFont(fontName: String) {
         let size = self.font.pointSize

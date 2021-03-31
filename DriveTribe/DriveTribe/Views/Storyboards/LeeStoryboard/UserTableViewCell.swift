@@ -40,9 +40,9 @@ class UserTableViewCell: DriveTribeTableViewCell {
     func updateView(user: User) {
         userNameLabel.text = user.userName
         requestButton.setTitle("Request", for: .normal)
-        requestButton.backgroundColor = .systemBlue
-        requestButton.tintColor = .white
-        requestButton.layer.cornerRadius = 8
+//        requestButton.backgroundColor = .systemBlue
+//        requestButton.tintColor = .white
+//        requestButton.layer.cornerRadius = 8
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
     }

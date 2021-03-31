@@ -20,32 +20,18 @@ class DriveTribeTextField: UITextField {
                 setupPlaceholderText()
                 self.textColor = .dtTextTribe
                 self.backgroundColor = .dtLightTribe
-                self.layer.borderWidth = 2.5
+                self.layer.borderWidth = 1
                 self.layer.borderColor = UIColor.dtLightTribe.cgColor
                 self.layer.masksToBounds = true
         
-        
-//        self.addCornerRadius()
-//        setupPlaceholderText()
-//        self.textColor = .mtTextDarkBrown
-//        self.backgroundColor = .mtDarkOrage
-//        self.layer.borderWidth = 2.5
-//        self.layer.borderColor = UIColor.mtLightYellow.cgColor
-//        self.layer.masksToBounds = true
     }
     
     func setupPlaceholderText() {
                 let currentPlaceholder = self.placeholder ?? ""
                 self.attributedPlaceholder = NSAttributedString(string: currentPlaceholder, attributes: [
-                    NSAttributedString.Key.foregroundColor : UIColor.dtTextTribe,
+                    NSAttributedString.Key.foregroundColor : UIColor.dtBlueTribe,
                     NSAttributedString.Key.font : UIFont(name: FontNames.textDriveTribe, size: 16) ?? UIFont(name: "optima", size: 15)!
                 ])
-        
-//        let currentPlaceholder = self.placeholder ?? ""
-//        self.attributedPlaceholder = NSAttributedString(string: currentPlaceholder, attributes: [
-//            NSAttributedString.Key.foregroundColor : UIColor.mtWhiteText,
-//            NSAttributedString.Key.font : UIFont(name: FontNames.textMoneytor, size: 16)!
-//        ])
     }
     
     func updateFont(){

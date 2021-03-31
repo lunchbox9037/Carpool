@@ -20,7 +20,10 @@ class BlockedUsersTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupViews()
+        setAppearance()
     }
+    
+    
     
     // MARK: - Table view data source
     func setupViews() {

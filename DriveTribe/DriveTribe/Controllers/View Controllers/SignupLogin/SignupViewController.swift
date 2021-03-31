@@ -131,6 +131,8 @@ class SignupViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .dtBlueTribe
+        
         setupToHideKeyboardOnTapOnView()
         
         signUpButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)

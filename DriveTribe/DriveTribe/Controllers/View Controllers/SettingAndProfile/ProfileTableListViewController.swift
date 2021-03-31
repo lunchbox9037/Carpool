@@ -12,11 +12,10 @@ class ProfileTableListViewController: UITableViewController {
     
     // MARK: - outlets
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextFiled: UITextField!
     @IBOutlet weak var carInfoTextField: UITextField!
-    @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     
@@ -32,6 +31,10 @@ class ProfileTableListViewController: UITableViewController {
         print("I am here")
         profileImageView.setupRoundCircleViews()
         guard let currentUser = UserController.shared.currentUser else {return}
+        lastNameTextFiled.delegate = self
+        carInfoTextField.delegate = self
+        userNameTextField.delegate = self
+        firstNameTextField.delegate = self
         
         StorageController.shared.getImage(user: currentUser) { [weak self] (results) in
             
@@ -44,9 +47,9 @@ class ProfileTableListViewController: UITableViewController {
                 print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
             }
         }
-        usernameTextField.isUserInteractionEnabled = false
-        nameTextField.isUserInteractionEnabled = false
-        lastNameTextField.isUserInteractionEnabled = false
+        firstNameTextField.isUserInteractionEnabled = false
+        userNameTextField.isUserInteractionEnabled = false
+        lastNameTextFiled.isUserInteractionEnabled = false
         carInfoTextField.isUserInteractionEnabled = false
         populateViews()
         updatePhotoButton.isEnabled = false
@@ -68,10 +71,10 @@ class ProfileTableListViewController: UITableViewController {
     
     func populateViews() {
         guard let user = UserController.shared.currentUser else { return }
-        self.usernameTextField.text = "First Name : \(user.firstName)"
-        self.nameTextField.text = "User Name : \(user.userName)"
-        self.lastNameTextField.text = "Last Name : \(user.lastName)"
-        self.carInfoTextField.text = "Car Info : \(user.carInfo)"
+        self.firstNameTextField.text = "\(user.firstName.capitalized)"
+        self.userNameTextField.text = "\(user.userName.capitalized)"
+        self.lastNameTextFiled.text = "\(user.lastName.capitalized)"
+        self.carInfoTextField.text = "\(user.carInfo.capitalized)"
     }
     
     @IBAction func editedButtonTapped(_ sender: Any) {
@@ -79,15 +82,15 @@ class ProfileTableListViewController: UITableViewController {
         if isEditingProfile {
             updatePhotoButton.isEnabled = true
             editButton.title = "Save"
-            usernameTextField.isUserInteractionEnabled = true
-            nameTextField.isUserInteractionEnabled = true
-            lastNameTextField.isUserInteractionEnabled = true
+            firstNameTextField.isUserInteractionEnabled = true
+            userNameTextField.isUserInteractionEnabled = true
+            lastNameTextFiled.isUserInteractionEnabled = true
             carInfoTextField.isUserInteractionEnabled = true
         } else {
             updatePhotoButton.isEnabled = false
-            guard let username = usernameTextField.text, !username.isEmpty,
-                  let firstName = nameTextField.text, !firstName.isEmpty,
-                  let lastName = lastNameTextField.text, !lastName.isEmpty else {
+            guard let username = firstNameTextField.text, !username.isEmpty,
+                  let firstName = userNameTextField.text, !firstName.isEmpty,
+                  let lastName = lastNameTextFiled.text, !lastName.isEmpty else {
                 presentAlertToUser(titleAlert: "Info updated needed!", messageAlert: "Please, fill out your usename, first name and last name for updating for infomation!")
                 return
             }
@@ -98,9 +101,9 @@ class ProfileTableListViewController: UITableViewController {
                     DispatchQueue.main.async {
                         print(success)
                         self?.editButton.title = "Edit"
-                        self?.usernameTextField.isUserInteractionEnabled = false
-                        self?.nameTextField.isUserInteractionEnabled = false
-                        self?.lastNameTextField.isUserInteractionEnabled = false
+                        self?.firstNameTextField.isUserInteractionEnabled = false
+                        self?.userNameTextField.isUserInteractionEnabled = false
+                        self?.lastNameTextFiled.isUserInteractionEnabled = false
                         self?.carInfoTextField.isUserInteractionEnabled = false
                     }
                 case .failure(let error):
@@ -130,6 +133,21 @@ class ProfileTableListViewController: UITableViewController {
                 
             }
         }
+    }
+}
+
+extension ProfileTableListViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if (textField == userNameTextField) {
+            textField.text = ""
+        } else if (textField == firstNameTextField) {
+            textField.text = ""
+        } else if (textField == lastNameTextFiled) {
+            textField.text = ""
+        } else if (textField == carInfoTextField) {
+            textField.text = ""
+        }
+        return true
     }
 }
 
