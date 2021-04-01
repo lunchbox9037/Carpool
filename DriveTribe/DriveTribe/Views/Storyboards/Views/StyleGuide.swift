@@ -26,4 +26,5 @@ extension UIColor {
     static let dtAllBlueTribeTribe = UIColor(named:  "allBlueTribe")!
     static let dtCarpoolCellBlue = UIColor(named:  "carpoolCellBlue")!
     static let dtBlueTribeLight  = UIColor(named: "blueTribeLight")!
+    static let dtPlaceholder = UIColor(named: "placeholder")
 }

@@ -34,9 +34,7 @@ class UserController {
                 UserConstants.firstNameKey : newUser.firstName,
                 UserConstants.lastNameKey : newUser.lastName,
                 UserConstants.userNameKey : newUser.userName,
-                UserConstants.groupsKey : newUser.groups,
                 UserConstants.carInfoKey : newUser.carInfo,
-                UserConstants.addressBookKey : newUser.addressBook,
                 UserConstants.lastCurrentLocationKey : newUser.lastCurrentLocation,
                 UserConstants.blockedUsersKey : newUser.blockedUsers,
                 UserConstants.blockedUsersByCurrentUserKey : newUser.blockedUsersByCurrentUser,
@@ -474,6 +472,7 @@ class UserController {
         }
         return completion(.success(user))
     }
+    
     //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
@@ -485,9 +484,7 @@ class UserController {
             UserConstants.firstNameKey : deletedUser.firstName,
             UserConstants.lastNameKey : deletedUser.lastName,
             UserConstants.userNameKey : deletedUser.userName,
-            UserConstants.groupsKey : deletedUser.groups,
             UserConstants.carInfoKey : deletedUser.carInfo,
-            UserConstants.addressBookKey : deletedUser.addressBook,
             UserConstants.lastCurrentLocationKey : deletedUser.lastCurrentLocation,
             UserConstants.blockedUsersKey : deletedUser.blockedUsers,
             UserConstants.blockedUsersByCurrentUserKey : deletedUser.blockedUsersByCurrentUser,
