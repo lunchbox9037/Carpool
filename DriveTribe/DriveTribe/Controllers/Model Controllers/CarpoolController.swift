@@ -28,6 +28,7 @@ class CarpoolController {
     let carpoolCollection = "carpools"
     let userCollection = "users"
     let messageCollection = "messages"
+    let groupsCollection = "groups"
     let rideTribeIconKey = "RideTribeIcon"
     
     // MARK: - CRUD
@@ -113,50 +114,85 @@ class CarpoolController {
     
     func addCarpoolToCurrentUsersGroup(carpool: Carpool) {
         guard let currentUser = UserController.shared.currentUser else {return}
-        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
-            if let error = error {
-                print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+        
+        db.collection(userCollection).document(currentUser.uuid).collection(groupsCollection).document(carpool.uuid).setData(["nothing":"nil"]) { (error) in
+            if let error =  error {
+                print(error.localizedDescription)
             }
         }
+//        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
+//            if let error = error {
+//                print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//            }
+//        }
     }//end func
     
     func addCarpoolToPassengersGroup(carpool: Carpool) {
         if passengers.count != 0 {
             for passenger in passengers {
-                db.collection(userCollection).document(passenger).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
+                db.collection(userCollection).document(passenger).collection(groupsCollection).document(carpool.uuid).setData(["nothing":"nil"]) { (error) in
                     if let error = error {
-                        print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        print(error.localizedDescription)
                     }
                 }
+
+//                db.collection(userCollection).document(passenger).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
+//                    if let error = error {
+//                        print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//                    }
+//                }
             }
         }
     }//end func
     
     func fetchGroupsForCurrentUser(completion: @escaping (Result<String, NetworkError>) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
-        db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
+        db.collection(userCollection).document(currentUser.uuid).collection(groupsCollection).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
-                print("\n==== ERROR FETCH Groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
-            } else {
-                guard let querySnapshot = querySnapshot,
-                      let userData = User(document: querySnapshot) else {return completion(.failure(.noData))}
-                self.carpools = []
-                for id in userData.groups {
-                    self.db.collection(self.carpoolCollection).document(id).getDocument { (snapshot, error) in
-                        if let error = error {
-                            print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                            return completion(.failure(.thrownError(error)))
-                        } else {
-                            guard let snapshot = snapshot,
-                                  let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-                            self.carpools.append(carpool)
-                            print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
-                            return completion(.success("success"))
-                        }
+            }
+            
+            guard let documents = querySnapshot?.documents else {return completion(.failure(.noData))}
+            self.carpools = []
+            for document in documents {
+                print(document.documentID)
+                let carpoolID = document.documentID
+                self.db.collection(self.carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
+                    if let error = error {
+                        print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        return completion(.failure(.thrownError(error)))
+                    } else {
+                        guard let snapshot = snapshot,
+                              let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+                        self.carpools.append(carpool)
+                        print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
+                        return completion(.success("success"))
                     }
                 }
             }
+//        db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
+//            if let error = error {
+//                print("\n==== ERROR FETCH Groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//                return completion(.failure(.thrownError(error)))
+//            } else {
+//                guard let querySnapshot = querySnapshot,
+//                      let userData = User(document: querySnapshot) else {return completion(.failure(.noData))}
+//                self.carpools = []
+//                for id in userData.groups {
+//                    self.db.collection(self.carpoolCollection).document(id).getDocument { (snapshot, error) in
+//                        if let error = error {
+//                            print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+//                            return completion(.failure(.thrownError(error)))
+//                        } else {
+//                            guard let snapshot = snapshot,
+//                                  let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+//                            self.carpools.append(carpool)
+//                            print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
+//                            return completion(.success("success"))
+//                        }
+//                    }
+//                }
+//            }
         }
     }//end func
     

@@ -35,10 +35,12 @@ class LogInViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Email Address..."
+        field.attributedPlaceholder = NSAttributedString(string: "Email...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -51,10 +53,12 @@ class LogInViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Password..."
+        field.attributedPlaceholder = NSAttributedString(string: "Password...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         field.isSecureTextEntry = true
         return field
     }()

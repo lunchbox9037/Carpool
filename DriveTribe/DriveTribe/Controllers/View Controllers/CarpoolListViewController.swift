@@ -24,13 +24,13 @@ class CarpoolListViewController: UIViewController {
         carpoolTableView.delegate = self
         overrideUserInterfaceStyle = .light
         UserDefaults.standard.setValue(0, forKey: "modeAppearance")
+        addCarpoolListener()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         setAppearance()
-        fetchCarpoolsByCurrentUser()
     }
 
     // MARK: - Actions
@@ -50,7 +50,7 @@ class CarpoolListViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func fetchCarpoolsByCurrentUser() {
+    func addCarpoolListener() {
         CarpoolController.shared.fetchGroupsForCurrentUser { [weak self] (result) in
             switch result {
             case .success(_):
