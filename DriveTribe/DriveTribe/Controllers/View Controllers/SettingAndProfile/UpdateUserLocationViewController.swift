@@ -11,9 +11,6 @@ import FloatingPanel
 
 
 class UpdateUserLocationViewController: UIViewController {
-    
-    
-    
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     
@@ -36,7 +33,7 @@ class UpdateUserLocationViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         //UPDATE LOCATION IN DATABASE
         print("\n===================UserController.shared.lastCurrentLocation :: \(UserController.shared.lastCurrentLocation)======================IN \(#function)\n")
-        UserController.shared.updateUserLocation(lastCurrentLocation: UserController.shared.lastCurrentLocation) { [weak self] (results) in
+        UserController.shared.updateUserLocation(lastCurrentLocation: UserController.shared.lastCurrentLocation) { (results) in
             switch results {
             case .success(let lastCurrentLocation):
                 print("\n===================lastCurrentLocation :: \(lastCurrentLocation)====================== IN\(#function)\n")

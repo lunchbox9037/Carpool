@@ -38,13 +38,12 @@ class UserTableViewCell: DriveTribeTableViewCell {
     }
     
     func updateView(user: User) {
-        userNameLabel.text = user.userName.capitalized
+        userNameLabel.text = user.userName
         requestButton.setTitle("Request", for: .normal)
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
         userNameLabel.font = UIFont(name: FontNames.textDriveTribe, size: 20)
         userNameLabel.textColor = .dtTextTribe
         userNameLabel.textColor = .dtTextDarkLightTribe
-
     }
 }

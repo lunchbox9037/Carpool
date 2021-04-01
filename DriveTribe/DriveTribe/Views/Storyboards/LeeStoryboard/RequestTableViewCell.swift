@@ -39,7 +39,7 @@ class RequestTableViewCell: DriveTribeTableViewCell {
     }
     
     func updateView(friendRequestSent: User) {
-        userNameLabel.text = friendRequestSent.userName.capitalized
+        userNameLabel.text = friendRequestSent.userName
         cancelButton.setTitle("Cancel", for: .normal)
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")

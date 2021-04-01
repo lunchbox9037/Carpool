@@ -71,10 +71,10 @@ class ProfileTableListViewController: UITableViewController {
     
     func populateViews() {
         guard let user = UserController.shared.currentUser else { return }
-        self.firstNameTextField.text = "\(user.firstName.capitalized)"
-        self.userNameTextField.text = "\(user.userName.capitalized)"
-        self.lastNameTextFiled.text = "\(user.lastName.capitalized)"
-        self.carInfoTextField.text = "\(user.carInfo.capitalized)"
+        self.userNameTextField.text = user.userName
+        self.firstNameTextField.text = user.firstName
+        self.lastNameTextFiled.text = user.lastName
+        self.carInfoTextField.text = user.carInfo
     }
     
     @IBAction func editedButtonTapped(_ sender: Any) {

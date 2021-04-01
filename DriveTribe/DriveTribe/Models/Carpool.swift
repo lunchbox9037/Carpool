@@ -45,7 +45,7 @@ struct CarpoolConstants  {
     static let destinationKey = "destination"
     static let driverKey = "driver"
     static let passengersKey = "passengers"
-    static let messagesKey = "messages"
+//    static let messagesKey = "messages"
     static let uuidKey = "uuid"
 }
 
@@ -57,10 +57,10 @@ class Carpool {
     var destination: [Double]
     var driver: String
     var passengers: [String]
-    var messages: [[String:Any]]
+//    var messages: [[String:Any]]
     var uuid: String
     
-    internal init(title: String, mode: String, type: String, destinationName: String, destination: [Double] = [], driver: String, passengers: [String] = [], messages: [[String:Any]] = [], uuid: String = UUID().uuidString) {
+    internal init(title: String, mode: String, type: String, destinationName: String, destination: [Double] = [], driver: String, passengers: [String] = [], uuid: String = UUID().uuidString) {
         self.title = title
         self.mode = mode
         self.type = type
@@ -68,7 +68,6 @@ class Carpool {
         self.destination = destination
         self.driver = driver
         self.passengers = passengers
-        self.messages = messages
         self.uuid = uuid
     }
     
@@ -80,10 +79,9 @@ class Carpool {
               let destination = document[CarpoolConstants.destinationKey] as? [Double],
               let driver = document[CarpoolConstants.driverKey] as? String,
               let passengers = document[CarpoolConstants.passengersKey] as? [String],
-              let messages = document[CarpoolConstants.messagesKey] as? [[String:Any]],
               let uuid = document[CarpoolConstants.uuidKey] as? String else {return nil}
         
-        self.init(title: title, mode: mode, type: type, destinationName: destinationName, destination: destination, driver: driver, passengers: passengers, messages: messages, uuid: uuid)
+        self.init(title: title, mode: mode, type: type, destinationName: destinationName, destination: destination, driver: driver, passengers: passengers, uuid: uuid)
     }
 }
 
