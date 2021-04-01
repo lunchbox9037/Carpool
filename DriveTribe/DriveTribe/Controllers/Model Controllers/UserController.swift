@@ -15,9 +15,11 @@ class UserController {
     static var shared = UserController()
     var users: [User] = []
     var currentUser: User?
+    var lastCurrentLocation: [Double] = []
+    
     let db = Firestore.firestore()
     let userCollection = "users"
-    var lastCurrentLocation: [Double] = []
+    let groupsCollection = "groups"
     let deletedUserCollection = "deletedUsers"
     let groupsCollection = "groups"
     let carpoolCollection = "carpools"
@@ -28,11 +30,15 @@ extension UserController {
     func signupNewUserAndCreateNewUserWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                print("\n==== ERROR SING UP NEW USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")            }
+                print("\n==== ERROR SING UP NEW USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            }
+            
             guard let authResult = result else {return completion(.failure(.noData))}
-            let newUser = User(firstName: firstName, lastName: lastName, userName: userName,lastCurrentLocation: self.lastCurrentLocation)
+            let newUser = User(firstName: firstName, lastName: lastName, userName: userName, lastCurrentLocation: self.lastCurrentLocation)
+            self.lastCurrentLocation = []
             let userRef = self.db.collection(self.userCollection)
-            userRef.document(newUser.uuid).collection(self.groupsCollection).addDocument(data: ["placeholder":"nil"])
+
+            userRef.document(newUser.uuid).collection(self.groupsCollection).addDocument(data: ["nothing":"nil"])
             userRef.document(newUser.uuid).setData([
                 
                 UserConstants.firstNameKey : newUser.firstName,
@@ -564,29 +570,84 @@ extension UserController {
             return completion(.success(currentUser))
         }
     }
-    
 }
-//end class
+    
 
-// MARK: - New Fucntion for CarpoolController And StorageController
+}
+
+
+
+
+/*
+//NEW BLOCKED USERS
 extension UserController {
-    func fetchSpecificUserByID(userId: String, completion: @escaping(Result<User, NetworkError>) -> Void) {
-        db.collectionGroup(userCollection).getDocuments { (users, error) in
+ 
+ //talk them out from carpool group
+ // when I blocked
+ // Go checkt the group
+ //if in the currentUser.uuid == > group(carpool.id)
+            for  this carpool.id  goto passager and driver. {
+ if the passage = blockedUser.uuid {
+ //deleteGrop From current user..
+ }
+ }
+ 
+ //===================================================
+ 
+ func deleteCarpoolAfterBlockOrDeleleteUser(blockedUser: user) {
+ db.collection(userCollection).document(currentUser.uuid).colection(groupsCollection).getDocuments { (querySnapshot, error) in
+     
+    if let error = error {
+         return completion(.failure(.thrownError(error)))
+     } else {
+         guard let querySnapshot = querySnapshot,
+        //let groups = User(document: querySnapshot) else {return completion(.failure(.noData))}
+
+         for groupId in documents {
+             self.db.collection(self.carpoolCollection).document(groupId).getDocument { (snapshot, error) in
+                 if let error = error {
+                     return completion(.failure(.thrownError(error)))
+                 } else {
+                     guard let snapshot = snapshot,
+                           let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+                                for passagers in carpool.passagers {
+                                    if passagers == blockUser {
+    
+                                    //Delete myself from carpoolGroup
+                                    db.collection(userCollection).document(currentUser.uuid).colection(groupsCollection).document(carpool.uuid).delelte() { err in
+                                            if let err = err {
+                                            print("Error removing document: \(err)")
+                                            } else {
+                                        print("Document successfully removed!")
+                                            completion(.successs(carpool))
+                                            }
+                                        }
+                 }
+             }
+         }
+     }
+ }
+ 
+ //===================================================
+ 
+    func blockUser(_ user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
+        guard let currentUser = currentUser else {return}
+        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.friendsKey : FieldValue.arrayRemove([user.uuid])]) { (error) in
             if let error = error {
-                print("\n====ERROR  FETCH ALL USER! IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                print("\n==== ERROR BLOCK USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
+            } else {
+                print("FINALLY! \(currentUser.firstName) UNFRIENDED AND GOING TO BLOCK \(user.firstName) ")
             }
-            var specificUserByID: User?
-            guard let users = users else {return completion(.failure(.noData))}
-            for document in users.documents {
-                guard let user = User(document: document) else {return completion(.failure(.unableToDecode))}
-                if user.uuid == userId {
-                    specificUserByID = user
-                    print("====SUCCESSFULLY! FETCH SPECIFIC USER! \(#function)====")
-                }
+        }
+        
+        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([user.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR BLOCK USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("FINALLY! \(currentUser.firstName) BLOCKED \(user.firstName).")
             }
-            guard let specificUser = specificUserByID else {return}
-            return completion(.success(specificUser))
         }
         
         //Save Delete User Some where
@@ -614,8 +675,10 @@ extension UserController {
     func updateUserLocation(lastCurrentLocation: [Double], completion: @escaping (Result<[Double], NetworkError>) -> Void) {
         guard let currentUser = currentUser else {return}
         db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.lastCurrentLocationKey : FieldValue.delete()]) { (error) in
+        
+        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.blockedUsersByCurrentUserKey : FieldValue.arrayUnion([user.uuid])]) { (error) in
             if let error = error {
-                print("\n==== ERROR DELETED LAST CURRENT LOCATION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                print("\n==== ERROR BLOCK USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
             } else {
                 self.db.collection(self.userCollection).document(currentUser.uuid).updateData([UserConstants.lastCurrentLocationKey : FieldValue.arrayUnion([self.lastCurrentLocation[0]])]) { (error) in
@@ -708,60 +771,29 @@ extension UserController {
                         
                     }
                 }
+                print("FINALLY! \(currentUser.firstName) BLOCKED \(user.firstName).")
             }
         }
+        
+        db.collection(userCollection).document(user.uuid).updateData([UserConstants.friendsKey : FieldValue.arrayRemove([currentUser.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR BLOCK USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("FINALLY! \(user.firstName) ALSO GET BLOCKED AND UNFRIENDED \(currentUser.firstName).")
+            }
+        }
+        
+        db.collection(userCollection).document(user.uuid).updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([currentUser.uuid])]) { (error) in
+            if let error = error {
+                print("\n==== ERROR BLOCK USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("FINALLY! \(user.firstName) GOT \(currentUser.firstName) IN BLOCKED LIST.")
+            }
+        }
+       return completion(.success(user))
     }
 }
 
 
-
-//let groups = User(document: querySnapshot) else {return completion(.failure(.noData))}
-
-/*     for groupId in querySnapshot!.documents {
- self.db.collection(self.carpoolCollection).document(groupId).getDocument { (snapshot, error) in
- if let error = error {
- return completion(.failure(.thrownError(error)))
- } else {
- guard let snapshot = snapshot,
- let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
- for passagers in carpool.passagers {
- if passagers == blockUser {
- 
- //Delete myself from carpoolGroup
- db.collection(userCollection).document(currentUser.uuid).colection(groupsCollection).document(carpool.uuid).delelte() { err in
- if let err = err {
- print("Error removing document: \(err)")
- } else {
- print("Document successfully removed!")
- completion(.successs(carpool))
- }
- }
- }
- }
- }
- }
- }
- }
- }
- */
-
-/* For refacting the code
- let batch = self.db.batch()
- let ref = self.db.collection(userCollection).document(currentUser.uuid)
- let ref2 = self.db.collection(userCollection).document(user.uuid)
- 
- batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([user.uuid])], forDocument: ref)
- batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
- batch.updateData([UserConstants.blockedUsersByCurrentUserKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
- batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([currentUser.uuid])], forDocument: ref2)
- batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([currentUser.uuid])], forDocument: ref2)
- 
- batch.commit { (error) in
- if let error = error {
- return completion(.failure(.thrownError(error)))
- 
- } else {
- return completion(.success(currentUser))
- }
- }
- */
