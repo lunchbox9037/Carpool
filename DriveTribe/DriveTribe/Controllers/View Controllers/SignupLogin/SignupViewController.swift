@@ -19,7 +19,7 @@ class SignupViewController: UIViewController {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
-        imageView.tintColor = .systemGray
+        imageView.tintColor = .dtTextTribe
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         
@@ -34,10 +34,12 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Username..."
+        field.attributedPlaceholder = NSAttributedString(string: "Username...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -49,10 +51,12 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "First Name..."
+        field.attributedPlaceholder = NSAttributedString(string: "First name...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -64,10 +68,12 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Last Name..."
+        field.attributedPlaceholder = NSAttributedString(string: "Last name...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -80,10 +86,12 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Email Address..."
+        field.attributedPlaceholder = NSAttributedString(string: "Email...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -96,10 +104,12 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Password..."
+        field.attributedPlaceholder = NSAttributedString(string: "Password...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         field.isSecureTextEntry = true
         return field
     }()
@@ -178,7 +188,6 @@ class SignupViewController: UIViewController {
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width-60, height: 44)
         getLocationButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width-60, height: 44)
         signUpButton.frame = CGRect(x: 30, y: getLocationButton.bottom + 30, width: scrollView.width-60, height: 44)
-
     }
     
     // MARK: - Methods
