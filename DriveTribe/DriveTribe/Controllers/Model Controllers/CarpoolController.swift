@@ -43,7 +43,6 @@ class CarpoolController {
         
         let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: uniquePassengers)
         
-        carpools.append(newCarpool)
         addCarpoolToCurrentUsersGroup(carpool: newCarpool)
         addCarpoolToPassengersGroup(carpool: newCarpool)
         

@@ -26,6 +26,11 @@ class FriendListTableViewController: UITableViewController {
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+//
+//        //TEST Blocked User
+//        UserController.shared.deleteCarpoolAfterBlockOrDeleleteUser()
+        
+        
         friendSearchBar.delegate = self
         setupTableView()
         if #available(iOS 13, *)
@@ -46,6 +51,10 @@ class FriendListTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         friendSearchBar.selectedScopeButtonIndex = 0
         setAppearance()
+        
+        
+        //TEST Blocked User
+       // UserController.shared.deleteCarpoolAfterBlockOrDeleleteUser()
     }
     
     // MARK: - Table view data source

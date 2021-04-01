@@ -20,10 +20,11 @@ class UserController {
     var lastCurrentLocation: [Double] = []
     let deletedUserCollection = "deletedUsers"
     let groupsCollection = "groups"
+    let carpoolCollection = "carpools"
 }
-    // MARK: - CRUD Methods
-    // MARK: - CREATE ==> Signup, login and logout.
-    extension UserController {
+// MARK: - CRUD Methods
+// MARK: - CREATE ==> Signup, login and logout.
+extension UserController {
     func signupNewUserAndCreateNewUserWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -31,6 +32,7 @@ class UserController {
             guard let authResult = result else {return completion(.failure(.noData))}
             let newUser = User(firstName: firstName, lastName: lastName, userName: userName,lastCurrentLocation: self.lastCurrentLocation)
             let userRef = self.db.collection(self.userCollection)
+            userRef.document(newUser.uuid).collection(self.groupsCollection).addDocument(data: ["placeholder":"nil"])
             userRef.document(newUser.uuid).setData([
                 
                 UserConstants.firstNameKey : newUser.firstName,
@@ -78,11 +80,11 @@ class UserController {
             completion(.failure(.thrownError(error)))
         }
     }
-    }
+}
 
 // MARK: - READ ==> All fetch fuctions
 extension UserController {
-
+    
     func fetchCurrentUser(completion: @escaping(Result<User, NetworkError>) -> Void) {
         let currentUserID = Auth.auth().currentUser?.uid
         guard let upwrapCurrentUserID = currentUserID else { return completion(.failure(.unableToDecode)) }
@@ -277,7 +279,7 @@ extension UserController {
     }
 }
 
-    // MARK: - UPDATE
+// MARK: - UPDATE
 extension UserController {
     func sendFriendRequest(to user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
@@ -422,7 +424,18 @@ extension UserController {
                 print("FINALLY! \(user.firstName) GOT \(currentUser.firstName) IN BLOCKED LIST.")
             }
         }
-       return completion(.success(user))
+        deleteUserFromCarpoolAfterBlockOrDeleleteOrUnFriend(user: user) { (results) in
+            switch results {
+            case .success(let carpoolsToDelete):
+                for carpool in carpoolsToDelete {
+                    print("\n======I just blocked \(user.userName) then I kicked myself out from \(carpool.title)=====\n")
+                }
+                print("\n=====SUCCESSFULLY DELETED CARPOOL FROM THE CURRENT USER'S GROUP!! SO FINALLY, YOU WON'T BE IN THE SAME GROUP WITH YOUR BLOCK USER ANYMORE==========\n")
+            case .failure(let error):
+                print("\n==== ERROR BLOCK USER AND DELETE CARPOOL IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            }
+        }
+        return completion(.success(user))
     }
     
     func unfriendUser(_ user: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
@@ -442,6 +455,17 @@ extension UserController {
                 return completion(.failure(.thrownError(error)))
             } else {
                 print("FINALLY! \(user.firstName) GOT \(currentUser.firstName) OUT FRIEND LIST.")
+            }
+        }
+        
+        deleteUserFromCarpoolAfterBlockOrDeleleteOrUnFriend(user: user) { (results) in
+            switch results {
+            case .success(let carpoolsToDelte):
+                for carpool in carpoolsToDelte {
+                    print("\n======I just unfriended \(user.userName) then I kicked myself out from \(carpool.title)=====\n")
+                }
+            case .failure(let error):
+                print("\n===================ERROR! \(error.localizedDescription) IN\(#function) ======================\n")
             }
         }
         return completion(.success(user))
@@ -479,8 +503,10 @@ extension UserController {
         }
         return completion(.success(user))
     }
+}
+// MARK: - Delete Account
+extension UserController {
     
-    //Delete Account
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
         //Save Deleted User Some where
@@ -531,13 +557,16 @@ extension UserController {
                     print("\n==== ERROR DELETING AUTH USER ACCOUNT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 }
             })
+            
+            
+            
+            
             return completion(.success(currentUser))
         }
     }
     
-    
-    
-}//end class
+}
+//end class
 
 // MARK: - New Fucntion for CarpoolController And StorageController
 extension UserController {
@@ -559,28 +588,28 @@ extension UserController {
             guard let specificUser = specificUserByID else {return}
             return completion(.success(specificUser))
         }
-    
+        
         //Save Delete User Some where
         
     }
     
     func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
-           guard let currentUser = currentUser else {return}
-                   db.collection(userCollection).document(currentUser.uuid).updateData([
-                       UserConstants.firstNameKey : firstName,
-                       UserConstants.lastNameKey : lastName,
-                       UserConstants.userNameKey : userName,
-                       UserConstants.carInfoKey : carInfo
-                           ]) { (error) in
-                       if let error = error {
-                           print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                           return completion(.failure(.thrownError(error)))
-                       } else {
-                           print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
-                        return completion(.success("Success"))
-                       }
-                   }
-       }
+        guard let currentUser = currentUser else {return}
+        db.collection(userCollection).document(currentUser.uuid).updateData([
+            UserConstants.firstNameKey : firstName,
+            UserConstants.lastNameKey : lastName,
+            UserConstants.userNameKey : userName,
+            UserConstants.carInfoKey : carInfo
+        ]) { (error) in
+            if let error = error {
+                print("\n==== ERROR UPDATE USER PROFILE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                return completion(.failure(.thrownError(error)))
+            } else {
+                print("\n===== SUCCESSFULLY! UPDATE PROFILE IN =====\(#function)\n")
+                return completion(.success("Success"))
+            }
+        }
+    }
     
     func updateUserLocation(lastCurrentLocation: [Double], completion: @escaping (Result<[Double], NetworkError>) -> Void) {
         guard let currentUser = currentUser else {return}
@@ -602,11 +631,11 @@ extension UserController {
                                 
                                 print("\n===================SUCCESFULLY! UPDATED USER LOCATION IN\(#function) ======================\n")
                                 completion(.success(self.lastCurrentLocation))
-
+                                
                             }
                             
                         }
-
+                        
                     }
                 }
             }
@@ -614,41 +643,69 @@ extension UserController {
     }
 }
 
-
 //BlockedUser
 extension UserController {
-    func deleteCarpoolAfterBlockOrDeleleteUser(blockedUser: User, completion: @escaping (Result<[Carpool], NetworkError>) -> Void) {
+    func deleteUserFromCarpoolAfterBlockOrDeleleteOrUnFriend(user: User, completion: @escaping (Result<[Carpool], NetworkError>) -> Void) {
+        // func deleteCarpoolAfterBlockOrDeleleteUser() {
         guard let currentUser = currentUser else {return}
         db.collection(userCollection).document(currentUser.uuid).collection(groupsCollection).getDocuments { (querySnapshot, error) in
-            
             if let error = error {
+                print("\n==== ERROR GETTING DOCUMENTS FROM GROUPS COLLECTION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
             } else {
-                guard let querySnapshot = querySnapshot else {return}
-                      //let groups = User(document: querySnapshot) else {return completion(.failure(.noData))}
-                
-                for groupId in querySnapshot {
-                    self.db.collection(self.carpoolCollection).document(groupId).getDocument { (snapshot, error) in
+                var carpoolToDeleteArray: [Carpool] = []
+                for document in querySnapshot!.documents {
+                    print("\n===================SUCCESFULLY! FETCH DOCUMENT IN\(#function) ======================\n")
+                    print("\(document.documentID) => \(document.data())")
+                    self.db.collection(self.carpoolCollection).document(document.documentID).getDocument { (snapshot, error) in
                         if let error = error {
                             return completion(.failure(.thrownError(error)))
                         } else {
-                            guard let snapshot = snapshot,
-                                  let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-                            for passagers in carpool.passagers {
-                                if passagers == blockUser {
-                                    
-                                    //Delete myself from carpoolGroup
-                                    db.collection(userCollection).document(currentUser.uuid).colection(groupsCollection).document(carpool.uuid).delelte() { err in
+                            print("\n===================SUCCESFULLY! FETCH CARPOOL FROM DOCUMENT ID IN\(#function) ======================\n")
+                            guard let snapshot = snapshot else {return completion(.failure(.noData))}
+                            guard let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+                        
+                                if carpool.driver == user.uuid {
+                                    self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete() { err in
                                         if let err = err {
                                             print("Error removing document: \(err)")
                                         } else {
-                                            print("Document successfully removed!")
-                                            completion(.successs(carpool))
+                                            print("\n===================SUCCESFULLY! DELETED CARPOOL GROUP FROM CURRENT USER IN\(#function) ======================\n")
+                                            carpoolToDeleteArray.append(carpool)
+                                        }
+                                    }
+                                }
+                                
+                            for passenger in carpool.passengers {
+                                
+                                if currentUser.uuid == carpool.driver {
+                                    //delte that perspm
+                                    if passenger == user.uuid {
+                                        self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([user.uuid])])
+                                        self.db.collection(self.userCollection).document(user.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
+                                    }
+                                }
+                                
+                            }
+                            
+                            for passenger in carpool.passengers {
+                                if passenger == user.uuid {
+                                    
+                                    guard let upwrapCuurentUser = self.currentUser else {return}
+                                    self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([upwrapCuurentUser.uuid])])
+                                    
+                                    self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete() { err in
+                                        if let err = err {
+                                            print("Error removing document: \(err)")
+                                        } else {
+                                            print("\n===================SUCCESFULLY! DELETED CARPOOL GROUP FROM CURRENT USER IN\(#function) ======================\n")
+                                            carpoolToDeleteArray.append(carpool)
                                         }
                                     }
                                 }
                             }
                         }
+                        
                     }
                 }
             }
@@ -656,23 +713,55 @@ extension UserController {
     }
 }
 
+
+
+//let groups = User(document: querySnapshot) else {return completion(.failure(.noData))}
+
+/*     for groupId in querySnapshot!.documents {
+ self.db.collection(self.carpoolCollection).document(groupId).getDocument { (snapshot, error) in
+ if let error = error {
+ return completion(.failure(.thrownError(error)))
+ } else {
+ guard let snapshot = snapshot,
+ let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
+ for passagers in carpool.passagers {
+ if passagers == blockUser {
+ 
+ //Delete myself from carpoolGroup
+ db.collection(userCollection).document(currentUser.uuid).colection(groupsCollection).document(carpool.uuid).delelte() { err in
+ if let err = err {
+ print("Error removing document: \(err)")
+ } else {
+ print("Document successfully removed!")
+ completion(.successs(carpool))
+ }
+ }
+ }
+ }
+ }
+ }
+ }
+ }
+ }
+ */
+
 /* For refacting the code
  let batch = self.db.batch()
-         let ref = self.db.collection(userCollection).document(currentUser.uuid)
-         let ref2 = self.db.collection(userCollection).document(user.uuid)
-         
-         batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([user.uuid])], forDocument: ref)
-         batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
-         batch.updateData([UserConstants.blockedUsersByCurrentUserKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
-         batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([currentUser.uuid])], forDocument: ref2)
-         batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([currentUser.uuid])], forDocument: ref2)
-         
-         batch.commit { (error) in
-             if let error = error {
-                 return completion(.failure(.thrownError(error)))
-                 
-             } else {
-                 return completion(.success(currentUser))
-             }
-         }
+ let ref = self.db.collection(userCollection).document(currentUser.uuid)
+ let ref2 = self.db.collection(userCollection).document(user.uuid)
+ 
+ batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([user.uuid])], forDocument: ref)
+ batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
+ batch.updateData([UserConstants.blockedUsersByCurrentUserKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
+ batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([currentUser.uuid])], forDocument: ref2)
+ batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([currentUser.uuid])], forDocument: ref2)
+ 
+ batch.commit { (error) in
+ if let error = error {
+ return completion(.failure(.thrownError(error)))
+ 
+ } else {
+ return completion(.success(currentUser))
+ }
+ }
  */

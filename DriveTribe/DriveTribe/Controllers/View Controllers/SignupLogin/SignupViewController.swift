@@ -216,7 +216,7 @@ class SignupViewController: UIViewController {
             return
         }
         
-        if UserController.shared.lastCurrentLocation.count == 0 {
+        if UserController.shared.lastCurrentLocation.count != 0 {
             UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
                 self.spinner.show(in: self.view)
                 switch results {
