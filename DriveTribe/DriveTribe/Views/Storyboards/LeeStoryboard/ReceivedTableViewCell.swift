@@ -39,7 +39,7 @@ class ReceivedTableViewCell: DriveTribeTableViewCell {
     }
     
     func updateView(friendRequestReceived: User) {
-        userNameLabel.text = friendRequestReceived.userName.capitalized
+        userNameLabel.text = friendRequestReceived.userName
         acceptButton.setTitle("Accept", for: .normal)
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")

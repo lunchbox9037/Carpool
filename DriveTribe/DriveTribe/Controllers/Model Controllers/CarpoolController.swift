@@ -29,7 +29,7 @@ class CarpoolController {
     let userCollection = "users"
     let messageCollection = "messages"
     let groupsCollection = "groups"
-    let rideTribeIconKey = "RideTribeIcon"
+    let rideTribeIconKey = "RideTribeIconLarge"
     
     // MARK: - CRUD
     func createCarpool() {
@@ -43,7 +43,7 @@ class CarpoolController {
         
         let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: uniquePassengers)
         
-        carpools.append(newCarpool)
+        self.destination = nil
         addCarpoolToCurrentUsersGroup(carpool: newCarpool)
         addCarpoolToPassengersGroup(carpool: newCarpool)
         
@@ -56,7 +56,6 @@ class CarpoolController {
             CarpoolConstants.destinationKey : newCarpool.destination,
             CarpoolConstants.driverKey : newCarpool.driver,
             CarpoolConstants.passengersKey : newCarpool.passengers,
-            CarpoolConstants.messagesKey : newCarpool.messages,
             CarpoolConstants.uuidKey : newCarpool.uuid
         ]) { (error) in
             if let error = error {
@@ -66,8 +65,13 @@ class CarpoolController {
             }
         }
         
+        var driverMessage = "Meet Up"
+        if newCarpool.type == "carpool" {
+            driverMessage = "Driver: \(UserController.shared.currentUser?.firstName ?? "Unknown")"
+        }
+        
         let sender = Sender(photoURL: "", senderId: rideTribeIconKey, displayName: "Chat Bot")
-        let message = Message(sender: sender, messageId: UUID().uuidString, sentDate: Date(), kind: .text("Start chatting with your RideTribe!"))
+        let message = Message(sender: sender, messageId: UUID().uuidString, sentDate: Date(), kind: .text("Start chatting with your RideTribe!\nTap the map for directions.\n\(driverMessage)"))
         
         let messageDate = Date()
         let dateString = ChatViewController.dateFormatter.string(from: messageDate)
@@ -154,7 +158,10 @@ class CarpoolController {
             
             guard let documents = querySnapshot?.documents else {return completion(.failure(.noData))}
             self.carpools = []
+
+            print(documents.count)
             for document in documents {
+                
                 print(document.documentID)
                 let carpoolID = document.documentID
                 self.db.collection(self.carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
@@ -243,6 +250,8 @@ class CarpoolController {
     }//end func
     
     func sortCarpoolsByWorkPlay() {
+//        self.work = []
+//        self.play = []
         self.work = carpools.filter({ (carpool) -> Bool in
             return carpool.mode == "work"
         })
@@ -328,28 +337,40 @@ class CarpoolController {
     
     func delete(carpool: Carpool, completion: @escaping (Result<String, NetworkError>) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
-       
-        db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(.failure(.thrownError(error)))
-            } else {
-                guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
-                self.carpools.remove(at: indexToDelete)
-                self.sortCarpoolsByWorkPlay()
-                
-                self.db.collection(self.userCollection).document(currentUser.uuid).updateData([
-                    UserConstants.groupsKey : FieldValue.arrayRemove([carpool.uuid])
-                ])
-                
-                if carpool.passengers.count != 0 {
-                    for passenger in carpool.passengers {
-                        self.db.collection(self.userCollection).document(passenger).updateData([
-                            UserConstants.groupsKey : FieldValue.arrayRemove([carpool.uuid])
-                        ])
+        
+        if carpool.driver == currentUser.uuid {
+            print("driver delete")
+            self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
+            
+            for passenger in carpool.passengers {
+                print("deleted passenger")
+                print(passenger)
+                self.db.collection(self.userCollection).document(passenger).collection(self.groupsCollection).document(carpool.uuid).delete { (error) in
+                    if let error = error {
+                        return completion(.failure(.thrownError(error)))
                     }
                 }
-                completion(.success("success"))
+            }
+            
+            db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(.thrownError(error)))
+                } else {
+                    guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
+                    self.carpools.remove(at: indexToDelete)
+                    self.sortCarpoolsByWorkPlay()
+                    
+                    
+                    return completion(.success("success"))
+                }
+            }
+            
+        } else {
+            self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete { (error) in
+                if let error = error {
+                    return completion(.failure(.thrownError(error)))
+                }
             }
         }
     }//end func

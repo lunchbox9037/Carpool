@@ -45,7 +45,7 @@ class SignupViewController: UIViewController {
     
     private let firstNameField: UITextField = {
         let field = UITextField()
-        field.autocapitalizationType = .none
+        field.autocapitalizationType = .words
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 8
@@ -62,7 +62,7 @@ class SignupViewController: UIViewController {
     
     private let lastNameField: UITextField = {
         let field = UITextField()
-        field.autocapitalizationType = .none
+        field.autocapitalizationType = .words
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 8
@@ -216,7 +216,7 @@ class SignupViewController: UIViewController {
             return
         }
         
-        if UserController.shared.lastCurrentLocation.count == 0 {
+        if UserController.shared.lastCurrentLocation.count != 0 {
             UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
                 self.spinner.show(in: self.view)
                 switch results {

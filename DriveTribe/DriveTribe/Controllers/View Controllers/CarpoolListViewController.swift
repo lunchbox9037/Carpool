@@ -32,6 +32,10 @@ class CarpoolListViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         setAppearance()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//    }
 
     // MARK: - Actions
     @IBAction func workPlaySegmentChanged(_ sender: Any) {
@@ -52,19 +56,29 @@ class CarpoolListViewController: UIViewController {
     // MARK: - Methods
     func addCarpoolListener() {
         CarpoolController.shared.fetchGroupsForCurrentUser { [weak self] (result) in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                        print("loadedGroup")
+                        CarpoolController.shared.sortCarpoolsByWorkPlay()
+                        if self?.workPlaySegment.selectedSegmentIndex == 0 {
+                            self?.dataSource = CarpoolController.shared.work
+                        } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
+                            self?.dataSource = CarpoolController.shared.play
+                        }
+
+                case .failure(let error):
+                    print("failed")
                     CarpoolController.shared.sortCarpoolsByWorkPlay()
                     if self?.workPlaySegment.selectedSegmentIndex == 0 {
                         self?.dataSource = CarpoolController.shared.work
                     } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
                         self?.dataSource = CarpoolController.shared.play
                     }
-                    self?.carpoolTableView.reloadData()
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
+                self?.carpoolTableView.reloadData()
+
             }
         }
     }//end func

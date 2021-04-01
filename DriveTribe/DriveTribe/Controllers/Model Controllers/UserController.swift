@@ -15,9 +15,11 @@ class UserController {
     static var shared = UserController()
     var users: [User] = []
     var currentUser: User?
+    var lastCurrentLocation: [Double] = []
+    
     let db = Firestore.firestore()
     let userCollection = "users"
-    var lastCurrentLocation: [Double] = []
+    let groupsCollection = "groups"
     let deletedUserCollection = "deletedUsers"
     
     // MARK: - CRUD Methods
@@ -25,10 +27,14 @@ class UserController {
     func signupNewUserAndCreateNewUserWith(firstName: String, lastName: String, userName: String, email: String, password: String, completion: @escaping (Result<User, NetworkError>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                print("\n==== ERROR SING UP NEW USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")            }
+                print("\n==== ERROR SING UP NEW USER IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            }
+            
             guard let authResult = result else {return completion(.failure(.noData))}
-            let newUser = User(firstName: firstName, lastName: lastName, userName: userName,lastCurrentLocation: self.lastCurrentLocation)
+            let newUser = User(firstName: firstName, lastName: lastName, userName: userName, lastCurrentLocation: self.lastCurrentLocation)
+            self.lastCurrentLocation = []
             let userRef = self.db.collection(self.userCollection)
+            userRef.document(newUser.uuid).collection(self.groupsCollection).addDocument(data: ["nothing":"nil"])
             userRef.document(newUser.uuid).setData([
                 
                 UserConstants.firstNameKey : newUser.firstName,
