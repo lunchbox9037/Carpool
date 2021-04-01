@@ -664,18 +664,18 @@ extension UserController {
                             print("\n===================SUCCESFULLY! FETCH CARPOOL FROM DOCUMENT ID IN\(#function) ======================\n")
                             guard let snapshot = snapshot else {return completion(.failure(.noData))}
                             guard let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-                        
-                                if carpool.driver == user.uuid {
-                                    self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete() { err in
-                                        if let err = err {
-                                            print("Error removing document: \(err)")
-                                        } else {
-                                            print("\n===================SUCCESFULLY! DELETED CARPOOL GROUP FROM CURRENT USER IN\(#function) ======================\n")
-                                            carpoolToDeleteArray.append(carpool)
-                                        }
+                            
+                            if carpool.driver == user.uuid {
+                                self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete() { err in
+                                    if let err = err {
+                                        print("Error removing document: \(err)")
+                                    } else {
+                                        print("\n===================SUCCESFULLY! DELETED CARPOOL GROUP FROM CURRENT USER IN\(#function) ======================\n")
+                                        carpoolToDeleteArray.append(carpool)
                                     }
                                 }
-                                
+                            }
+                            
                             for passenger in carpool.passengers {
                                 
                                 if currentUser.uuid == carpool.driver {

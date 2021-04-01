@@ -35,7 +35,7 @@ class SignupViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
         field.attributedPlaceholder = NSAttributedString(string: "Username...",
-                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
         field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -52,7 +52,7 @@ class SignupViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
         field.attributedPlaceholder = NSAttributedString(string: "First name...",
-                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
         field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -69,7 +69,7 @@ class SignupViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
         field.attributedPlaceholder = NSAttributedString(string: "Last name...",
-                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
         field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -87,7 +87,7 @@ class SignupViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
         field.attributedPlaceholder = NSAttributedString(string: "Email...",
-                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
         field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -105,7 +105,7 @@ class SignupViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
         field.attributedPlaceholder = NSAttributedString(string: "Password...",
-                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
         field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -149,7 +149,7 @@ class SignupViewController: UIViewController {
         
         signUpButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         getLocationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
-
+        
         userNameField.delegate = self
         firstNameField.delegate = self
         lastNameField.delegate = self
@@ -204,7 +204,7 @@ class SignupViewController: UIViewController {
     
     @objc func signupButtonTapped() {
         view.endEditing(true)
-
+        
         guard let userName = userNameField.text, !userName.isEmpty,
               let firstName = firstNameField.text, !firstName.isEmpty,
               let lastName = lastNameField.text, !lastName.isEmpty,
@@ -296,7 +296,7 @@ extension SignupViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func presentImagePickerActionSheet() {
         let imagePickerController = UIImagePickerController()
-    
+        
         let actionSheet = UIAlertController(title: "Profile Picture", message: "Select or take a photo for your profile.", preferredStyle: .actionSheet)
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
