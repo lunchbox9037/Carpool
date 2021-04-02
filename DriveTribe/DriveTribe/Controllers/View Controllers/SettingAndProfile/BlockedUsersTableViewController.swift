@@ -24,7 +24,6 @@ class BlockedUsersTableViewController: UITableViewController {
     }
     
     
-    
     // MARK: - Table view data source
     func setupViews() {
         guard let currentUser = UserController.shared.currentUser else {return}

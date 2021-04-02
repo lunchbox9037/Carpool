@@ -352,6 +352,10 @@ class CarpoolController {
                 }
             }
             
+            
+            db.collection(carpoolCollection).document(carpool.uuid).collection(messageCollection).document().delete()
+            
+            
             db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
                 if let error = error {
                     print(error.localizedDescription)
