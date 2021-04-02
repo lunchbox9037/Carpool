@@ -20,7 +20,7 @@ class UserController {
     let db = Firestore.firestore()
     let userCollection = "users"
     let deletedUserCollection = "deletedUsers"
-    let groupsCollection = "groups"
+    let groupCollection = "groups"
     let carpoolCollection = "carpools"
 }
 // MARK: - CRUD Methods
@@ -513,8 +513,8 @@ extension UserController {
     
     func deleteUser(currentUser: User, completion: @escaping (Result<User, NetworkError>) -> Void) {
         
-        //Save Deleted User Some where
         let deletedUser = currentUser
+        deleteDataOfDeletedAccount(currentUser: deletedUser)
         let userRef = self.db.collection(self.deletedUserCollection)
         
         userRef.document(deletedUser.uuid).setData([
@@ -530,13 +530,11 @@ extension UserController {
             UserConstants.friendsRequestReceivedKey : deletedUser.friendsRequestReceived,
             UserConstants.authIDKey : deletedUser.authID,
             UserConstants.uuidKey : deletedUser.uuid
-            
         ]) { (error) in
             if let error = error {
                 print(error.localizedDescription)
                 return completion(.failure(.thrownError(error)))
             } else {
-                //delete form User Document
                 let docRef = self.db.collection(self.userCollection).document(deletedUser.uuid)
                 docRef.delete { (error) in
                     if let error = error {
@@ -546,31 +544,26 @@ extension UserController {
                             switch results {
                             case .success(let response):
                                 print(response)
+                                
                             case .failure(let error):
                                 print("\n==== ERROR DELETING USER FROM USER DOCUMENT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                             }
                         }
-                        return completion(.success(deletedUser))
                     }
                 }
             }
             
-            //Also delete Current User from Auth
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if let error = error {
                     print("\n==== ERROR DELETING AUTH USER ACCOUNT IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 }
             })
             
-            
-            
-            
             return completion(.success(currentUser))
         }
     }
-    
 }
-//end class
+
 
 // MARK: - New Fucntion for CarpoolController And StorageController
 extension UserController {
@@ -592,9 +585,6 @@ extension UserController {
             guard let specificUser = specificUserByID else {return}
             return completion(.success(specificUser))
         }
-        
-        //Save Delete User Some where
-        
     }
     
     func updateUserProfile(firstName: String, lastName: String, userName: String, carInfo: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
@@ -669,47 +659,72 @@ extension UserController {
                             guard let snapshot = snapshot else {return completion(.failure(.noData))}
                             guard let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
                             
-                            if carpool.driver == user.uuid {
-                                self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete() { err in
-                                    if let err = err {
-                                        print("Error removing document: \(err)")
-                                    } else {
-                                        print("\n===================SUCCESFULLY! DELETED CARPOOL GROUP FROM CURRENT USER IN\(#function) ======================\n")
+                            if currentUser.uuid == carpool.driver {
+                                for passager in carpool.passengers {
+                                    if passager == user.uuid {
+                                        self.db.collection(self.userCollection).document(user.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
+                                        carpoolToDeleteArray.append(carpool)
+                                        self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([user.uuid])])
+                                    }
+                                }
+                            } else {
+                                if user.uuid == carpool.driver {
+                                    self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
+                                    self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([currentUser.uuid])])
+                                    carpoolToDeleteArray.append(carpool)
+                                }
+                                
+                                for passager in carpool.passengers {
+                                    if passager == user.uuid {
+                                        self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
+                                        self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([currentUser.uuid])])
                                         carpoolToDeleteArray.append(carpool)
                                     }
                                 }
-                            }
-                            
-                            for passenger in carpool.passengers {
-                                
-                                if currentUser.uuid == carpool.driver {
-                                    //delte that perspm
-                                    if passenger == user.uuid {
-                                        self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([user.uuid])])
-                                        self.db.collection(self.userCollection).document(user.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
-                                    }
-                                }
                                 
                             }
                             
-                            for passenger in carpool.passengers {
-                                if passenger == user.uuid {
-                                    
-                                    guard let upwrapCuurentUser = self.currentUser else {return}
-                                    self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([upwrapCuurentUser.uuid])])
-                                    
-                                    self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete() { err in
-                                        if let err = err {
-                                            print("Error removing document: \(err)")
-                                        } else {
-                                            print("\n===================SUCCESFULLY! DELETED CARPOOL GROUP FROM CURRENT USER IN\(#function) ======================\n")
-                                            carpoolToDeleteArray.append(carpool)
-                                        }
-                                    }
-                                }
-                            }
                         }
-                        
+                    }
+                }
+                completion(.success(carpoolToDeleteArray))
+            }
+        }
+    }
+}
+
+
+//DeleteMySelf From Everywhere for delelte account function
+extension UserController {
+    func deleteDataOfDeletedAccount(currentUser: User) {
+        
+        db.collection(userCollection).document(currentUser.uuid).collection(groupsCollection).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("\n==== ERROR GETTING DOCUMENTS FROM GROUPS COLLECTION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\n===================SUCCESFULLY! FETCH DOCUMENT IN\(#function) ======================\n")
+                    print("\(document.documentID) => \(document.data())")
+                    self.db.collection(self.carpoolCollection).document(document.documentID).getDocument { (snapshot, error) in
+                        if let error = error {
+                            print("\n==== ERROR GETTING CARPOOL INFO DOCUMENTS FROM GROUPS COLLECTION IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        } else {
+                            print("\n===================SUCCESFULLY! FETCH CARPOOL FROM DOCUMENT ID IN\(#function) ======================\n")
+                            guard let snapshot = snapshot else {return}
+                            guard let carpool = Carpool(document: snapshot) else {return}
+                            
+                            if currentUser.uuid == carpool.driver {
+                                self.db.collection(self.carpoolCollection).document(carpool.uuid).delete()
+                            } else {
+                                for passager in carpool.passengers {
+                                    if passager == currentUser.uuid {
+                                        self.db.collection(self.carpoolCollection).document(carpool.uuid).updateData([CarpoolConstants.passengersKey : FieldValue.arrayRemove([currentUser.uuid])])
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
                     }
                 }
             }
@@ -717,55 +732,3 @@ extension UserController {
     }
 }
 
-
-
-//let groups = User(document: querySnapshot) else {return completion(.failure(.noData))}
-
-/*     for groupId in querySnapshot!.documents {
- self.db.collection(self.carpoolCollection).document(groupId).getDocument { (snapshot, error) in
- if let error = error {
- return completion(.failure(.thrownError(error)))
- } else {
- guard let snapshot = snapshot,
- let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
- for passagers in carpool.passagers {
- if passagers == blockUser {
- 
- //Delete myself from carpoolGroup
- db.collection(userCollection).document(currentUser.uuid).colection(groupsCollection).document(carpool.uuid).delelte() { err in
- if let err = err {
- print("Error removing document: \(err)")
- } else {
- print("Document successfully removed!")
- completion(.successs(carpool))
- }
- }
- }
- }
- }
- }
- }
- }
- }
- */
-
-/* For refacting the code
- let batch = self.db.batch()
- let ref = self.db.collection(userCollection).document(currentUser.uuid)
- let ref2 = self.db.collection(userCollection).document(user.uuid)
- 
- batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([user.uuid])], forDocument: ref)
- batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
- batch.updateData([UserConstants.blockedUsersByCurrentUserKey : FieldValue.arrayUnion([user.uuid])], forDocument: ref)
- batch.updateData([UserConstants.friendsKey : FieldValue.arrayRemove([currentUser.uuid])], forDocument: ref2)
- batch.updateData([UserConstants.blockedUsersKey : FieldValue.arrayUnion([currentUser.uuid])], forDocument: ref2)
- 
- batch.commit { (error) in
- if let error = error {
- return completion(.failure(.thrownError(error)))
- 
- } else {
- return completion(.success(currentUser))
- }
- }
- */
