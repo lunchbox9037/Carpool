@@ -32,10 +32,7 @@ class CarpoolListViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         setAppearance()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//    }
+
 
     // MARK: - Actions
     @IBAction func workPlaySegmentChanged(_ sender: Any) {
@@ -61,24 +58,23 @@ class CarpoolListViewController: UIViewController {
                 case .success(_):
                         print("loadedGroup")
                         CarpoolController.shared.sortCarpoolsByWorkPlay()
+                        
                         if self?.workPlaySegment.selectedSegmentIndex == 0 {
                             self?.dataSource = CarpoolController.shared.work
                         } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
                             self?.dataSource = CarpoolController.shared.play
                         }
-
+                        self?.carpoolTableView.reloadData()
                 case .failure(let error):
                     print("failed")
-                    CarpoolController.shared.sortCarpoolsByWorkPlay()
-                    if self?.workPlaySegment.selectedSegmentIndex == 0 {
-                        self?.dataSource = CarpoolController.shared.work
-                    } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
-                        self?.dataSource = CarpoolController.shared.play
-                    }
+//                    CarpoolController.shared.sortCarpoolsByWorkPlay()
+//                    if self?.workPlaySegment.selectedSegmentIndex == 0 {
+//                        self?.dataSource = CarpoolController.shared.work
+//                    } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
+//                        self?.dataSource = CarpoolController.shared.play
+//                    }
                     print(error.localizedDescription)
                 }
-                self?.carpoolTableView.reloadData()
-
             }
         }
     }//end func
