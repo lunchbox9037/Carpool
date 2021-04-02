@@ -24,6 +24,7 @@ class CarpoolListViewController: UIViewController {
         carpoolTableView.delegate = self
         overrideUserInterfaceStyle = .light
         UserDefaults.standard.setValue(0, forKey: "modeAppearance")
+        isAppAlreadyLaunched()
         addCarpoolListener()
     }
     
@@ -67,17 +68,22 @@ class CarpoolListViewController: UIViewController {
                         self?.carpoolTableView.reloadData()
                 case .failure(let error):
                     print("failed")
-//                    CarpoolController.shared.sortCarpoolsByWorkPlay()
-//                    if self?.workPlaySegment.selectedSegmentIndex == 0 {
-//                        self?.dataSource = CarpoolController.shared.work
-//                    } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
-//                        self?.dataSource = CarpoolController.shared.play
-//                    }
                     print(error.localizedDescription)
                 }
             }
         }
     }//end func
+    
+    func isAppAlreadyLaunched() {
+        let hasBeenLaunched = UserDefaults.standard.bool(forKey: "hasBeenLaunched")
+        
+        if hasBeenLaunched {
+            return
+        } else {
+            presentFirstLoginAlert()
+            UserDefaults.standard.set(true, forKey: "hasBeenLaunched")
+        }
+    }
 }//end class
 
 extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -120,17 +126,4 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
             destination.tribe = carpoolToSend
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? ChatViewController else {return}
-//
-//        let nav = UINavigationController(rootViewController: detailVC)
-//        
-//        detailVC.tribe = dataSource[indexPath.row]
-//        
-//        
-//        nav.modalPresentationStyle = .fullScreen
-//        present(nav, animated: true, completion: nil)
-//    }
 }//end extension

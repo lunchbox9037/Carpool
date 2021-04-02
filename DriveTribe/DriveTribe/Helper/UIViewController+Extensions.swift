@@ -8,10 +8,15 @@
 import UIKit
 
 extension UIViewController {
-    
-    
     func presentAlertToUser(titleAlert: String, messageAlert: String) {
         let alertController = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .actionSheet)
+        let dismissAction = UIAlertAction(title: "Ok", style: .cancel)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true)
+    }
+    
+    func presentFirstLoginAlert() {
+        let alertController = UIAlertController(title: "Welcome to RideTribe!", message: "Add friends to start creating tribes.\nOnce you have a few friends tap the plus button to create a tribe and begin chatting.", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Ok", style: .cancel)
         alertController.addAction(dismissAction)
         present(alertController, animated: true)

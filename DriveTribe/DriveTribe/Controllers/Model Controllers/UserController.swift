@@ -20,7 +20,7 @@ class UserController {
     let db = Firestore.firestore()
     let userCollection = "users"
     let deletedUserCollection = "deletedUsers"
-    let groupCollection = "groups"
+    let groupsCollection = "groups"
     let carpoolCollection = "carpools"
 }
 // MARK: - CRUD Methods
