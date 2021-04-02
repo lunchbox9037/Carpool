@@ -129,7 +129,7 @@ class LogInViewController: UIViewController {
                     print(error.localizedDescription)
                 }
             }
-        }
+        } 
     }
     
     @objc func loginButtonTapped() {
