@@ -138,7 +138,7 @@ class SignupViewController: UIViewController {
     
     // MARK: - Properties
     var selectedImage: UIImage?
-    private let spinner = JGProgressHUD(style: .dark)
+    let spinner = JGProgressHUD(style: .dark)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -218,19 +218,22 @@ class SignupViewController: UIViewController {
         
         if UserController.shared.lastCurrentLocation.count != 0 {
             UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
-                self.spinner.show(in: self.view)
-                switch results {
-                case .success(let user):
-                    UserController.shared.currentUser = user
-                    if let image = self.selectedImage {
-                        print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
-                        self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+                DispatchQueue.main.async {
+                    self.spinner.show(in: self.view)
+                    switch results {
+                    case .success(let user):
+                        UserController.shared.currentUser = user
+                        if let image = self.selectedImage {
+                            print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
+                            self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+                        }
+                        self.spinner.dismiss()
+                        self.gotoTabbarVC()
+                    case .failure(let error):
+                        self.spinner.dismiss()
+                
+                        print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
                     }
-                    self.spinner.dismiss()
-                    self.gotoTabbarVC()
-                case .failure(let error):
-                    self.spinner.dismiss()
-                    print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
             }
         } else {

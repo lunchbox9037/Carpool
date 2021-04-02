@@ -85,7 +85,7 @@ class LogInViewController: UIViewController {
         return button
     }()
     
-    private let spinner = JGProgressHUD(style: .dark)
+    let spinner = JGProgressHUD(style: .dark)
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,23 +115,20 @@ class LogInViewController: UIViewController {
         loginButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width-60, height: 44)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     func autoLogin() {
         if Auth.auth().currentUser != nil {
-            spinner.textLabel.text = "Signing In"
-            spinner.show(in: view)
-            UserController.shared.fetchCurrentUser { (result) in
-                switch result {
-                case .success(_):
-                    self.gotoTabbarVC()
-                case .failure(let error):
-                    self.spinner.dismiss(animated: true)
-                    self.presentAlertToUser(titleAlert: "Error", messageAlert: "\(error.localizedDescription)")
-                    print(error.localizedDescription)
+            self.spinner.textLabel.text = "Signing In"
+            self.spinner.show(in: self.view)
+            UserController.shared.fetchCurrentUser { [weak self] (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        self?.gotoTabbarVC()
+                    case .failure(let error):
+                        self?.spinner.dismiss(animated: true)
+                        self?.presentAlertToUser(titleAlert: "Error", messageAlert: "\(error.localizedDescription)")
+                        print(error.localizedDescription)
+                    }
                 }
             }
         } 
@@ -147,24 +144,27 @@ class LogInViewController: UIViewController {
         spinner.textLabel.text = "Signing In"
         spinner.show(in: view)
         UserController.shared.loginWith(email: email, password: password) { [weak self] (results) in
-            switch results {
-            case .success(let results):
-                print("This is email of loggin user : \(results)")
-                UserController.shared.fetchCurrentUser { (result) in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(_):
-                            self?.spinner.dismiss(animated: true)
-                            self?.gotoTabbarVC()
-                        case .failure(let error):
-                            print(error.localizedDescription)
+            DispatchQueue.main.async {
+                switch results {
+                case .success(let results):
+                    print("This is email of loggin user : \(results)")
+                    UserController.shared.fetchCurrentUser { [weak self] (result) in
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .success(_):
+                                self?.spinner.dismiss(animated: true)
+                                self?.gotoTabbarVC()
+                            case .failure(let error):
+                                self?.spinner.dismiss()
+                                print(error.localizedDescription)
+                            }
                         }
                     }
+                case .failure(let error):
+                    self?.spinner.dismiss(animated: true)
+                    self?.presentAlertToUser(titleAlert: "Login information invalid!", messageAlert: "Invalid Username or Password")
+                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
-            case .failure(let error):
-                self?.spinner.dismiss(animated: true)
-                self?.presentAlertToUser(titleAlert: "Login information invalid!", messageAlert: "Invalid Username or Password")
-                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
         }
     }
