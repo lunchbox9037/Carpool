@@ -19,7 +19,6 @@ class UserController {
     
     let db = Firestore.firestore()
     let userCollection = "users"
-    let groupsCollection = "groups"
     let deletedUserCollection = "deletedUsers"
     let groupCollection = "groups"
     let carpoolCollection = "carpools"

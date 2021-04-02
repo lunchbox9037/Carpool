@@ -44,8 +44,6 @@ class CarpoolController {
         let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: uniquePassengers)
         
         self.destination = nil
-        addCarpoolToCurrentUsersGroup(carpool: newCarpool)
-        addCarpoolToPassengersGroup(carpool: newCarpool)
         
         let carpoolRef = self.db.collection(self.carpoolCollection)
         carpoolRef.document(newCarpool.uuid).setData([
@@ -62,6 +60,8 @@ class CarpoolController {
                 print("\n==== ERROR CREATING CARPOOL IN CLOUDFIRESTORE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
             } else {
                 print("\n===== SUCCESSFULLY! CREATED CARPOOL IN CLOUD FIRESTORE DATABASE=====\n")
+                self.addCarpoolToCurrentUsersGroup(carpool: newCarpool)
+                self.addCarpoolToPassengersGroup(carpool: newCarpool)
             }
         }
         
@@ -124,11 +124,6 @@ class CarpoolController {
                 print(error.localizedDescription)
             }
         }
-//        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
-//            if let error = error {
-//                print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
-//            }
-//        }
     }//end func
     
     func addCarpoolToPassengersGroup(carpool: Carpool) {
@@ -139,12 +134,6 @@ class CarpoolController {
                         print(error.localizedDescription)
                     }
                 }
-
-//                db.collection(userCollection).document(passenger).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
-//                    if let error = error {
-//                        print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
-//                    }
-//                }
             }
         }
     }//end func
@@ -158,48 +147,44 @@ class CarpoolController {
             
             guard let documents = querySnapshot?.documents else {return completion(.failure(.noData))}
             self.carpools = []
-
+            
+            let group = DispatchGroup()
+            
             print(documents.count)
             for document in documents {
-                
+                group.enter()
+
                 print(document.documentID)
                 let carpoolID = document.documentID
                 self.db.collection(self.carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
                     if let error = error {
                         print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        group.leave()
                         return completion(.failure(.thrownError(error)))
-                    } else {
-                        guard let snapshot = snapshot,
-                              let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-                        self.carpools.append(carpool)
-                        print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
-                        return completion(.success("success"))
                     }
+                    
+                    guard let snapshot = snapshot else {
+    
+                        group.leave()
+                        return completion(.failure(.unableToDecode))
+                    }
+                    
+                    guard let carpool = Carpool(document: snapshot) else {
+                        
+                        group.leave()
+                        return completion(.failure(.unableToDecode))
+                    }
+                    
+                    self.carpools.append(carpool)
+                    print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
+                    group.leave()
                 }
             }
-//        db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
-//            if let error = error {
-//                print("\n==== ERROR FETCH Groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-//                return completion(.failure(.thrownError(error)))
-//            } else {
-//                guard let querySnapshot = querySnapshot,
-//                      let userData = User(document: querySnapshot) else {return completion(.failure(.noData))}
-//                self.carpools = []
-//                for id in userData.groups {
-//                    self.db.collection(self.carpoolCollection).document(id).getDocument { (snapshot, error) in
-//                        if let error = error {
-//                            print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-//                            return completion(.failure(.thrownError(error)))
-//                        } else {
-//                            guard let snapshot = snapshot,
-//                                  let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-//                            self.carpools.append(carpool)
-//                            print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
-//                            return completion(.success("success"))
-//                        }
-//                    }
-//                }
-//            }
+            
+            group.notify(queue: .main) {
+                print("notify")
+                return completion(.success("success"))
+            }
         }
     }//end func
     
@@ -250,8 +235,8 @@ class CarpoolController {
     }//end func
     
     func sortCarpoolsByWorkPlay() {
-//        self.work = []
-//        self.play = []
+        self.work = []
+        self.play = []
         self.work = carpools.filter({ (carpool) -> Bool in
             return carpool.mode == "work"
         })
@@ -340,6 +325,22 @@ class CarpoolController {
         
         if carpool.driver == currentUser.uuid {
             print("driver delete")
+            db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(.thrownError(error)))
+                } else {
+                    guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
+                    self.carpools.remove(at: indexToDelete)
+//                    self.sortCarpoolsByWorkPlay()
+                    
+                    
+                    return completion(.success("success"))
+                }
+            }
+            
+            db.collection(carpoolCollection).document(carpool.uuid).collection(messageCollection).document().delete()
+
             self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
             
             for passenger in carpool.passengers {
@@ -352,25 +353,12 @@ class CarpoolController {
                 }
             }
             
-            
-            db.collection(carpoolCollection).document(carpool.uuid).collection(messageCollection).document().delete()
-            
-            
-            db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    completion(.failure(.thrownError(error)))
-                } else {
-                    guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
-                    self.carpools.remove(at: indexToDelete)
-                    self.sortCarpoolsByWorkPlay()
-                    
-                    
-                    return completion(.success("success"))
-                }
-            }
-            
+            //delete messages collection?
         } else {
+            //test this
+            guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
+            self.carpools.remove(at: indexToDelete)
+//            self.sortCarpoolsByWorkPlay()
             self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete { (error) in
                 if let error = error {
                     return completion(.failure(.thrownError(error)))

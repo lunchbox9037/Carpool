@@ -101,6 +101,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
+        autoLogin()
     }
     
     override func viewDidLayoutSubviews() {
@@ -116,6 +117,10 @@ class LogInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+    }
+    
+    func autoLogin() {
         if Auth.auth().currentUser != nil {
             spinner.textLabel.text = "Signing In"
             spinner.show(in: view)
