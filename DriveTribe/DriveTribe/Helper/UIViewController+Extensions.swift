@@ -8,8 +8,6 @@
 import UIKit
 
 extension UIViewController {
-    
-    
     func presentAlertToUser(titleAlert: String, messageAlert: String) {
         let alertController = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .actionSheet)
         let dismissAction = UIAlertAction(title: "Ok", style: .cancel)
@@ -17,8 +15,14 @@ extension UIViewController {
         present(alertController, animated: true)
     }
     
-    func setupToHideKeyboardOnTapOnView()
-    {
+    func presentFirstLoginAlert() {
+        let alertController = UIAlertController(title: "Welcome to RideTribe!", message: "Add friends to start creating tribes.\nOnce you have a few friends tap the plus button to create a tribe and begin chatting.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .cancel)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true)
+    }
+    
+    func setupToHideKeyboardOnTapOnView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(UIViewController.dismissKeyboard))
@@ -27,14 +31,14 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard()
-    {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
     func setAppearance() {
         let defaults = UserDefaults.standard
         let appearanceSelection = defaults.integer(forKey: "modeAppearance")
+        self.view.backgroundColor = .dtBackground
         
         if appearanceSelection == 0 {
             overrideUserInterfaceStyle = .light
@@ -43,8 +47,6 @@ extension UIViewController {
         }
     }
 }
-
-
 
 extension UIView {
     func addCornerRadius(radius: CGFloat = 8) {

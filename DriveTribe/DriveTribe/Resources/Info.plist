@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please allow access to your photo library.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Allow the camera to take a photo for your profile.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs your location to create carpool routes.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs your location to create carpool routes.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs your location to create carpool routes.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -30,6 +20,23 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow the camera to take a photo for your profile.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs your location to create carpool routes.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs your location to create carpool routes.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location to create carpool routes.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow access to your photo library.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>sweet purple.ttf</string>
+		<string>Champagne &amp; Limousines Bold.ttf</string>
+		<string>Christmas-Wish.ttf</string>
+		<string>Please write me a song.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -66,8 +73,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

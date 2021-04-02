@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import JGProgressHUD
 
 class AddPassengerViewController: UIViewController {
     // MARK: - Outlets
@@ -15,19 +16,18 @@ class AddPassengerViewController: UIViewController {
     
     // MARK: - Properties
     var friends: [User] = []
-    
+    private var spinner = JGProgressHUD(style: .dark)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        getCurrentUserFriends()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setAppearance()
-        getCurrentUserFriends()
-        //        createMockMessage()
     }
     
     // MARK: - Actions
@@ -44,10 +44,8 @@ class AddPassengerViewController: UIViewController {
         
         passengerCollectionView.delegate = self
         passengerCollectionView.dataSource = self
-        passengerCollectionView.isPrefetchingEnabled = true
         passengerCollectionView.register(PassengerCollectionViewCell.self, forCellWithReuseIdentifier: "passengerCell")
         passengerCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        passengerCollectionView.reloadData()
     }//end func
     
     func makeLayout() -> UICollectionViewCompositionalLayout {
@@ -57,11 +55,14 @@ class AddPassengerViewController: UIViewController {
     }//end func
     
     func getCurrentUserFriends() {
+        spinner.textLabel.text = "Fetching Friends"
+        spinner.show(in: view)
         guard let currentUser = UserController.shared.currentUser else {return print("nouser logged in")}
         UserController.shared.fetchFriendsFor(currentUser: currentUser) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let friends):
+                    self?.spinner.dismiss()
                     self?.friends = friends
                     self?.passengerCollectionView.reloadData()
                 case .failure(let error):
@@ -86,8 +87,13 @@ extension AddPassengerViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        CarpoolController.shared.passengers.append(friends[indexPath.row].uuid)
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
+    
+        if collectionView.cellForItem(at: indexPath)?.backgroundColor?.accessibilityName != "green" {
+            CarpoolController.shared.passengers.append(friends[indexPath.row].uuid)
+            collectionView.cellForItem(at: indexPath)?.backgroundColor = .systemGreen
+        } else {
+            collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
+        }
     }
 }//end extension
 

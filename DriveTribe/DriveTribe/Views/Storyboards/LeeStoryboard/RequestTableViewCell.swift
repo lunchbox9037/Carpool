@@ -12,7 +12,7 @@ import UIKit
     func cancelFriendRequestButtonTapped(sender: RequestTableViewCell)
     }
 
-class RequestTableViewCell: UITableViewCell {
+class RequestTableViewCell: DriveTribeTableViewCell {
 
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -41,10 +41,9 @@ class RequestTableViewCell: UITableViewCell {
     func updateView(friendRequestSent: User) {
         userNameLabel.text = friendRequestSent.userName
         cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.backgroundColor = .systemBlue
-        cancelButton.tintColor = .white
-        cancelButton.layer.cornerRadius = 8
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
+        userNameLabel.font = UIFont(name: FontNames.textDriveTribe, size: 20)
+        userNameLabel.textColor = .dtTextDarkLightTribe
     }
 }

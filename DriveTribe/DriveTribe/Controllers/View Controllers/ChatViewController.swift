@@ -47,22 +47,13 @@ class ChatViewController: MessagesViewController {
         messageInputBar.delegate = self
         
         messageInputBar.inputTextView.becomeFirstResponder()
-        
+        self.title = tribe?.destinationName
         fetchDriverAndPassengers()
         setAppearance()
         
         if let tribeID = tribe?.uuid {
             listenForMessages(id: tribeID, shouldScrollToBottom: true)
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        messageInputBar.inputTextView.becomeFirstResponder()
-//
-//        if let tribeID = tribe?.uuid {
-//            listenForMessages(id: tribeID, shouldScrollToBottom: true)
-//        }
     }
     
     @IBAction func startRouteButtonTapped(_ sender: Any) {
@@ -106,10 +97,20 @@ class ChatViewController: MessagesViewController {
                             }
                         }
                     case .failure(let error):
+                        DispatchQueue.main.async {
+                            print("failed")
+                            self?.spinner.dismiss()
+                            self?.messagesCollectionView.reloadDataAndKeepOffset()
+                            
+                            if shouldScrollToBottom {
+                                self?.messagesCollectionView.scrollToLastItem()
+                            }
+                        }
                         print(error.localizedDescription)
                     }
                 }
             case .failure(let error):
+                self?.spinner.dismiss()
                 print(error.localizedDescription)
             }
         }
@@ -120,11 +121,12 @@ class ChatViewController: MessagesViewController {
         let uniqueIds = Array(Set(ids))
         print(uniqueIds.count)
         for id in uniqueIds {
+            print(id)
             StorageController.shared.getImageWith(userID: id) { [weak self] (result) in
                 switch result {
                 case .success(let image):
                     print("got image")
-                    self?.imageCache.setObject(image, forKey: NSString(string: "\(id).jpeg"))
+                    self?.imageCache.setObject(image, forKey: NSString(string: id))
                     return completion(.success(true))
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -217,35 +219,24 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         
         if sender.senderId == currentUser.uuid {
             // show our image
-            let url = "\(currentUser.uuid).jpeg"
+            let url = currentUser.uuid
             if let avatarImage = self.imageCache.object(forKey: url as NSString) {
                 avatarView.image = avatarImage
                 print("used current user cache")
+            } else {
+                avatarView.image = UIImage(systemName: "person.circle")
             }
         }
         else {
             let otherUserID = messages[indexPath.section].sender.senderId
             // other user image
-            let url = "\(otherUserID).jpeg"
+            let url = otherUserID
             if let otherUserAvatarImage = self.imageCache.object(forKey: url as NSString) {
                 print("used cache")
                 avatarView.image = otherUserAvatarImage
+            } else {
+                avatarView.image = UIImage(systemName: "person.circle")
             }
         }
     }
-
-//    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-//        let name = message.sender.displayName
-//        return NSAttributedString(
-//            string: name,
-//            attributes: [
-//                .font: UIFont.preferredFont(forTextStyle: .caption1),
-//                .foregroundColor: UIColor(white: 0.3, alpha: 1)
-//            ]
-//        )
-//    }
-//
-//    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-//        return 35
-//    }
 }//end extension

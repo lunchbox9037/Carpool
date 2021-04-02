@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class SignupViewController: UIViewController {
     // MARK: - Views
@@ -18,7 +19,7 @@ class SignupViewController: UIViewController {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
-        imageView.tintColor = .systemGray
+        imageView.tintColor = .dtTextTribe
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         
@@ -33,40 +34,46 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Username..."
+        field.attributedPlaceholder = NSAttributedString(string: "Username...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
     private let firstNameField: UITextField = {
         let field = UITextField()
-        field.autocapitalizationType = .none
+        field.autocapitalizationType = .words
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "First Name..."
+        field.attributedPlaceholder = NSAttributedString(string: "First name...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
     private let lastNameField: UITextField = {
         let field = UITextField()
-        field.autocapitalizationType = .none
+        field.autocapitalizationType = .words
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Last Name..."
+        field.attributedPlaceholder = NSAttributedString(string: "Last name...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -79,10 +86,12 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Email Address..."
+        field.attributedPlaceholder = NSAttributedString(string: "Email...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -95,17 +104,19 @@ class SignupViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Password..."
+        field.attributedPlaceholder = NSAttributedString(string: "Password...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         field.isSecureTextEntry = true
         return field
     }()
     
     private let getLocationButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Get Current Location", for: .normal)
+        button.setTitle("📍 Get Current Location", for: .normal)
         button.backgroundColor = .systemGray
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
@@ -117,7 +128,7 @@ class SignupViewController: UIViewController {
     private let signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up!", for: .normal)
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = UIColor(named: "loginButtonColor")
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -127,15 +138,18 @@ class SignupViewController: UIViewController {
     
     // MARK: - Properties
     var selectedImage: UIImage?
+    private let spinner = JGProgressHUD(style: .dark)
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .dtBlueTribe
+        
         setupToHideKeyboardOnTapOnView()
         
         signUpButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         getLocationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
-
+        
         userNameField.delegate = self
         firstNameField.delegate = self
         lastNameField.delegate = self
@@ -172,9 +186,8 @@ class SignupViewController: UIViewController {
         lastNameField.frame = CGRect(x: 30, y: firstNameField.bottom + 10, width: scrollView.width-60, height: 44)
         emailField.frame = CGRect(x: 30, y: lastNameField.bottom + 10, width: scrollView.width-60, height: 44)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width-60, height: 44)
-        getLocationButton.frame = CGRect(x: 60, y: passwordField.bottom + 10, width: scrollView.width-110, height: 44)
-        signUpButton.frame = CGRect(x: 30, y: getLocationButton.bottom + 20, width: scrollView.width-60, height: 44)
-
+        getLocationButton.frame = CGRect(x: 30, y: passwordField.bottom + 10, width: scrollView.width-60, height: 44)
+        signUpButton.frame = CGRect(x: 30, y: getLocationButton.bottom + 30, width: scrollView.width-60, height: 44)
     }
     
     // MARK: - Methods
@@ -185,13 +198,13 @@ class SignupViewController: UIViewController {
     @objc func locationButtonTapped() {
         guard let locationVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "locationSelection") as? UserLocationViewController else {return}
         let nav = UINavigationController(rootViewController: locationVC)
-        nav.modalPresentationStyle = .fullScreen
+        nav.modalPresentationStyle = .popover
         present(nav, animated: true, completion: nil)
     }
     
     @objc func signupButtonTapped() {
         view.endEditing(true)
-
+        
         guard let userName = userNameField.text, !userName.isEmpty,
               let firstName = firstNameField.text, !firstName.isEmpty,
               let lastName = lastNameField.text, !lastName.isEmpty,
@@ -199,22 +212,29 @@ class SignupViewController: UIViewController {
               let password = passwordField.text, !password.isEmpty, password.count >= 6 else {
             
             //alert controller here
-            presentAlertToUser(titleAlert: "More Info Needed!", messageAlert: "Please fill out all fields and select a current location to begin creating tribes.\n(password must be at least 6 characters)")
+            presentAlertToUser(titleAlert: "More Info Needed!", messageAlert: "Please fill out all fields and select a current location to begin.\n(password must be at least 6 characters)")
             return
         }
-              
-        UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
-            switch results {
-            case .success(let user):
-                UserController.shared.currentUser = user
-                if let image = self.selectedImage {
-                    print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
-                    self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+        
+        if UserController.shared.lastCurrentLocation.count != 0 {
+            UserController.shared.signupNewUserAndCreateNewUserWith(firstName: firstName, lastName: lastName, userName: userName, email: email, password: password) { (results) in
+                self.spinner.show(in: self.view)
+                switch results {
+                case .success(let user):
+                    UserController.shared.currentUser = user
+                    if let image = self.selectedImage {
+                        print("----------------- IN SIDE SELECTED IMAGE:: \(image) \(#function)-----------------")
+                        self.storageProfilePhotAndgetProfileURL(user: user, image: image)
+                    }
+                    self.spinner.dismiss()
+                    self.gotoTabbarVC()
+                case .failure(let error):
+                    self.spinner.dismiss()
+                    print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
-                self.gotoTabbarVC()
-            case .failure(let error):
-                print("ERROR SIGNING UP USER : \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
+        } else {
+            presentAlertToUser(titleAlert: "More Info Needed!", messageAlert: "Please select a current location to begin using DriveTribe.")
         }
     }
     
@@ -276,7 +296,7 @@ extension SignupViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func presentImagePickerActionSheet() {
         let imagePickerController = UIImagePickerController()
-    
+        
         let actionSheet = UIAlertController(title: "Profile Picture", message: "Select or take a photo for your profile.", preferredStyle: .actionSheet)
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {

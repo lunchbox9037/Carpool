@@ -11,7 +11,6 @@ import Firebase
 
 class CarpoolListViewController: UIViewController {
     // MARK: - Outlets
-    @IBOutlet weak var carpoolGroupLabel: UILabel!
     @IBOutlet weak var carpoolTableView: UITableView!
     @IBOutlet weak var workPlaySegment: UISegmentedControl!
     
@@ -25,26 +24,26 @@ class CarpoolListViewController: UIViewController {
         carpoolTableView.delegate = self
         overrideUserInterfaceStyle = .light
         UserDefaults.standard.setValue(0, forKey: "modeAppearance")
+        isAppAlreadyLaunched()
+        addCarpoolListener()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         setAppearance()
-        fetchCarpoolsByCurrentUser()
     }
+
 
     // MARK: - Actions
     @IBAction func workPlaySegmentChanged(_ sender: Any) {
         let defaults = UserDefaults.standard
         
         if workPlaySegment.selectedSegmentIndex == 0 {
-            carpoolGroupLabel.text = "Work Tribes"
             overrideUserInterfaceStyle = .light
             defaults.setValue(0, forKey: "modeAppearance")
             dataSource = CarpoolController.shared.work
         } else {
-            carpoolGroupLabel.text = "Play Tribes"
             overrideUserInterfaceStyle = .dark
             defaults.setValue(1, forKey: "modeAppearance")
             dataSource = CarpoolController.shared.play
@@ -53,24 +52,38 @@ class CarpoolListViewController: UIViewController {
     }
     
     // MARK: - Methods
-    func fetchCarpoolsByCurrentUser() {
+    func addCarpoolListener() {
         CarpoolController.shared.fetchGroupsForCurrentUser { [weak self] (result) in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    CarpoolController.shared.sortCarpoolsByWorkPlay()
-                    if self?.workPlaySegment.selectedSegmentIndex == 0 {
-                        self?.dataSource = CarpoolController.shared.work
-                    } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
-                        self?.dataSource = CarpoolController.shared.play
-                    }
-                    self?.carpoolTableView.reloadData()
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                        print("loadedGroup")
+                        CarpoolController.shared.sortCarpoolsByWorkPlay()
+                        
+                        if self?.workPlaySegment.selectedSegmentIndex == 0 {
+                            self?.dataSource = CarpoolController.shared.work
+                        } else if self?.workPlaySegment.selectedSegmentIndex == 1 {
+                            self?.dataSource = CarpoolController.shared.play
+                        }
+                        self?.carpoolTableView.reloadData()
+                case .failure(let error):
+                    print("failed")
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
         }
     }//end func
+    
+    func isAppAlreadyLaunched() {
+        let hasBeenLaunched = UserDefaults.standard.bool(forKey: "hasBeenLaunched")
+        
+        if hasBeenLaunched {
+            return
+        } else {
+            presentFirstLoginAlert()
+            UserDefaults.standard.set(true, forKey: "hasBeenLaunched")
+        }
+    }
 }//end class
 
 extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -113,17 +126,4 @@ extension CarpoolListViewController: UITableViewDelegate, UITableViewDataSource 
             destination.tribe = carpoolToSend
         }
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        guard let detailVC = UIStoryboard(name: "Carpool", bundle: nil)  .instantiateViewController(withIdentifier: "tribeDetail") as? ChatViewController else {return}
-//
-//        let nav = UINavigationController(rootViewController: detailVC)
-//        
-//        detailVC.tribe = dataSource[indexPath.row]
-//        
-//        
-//        nav.modalPresentationStyle = .fullScreen
-//        present(nav, animated: true, completion: nil)
-//    }
 }//end extension

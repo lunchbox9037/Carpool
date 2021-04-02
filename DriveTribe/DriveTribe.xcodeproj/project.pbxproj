@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160AF2D726152EC1005CE3AE /* Champagne & Limousines Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 160AF2D626152EC1005CE3AE /* Champagne & Limousines Bold.ttf */; };
 		1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */; };
 		1641919F261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */; };
+		164191AA2613E7CA007B2D76 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191A92613E7CA007B2D76 /* sweet purple.ttf */; };
+		164191AD2613E7E6007B2D76 /* Please write me a song.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191AC2613E7E6007B2D76 /* Please write me a song.ttf */; };
+		164191B02613E802007B2D76 /* Christmas-Wish.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 164191AF2613E802007B2D76 /* Christmas-Wish.ttf */; };
+		164191B32613F7C6007B2D76 /* DriveTribeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164191B22613F7C6007B2D76 /* DriveTribeTableView.swift */; };
 		16E6C8222612CFB50011EA88 /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8212612CFB50011EA88 /* StyleGuide.swift */; };
 		16E6C8262612D0D80011EA88 /* DriveTribeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */; };
 		16E6C8292612D1680011EA88 /* DriveTribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8282612D1680011EA88 /* DriveTribeButton.swift */; };
@@ -18,7 +23,6 @@
 		16E6C8362612D3590011EA88 /* DriveTribeSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */; };
 		35F44A99853268B16387D23D /* Pods_DriveTribe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C830F0B5A39C274519E8360C /* Pods_DriveTribe.framework */; };
 		363BF347260ADCF800683A5A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */; };
-		363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */; };
 		36653CE6260C3D31008AA210 /* ProfileTableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36653CE5260C3D31008AA210 /* ProfileTableListViewController.swift */; };
 		3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3682F11B2602B3F200415468 /* GoogleService-Info.plist */; };
 		3682F11F2603310900415468 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682F11E2603310900415468 /* User.swift */; };
@@ -35,14 +39,12 @@
 		F2D75CA6260A97A700EDF43C /* CarpoolDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */; };
 		F2D75CAE260A97F500EDF43C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CA9260A97F500EDF43C /* SignupViewController.swift */; };
 		F2D75CAF260A97F500EDF43C /* UserLocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */; };
-		F2D75CB0260A97F500EDF43C /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAB260A97F500EDF43C /* PhotoPickerViewController.swift */; };
 		F2D75CB1260A97F500EDF43C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAC260A97F500EDF43C /* LogInViewController.swift */; };
 		F2D75CB2260A97F500EDF43C /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CAD260A97F500EDF43C /* UserLocationViewController.swift */; };
 		F2D75CF2260BAE6000EDF43C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */; };
 		F2D75CF6260BBC8900EDF43C /* BlockedUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */; };
 		F2D75CF9260BC4D400EDF43C /* BlockedUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */; };
 		F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */; };
-		F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210B826094D80009E6BE9 /* AlertExtension.swift */; };
 		F61210BC26096612009E6BE9 /* RouteCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61210BB26096612009E6BE9 /* RouteCreator.swift */; };
 		F648B9462601192500FBADCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9452601192500FBADCA /* AppDelegate.swift */; };
 		F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648B9472601192500FBADCA /* SceneDelegate.swift */; };
@@ -67,8 +69,13 @@
 
 /* Begin PBXFileReference section */
 		0F21074A9933C1E709E39A8D /* Pods-DriveTribe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveTribe.release.xcconfig"; path = "Target Support Files/Pods-DriveTribe/Pods-DriveTribe.release.xcconfig"; sourceTree = "<group>"; };
+		160AF2D626152EC1005CE3AE /* Champagne & Limousines Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines Bold.ttf"; sourceTree = "<group>"; };
 		1641919B26138043007B2D76 /* UpdateUserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationViewController.swift; sourceTree = "<group>"; };
 		1641919E261380FA007B2D76 /* UpdateUserLocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserLocationSearchViewController.swift; sourceTree = "<group>"; };
+		164191A92613E7CA007B2D76 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
+		164191AC2613E7E6007B2D76 /* Please write me a song.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Please write me a song.ttf"; sourceTree = "<group>"; };
+		164191AF2613E802007B2D76 /* Christmas-Wish.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Christmas-Wish.ttf"; sourceTree = "<group>"; };
+		164191B22613F7C6007B2D76 /* DriveTribeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeTableView.swift; sourceTree = "<group>"; };
 		16E6C8212612CFB50011EA88 /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		16E6C8252612D0D80011EA88 /* DriveTribeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeLabel.swift; sourceTree = "<group>"; };
 		16E6C8282612D1680011EA88 /* DriveTribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeButton.swift; sourceTree = "<group>"; };
@@ -77,7 +84,6 @@
 		16E6C8312612D3110011EA88 /* DriveTribeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeSearchBar.swift; sourceTree = "<group>"; };
 		16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveTribeSegmentedControl.swift; sourceTree = "<group>"; };
 		363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoPicker.storyboard; sourceTree = "<group>"; };
 		36653CE5260C3D31008AA210 /* ProfileTableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableListViewController.swift; sourceTree = "<group>"; };
 		3682F11B2602B3F200415468 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3682F11E2603310900415468 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -95,14 +101,12 @@
 		F2D75CA5260A97A700EDF43C /* CarpoolDestinationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarpoolDestinationViewController.swift; sourceTree = "<group>"; };
 		F2D75CA9260A97F500EDF43C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationSearchViewController.swift; sourceTree = "<group>"; };
-		F2D75CAB260A97F500EDF43C /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		F2D75CAC260A97F500EDF43C /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F2D75CAD260A97F500EDF43C /* UserLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		F2D75CF1260BAE6000EDF43C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F2D75CF5260BBC8900EDF43C /* BlockedUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersTableViewController.swift; sourceTree = "<group>"; };
 		F2D75CF8260BC4D400EDF43C /* BlockedUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserTableViewCell.swift; sourceTree = "<group>"; };
 		F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSizeExtension.swift; sourceTree = "<group>"; };
-		F61210B826094D80009E6BE9 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		F61210BB26096612009E6BE9 /* RouteCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCreator.swift; sourceTree = "<group>"; };
 		F648B9422601192500FBADCA /* DriveTribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveTribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F648B9452601192500FBADCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160AF2C126152AC6005CE3AE /* FriendsVC */ = {
+			isa = PBXGroup;
+			children = (
+				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
+			);
+			path = FriendsVC;
+			sourceTree = "<group>";
+		};
+		164191A82613E797007B2D76 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				160AF2D626152EC1005CE3AE /* Champagne & Limousines Bold.ttf */,
+				164191AF2613E802007B2D76 /* Christmas-Wish.ttf */,
+				164191AC2613E7E6007B2D76 /* Please write me a song.ttf */,
+				164191A92613E7CA007B2D76 /* sweet purple.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		16E6C8202612CF9C0011EA88 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +173,7 @@
 				16E6C82E2612D2550011EA88 /* DriveTribeNavAndTabController.swift */,
 				16E6C8312612D3110011EA88 /* DriveTribeSearchBar.swift */,
 				16E6C8352612D3590011EA88 /* DriveTribeSegmentedControl.swift */,
+				164191B22613F7C6007B2D76 /* DriveTribeTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +220,6 @@
 			children = (
 				F2D75CA9260A97F500EDF43C /* SignupViewController.swift */,
 				F2D75CAA260A97F500EDF43C /* UserLocationSearchViewController.swift */,
-				F2D75CAB260A97F500EDF43C /* PhotoPickerViewController.swift */,
 				F2D75CAC260A97F500EDF43C /* LogInViewController.swift */,
 				F2D75CAD260A97F500EDF43C /* UserLocationViewController.swift */,
 			);
@@ -238,6 +261,7 @@
 		F648B95A2601194000FBADCA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				164191A82613E797007B2D76 /* Fonts */,
 				F648B9452601192500FBADCA /* AppDelegate.swift */,
 				F648B9472601192500FBADCA /* SceneDelegate.swift */,
 				F648B94E2601192800FBADCA /* Assets.xcassets */,
@@ -285,7 +309,7 @@
 				F2D75CA8260A97F500EDF43C /* SignupLogin */,
 				F648B97026011FE000FBADCA /* CarpoolListViewController.swift */,
 				F6FB7094260D890D00D015A5 /* ChatViewController.swift */,
-				36B82D402603E8E6008EC52A /* FriendListTableViewController.swift */,
+				160AF2C126152AC6005CE3AE /* FriendsVC */,
 				F6B42816260A4BA800148569 /* Carpool Creation */,
 				36653CE3260C1F5A008AA210 /* SettingAndProfile */,
 			);
@@ -343,7 +367,6 @@
 			isa = PBXGroup;
 			children = (
 				F648B94B2601192500FBADCA /* Main.storyboard */,
-				363BF34A260AEA0000683A5A /* PhotoPicker.storyboard */,
 			);
 			path = Noone;
 			sourceTree = "<group>";
@@ -353,7 +376,6 @@
 			children = (
 				36B82D362603C604008EC52A /* NetworkError.swift */,
 				36B82D4626040352008EC52A /* SearchableRecordDelegate.swift */,
-				F61210B826094D80009E6BE9 /* AlertExtension.swift */,
 				F61210BB26096612009E6BE9 /* RouteCreator.swift */,
 				363BF346260ADCF800683A5A /* UIViewController+Extensions.swift */,
 				F611BF2E260C2E2900EA4A04 /* FrameSizeExtension.swift */,
@@ -447,8 +469,11 @@
 				F648B94F2601192800FBADCA /* Assets.xcassets in Resources */,
 				F270C9DD26137A1B00D1B9C2 /* ColorPalette.xcassets in Resources */,
 				F648B979260120C800FBADCA /* FriendsList.storyboard in Resources */,
-				363BF34B260AEA0000683A5A /* PhotoPicker.storyboard in Resources */,
+				164191AD2613E7E6007B2D76 /* Please write me a song.ttf in Resources */,
+				164191AA2613E7CA007B2D76 /* sweet purple.ttf in Resources */,
+				164191B02613E802007B2D76 /* Christmas-Wish.ttf in Resources */,
 				F648B94D2601192500FBADCA /* Main.storyboard in Resources */,
+				160AF2D726152EC1005CE3AE /* Champagne & Limousines Bold.ttf in Resources */,
 				3682F11C2602B3F200415468 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,7 +540,6 @@
 				1641919C26138043007B2D76 /* UpdateUserLocationViewController.swift in Sources */,
 				F648BB18260302C500FBADCA /* LayoutBuilder.swift in Sources */,
 				16E6C8362612D3590011EA88 /* DriveTribeSegmentedControl.swift in Sources */,
-				F2D75CB0260A97F500EDF43C /* PhotoPickerViewController.swift in Sources */,
 				F648BB142603003900FBADCA /* PassengerCollectionViewCell.swift in Sources */,
 				F648B9482601192500FBADCA /* SceneDelegate.swift in Sources */,
 				F648BB1B2604063200FBADCA /* CarpoolSettingsViewController.swift in Sources */,
@@ -529,7 +553,6 @@
 				36653CE6260C3D31008AA210 /* ProfileTableListViewController.swift in Sources */,
 				F2D75CF2260BAE6000EDF43C /* SettingsTableViewController.swift in Sources */,
 				F6FB7033260D57AF00D015A5 /* Message.swift in Sources */,
-				F61210B926094D80009E6BE9 /* AlertExtension.swift in Sources */,
 				16E6C82F2612D2550011EA88 /* DriveTribeNavAndTabController.swift in Sources */,
 				F2D75CF9260BC4D400EDF43C /* BlockedUserTableViewCell.swift in Sources */,
 				16E6C8322612D3110011EA88 /* DriveTribeSearchBar.swift in Sources */,
@@ -541,6 +564,7 @@
 				F6FB7095260D890E00D015A5 /* ChatViewController.swift in Sources */,
 				F648B97126011FE000FBADCA /* CarpoolListViewController.swift in Sources */,
 				F648BAC52601A64D00FBADCA /* DestinationSearchViewController.swift in Sources */,
+				164191B32613F7C6007B2D76 /* DriveTribeTableView.swift in Sources */,
 				F611BF2F260C2E2900EA4A04 /* FrameSizeExtension.swift in Sources */,
 				36B82D67260436D0008EC52A /* UserTableViewCell.swift in Sources */,
 				16E6C82C2612D1BD0011EA88 /* DriveTribeTextField.swift in Sources */,
@@ -714,7 +738,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L73M8R7276;
+				DEVELOPMENT_TEAM = K5A3RPJ76H;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = DriveTribe/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -726,7 +750,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanphillips.DriveTribe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -737,7 +761,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L73M8R7276;
+				DEVELOPMENT_TEAM = K5A3RPJ76H;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = DriveTribe/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -749,7 +773,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stanphillips.DriveTribe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

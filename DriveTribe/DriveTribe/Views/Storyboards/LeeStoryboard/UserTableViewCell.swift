@@ -11,7 +11,7 @@ protocol UserTableViewCellDelagate: AnyObject {
     func requestButtonTapped(sender: UserTableViewCell)
 }
 
-class UserTableViewCell: UITableViewCell {
+class UserTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -40,10 +40,10 @@ class UserTableViewCell: UITableViewCell {
     func updateView(user: User) {
         userNameLabel.text = user.userName
         requestButton.setTitle("Request", for: .normal)
-        requestButton.backgroundColor = .systemBlue
-        requestButton.tintColor = .white
-        requestButton.layer.cornerRadius = 8
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
+        userNameLabel.font = UIFont(name: FontNames.textDriveTribe, size: 20)
+        userNameLabel.textColor = .dtTextTribe
+        userNameLabel.textColor = .dtTextDarkLightTribe
     }
 }

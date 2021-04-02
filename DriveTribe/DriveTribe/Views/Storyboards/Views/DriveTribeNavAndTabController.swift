@@ -14,10 +14,10 @@ class DriveTribeNavigationController: UINavigationController {
     }
     
     func setupNavigationBar(){
-        UINavigationBar.appearance().barTintColor = .mtBgBrownHeader
-        UINavigationBar.appearance().tintColor = .mtTextDarkBrown
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mtTextDarkBrown]
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textMoneytorMoneyFont, size: 25)!]
+        UINavigationBar.appearance().barTintColor = .dtBlueTribe
+        UINavigationBar.appearance().tintColor = .dtTextTribe
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.dtTextTribe]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "optima", size: 25)!]
     }
 }
 
@@ -28,11 +28,11 @@ class DriveTribeTabBarController: UITabBarController {
     }
     
     func setupTapBar(){
-        UINavigationBar.appearance().barTintColor = .mtBgBrownHeader
-        UINavigationBar.appearance().tintColor = .mtTextDarkBrown
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: FontNames.textMoneytorGoodLetter, size: 25)!]
-     UITabBar.appearance().barTintColor = .mtBgBrownHeader
-   UITabBar.appearance().tintColor = .mtTextDarkBrown
-
+        UITabBar.appearance().unselectedItemTintColor = .dtLightTribe
+        UITabBar.appearance().barTintColor = .dtBlueTribe
+        UITabBar.appearance().tintColor = .dtTextTribe
     }
 }
+
+
+

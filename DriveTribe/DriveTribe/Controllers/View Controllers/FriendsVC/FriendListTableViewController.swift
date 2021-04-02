@@ -21,17 +21,40 @@ class FriendListTableViewController: UITableViewController {
     var resultsFriendsFromSearching: [SearchableRecordDelegate] = []
     var imageProfile: UIImage?
     
+    private var imageCache = NSCache<NSString, UIImage>()
+    
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+//
+//        //TEST Blocked User
+//        UserController.shared.deleteCarpoolAfterBlockOrDeleleteUser()
+        
+        
         friendSearchBar.delegate = self
         setupTableView()
+        if #available(iOS 13, *)
+        {
+            let statusBar = UIView(frame: (UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame)!)
+            statusBar.backgroundColor = .dtBlueTribe
+            UIApplication.shared.keyWindow?.addSubview(statusBar)
+        } else {
+            let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+            if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+                statusBar.backgroundColor = .dtBlueTribe
+            }
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         friendSearchBar.selectedScopeButtonIndex = 0
         setAppearance()
+        
+        
+        //TEST Blocked User
+       // UserController.shared.deleteCarpoolAfterBlockOrDeleleteUser()
     }
     
     // MARK: - Table view data source
@@ -62,68 +85,102 @@ class FriendListTableViewController: UITableViewController {
         if isSearching {
             guard let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserTableViewCell else {return UITableViewCell()}
             guard let user = resultsFriendsFromSearching[indexPath.row] as? User else {return UITableViewCell()}
+            userCell.delegate = self
             userCell.updateView(user: user)
-            StorageController.shared.getImage(user: user) { (results) in
-                DispatchQueue.main.async {
-                    switch results {
-                    case .success(let image):
-                        userCell.profileImage.image = image
-                    case .failure(let error):
-                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            
+            if let image = imageCache.object(forKey: user.uuid as NSString) {
+                userCell.profileImage.image = image
+                print("used cache")
+                
+            } else {
+                StorageController.shared.getImage(user: user) { (results) in
+                    DispatchQueue.main.async {
+                        switch results {
+                        case .success(let image):
+                            userCell.profileImage.image = image
+                            self.imageCache.setObject(image, forKey: user.uuid as NSString)
+                        case .failure(let error):
+                            print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        }
                     }
                 }
             }
-            userCell.delegate = self
+            
             returnCell = userCell
         } else if friendSearchBar.selectedScopeButtonIndex == 0 {
             guard let friendCell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendTableViewCell else {return UITableViewCell()}
             let friend = friends[indexPath.row]
+            friendCell.delegate = self
             friendCell.updateView(friend: friend)
-            StorageController.shared.getImage(user: friend) { (results) in
-                DispatchQueue.main.async {
-                    switch results {
-                    case .success(let image):
-                        friendCell.profileImage.image = image
-                    case .failure(let error):
-                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            
+            if let image = imageCache.object(forKey: friend.uuid as NSString) {
+                friendCell.profileImage.image = image
+                print("used cache")
+                
+            } else {
+                StorageController.shared.getImage(user: friend) { (results) in
+                    DispatchQueue.main.async {
+                        switch results {
+                        case .success(let image):
+                            friendCell.profileImage.image = image
+                            self.imageCache.setObject(image, forKey: friend.uuid as NSString)
+                        case .failure(let error):
+                            print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        }
                     }
                 }
             }
             
             
-            friendCell.delegate = self
             returnCell = friendCell
         } else if friendSearchBar.selectedScopeButtonIndex == 1 {
             guard let requestCell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as? RequestTableViewCell else {return UITableViewCell()}
             let friendRequestSent = friendRequestsSent[indexPath.row]
+            requestCell.delegate = self
             requestCell.updateView(friendRequestSent: friendRequestSent)
-            StorageController.shared.getImage(user: friendRequestSent) { (results) in
-                DispatchQueue.main.async {
-                    switch results {
-                    case .success(let image):
-                        requestCell.profileImage.image = image
-                    case .failure(let error):
-                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            
+            if let image = imageCache.object(forKey: friendRequestSent.uuid as NSString) {
+                requestCell.profileImage.image = image
+                print("used cache")
+                
+            } else {
+                StorageController.shared.getImage(user: friendRequestSent) { (results) in
+                    DispatchQueue.main.async {
+                        switch results {
+                        case .success(let image):
+                            requestCell.profileImage.image = image
+                            self.imageCache.setObject(image, forKey: friendRequestSent.uuid as NSString)
+                        case .failure(let error):
+                            print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        }
                     }
                 }
             }
-            requestCell.delegate = self
+            
             returnCell = requestCell
         } else if friendSearchBar.selectedScopeButtonIndex == 2 {
             guard let receivedCell = tableView.dequeueReusableCell(withIdentifier: "receievedCell", for: indexPath) as? ReceivedTableViewCell else {return UITableViewCell()}
             let friendReceived = friendRequestsReceived[indexPath.row]
+            receivedCell.delegate = self
             receivedCell.updateView(friendRequestReceived: friendReceived)
-            StorageController.shared.getImage(user: friendReceived) { (results) in
-                DispatchQueue.main.async {
-                    switch results {
-                    case .success(let image):
-                        receivedCell.profileImage.image = image
-                    case .failure(let error):
-                        print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+            
+            if let image = imageCache.object(forKey: friendReceived.uuid as NSString) {
+                print("used cache")
+                receivedCell.profileImage.image = image
+            } else {
+                StorageController.shared.getImage(user: friendReceived) { (results) in
+                    DispatchQueue.main.async {
+                        switch results {
+                        case .success(let image):
+                            receivedCell.profileImage.image = image
+                            self.imageCache.setObject(image, forKey: friendReceived.uuid as NSString)
+                        case .failure(let error):
+                            print("\n==== ERROR IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        }
                     }
                 }
             }
-            receivedCell.delegate = self
+            
             returnCell = receivedCell
         }
         return returnCell
@@ -137,7 +194,7 @@ extension FriendListTableViewController: UISearchBarDelegate {
         if !searchText.isEmpty {
             isSearching = true
             fetchUsersBySearchTerm(searchTerm: searchText)
-           resultsFriendsFromSearching = users
+            resultsFriendsFromSearching = users
             tableView.reloadData()
         } else {
             resultsFriendsFromSearching = []
@@ -274,24 +331,32 @@ extension FriendListTableViewController {
 // MARK: - Protocol
 extension FriendListTableViewController: FriendTableViewCellCellDelagate {
     func blockFriendButtonTapped(sender: FriendTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: sender) else {return}
-        let friendToBlock = friends[indexPath.row]
-        //TO BLOCK FRIEND HERE...
-        UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
-            DispatchQueue.main.async {
-                switch results {
-                case .success(let user):
-                    guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
-                    self?.friends.remove(at: indexToBlock)
-                    self?.tableView.reloadData()
-                //self?.setupViewForFriends()
-                case .failure(let error):
-                    print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+        let alertController = UIAlertController(title: "Are you sure to block this user?", message: "If you blocked this user, you will be not able to associate with this user anymore.", preferredStyle: .alert)
+        
+        let blockedAction = UIAlertAction(title: "Block!", style: .destructive) { (_) in
+            guard let indexPath = self.tableView.indexPath(for: sender) else {return}
+            let friendToBlock = self.friends[indexPath.row]
+            //TO BLOCK FRIEND HERE...
+            UserController.shared.blockUser(friendToBlock) { [weak self] (results) in
+                DispatchQueue.main.async {
+                    switch results {
+                    case .success(let user):
+                        guard let indexToBlock = self?.friends.firstIndex(of: user) else {return}
+                        self?.friends.remove(at: indexToBlock)
+                        self?.tableView.reloadData()
+                    //self?.setupViewForFriends()
+                    case .failure(let error):
+                        print("ERROR IN BLOCKING FRIEND in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                    }
                 }
             }
+            
         }
+        let dismissAction = UIAlertAction(title: "Cancel", style: .default)
+        alertController.addAction(dismissAction)
+        alertController.addAction(blockedAction)
+        present(alertController, animated: true)
     }
-    
     
     func unfriendButtonTapped(sender: FriendTableViewCell) {
         guard let indexPath = tableView.indexPath(for: sender) else {return}
@@ -374,13 +439,3 @@ extension FriendListTableViewController: UserTableViewCellDelagate {
     }
 }
 
-
-
-/* NOTE
- 
- UI BUG
- 1) Friend Tap ==> When tapped unfriend / Blocked, the friendToUnfriend did not get delete from tableView
- 2) Block Users ==> When unblock happen the same thing.
- 
- //______________________________________________________________________________________
- */

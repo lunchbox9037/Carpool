@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="-1876" y="-108"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Drive Tribe Tab Bar Controller-->
         <scene sceneID="4CL-DT-Brs">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarStoryBoardID" id="paZ-Rd-jai" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarStoryBoardID" id="paZ-Rd-jai" customClass="DriveTribeTabBarController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8A3-DP-kAI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -69,12 +69,15 @@
         <!--Carpool Groups-->
         <scene sceneID="uZ1-aG-Fhu">
             <objects>
-                <navigationController id="cxe-h3-y34" sceneMemberID="viewController">
+                <navigationController id="cxe-h3-y34" customClass="DriveTribeNavigationController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Carpool Groups" image="car" catalog="system" id="XUR-ll-63A"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pg5-75-bea">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.23071938750000001" green="0.031474221500000003" blue="0.043130606410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Uln-re-Oce" kind="relationship" relationship="rootViewController" id="0uo-gh-UqY"/>
@@ -87,7 +90,7 @@
         <!--Friends-->
         <scene sceneID="K9L-SG-biG">
             <objects>
-                <navigationController navigationBarHidden="YES" id="6kQ-fH-WfE" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="6kQ-fH-WfE" customClass="DriveTribeNavigationController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="person.badge.plus" catalog="system" id="Iha-vG-eG5"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cxg-ur-x60">
@@ -104,7 +107,7 @@
         <!--My Profile-->
         <scene sceneID="nd1-ZU-M8d">
             <objects>
-                <navigationController id="TVF-Gu-8Gy" sceneMemberID="viewController">
+                <navigationController id="TVF-Gu-8Gy" customClass="DriveTribeNavigationController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Profile" image="person.fill" catalog="system" id="lGP-iz-ruw"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="IdA-NX-Sct">
@@ -185,10 +188,10 @@
             </objects>
             <point key="canvasLocation" x="-628" y="1033"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Drive Tribe Navigation Controller-->
         <scene sceneID="dny-7s-eGK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fUD-Aa-une" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fUD-Aa-une" customClass="DriveTribeNavigationController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xSw-CV-t49">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -203,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="-3278" y="-108"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Drive Tribe Navigation Controller-->
         <scene sceneID="SjR-oi-Dwv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nlw-mB-4qA" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nlw-mB-4qA" customClass="DriveTribeNavigationController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3gN-KM-KLL">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>

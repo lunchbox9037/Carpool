@@ -13,7 +13,7 @@ protocol FriendTableViewCellCellDelagate: AnyObject {
     func blockFriendButtonTapped(sender: FriendTableViewCell)
 }
 
-class FriendTableViewCell: UITableViewCell {
+class FriendTableViewCell: DriveTribeTableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -48,14 +48,14 @@ class FriendTableViewCell: UITableViewCell {
     func updateView(friend: User) {
         userNameLabel.text = friend.userName
         unfriendButton.setTitle("Unfriend", for: .normal)
-        unfriendButton.backgroundColor = .systemBlue
-        unfriendButton.tintColor = .white
-        unfriendButton.layer.cornerRadius = 8
-        blockButton.backgroundColor = .systemRed
-        blockButton.tintColor = .white
+        blockButton.tintColor = .dtWhiteBlackTribe
+        blockButton.setTitle("🚫", for: .normal)
         blockButton.addCornerRadius()
         profileImage.setupRoundCircleViews()
         profileImage.image = UIImage(systemName: "person")
+        userNameLabel.font = UIFont(name: FontNames.textDriveTribe, size: 20)
+        userNameLabel.textColor = .dtTextDarkLightTribe
     }
 }
+
 

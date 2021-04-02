@@ -35,10 +35,12 @@ class LogInViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Email Address..."
+        field.attributedPlaceholder = NSAttributedString(string: "Email...",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         return field
     }()
     
@@ -51,10 +53,12 @@ class LogInViewController: UIViewController {
         field.layer.cornerRadius = 8
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.systemGray.cgColor
-        field.placeholder = "Password..."
+        field.attributedPlaceholder = NSAttributedString(string: "Password...",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.dtPlaceholder!])
+        field.textColor = .black
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
-        field.backgroundColor = .systemBackground
+        field.backgroundColor = .white
         field.isSecureTextEntry = true
         return field
     }()
@@ -62,7 +66,7 @@ class LogInViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = UIColor(named: "loginButtonColor")
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -85,6 +89,8 @@ class LogInViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .dtBlueTribe
+        
         setupToHideKeyboardOnTapOnView()
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         emailField.delegate = self
@@ -95,6 +101,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
+        autoLogin()
     }
     
     override func viewDidLayoutSubviews() {
@@ -110,28 +117,34 @@ class LogInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+    }
+    
+    func autoLogin() {
         if Auth.auth().currentUser != nil {
+            spinner.textLabel.text = "Signing In"
             spinner.show(in: view)
             UserController.shared.fetchCurrentUser { (result) in
                 switch result {
                 case .success(_):
                     self.gotoTabbarVC()
                 case .failure(let error):
-                    self.spinner.dismiss()
+                    self.spinner.dismiss(animated: true)
                     self.presentAlertToUser(titleAlert: "Error", messageAlert: "\(error.localizedDescription)")
                     print(error.localizedDescription)
                 }
             }
-        }
+        } 
     }
     
     @objc func loginButtonTapped() {
         view.endEditing(true)
         guard let email = emailField.text, !email.isEmpty,
               let password = passwordField.text, !password.isEmpty, password.count >= 6 else {
-            presentAlertToUser(titleAlert: "Login information invalid.", messageAlert: "Please enter a valid username and password!")
+            presentAlertToUser(titleAlert: "Login information invalid!", messageAlert: "Password must be at least six characters!")
             return
         }
+        spinner.textLabel.text = "Signing In"
         spinner.show(in: view)
         UserController.shared.loginWith(email: email, password: password) { [weak self] (results) in
             switch results {
@@ -141,7 +154,7 @@ class LogInViewController: UIViewController {
                     DispatchQueue.main.async {
                         switch result {
                         case .success(_):
-                            self?.spinner.dismiss()
+                            self?.spinner.dismiss(animated: true)
                             self?.gotoTabbarVC()
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -149,7 +162,8 @@ class LogInViewController: UIViewController {
                     }
                 }
             case .failure(let error):
-                
+                self?.spinner.dismiss(animated: true)
+                self?.presentAlertToUser(titleAlert: "Login information invalid!", messageAlert: "Invalid Username or Password")
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
         }

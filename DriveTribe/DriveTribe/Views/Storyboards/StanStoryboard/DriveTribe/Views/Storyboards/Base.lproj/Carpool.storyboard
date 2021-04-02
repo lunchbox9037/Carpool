@@ -17,33 +17,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tribes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmh-nf-jfL">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5zK-Ug-5ng">
-                                <rect key="frame" x="0.0" y="41" width="414" height="733"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5zK-Ug-5ng" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carpoolCell" textLabel="xne-ZO-r8f" detailTextLabel="2yg-Ce-7Y5" imageView="ViL-YC-V79" style="IBUITableViewCellStyleSubtitle" id="qBL-92-IBj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carpoolCell" textLabel="xne-ZO-r8f" detailTextLabel="2yg-Ce-7Y5" imageView="ViL-YC-V79" style="IBUITableViewCellStyleSubtitle" id="qBL-92-IBj" customClass="DriveTribeCarpoolCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qBL-92-IBj" id="T0E-eX-XP8">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xne-ZO-r8f">
-                                                    <rect key="frame" x="62.5" y="9" width="33" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xne-ZO-r8f" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="62.5" y="8" width="36.5" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2yg-Ce-7Y5">
-                                                    <rect key="frame" x="62.5" y="31.5" width="44" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2yg-Ce-7Y5" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="62.5" y="31" width="53" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -65,16 +59,13 @@
                         <constraints>
                             <constraint firstItem="5zK-Ug-5ng" firstAttribute="leading" secondItem="tKB-lH-FgT" secondAttribute="leading" id="8Ui-o2-QcF"/>
                             <constraint firstItem="tKB-lH-FgT" firstAttribute="trailing" secondItem="5zK-Ug-5ng" secondAttribute="trailing" id="XGB-PU-23C"/>
-                            <constraint firstItem="Fmh-nf-jfL" firstAttribute="leading" secondItem="tKB-lH-FgT" secondAttribute="leading" id="fac-QE-tiz"/>
-                            <constraint firstItem="Fmh-nf-jfL" firstAttribute="top" secondItem="tKB-lH-FgT" secondAttribute="top" id="mLr-Qy-vGI"/>
-                            <constraint firstItem="5zK-Ug-5ng" firstAttribute="top" secondItem="Fmh-nf-jfL" secondAttribute="bottom" id="o4p-Lg-Sqx"/>
-                            <constraint firstItem="tKB-lH-FgT" firstAttribute="trailing" secondItem="Fmh-nf-jfL" secondAttribute="trailing" id="oAG-Ww-JRu"/>
+                            <constraint firstItem="5zK-Ug-5ng" firstAttribute="top" secondItem="tKB-lH-FgT" secondAttribute="top" id="YJi-yT-SXp"/>
                             <constraint firstItem="tKB-lH-FgT" firstAttribute="bottom" secondItem="5zK-Ug-5ng" secondAttribute="bottom" id="qs6-Sk-zkh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ufa-dg-rMY">
                         <barButtonItem key="leftBarButtonItem" id="lTd-fg-vZe">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="kkf-zJ-mkH">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="kkf-zJ-mkH" customClass="DriveTribeSegmentedControl" customModule="DriveTribe" customModuleProvider="target">
                                 <rect key="frame" x="20" y="5.5" width="103" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -94,7 +85,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="carpoolGroupLabel" destination="Fmh-nf-jfL" id="2bq-UU-G8s"/>
                         <outlet property="carpoolTableView" destination="5zK-Ug-5ng" id="Sgp-0q-0iZ"/>
                         <outlet property="workPlaySegment" destination="kkf-zJ-mkH" id="3Vv-6l-I6M"/>
                     </connections>
@@ -141,12 +131,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-5L-0Gi">
                                 <rect key="frame" x="20.5" y="24" width="373" height="144"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLc-2a-qqR">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLc-2a-qqR" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                     </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-FA-Jh0">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-FA-Jh0" customClass="DriveTribeSegmentedControl" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="58" width="373" height="32"/>
                                         <segments>
                                             <segment title="Carpool"/>
@@ -156,7 +146,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ODz-8x-Th4">
                                         <rect key="frame" x="0.0" y="113" width="373" height="31"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bTu-xL-Aai">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bTu-xL-Aai" customClass="DriveTribeSegmentedControl" customModule="DriveTribe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="32"/>
                                                 <segments>
                                                     <segment title="Work"/>

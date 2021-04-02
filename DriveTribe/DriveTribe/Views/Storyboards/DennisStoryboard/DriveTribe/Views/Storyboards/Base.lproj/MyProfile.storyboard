@@ -10,19 +10,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile Table List View Controller-->
+        <!--Profile-->
         <scene sceneID="72i-ey-3ZG">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="dma-yZ-h5s" customClass="ProfileTableListViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GNU-VW-tDe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GNU-VW-tDe" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="4v0-xE-aJg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="190" id="moE-eC-B4z">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="190" id="moE-eC-B4z" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="18" width="414" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="moE-eC-B4z" id="Eed-Yx-cdo">
@@ -53,17 +53,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Wjb-ru-9yI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Wjb-ru-9yI" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wjb-ru-9yI" id="6rg-bD-8nR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mDe-pa-pHZ">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username here..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mDe-pa-pHZ" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -74,17 +74,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="w0X-Ng-4vj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="w0X-Ng-4vj" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="278" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w0X-Ng-4vj" id="Bh9-PN-w6U">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Dj-74-vRn">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter first name..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Dj-74-vRn" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -95,17 +95,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="cpa-Bq-RbE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="cpa-Bq-RbE" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="348" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cpa-Bq-RbE" id="BSw-m0-f0X">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-1o-z4B">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter last name..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2z-1o-z4B" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" smartDashesType="no"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -116,17 +116,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Owm-V9-BZs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Owm-V9-BZs" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="418" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Owm-V9-BZs" id="XCf-Ls-4fv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Car Info" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-VQ-hVs">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter car info..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-VQ-hVs" customClass="DriveTribeTextField" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -137,38 +137,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="mGg-t6-83p">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="mGg-t6-83p" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="488" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mGg-t6-83p" id="c5T-dE-H6z">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy1-kA-bT6">
-                                                    <rect key="frame" x="20" y="10" width="374" height="50"/>
-                                                    <state key="normal" title="Update Location"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy1-kA-bT6" customClass="DriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="50" y="10" width="314" height="50"/>
+                                                    <state key="normal" title="📍 Update Location"/>
                                                     <connections>
                                                         <segue destination="ovS-T3-iVk" kind="show" id="g6m-s9-bQB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Iy1-kA-bT6" secondAttribute="trailing" constant="20" id="3N4-SY-k2r"/>
+                                                <constraint firstAttribute="trailing" secondItem="Iy1-kA-bT6" secondAttribute="trailing" constant="50" id="3N4-SY-k2r"/>
                                                 <constraint firstItem="Iy1-kA-bT6" firstAttribute="top" secondItem="c5T-dE-H6z" secondAttribute="top" constant="10" id="6VC-8P-H6J"/>
                                                 <constraint firstAttribute="bottom" secondItem="Iy1-kA-bT6" secondAttribute="bottom" constant="10" id="FRV-vg-691"/>
-                                                <constraint firstItem="Iy1-kA-bT6" firstAttribute="leading" secondItem="c5T-dE-H6z" secondAttribute="leading" constant="20" id="gD1-wm-lm6"/>
+                                                <constraint firstItem="Iy1-kA-bT6" firstAttribute="leading" secondItem="c5T-dE-H6z" secondAttribute="leading" constant="50" id="gD1-wm-lm6"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="pNh-6O-BI0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="pNh-6O-BI0" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="558" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pNh-6O-BI0" id="ZE5-Mw-Gmb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTr-UU-mcP">
-                                                    <rect key="frame" x="20" y="10" width="374" height="50"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTr-UU-mcP" customClass="DriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="50" y="10" width="314" height="50"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <state key="normal" title="Log Out"/>
                                                     <connections>
                                                         <action selector="logOutButtonTapped:" destination="dma-yZ-h5s" eventType="touchUpInside" id="pkX-Cx-iW9"/>
@@ -178,12 +179,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="gTr-UU-mcP" secondAttribute="bottom" constant="10" id="5Iv-s9-cXQ"/>
                                                 <constraint firstItem="gTr-UU-mcP" firstAttribute="top" secondItem="ZE5-Mw-Gmb" secondAttribute="top" constant="10" id="BXb-2R-I6n"/>
-                                                <constraint firstAttribute="trailing" secondItem="gTr-UU-mcP" secondAttribute="trailing" constant="20" id="RxP-ux-LwQ"/>
-                                                <constraint firstItem="gTr-UU-mcP" firstAttribute="leading" secondItem="ZE5-Mw-Gmb" secondAttribute="leading" constant="20" id="sgZ-dX-c28"/>
+                                                <constraint firstAttribute="trailing" secondItem="gTr-UU-mcP" secondAttribute="trailing" constant="50" id="RxP-ux-LwQ"/>
+                                                <constraint firstItem="gTr-UU-mcP" firstAttribute="leading" secondItem="ZE5-Mw-Gmb" secondAttribute="leading" constant="50" id="sgZ-dX-c28"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="OhG-Of-ppG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="OhG-Of-ppG" customClass="DriveTribeTableViewCell" customModule="DriveTribe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="628" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OhG-Of-ppG" id="N8j-fg-Che">
@@ -193,9 +194,10 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YsR-bD-6Dg">
                                                     <rect key="frame" x="20" y="10" width="374" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
-                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" name="textTribe"/>
                                                     <state key="normal">
                                                         <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="1AU-IN-uR0" kind="show" id="Tlc-at-Oiv"/>
@@ -219,80 +221,57 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="wpM-at-tmw">
+                    <navigationItem key="navigationItem" title="Profile" id="wpM-at-tmw">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="awI-8A-iFt">
                             <connections>
                                 <action selector="editedButtonTapped:" destination="dma-yZ-h5s" id="hNq-7B-KlT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="carInfoTextField" destination="0rS-VQ-hVs" id="lpj-UR-a4g"/>
                         <outlet property="editButton" destination="awI-8A-iFt" id="mDU-2g-DVO"/>
-                        <outlet property="lastNameTextField" destination="K2z-1o-z4B" id="TCz-OL-k1C"/>
-                        <outlet property="nameTextField" destination="mDe-pa-pHZ" id="6uh-tG-ZY5"/>
+                        <outlet property="firstNameTextField" destination="3Dj-74-vRn" id="tYJ-zf-XqC"/>
+                        <outlet property="lastNameTextFiled" destination="K2z-1o-z4B" id="TCz-OL-k1C"/>
                         <outlet property="profileImageView" destination="Ife-Ap-dSF" id="vWG-Xq-Kwa"/>
                         <outlet property="updatePhotoButton" destination="fMf-2T-oCX" id="VTb-pb-u8J"/>
-                        <outlet property="usernameTextField" destination="3Dj-74-vRn" id="tYJ-zf-XqC"/>
+                        <outlet property="userNameTextField" destination="mDe-pa-pHZ" id="6uh-tG-ZY5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKZ-uf-UYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="314" y="858"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Setting-->
         <scene sceneID="tfa-Yo-z76">
             <objects>
                 <tableViewController id="1AU-IN-uR0" customClass="SettingsTableViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qcs-NW-qWt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qcs-NW-qWt" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Arp-sO-nwe">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem id="e6L-ZA-4MU">
-                                    <barButtonItem key="backBarButtonItem" title="Back" id="9aU-am-3lb">
-                                        <color key="tintColor" name="AccentColor"/>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <sections>
-                            <tableViewSection id="FR8-Sn-PV9">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Zng-n4-igi">
-                                        <rect key="frame" x="20" y="62" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zng-n4-igi" id="vZC-LM-23c">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection id="RDI-wk-1xV">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="KJM-CS-2TF" detailTextLabel="xqf-Ji-vfG" imageView="hQP-fp-va5" style="IBUITableViewCellStyleSubtitle" id="RE1-vC-wsK">
-                                        <rect key="frame" x="20" y="141.5" width="374" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="KJM-CS-2TF" detailTextLabel="xqf-Ji-vfG" imageView="hQP-fp-va5" style="IBUITableViewCellStyleSubtitle" id="RE1-vC-wsK" customClass="DriveTribeCarpoolCell" customModule="DriveTribe" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="18" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RE1-vC-wsK" id="Fu5-8p-lIS">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rate the app!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KJM-CS-2TF">
-                                                    <rect key="frame" x="59" y="9" width="102" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rate the app!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KJM-CS-2TF" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="8" width="113" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="give us 5 stars!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xqf-Ji-vfG">
-                                                    <rect key="frame" x="59" y="31.5" width="86" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="give us 5 stars!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xqf-Ji-vfG" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="31" width="104" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -308,24 +287,24 @@
                             </tableViewSection>
                             <tableViewSection id="aED-uU-oaa">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Cfe-oH-ao8" detailTextLabel="FAv-fF-mDJ" imageView="lXa-s7-Wfm" style="IBUITableViewCellStyleSubtitle" id="IVJ-HT-rKR">
-                                        <rect key="frame" x="20" y="233.5" width="374" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Cfe-oH-ao8" detailTextLabel="FAv-fF-mDJ" imageView="lXa-s7-Wfm" style="IBUITableViewCellStyleSubtitle" id="IVJ-HT-rKR" customClass="DriveTribeCarpoolCell" customModule="DriveTribe" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="110" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IVJ-HT-rKR" id="EFC-9E-bcL">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cfe-oH-ao8">
-                                                    <rect key="frame" x="59" y="9" width="44" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cfe-oH-ao8" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="8" width="49" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="tell your friends!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FAv-fF-mDJ">
-                                                    <rect key="frame" x="59" y="31.5" width="92.5" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="tell your friends!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FAv-fF-mDJ" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="31" width="111" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -339,63 +318,72 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="a4r-x7-ZsY">
+                            <tableViewSection id="RCp-nk-xrn">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vep-P1-GD3">
-                                        <rect key="frame" x="20" y="325.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8aW-A2-6pg" detailTextLabel="3MI-8j-taN" imageView="jIh-Dg-w5P" style="IBUITableViewCellStyleSubtitle" id="qvo-uG-Qb4" customClass="DriveTribeCarpoolCell" customModule="DriveTribe" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="202" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vep-P1-GD3" id="ad5-4X-Cjf">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qvo-uG-Qb4" id="yy7-AT-ARQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfB-Km-GnJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
-                                                    <color key="backgroundColor" systemColor="systemGrayColor"/>
-                                                    <state key="normal" title="Blocked Users">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="g7C-uQ-6bK" kind="show" id="W3g-Td-t39"/>
-                                                    </connections>
-                                                </button>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Blocked Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8aW-A2-6pg" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="8" width="122" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="users you have blocked!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3MI-8j-taN" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="31" width="165.5" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="nosign" catalog="system" id="jIh-Dg-w5P">
+                                                    <rect key="frame" x="22" y="18.5" width="20" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="MfB-Km-GnJ" firstAttribute="leading" secondItem="ad5-4X-Cjf" secondAttribute="leading" id="6Mc-EG-pGe"/>
-                                                <constraint firstItem="MfB-Km-GnJ" firstAttribute="top" secondItem="ad5-4X-Cjf" secondAttribute="top" id="6nW-pi-unz"/>
-                                                <constraint firstAttribute="trailing" secondItem="MfB-Km-GnJ" secondAttribute="trailing" id="QNQ-Pk-3yG"/>
-                                                <constraint firstAttribute="bottom" secondItem="MfB-Km-GnJ" secondAttribute="bottom" id="VsX-Qg-G3x"/>
-                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <segue destination="g7C-uQ-6bK" kind="show" id="tBR-oe-P7O"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="4ZJ-0K-c1K">
+                            <tableViewSection id="a4r-x7-ZsY">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dOK-OX-7Ba">
-                                        <rect key="frame" x="20" y="405" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yj2-TZ-HzK" detailTextLabel="7bh-Uu-wcY" imageView="lmB-aZ-epA" style="IBUITableViewCellStyleSubtitle" id="o5q-Qj-QJ7" customClass="DriveTribeCarpoolCell" customModule="DriveTribe" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="294" width="374" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dOK-OX-7Ba" id="sXl-2k-ZpX">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o5q-Qj-QJ7" id="Ogq-jE-yHe">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEi-dQ-m8i">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
-                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
-                                                    <state key="normal" title="Delete Account">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="deleteButtonTapped:" destination="1AU-IN-uR0" eventType="touchUpInside" id="x7w-F8-Ofz"/>
-                                                    </connections>
-                                                </button>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Delete Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yj2-TZ-HzK" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="8" width="129.5" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="delete you account from this app!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7bh-Uu-wcY" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
+                                                    <rect key="frame" x="59" y="31" width="230" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="delete.right.fill" catalog="system" id="lmB-aZ-epA">
+                                                    <rect key="frame" x="21.25" y="19" width="21.5" height="17.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="xEi-dQ-m8i" secondAttribute="trailing" id="4L9-rk-Xwv"/>
-                                                <constraint firstAttribute="bottom" secondItem="xEi-dQ-m8i" secondAttribute="bottom" id="jtF-Ow-7Js"/>
-                                                <constraint firstItem="xEi-dQ-m8i" firstAttribute="leading" secondItem="sXl-2k-ZpX" secondAttribute="leading" id="reu-ah-oyO"/>
-                                                <constraint firstItem="xEi-dQ-m8i" firstAttribute="top" secondItem="sXl-2k-ZpX" secondAttribute="top" id="tgJ-HT-ajJ"/>
-                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -405,15 +393,11 @@
                             <outlet property="delegate" destination="1AU-IN-uR0" id="F3M-a7-Oku"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="E9X-Ip-mxA"/>
-                    <connections>
-                        <outlet property="blockedUsersButton" destination="MfB-Km-GnJ" id="0Ha-nO-ZVD"/>
-                        <outlet property="deleteAccountButton" destination="xEi-dQ-m8i" id="dTp-lF-G5y"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Setting" id="E9X-Ip-mxA"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZX-ox-ZvQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142.0289855072465" y="857.8125"/>
+            <point key="canvasLocation" x="1107" y="858"/>
         </scene>
         <!--Update User Location View Controller-->
         <scene sceneID="cn7-PO-s9o">
@@ -449,19 +433,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mez-L2-J7M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1691" y="1566"/>
+            <point key="canvasLocation" x="1232" y="1584"/>
         </scene>
-        <!--Blocked Users Table View Controller-->
+        <!--Blocked Users-->
         <scene sceneID="txW-IA-s7r">
             <objects>
                 <tableViewController id="g7C-uQ-6bK" customClass="BlockedUsersTableViewController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ALM-ww-791">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ALM-ww-791" customClass="DriveTribeTableViewController" customModule="DriveTribe" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blockedFriendCell" id="HtX-hX-NpS" customClass="BlockedUserTableViewCell" customModule="DriveTribe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="96.5"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="96.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HtX-hX-NpS" id="Cfz-3w-uDF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="96.5"/>
@@ -477,7 +461,7 @@
                                                         <constraint firstAttribute="height" constant="80" id="esa-HM-JpV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAF-lM-KOg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAF-lM-KOg" customClass="TextDriveTribeLabel" customModule="DriveTribe" customModuleProvider="target">
                                                     <rect key="frame" x="88.5" y="0.0" width="201.5" height="80.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -486,7 +470,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Of-l7-7lW">
                                                     <rect key="frame" x="298" y="0.0" width="100" height="80.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEF-x7-0OI">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEF-x7-0OI" customClass="tableViewDriveTribeButton" customModule="DriveTribe" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="25.5" width="100" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="hx6-1P-01B"/>
@@ -520,16 +504,16 @@
                             <outlet property="delegate" destination="g7C-uQ-6bK" id="4qg-QR-g8j"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FOX-S0-uEc"/>
+                    <navigationItem key="navigationItem" title="Blocked Users" id="FOX-S0-uEc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwW-HV-HdD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3050.7246376811595" y="857.8125"/>
+            <point key="canvasLocation" x="1893" y="858"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Drive Tribe Navigation Controller-->
         <scene sceneID="nVd-uM-BJN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ovS-T3-iVk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ovS-T3-iVk" customClass="DriveTribeNavigationController" customModule="DriveTribe" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="z6O-cb-FSI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="U6O-Iw-JVk">
@@ -543,25 +527,21 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QIN-p8-tNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="1546"/>
+            <point key="canvasLocation" x="529" y="1585"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
+        <image name="delete.right.fill" catalog="system" width="128" height="104"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
+        <image name="nosign" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="textTribe">
+            <color red="0.082352941176470587" green="0.098039215686274508" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

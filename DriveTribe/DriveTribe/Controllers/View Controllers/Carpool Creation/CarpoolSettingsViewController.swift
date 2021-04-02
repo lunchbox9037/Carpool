@@ -15,18 +15,13 @@ class CarpoolSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setAppearance()
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        //Fix this tomorrow!!!
-//        super.viewWillDisappear(animated)
-//        getSettings()
-//    }
     
     func getSettings() {
         if workPlayModeSegment.selectedSegmentIndex == 0 {
@@ -55,3 +50,9 @@ class CarpoolSettingsViewController: UIViewController {
     }
     
 }//end class
+
+extension CarpoolSettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
+}

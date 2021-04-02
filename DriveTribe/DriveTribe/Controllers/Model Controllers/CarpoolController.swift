@@ -28,21 +28,22 @@ class CarpoolController {
     let carpoolCollection = "carpools"
     let userCollection = "users"
     let messageCollection = "messages"
+    let groupsCollection = "groups"
+    let rideTribeIconKey = "RideTribeIconLarge"
     
     // MARK: - CRUD
     func createCarpool() {
         guard let destination = self.destination else {return}
         guard let driver = UserController.shared.currentUser?.uuid else {return print("currentUser not logged in")}
         let destinationName = destination.name ?? "Destination Unknown"
+        let uniquePassengers = Array(Set(passengers))
         var destinationCoords: [Double] = []
         destinationCoords.append(destination.placemark.coordinate.latitude)
         destinationCoords.append(destination.placemark.coordinate.longitude)
         
-        let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: self.passengers)
+        let newCarpool = Carpool(title: self.title, mode: self.mode, type: self.type, destinationName: destinationName, destination: destinationCoords, driver: driver, passengers: uniquePassengers)
         
-        carpools.append(newCarpool)
-        addCarpoolToCurrentUsersGroup(carpool: newCarpool)
-        addCarpoolToPassengersGroup(carpool: newCarpool)
+        self.destination = nil
         
         let carpoolRef = self.db.collection(self.carpoolCollection)
         carpoolRef.document(newCarpool.uuid).setData([
@@ -53,32 +54,84 @@ class CarpoolController {
             CarpoolConstants.destinationKey : newCarpool.destination,
             CarpoolConstants.driverKey : newCarpool.driver,
             CarpoolConstants.passengersKey : newCarpool.passengers,
-            CarpoolConstants.messagesKey : newCarpool.messages,
             CarpoolConstants.uuidKey : newCarpool.uuid
         ]) { (error) in
             if let error = error {
                 print("\n==== ERROR CREATING CARPOOL IN CLOUDFIRESTORE IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
             } else {
                 print("\n===== SUCCESSFULLY! CREATED CARPOOL IN CLOUD FIRESTORE DATABASE=====\n")
+                self.addCarpoolToCurrentUsersGroup(carpool: newCarpool)
+                self.addCarpoolToPassengersGroup(carpool: newCarpool)
             }
         }
-    }
+        
+        var driverMessage = "Meet Up"
+        if newCarpool.type == "carpool" {
+            driverMessage = "Driver: \(UserController.shared.currentUser?.firstName ?? "Unknown")"
+        }
+        
+        let sender = Sender(photoURL: "", senderId: rideTribeIconKey, displayName: "Chat Bot")
+        let message = Message(sender: sender, messageId: UUID().uuidString, sentDate: Date(), kind: .text("Start chatting with your RideTribe!\nTap the map for directions.\n\(driverMessage)"))
+        
+        let messageDate = Date()
+        let dateString = ChatViewController.dateFormatter.string(from: messageDate)
+        
+        var content = ""
+        switch message.kind {
+        case .text(let messageText):
+            content = messageText
+        case .attributedText(_):
+            break
+        case .photo(_):
+            break
+        case .video(_):
+            break
+        case .location(_):
+            break
+        case .emoji(_):
+            break
+        case .audio(_):
+            break
+        case .contact(_):
+            break
+        case .linkPreview(_):
+            break
+        case .custom(_):
+            break
+        }
+        
+        let newMessageEntry: [String:Any] = [
+            "id" : message.messageId,
+            "type" : message.kind.messageKindString,
+            "content" : content,
+            "date" : dateString,
+            "senderID" : sender.senderId,
+            "senderUserName" : sender.displayName
+        ]
+
+        self.db.collection(self.carpoolCollection).document(newCarpool.uuid).collection(messageCollection).addDocument(data: newMessageEntry) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }//end func
     
     func addCarpoolToCurrentUsersGroup(carpool: Carpool) {
         guard let currentUser = UserController.shared.currentUser else {return}
-        db.collection(userCollection).document(currentUser.uuid).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
-            if let error = error {
-                print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+        
+        db.collection(userCollection).document(currentUser.uuid).collection(groupsCollection).document(carpool.uuid).setData(["nothing":"nil"]) { (error) in
+            if let error =  error {
+                print(error.localizedDescription)
             }
         }
-    }
+    }//end func
     
     func addCarpoolToPassengersGroup(carpool: Carpool) {
         if passengers.count != 0 {
             for passenger in passengers {
-                db.collection(userCollection).document(passenger).updateData([UserConstants.groupsKey : FieldValue.arrayUnion([carpool.uuid])]) { (error) in
+                db.collection(userCollection).document(passenger).collection(groupsCollection).document(carpool.uuid).setData(["nothing":"nil"]) { (error) in
                     if let error = error {
-                        print("\n==== ERROR ADDING TO GROUPs \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        print(error.localizedDescription)
                     }
                 }
             }
@@ -87,28 +140,50 @@ class CarpoolController {
     
     func fetchGroupsForCurrentUser(completion: @escaping (Result<String, NetworkError>) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return print("no user logged in")}
-        db.collection(userCollection).document(currentUser.uuid).getDocument { (querySnapshot, error) in
+        db.collection(userCollection).document(currentUser.uuid).collection(groupsCollection).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
-                print("\n==== ERROR FETCH Groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
                 return completion(.failure(.thrownError(error)))
-            } else {
-                guard let querySnapshot = querySnapshot,
-                      let userData = User(document: querySnapshot) else {return completion(.failure(.noData))}
-                self.carpools = []
-                for id in userData.groups {
-                    self.db.collection(self.carpoolCollection).document(id).getDocument { (snapshot, error) in
-                        if let error = error {
-                            print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
-                            return completion(.failure(.thrownError(error)))
-                        } else {
-                            guard let snapshot = snapshot,
-                                  let carpool = Carpool(document: snapshot) else {return completion(.failure(.unableToDecode))}
-                            self.carpools.append(carpool)
-                            print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
-                            return completion(.success("success"))
-                        }
+            }
+            
+            guard let documents = querySnapshot?.documents else {return completion(.failure(.noData))}
+            self.carpools = []
+            
+            let group = DispatchGroup()
+            
+            print(documents.count)
+            for document in documents {
+                group.enter()
+
+                print(document.documentID)
+                let carpoolID = document.documentID
+                self.db.collection(self.carpoolCollection).document(carpoolID).getDocument { (snapshot, error) in
+                    if let error = error {
+                        print("\n==== ERROR FETCH groups IN \(#function) : \(error.localizedDescription) : \(error) ====\n")
+                        group.leave()
+                        return completion(.failure(.thrownError(error)))
                     }
+                    
+                    guard let snapshot = snapshot else {
+    
+                        group.leave()
+                        return completion(.failure(.unableToDecode))
+                    }
+                    
+                    guard let carpool = Carpool(document: snapshot) else {
+                        
+                        group.leave()
+                        return completion(.failure(.unableToDecode))
+                    }
+                    
+                    self.carpools.append(carpool)
+                    print("\n===== SUCCESSFULLY! FETCH CARPOOOL =====\n")
+                    group.leave()
                 }
+            }
+            
+            group.notify(queue: .main) {
+                print("notify")
+                return completion(.success("success"))
             }
         }
     }//end func
@@ -136,7 +211,7 @@ class CarpoolController {
                 }
             }
         }
-    }
+    }//end func
     
     func fetchDriverIn(carpool: Carpool, completion: @escaping (Result<User, NetworkError>) -> Void) {
         db.collection(carpoolCollection).document(carpool.uuid).getDocument { (querySnapshot, error) in
@@ -157,9 +232,11 @@ class CarpoolController {
                 return completion(.success(driver))
             }
         }
-    }
+    }//end func
     
     func sortCarpoolsByWorkPlay() {
+        self.work = []
+        self.play = []
         self.work = carpools.filter({ (carpool) -> Bool in
             return carpool.mode == "work"
         })
@@ -167,7 +244,7 @@ class CarpoolController {
         self.play = carpools.filter({ (carpool) -> Bool in
             return carpool.mode == "play"
         })
-    }
+    }//end func
     
     
     func sendMessage(message: Message, carpoolID: String) {
@@ -176,11 +253,10 @@ class CarpoolController {
         let messageDate = message.sentDate
         let dateString = ChatViewController.dateFormatter.string(from: messageDate)
         
-        var newMessage = ""
-        
+        var content = ""
         switch message.kind {
         case .text(let messageText):
-            newMessage = messageText
+            content = messageText
         case .attributedText(_):
             break
         case .photo(_):
@@ -204,7 +280,7 @@ class CarpoolController {
         let newMessageEntry: [String:Any] = [
             "id" : message.messageId,
             "type" : message.kind.messageKindString,
-            "content" : newMessage,
+            "content" : content,
             "date" : dateString,
             "senderID" : currentUser.uuid,
             "senderUserName" : currentUser.userName
@@ -215,7 +291,7 @@ class CarpoolController {
                 print(error.localizedDescription)
             }
         }
-    }
+    }//end func
     
     func getAllMessagesForConversation(with carpoolID: String, completion: @escaping (Result<[Message], NetworkError>) -> Void) {
         db.collection(carpoolCollection).document(carpoolID).collection(messageCollection).addSnapshotListener { (querySnapshot, error) in
@@ -231,7 +307,7 @@ class CarpoolController {
                       let messageID = dictionary["id"] as? String,
                       let content = dictionary["content"] as? String,
                       let senderID = dictionary["senderID"] as? String,
-                      let type = dictionary["type"] as? String,
+                      let _ = dictionary["type"] as? String,
                       let dateString = dictionary["date"] as? String,
                       let date = ChatViewController.dateFormatter.date(from: dateString) else {return nil}
 
@@ -242,33 +318,52 @@ class CarpoolController {
 
             completion(.success(messages))
         }
-    }
+    }//end func
     
     func delete(carpool: Carpool, completion: @escaping (Result<String, NetworkError>) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
-       
-        db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(.failure(.thrownError(error)))
-            } else {
-                guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
-                self.carpools.remove(at: indexToDelete)
-                self.sortCarpoolsByWorkPlay()
-                
-                self.db.collection(self.userCollection).document(currentUser.uuid).updateData([
-                    UserConstants.groupsKey : FieldValue.arrayRemove([carpool.uuid])
-                ])
-                
-                if carpool.passengers.count != 0 {
-                    for passenger in carpool.passengers {
-                        self.db.collection(self.userCollection).document(passenger).updateData([
-                            UserConstants.groupsKey : FieldValue.arrayRemove([carpool.uuid])
-                        ])
+        
+        if carpool.driver == currentUser.uuid {
+            print("driver delete")
+            db.collection(carpoolCollection).document(carpool.uuid).delete { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(.failure(.thrownError(error)))
+                } else {
+                    guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
+                    self.carpools.remove(at: indexToDelete)
+//                    self.sortCarpoolsByWorkPlay()
+                    
+                    
+                    return completion(.success("success"))
+                }
+            }
+            
+            db.collection(carpoolCollection).document(carpool.uuid).collection(messageCollection).document().delete()
+
+            self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete()
+            
+            for passenger in carpool.passengers {
+                print("deleted passenger")
+                print(passenger)
+                self.db.collection(self.userCollection).document(passenger).collection(self.groupsCollection).document(carpool.uuid).delete { (error) in
+                    if let error = error {
+                        return completion(.failure(.thrownError(error)))
                     }
                 }
-                completion(.success("success"))
+            }
+            
+            //delete messages collection?
+        } else {
+            //test this
+            guard let indexToDelete = self.carpools.firstIndex(of: carpool) else {return}
+            self.carpools.remove(at: indexToDelete)
+//            self.sortCarpoolsByWorkPlay()
+            self.db.collection(self.userCollection).document(currentUser.uuid).collection(self.groupsCollection).document(carpool.uuid).delete { (error) in
+                if let error = error {
+                    return completion(.failure(.thrownError(error)))
+                }
             }
         }
-    }
+    }//end func
 }//end class
